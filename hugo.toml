@@ -1,11 +1,11 @@
-baseURL = "https://weihaozhou2008.github.io/"
+baseURL = "https://linmythos.github.io/"
 languageCode = "zh-cn"
-title = "秋凛离弦"
+title = "Linmythos"
 
 theme = "PaperMod"
 
 [params]
-  author = "秋凛离弦"
+  author = "Linmythos"
   description = "Mathematics · Physics · Thoughts"
 
   defaultTheme = "auto"
@@ -24,14 +24,14 @@ theme = "PaperMod"
 
 [params.profileMode]
   enabled = true
-  title = "秋凛离弦"
+  title = "Linmythos"
   subtitle = """
 弦不逐响，凛自成声
 
 Mathematics · Physics · Thoughts
 """
   imageUrl = "/images/avatar.png"
-  imageTitle = "秋凛离弦"
+  imageTitle = "Linmythos"
   imageWidth = 160
   imageHeight = 160
 
@@ -44,7 +44,7 @@ Mathematics · Physics · Thoughts
 
 [[params.socialIcons]]
   name = "github"
-  url = "https://github.com/WeiHaoZhou2008"
+  url = "https://github.com/Linmythos"
 
 [[params.socialIcons]]
   name = "link"
