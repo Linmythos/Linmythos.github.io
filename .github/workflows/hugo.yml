@@ -6,19 +6,15 @@ on:
       - main
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    environment:
-      name: github-pages
-
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
@@ -29,10 +25,10 @@ jobs:
       - name: Build
         run: hugo --minify
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to GitHub Pages repository
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: ./public
-
-      - name: Deploy
-        uses: actions/deploy-pages@v4
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          external_repository: Linmythos/Linmythos.github.io
+          publish_dir: ./public
+          publish_branch: main
