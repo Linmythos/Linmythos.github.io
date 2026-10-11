@@ -58,10 +58,10 @@ $$
 **Proof:** 设 $P_1(x_1, y_1), P_2(x_2, y_2), P(x, y), (P_1P_2P) = \mu$ ，则
 
 $$
-x = \frac{x_1 - \lambda x_2}{1 - \lambda}, y = \frac{y_1 - \lambda y_2}{1 - \lambda}
+x = \frac{x_1 - \mu x_2}{1 - \mu}, y = \frac{y_1 - \mu y_2}{1 - \mu}
 $$
 
-$E$ 点齐次坐标可写为 $(x_1 - \mu x_2, y_1 - \mu y_2, 1 - \mu)$ ，当$\mu = 1$ 时，$P$ 为无穷远点，则
+$P$ 点齐次坐标可写为 $(x_1 - \mu x_2, y_1 - \mu y_2, 1 - \mu)$ ，当$\mu = 1$ 时，$P$ 为无穷远点，则
 
 $$
 (P_1P_2P_\infty) = 1 \quad \square
