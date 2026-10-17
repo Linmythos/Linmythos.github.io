@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Physics on Linmythos</title><link>https://linmythos.github.io/physics/</link><description>Recent content in Physics on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sat, 17 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/physics/index.xml" rel="self" type="application/rss+xml"/><item><title>From Newtonian Mechanics to Lagrangian Mechanics</title><link>https://linmythos.github.io/physics/classical-mechanics/</link><pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/</guid><description>&lt;h3 id="configuration-space"&gt;Configuration Space&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Physics on Linmythos</title><link>https://linmythos.github.io/physics/</link><description>Recent content in Physics on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sat, 17 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/physics/index.xml" rel="self" type="application/rss+xml"/><item><title>Lagrangian Mechanics的几何视角</title><link>https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/</link><pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/</guid><description>&lt;h3 id="configuration-space"&gt;Configuration Space&lt;/h3&gt;
 &lt;p&gt;我们已经知道 Newton&amp;rsquo;s equation：&lt;/p&gt;
 &lt;p&gt;$$
 m\mathbf a=\mathbf F.
@@ -28,4 +28,41 @@ $$&lt;/p&gt;
 &lt;p&gt;$$
 q(t)=(q_1(t),\ldots,q_n(t)),
 $$&lt;/p&gt;
-&lt;p&gt;这就是 configuration space 中的一条 trajectory。注意这个区别：&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;这就是 configuration space 中的一条 trajectory。注意这个区别：&lt;/p&gt;</description></item><item><title>Symmetry and Conservation Laws:Noether's Theorem</title><link>https://linmythos.github.io/physics/classical-mechanics/symmetry-and-conservation-laws/</link><pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/symmetry-and-conservation-laws/</guid><description>&lt;p&gt;本文的目标是阐述一个思想：&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{\text{Symmetry}\quad\Longrightarrow\quad\text{Conservation Law}}
+$$&lt;/p&gt;
+&lt;p&gt;我们先从特殊情况开始，最后走向 Noether&amp;rsquo;s theorem。&lt;/p&gt;
+&lt;h2 id="cyclic-coordinate"&gt;Cyclic coordinate&lt;/h2&gt;
+&lt;p&gt;如果某个 generalized coordinate $q_j$ 不显式出现在 Lagrangian 中，即&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{\frac{\partial L}{\partial q_j}=0},
+$$&lt;/p&gt;
+&lt;p&gt;我们就称 $q_j$ 为 cyclic coordinate，也叫 ignorable coordinate。&lt;/p&gt;
+&lt;p&gt;Euler–Lagrange equation 立即给出：&lt;/p&gt;
+&lt;p&gt;$$
+\frac{d}{dt} \frac{\partial L}{\partial\dot q_j}=0.
+$$&lt;/p&gt;
+&lt;p&gt;定义 conjugate momentum：&lt;/p&gt;
+&lt;p&gt;$$
+p_j:=\frac{\partial L}{\partial\dot q_j},
+$$&lt;/p&gt;
+&lt;p&gt;便得到：&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{p_j=\text{constant}}.
+$$&lt;/p&gt;
+&lt;p&gt;这就是一个可以直接使用的结论：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果 Lagrangian 不显含某个 coordinate，那么它对应的 conjugate momentum 守恒。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id="旋转对称性与角动量守恒"&gt;旋转对称性与角动量守恒&lt;/h3&gt;
+&lt;p&gt;考虑平面上的中心势：&lt;/p&gt;
+&lt;p&gt;$$
+V=V(r).
+$$&lt;/p&gt;
+&lt;p&gt;Lagrangian 为：&lt;/p&gt;
+&lt;p&gt;$$
+L=\frac12m(\dot r^2+r^2\dot\theta^2)-V(r).
+$$&lt;/p&gt;
+&lt;p&gt;现在做一个 transformation：&lt;/p&gt;</description></item></channel></rss>
