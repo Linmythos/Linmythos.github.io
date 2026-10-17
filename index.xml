@@ -1,34 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Linmythos</title><link>https://linmythos.github.io/</link><description>Recent content on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sat, 17 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Lagrangian Mechanics的几何视角</title><link>https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/</link><pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/</guid><description>&lt;h3 id="configuration-space"&gt;Configuration Space&lt;/h3&gt;
-&lt;p&gt;我们已经知道 Newton&amp;rsquo;s equation：&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Linmythos</title><link>https://linmythos.github.io/</link><description>Recent content on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sat, 17 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>哈密顿力学与辛几何</title><link>https://linmythos.github.io/physics/classical-mechanics/hamilton-mechanics/</link><pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/hamilton-mechanics/</guid><description>&lt;h2 id="legendre-transform"&gt;Legendre Transform&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;以下默认采用 Einstein summation convention&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在 Lagrangian formulation 中，系统的状态由广义坐标和广义速度描述，运动方程是二阶微分方程&lt;/p&gt;
+&lt;p&gt;我们希望改用广义坐标 $q^i$ 和共轭动量 $p_i$ 描述状态，并且得到一阶方程&lt;/p&gt;
+&lt;p&gt;$$p_i=\frac{\partial L}{\partial\dot q^i}.$$&lt;/p&gt;
+&lt;p&gt;如果可以由这个关系解出&lt;/p&gt;
+&lt;p&gt;$$\dot q^i=\dot q^i(q,p,t),$$&lt;/p&gt;
+&lt;p&gt;那么就能把速度消去，构造只依赖于 $q,p,t$ 的 Hamiltonian：&lt;/p&gt;
+&lt;p&gt;$$\boxed{ H(q,p,t)=p_i\dot q^i-L(q,\dot q,t) }$$&lt;/p&gt;
+&lt;p&gt;为此，我们定义 velocity Hessian：&lt;/p&gt;
+&lt;p&gt;$$W_{ij} =\frac{\partial^2L} {\partial\dot q^i\partial\dot q^j}.$$&lt;/p&gt;
+&lt;p&gt;如果&lt;/p&gt;
+&lt;p&gt;$$\boxed{\det W\neq0},$$&lt;/p&gt;
+&lt;p&gt;那么在局部能反解出 $\dot q^i=\dot q^i(q,p,t)$。&lt;/p&gt;
+&lt;p&gt;具体来说，固定 $q,t$，考虑映射&lt;/p&gt;
 &lt;p&gt;$$
-m\mathbf a=\mathbf F.
+\dot q\longmapsto p(\dot q), \qquad p_i=\frac{\partial L}{\partial\dot q^i}.
 $$&lt;/p&gt;
-&lt;p&gt;它当然可以解决大量问题。但假设一个系统有 $N$ 个 particles，有各种 constraints。直接使用 Cartesian coordinates：&lt;/p&gt;
+&lt;p&gt;它对速度的 Jacobian 矩阵恰好就是&lt;/p&gt;
 &lt;p&gt;$$
-\mathbf r_1,\mathbf r_2,\ldots,\mathbf r_N
+\frac{\partial p_i}{\partial\dot q^j}=W_{ij}.
 $$&lt;/p&gt;
-&lt;p&gt;我们最终需要处理 $3N$ 个 coordinates，再加上一堆 constraint equations。而物理系统真正的自由度可能只有 $n &amp;lt; 3N$。所以我们问：能不能直接用描述这个系统真正自由度的 coordinates 来描述运动？&lt;/p&gt;
-&lt;p&gt;这就引出了：&lt;/p&gt;
-&lt;p&gt;$$
-\boxed{\text{generalized coordinates}}
-$$&lt;/p&gt;
-&lt;p&gt;设系统有 $n$ 个 degrees of freedom，我们写：&lt;/p&gt;
-&lt;p&gt;$$
-q_1,q_2,\ldots,q_n.
-$$&lt;/p&gt;
-&lt;p&gt;那么一个系统在某一时刻的 configuration 就可以表示为：&lt;/p&gt;
-&lt;p&gt;$$
-q=(q_1,\ldots,q_n).
-$$&lt;/p&gt;
-&lt;p&gt;于是所有可能的 configurations 构成：&lt;/p&gt;
-&lt;p&gt;$$
-\boxed{\mathcal C=\text{configuration space}}
-$$&lt;/p&gt;
-&lt;p&gt;随着时间演化：&lt;/p&gt;
-&lt;p&gt;$$
-q(t)=(q_1(t),\ldots,q_n(t)),
-$$&lt;/p&gt;
-&lt;p&gt;这就是 configuration space 中的一条 trajectory。注意这个区别：&lt;/p&gt;</description></item><item><title>Symmetry and Conservation Laws:Noether's Theorem</title><link>https://linmythos.github.io/physics/classical-mechanics/symmetry-and-conservation-laws/</link><pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/symmetry-and-conservation-laws/</guid><description>&lt;p&gt;本文的目标是阐述一个思想：&lt;/p&gt;
+&lt;p&gt;因此，由 inverse function theorem，只要 $\det W\neq0$，我们就能在局部反解&lt;/p&gt;</description></item><item><title>对称性与守恒律: 诺特定理</title><link>https://linmythos.github.io/physics/classical-mechanics/symmetry-and-conservation-laws/</link><pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/symmetry-and-conservation-laws/</guid><description>&lt;p&gt;本文的目标是阐述一个思想：&lt;/p&gt;
 &lt;p&gt;$$
 \boxed{\text{Symmetry}\quad\Longrightarrow\quad\text{Conservation Law}}
 $$&lt;/p&gt;
@@ -65,7 +57,37 @@ $$&lt;/p&gt;
 &lt;p&gt;$$
 L=\frac12m(\dot r^2+r^2\dot\theta^2)-V(r).
 $$&lt;/p&gt;
-&lt;p&gt;现在做一个 transformation：&lt;/p&gt;</description></item><item><title>二次曲线的仿射性质</title><link>https://linmythos.github.io/math/geometry/projective_geometry/affine-properties-and-metric-properties/</link><pubDate>Fri, 09 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/projective_geometry/affine-properties-and-metric-properties/</guid><description>&lt;h3 id="引入"&gt;引入&lt;/h3&gt;
+&lt;p&gt;现在做一个 transformation：&lt;/p&gt;</description></item><item><title>拉格朗日力学的几何视角</title><link>https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/</link><pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/</guid><description>&lt;h3 id="configuration-space"&gt;Configuration Space&lt;/h3&gt;
+&lt;p&gt;我们已经知道 Newton&amp;rsquo;s equation：&lt;/p&gt;
+&lt;p&gt;$$
+m\mathbf a=\mathbf F.
+$$&lt;/p&gt;
+&lt;p&gt;它当然可以解决大量问题。但假设一个系统有 $N$ 个 particles，有各种 constraints。直接使用 Cartesian coordinates：&lt;/p&gt;
+&lt;p&gt;$$
+\mathbf r_1,\mathbf r_2,\ldots,\mathbf r_N
+$$&lt;/p&gt;
+&lt;p&gt;我们最终需要处理 $3N$ 个 coordinates，再加上一堆 constraint equations。而物理系统真正的自由度可能只有 $n &amp;lt; 3N$。所以我们问：能不能直接用描述这个系统真正自由度的 coordinates 来描述运动？&lt;/p&gt;
+&lt;p&gt;这就引出了：&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{\text{generalized coordinates}}
+$$&lt;/p&gt;
+&lt;p&gt;设系统有 $n$ 个 degrees of freedom，我们写：&lt;/p&gt;
+&lt;p&gt;$$
+q_1,q_2,\ldots,q_n.
+$$&lt;/p&gt;
+&lt;p&gt;那么一个系统在某一时刻的 configuration 就可以表示为：&lt;/p&gt;
+&lt;p&gt;$$
+q=(q_1,\ldots,q_n).
+$$&lt;/p&gt;
+&lt;p&gt;于是所有可能的 configurations 构成：&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{\mathcal C=\text{configuration space}}
+$$&lt;/p&gt;
+&lt;p&gt;随着时间演化：&lt;/p&gt;
+&lt;p&gt;$$
+q(t)=(q_1(t),\ldots,q_n(t)),
+$$&lt;/p&gt;
+&lt;p&gt;这就是 configuration space 中的一条 trajectory。注意这个区别：&lt;/p&gt;</description></item><item><title>二次曲线的仿射性质</title><link>https://linmythos.github.io/math/geometry/projective_geometry/affine-properties-and-metric-properties/</link><pubDate>Fri, 09 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/projective_geometry/affine-properties-and-metric-properties/</guid><description>&lt;h3 id="引入"&gt;引入&lt;/h3&gt;
 &lt;p&gt;在齐次坐标下，仿射变换：&lt;/p&gt;
 &lt;p&gt;$$ \rho \mathbf{x}&amp;rsquo; = A\mathbf{x},\quad A=(a_{ij})_{3\times3},\ \det A\neq0 $$&lt;/p&gt;
 &lt;p&gt;其中仿射变换满足 $a_{31}=a_{32}=0$，&lt;/p&gt;
