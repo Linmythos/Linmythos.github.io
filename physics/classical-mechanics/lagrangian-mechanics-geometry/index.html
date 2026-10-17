@@ -1,17 +1,4 @@
 <!doctype html><html lang=en dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>拉格朗日力学的几何视角 | Linmythos</title><meta name=keywords content><meta name=description content="Configuration Space
-我们已经知道 Newton&rsquo;s equation：
-$$
-m\mathbf a=\mathbf F.
-$$
-它当然可以解决大量问题。但假设一个系统有 $N$ 个 particles，有各种 constraints。直接使用 Cartesian coordinates：
-$$
-\mathbf r_1,\mathbf r_2,\ldots,\mathbf r_N
-$$
-我们最终需要处理 $3N$ 个 coordinates，再加上一堆 constraint equations。而物理系统真正的自由度可能只有 $n < 3N$。所以我们问：能不能直接用描述这个系统真正自由度的 coordinates 来描述运动？
-这就引出了：
-$$
-\boxed{\text{generalized coordinates}}
-$$
 设系统有 $n$ 个 degrees of freedom，我们写：
 $$
 q_1,q_2,\ldots,q_n.
@@ -28,14 +15,24 @@ $$
 $$
 q(t)=(q_1(t),\ldots,q_n(t)),
 $$
-这就是 configuration space 中的一条 trajectory。注意这个区别："><meta name=author content="Linmythos"><link rel=canonical href=https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/><link crossorigin=anonymous href=/assets/css/stylesheet.5a42af7b68c8b1b7f3d0894c8a74d101cf31f37c1aa9bf8365395ef493e0dea4.css integrity="sha256-WkKve2jIsbfz0IlMinTRAc8x83waqb+DZTle9JPg3qQ=" rel="preload stylesheet" as=style><link rel=icon href=https://linmythos.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://linmythos.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://linmythos.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://linmythos.github.io/apple-touch-icon.png><link rel=mask-icon href=https://linmythos.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><meta property="og:url" content="https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/"><meta property="og:site_name" content="Linmythos"><meta property="og:title" content="拉格朗日力学的几何视角"><meta property="og:description" content="Configuration Space 我们已经知道 Newton’s equation：
-$$ m\mathbf a=\mathbf F. $$
-它当然可以解决大量问题。但假设一个系统有 $N$ 个 particles，有各种 constraints。直接使用 Cartesian coordinates：
-$$ \mathbf r_1,\mathbf r_2,\ldots,\mathbf r_N $$
-我们最终需要处理 $3N$ 个 coordinates，再加上一堆 constraint equations。而物理系统真正的自由度可能只有 $n < 3N$。所以我们问：能不能直接用描述这个系统真正自由度的 coordinates 来描述运动？
-这就引出了：
-$$ \boxed{\text{generalized coordinates}} $$
-设系统有 $n$ 个 degrees of freedom，我们写：
+这就是 configuration space 中的一条 trajectory。
+两个粒子的例子
+假设有两个粒子：
+$$
+\mathbf r_1(t),\mathbf r_2(t)\in\mathbb R^3.
+$$
+整个系统的 configuration 不是一个三维位置，而是
+$$
+q(t)=(\mathbf r_1(t),\mathbf r_2(t)).
+$$
+因此
+$$
+Q=\mathbb R^3\times \mathbb R^3=\mathbb R^6.
+$$
+于是 system point 实际上是在 six-dimensional configuration space 中运动：
+$$
+q(t)\in\mathbb R^6.
+$$"><meta name=author content="Linmythos"><link rel=canonical href=https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/><link crossorigin=anonymous href=/assets/css/stylesheet.5a42af7b68c8b1b7f3d0894c8a74d101cf31f37c1aa9bf8365395ef493e0dea4.css integrity="sha256-WkKve2jIsbfz0IlMinTRAc8x83waqb+DZTle9JPg3qQ=" rel="preload stylesheet" as=style><link rel=icon href=https://linmythos.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://linmythos.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://linmythos.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://linmythos.github.io/apple-touch-icon.png><link rel=mask-icon href=https://linmythos.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><meta property="og:url" content="https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/"><meta property="og:site_name" content="Linmythos"><meta property="og:title" content="拉格朗日力学的几何视角"><meta property="og:description" content="Configuration Space 设系统有 $n$ 个 degrees of freedom，我们写：
 $$ q_1,q_2,\ldots,q_n. $$
 那么一个系统在某一时刻的 configuration 就可以表示为：
 $$ q=(q_1,\ldots,q_n). $$
@@ -43,14 +40,15 @@ $$ q=(q_1,\ldots,q_n). $$
 $$ \boxed{\mathcal C=\text{configuration space}} $$
 随着时间演化：
 $$ q(t)=(q_1(t),\ldots,q_n(t)), $$
-这就是 configuration space 中的一条 trajectory。注意这个区别："><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="physics"><meta property="article:published_time" content="2026-10-17T00:00:00+00:00"><meta property="article:modified_time" content="2026-10-17T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="拉格朗日力学的几何视角"><meta name=twitter:description content="Configuration Space 我们已经知道 Newton’s equation：
-$$ m\mathbf a=\mathbf F. $$
-它当然可以解决大量问题。但假设一个系统有 $N$ 个 particles，有各种 constraints。直接使用 Cartesian coordinates：
-$$ \mathbf r_1,\mathbf r_2,\ldots,\mathbf r_N $$
-我们最终需要处理 $3N$ 个 coordinates，再加上一堆 constraint equations。而物理系统真正的自由度可能只有 $n < 3N$。所以我们问：能不能直接用描述这个系统真正自由度的 coordinates 来描述运动？
-这就引出了：
-$$ \boxed{\text{generalized coordinates}} $$
-设系统有 $n$ 个 degrees of freedom，我们写：
+这就是 configuration space 中的一条 trajectory。
+两个粒子的例子 假设有两个粒子：
+$$ \mathbf r_1(t),\mathbf r_2(t)\in\mathbb R^3. $$
+整个系统的 configuration 不是一个三维位置，而是
+$$ q(t)=(\mathbf r_1(t),\mathbf r_2(t)). $$
+因此
+$$ Q=\mathbb R^3\times \mathbb R^3=\mathbb R^6. $$
+于是 system point 实际上是在 six-dimensional configuration space 中运动：
+$$ q(t)\in\mathbb R^6. $$"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="physics"><meta property="article:published_time" content="2026-10-17T00:00:00+00:00"><meta property="article:modified_time" content="2026-10-17T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="拉格朗日力学的几何视角"><meta name=twitter:description content="Configuration Space 设系统有 $n$ 个 degrees of freedom，我们写：
 $$ q_1,q_2,\ldots,q_n. $$
 那么一个系统在某一时刻的 configuration 就可以表示为：
 $$ q=(q_1,\ldots,q_n). $$
@@ -58,15 +56,17 @@ $$ q=(q_1,\ldots,q_n). $$
 $$ \boxed{\mathcal C=\text{configuration space}} $$
 随着时间演化：
 $$ q(t)=(q_1(t),\ldots,q_n(t)), $$
-这就是 configuration space 中的一条 trajectory。注意这个区别："><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Physics","item":"https://linmythos.github.io/physics/"},{"@type":"ListItem","position":2,"name":"拉格朗日力学的几何视角","item":"https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"拉格朗日力学的几何视角","name":"拉格朗日力学的几何视角","description":"Configuration Space 我们已经知道 Newton\u0026rsquo;s equation：\n$$ m\\mathbf a=\\mathbf F. $$\n它当然可以解决大量问题。但假设一个系统有 $N$ 个 particles，有各种 constraints。直接使用 Cartesian coordinates：\n$$ \\mathbf r_1,\\mathbf r_2,\\ldots,\\mathbf r_N $$\n我们最终需要处理 $3N$ 个 coordinates，再加上一堆 constraint equations。而物理系统真正的自由度可能只有 $n \u0026lt; 3N$。所以我们问：能不能直接用描述这个系统真正自由度的 coordinates 来描述运动？\n这就引出了：\n$$ \\boxed{\\text{generalized coordinates}} $$\n设系统有 $n$ 个 degrees of freedom，我们写：\n$$ q_1,q_2,\\ldots,q_n. $$\n那么一个系统在某一时刻的 configuration 就可以表示为：\n$$ q=(q_1,\\ldots,q_n). $$\n于是所有可能的 configurations 构成：\n$$ \\boxed{\\mathcal C=\\text{configuration space}} $$\n随着时间演化：\n$$ q(t)=(q_1(t),\\ldots,q_n(t)), $$\n这就是 configuration space 中的一条 trajectory。注意这个区别：\n","keywords":[],"articleBody":"Configuration Space 我们已经知道 Newton’s equation：\n$$ m\\mathbf a=\\mathbf F. $$\n它当然可以解决大量问题。但假设一个系统有 $N$ 个 particles，有各种 constraints。直接使用 Cartesian coordinates：\n$$ \\mathbf r_1,\\mathbf r_2,\\ldots,\\mathbf r_N $$\n我们最终需要处理 $3N$ 个 coordinates，再加上一堆 constraint equations。而物理系统真正的自由度可能只有 $n \u003c 3N$。所以我们问：能不能直接用描述这个系统真正自由度的 coordinates 来描述运动？\n这就引出了：\n$$ \\boxed{\\text{generalized coordinates}} $$\n设系统有 $n$ 个 degrees of freedom，我们写：\n$$ q_1,q_2,\\ldots,q_n. $$\n那么一个系统在某一时刻的 configuration 就可以表示为：\n$$ q=(q_1,\\ldots,q_n). $$\n于是所有可能的 configurations 构成：\n$$ \\boxed{\\mathcal C=\\text{configuration space}} $$\n随着时间演化：\n$$ q(t)=(q_1(t),\\ldots,q_n(t)), $$\n这就是 configuration space 中的一条 trajectory。注意这个区别：\n$$ \\boxed{ \\text{particle’s trajectory in physical space} \\neq \\text{system’s trajectory in configuration space} } $$\n考虑一个 simple pendulum。物理空间里，摆球的位置是：\n$$ \\mathbf r(t). $$\n但如果绳长固定为 $l$，那么它实际上只有一个 degree of freedom。我们根本不需要 $x,y,z$。只需要：\n$$ \\boxed{q=\\theta} $$\n于是 configuration space 本质上就是：\n$$ S^1 $$\n而系统的运动就是：\n$$ \\theta(t). $$\n所以可以把 Classical Mechanics 的一次抽象提升理解成：\n$$ \\boxed{ \\mathbf r(t) \\quad\\longrightarrow\\quad q(t) } $$\n假设有两个粒子：\n$$ \\mathbf r_1(t),\\mathbf r_2(t)\\in\\mathbb R^3. $$\n整个系统的 configuration 不是一个三维位置，而是\n$$ q(t)=(\\mathbf r_1(t),\\mathbf r_2(t)). $$\n因此\n$$ Q=\\mathbb R^3\\times\\mathbb R^3=\\mathbb R^6. $$\n于是 system point 实际上是在 six-dimensional configuration space 中运动：\n$$ q(t)\\in\\mathbb R^6. $$\n而物理上我们看到的是两条三维轨迹：\n$$ \\mathbf r_1(t),\\qquad \\mathbf r_2(t). $$\n所以：\n一个 configuration-space point = 整个系统在某一时刻的完整 configuration，而不是“某一个粒子的位置”。\n再例如一个自由 rigid body。\n它的 configuration 可以用\n$$ (x,y,z,\\phi,\\theta,\\psi) $$\n描述。\n所以\n$$ Q\\simeq \\mathbb R^3\\times SO(3). $$\n此时一个 configuration-space point\n$$ q=(x,y,z,\\phi,\\theta,\\psi) $$\n代表的是：\n整个刚体当前的位置 + 当前的 orientation。\n随着时间：\n$$ q(t)=(x(t),y(t),z(t),\\phi(t),\\theta(t),\\psi(t)), $$\n于是整个刚体的运动就是 $Q$ 中的一条 curve。\n但这条 curve 显然不是某个刚体质点在 physical space 中画出来的轨迹。\nHamilton’s Principle 相对于Newtonian mechanics，Lagrangian mechanics 换了一个视角：\n$$ q(t) $$\n是一条 configuration space 中的 curve。\n然后我们定义\n$$ L(q,\\dot q,t) $$\n并构造一个 functional：\n$$ S[q]=\\int_{t_1}^{t_2}L(q,\\dot q,t) dt. $$\nHamilton’s Principle 说：\n$$ \\boxed{\\delta S=0} $$\n即真实运动 $q(t)$ 是使 action stationary 的那条 curve。\n更严格地说：\n在所有满足固定端点条件 $$ q(t_1)=q_1,\\qquad q(t_2)=q_2 $$ 的 admissible curves 中，真实的 motion 是使 action $S[q]$ stationary 的那一条。\nLagrangian Mechanics 的 Geometry 视角 我们已经有：\n$$ q(t)\\in Q. $$\n但是仅仅知道一个 configuration 不够。\n因为 mechanics 研究的是运动。\n所以我们还需要：\n$$ \\dot q(t). $$\n于是 Lagrangian 是：\n$$ \\boxed{L=L(q,\\dot q,t)} $$\n它实际上是在考虑：\n$$ (q,\\dot q) $$\n它对应一个特定的 tangent space：\n$$ T_qQ. $$\n所以一个状态是\n$$ \\boxed{(q,v),\\qquad v\\in T_qQ} $$\n把所有这些 tangent spaces 拼在一起，就是 tangent bundle：\n$$ \\boxed{ TQ=\\bigsqcup_{q\\in Q}T_qQ } $$\n因此：\n$$ \\boxed{ (q,\\dot q)\\in TQ. } $$\n在一个 coordinate chart 中，\n$$ \\boxed{(q_1,\\ldots,q_n,\\dot q_1,\\ldots,\\dot q_n)} $$\n就是 $TQ$ 上的局部 coordinates。\n而且：\n$$ \\boxed{\\dim TQ=n+n=2n}. $$\n局部来看就是：\n$$ (q_1,\\ldots,q_n) $$\n负责告诉你在哪个 configuration，而\n$$ (\\dot q_1,\\ldots,\\dot q_n) $$\n负责告诉你在这个 configuration 上朝哪个 tangent direction 运动。\n所以：\n$$ \\boxed{(q_i,\\dot q_i)} $$\n正好给出了 $TQ$ 的 $2n$ 个局部 coordinates\n现在考虑一个约束在球面上运动的质点，则：\nconfiguration：\n$$ q\\in S^2. $$\n在这个点上，允许的 velocity 必须位于：\n$$ T_qS^2. $$\n所以 instantaneous state 是：\n$$ \\boxed{ (q,\\dot q),\\qquad \\dot q\\in T_qS^2. } $$\n于是整个 system 的 velocity space 就是：\n$$ TS^2. $$\n而 Lagrangian：\n$$ L(q,\\dot q,t) $$\n本质上可以看成：\n$$ \\boxed{ L:TQ\\times\\mathbb R\\to\\mathbb R. } $$\n那么在某个 $q$ ， $v=(v_x,v_y,v_z)$ 必须满足什么条件，才能成为\n$$ v\\in T_qS^2? $$\n因为 sphere 的 defining equation 是\n$$ f(q)=x^2+y^2+z^2-R^2=0. $$\n沿着 sphere 上的一条 curve $q(t)$ 运动：\n$$ f(q(t))=0. $$\n对 $t$ 求导：\n$$ \\frac{d}{dt}(q\\cdot q-R^2)=0, $$\n所以\n$$ 2q\\cdot\\dot q=0. $$\n因此：\n$$ \\boxed{q\\cdot v=0}. $$\n也就是说：\n$$ \\boxed{T_qS^2={v\\in\\mathbb R^3\\mid q\\cdot v=0}} $$\nvelocity 必须位于 sphere 在 $q$ 点的 tangent plane。\n回顾一下，我们现在已经得到：\n$$ \\boxed{ Q \\overset{\\text{configuration}}{\\longrightarrow} TQ \\overset{L}{\\longrightarrow} \\mathbb R } $$\n即：\n$$ q\\in Q, $$\n$$ (q,\\dot q)\\in TQ, $$\n$$ L(q,\\dot q,t)\\in\\mathbb R. $$\n然后我们把沿着一条 trajectory 的 Lagrangian 积起来：\n$$ S[q]=\\int_{t_1}^{t_2}L(q(t),\\dot q(t),t) dt. $$\n最后要求：\n$$ \\boxed{\\delta S=0}. $$\nCalculus of Variations 我们先考虑一个最简单的 functional：\n$$ J[y]=\\int_{x_1}^{x_2}F(y,y’,x)dx. $$\n我们希望找到使 $J$ stationary 的 function $y(x)$。\n取：\n$$ y(x)\\rightarrow y(x)+\\epsilon\\eta(x), $$\n并要求：\n$$ \\eta(x_1)=\\eta(x_2)=0. $$\n于是定义：\n$$ J(\\epsilon)=\\int_{x_1}^{x_2}F(y+\\epsilon\\eta,y’+\\epsilon\\eta’,x)dx. $$\n真正的 stationary condition 是：\n$$ \\boxed{ \\left.\\frac{dJ}{d\\epsilon}\\right|_{\\epsilon=0}=0. } $$\n注意这个形式。\n它和普通 calculus 中：\n$$ f’(x_0)=0 $$\n完全同构。\n只不过现在我们不是改变一个 number：\n$$ x\\rightarrow x+\\epsilon, $$\n而是改变整个 function：\n$$ y(x)\\rightarrow y(x)+\\epsilon\\eta(x). $$\n于是：\n$$ \\delta J=\\int_{x_1}^{x_2}\\left( \\frac{\\partial F}{\\partial y}\\eta+\\frac{\\partial F}{\\partial y’}\\eta’\\right)dx. $$\n而\n$$ \\eta’=\\frac{d\\eta}{dx}. $$\n所以第二项 integration by parts：\n$$ \\int \\frac{\\partial F}{\\partial y’}\\eta’ dx $$\n变成：\n$$ \\left[\\frac{\\partial F}{\\partial y’}\\eta\\right]_{x_1}^{x_2}-\\int\\frac{d}{dx} \\left(\\frac{\\partial F}{\\partial y’}\\right)\\eta dx. $$\n由于：\n$$ \\eta(x_1)=\\eta(x_2)=0, $$\nboundary term 消失。\n于是：\n$$ \\delta J=\\int_{x_1}^{x_2}\\left[\\frac{\\partial F}{\\partial y}-\\frac{d}{dx}\\left( \\frac{\\partial F}{\\partial y’}\\right) \\right]\\eta dx. $$\n而 $\\eta(x)$ 在内部是任意的。\n因此只能有：\n$$ \\boxed{\\frac{\\partial F}{\\partial y}-\\frac{d}{dx}\\frac{\\partial F}{\\partial y’}=0} $$\n这就是：Euler–Lagrange equation\n数学上，我们实际上是在定义一个路径空间上的问题：\nAction 是一个 functional：\n$$ S:\\mathcal P\\rightarrow\\mathbb R. $$\n于是我们不是在比较任意两条 paths，而是在比较：\n$$ q(t),\\quad q(t)+\\epsilon\\eta(t),\\quad\\ldots $$\n这些具有相同 endpoints 的 nearby paths。\n因此\n$$ \\eta(t_1)=\\eta(t_2)=0 $$\n恰恰表示：\n$$ q_\\epsilon(t_1)=q(t_1), \\qquad q_\\epsilon(t_2)=q(t_2). $$\n“如果起点和终点不同，就没有比较的意义了。”\n准确地说：\nHamilton’s Principle 把 actual motion 表述为一个 boundary-value problem：\n$$ (q_1,t_1)\\longrightarrow(q_2,t_2). $$\n在这个表述下，我们问：\n给定 initial configuration 和 final configuration，哪一条 admissible path 使 action stationary？\n但这和说“实验上我们必须先知道最终位形，然后物理才预言路径”不是一回事。\n这是 formulation 和 physical prediction 的区别。\n例如 Newtonian initial-value problem 通常给：\n$$ q(t_0),\\qquad \\dot q(t_0) $$\n然后由 equation of motion 预测未来：\n$$ q(t). $$\n而 Hamiltonian formulation 则可以把同一个 dynamics 表述成：\n$$ q(t_1)=q_1,\\qquad q(t_2)=q_2 $$\n之间的 variational problem。\n所以：\n$$ \\boxed{ \\text{initial-value formulation} \\neq \\text{boundary-value formulation} } $$\n但它们可以描述同一个 classical dynamics。\n现在我们只需要做一个 substitution\n把：\n$$ x\\rightarrow t, \\qquad y\\rightarrow q_i, \\qquad y’\\rightarrow\\dot q_i, \\qquad F\\rightarrow L $$\n就得到：\n$$ \\boxed{\\frac{d}{dt}\\frac{\\partial L}{\\partial\\dot q_i}-\\frac{\\partial L}{\\partial q_i}=0. } $$\n所以现在整个逻辑链已经闭合：\n$$ \\boxed{ \\text{variation} \\rightarrow \\delta S=0 \\rightarrow \\text{integration by parts} \\rightarrow \\text{Euler–Lagrange equation} } $$\n但请注意，我们刚才从\n$$ \\delta S=\\int_{t_1}^{t_2} A(t)\\eta(t) dt=0 $$\n推出了\n$$ A(t)=0. $$\n为什么“对任意的 $\\eta(t)$”就能够推出 $A(t)=0$？\n这其实是 fundamental lemma of the calculus of variations 的核心。\n假设\n$$ \\int_{t_1}^{t_2}A(t)\\eta(t) dt=0 $$\n对任意 admissible variation $\\eta(t)$ 都成立。\n我们要证明：\n$$ A(t)\\equiv0. $$\n假设反过来，$A$ 不恒为零。那么存在某个区间 $I\\subset(t_1,t_2)$，使得 $A$ 在那里不为零。\n如果暂时假设 $A$ 连续，那么最简单的构造就是：\n$$ \\boxed{\\eta(t)=-A(t)} $$\n不过要注意：它必须满足 endpoint condition。可以取一个只在内部非零的 bump function $\\chi(t)$，令\n$$ \\eta(t)=-A(t)\\chi(t). $$\n于是\n$$ \\eta(t_1)=\\eta(t_2)=0. $$\n代回去：\n$$ \\int A\\eta dt=-\\int A(t)^2\\chi(t) dt. $$\n选择 $\\chi\\geq0$，并且在 $A\\neq0$ 的地方严格为正，就得到\n$$ \\boxed{ \\int A(t)\\eta(t) dt\u003c0 } $$\n这与原来的\n$$ \\int A\\eta dt=0 $$\n矛盾。\n因此：\n$$ \\boxed{A(t)=0}. $$\n到底怎么定义 $L$ ？ 刚才我们已经证明了：\n$$ \\delta S=0 \\quad\\Longrightarrow\\quad \\frac{d}{dt}\\frac{\\partial L}{\\partial \\dot q_i} -\\frac{\\partial L}{\\partial q_i}=0. $$\n但这里其实有一个逻辑上的“黑箱”：\n为什么自然界的 dynamics 恰好可以由 $$ L=T-V $$ 描述？\n先从最简单的一个粒子开始\n考虑一维粒子：\n$$ x=x(t) $$\n受到 conservative force\n$$ F(x)=-\\frac{dV}{dx}. $$\nNewton’s equation 是：\n$$ m\\ddot x=-V’(x). $$\n现在我们希望构造一个 $L(x,\\dot x)$，使 Euler–Lagrange equation\n$$\\frac{d}{dt}\\frac{\\partial L}{\\partial\\dot x}-\\frac{\\partial L}{\\partial x}=0 $$\n恰好变成 Newton’s equation。\n最自然的尝试是：\n$$ L=\\frac12m\\dot x^2-V(x). $$\n计算：\n$$ \\frac{\\partial L}{\\partial\\dot x}=m\\dot x $$\n因此：\n$$ \\frac{d}{dt} \\frac{\\partial L}{\\partial\\dot x} =m\\ddot x. $$\n另一方面：\n$$ \\frac{\\partial L}{\\partial x} =-V’(x). $$\n所以：\n$$ m\\ddot x+V’(x)=0, $$\n即：\n$$ \\boxed{m\\ddot x=-V’(x)}. $$\n所以至少在这个例子里，$T-V$ 确实 reproduces Newtonian dynamics。\n这里有一个非常重要的问题\n假设我们不用\n$$ L=T-V, $$\n而用：\n$$ \\boxed{L’=L+C} $$\n其中 $C$ 是一个 constant。\n那么：\n$$\\frac{\\partial L’}{\\partial q_i}=\\frac{\\partial L}{\\partial q_i}, $$\n$$ \\frac{\\partial L’}{\\partial\\dot q_i}=\\frac{\\partial L}{\\partial\\dot q_i}. $$\n所以 Euler–Lagrange equations 完全不变。\n也就是说：\n$$\\boxed{L\\quad\\text{和}\\quad L+C} $$\n描述完全相同的 classical dynamics。\n甚至不只是 constant\n更厉害的是，如果：\n$$ \\boxed{ L’=L+\\frac{dF(q,t)}{dt} } $$\n那么它们也给出相同的 Euler–Lagrange equations。\n因为 action 变成：\n$$ S’=\\int_{t_1}^{t_2}L’dt $$\n$$=S+\\int_{t_1}^{t_2}\\frac{dF}{dt} dt $$\n所以：\n$$\\boxed{S’=S+F(q_2,t_2)-F(q_1,t_1).} $$\n由于 endpoints 固定：\n$$ \\delta F(q_1,t_1)= \\delta F(q_2,t_2)=0, $$\n因此：\n$$ \\delta S’=\\delta S. $$\n于是：\n$$ L \\quad\\text{和}\\quad L+\\frac{dF}{dt} $$\n产生相同的 equations of motion。\n这告诉我们一个非常重要的事实\nLagrangian 并不是唯一的。\n真正具有物理意义的并不是某个唯一的函数：\n$$ L(q,\\dot q,t), $$\n而是一个等价类：\n$$ \\boxed{ L\\sim L+\\frac{dF}{dt}. } $$\ndescription 可以改变，但 physical dynamics 不改变。\n所以我们不能把 $L=T-V$ 理解成：\n“自然界规定 Lagrangian 必须长这样。”\n更准确的是：\n对于 ordinary conservative mechanical systems，$T-V$ 是一个能够正确编码 dynamics 的 convenient Lagrangian。\n一个非常漂亮的几何图景 更一般地，对于 generalized coordinates：\n$$ T= \\frac12 \\sum_{i,j} g_{ij}(q)\\dot q_i\\dot q_j. $$\n其中\n$$ \\boxed{g_{ij}(q)} $$\n这看起来已经非常像 differential geometry 里面的 metric。\n事实上，这就是为什么在 configuration manifold 上，kinetic energy 可以自然地写成一种 metric structure。\n考虑：\n$$L=\\frac12g_{ij}(q)\\dot q^i\\dot q^j-V(q). $$\n计算：\n$$\\frac{\\partial L}{\\partial\\dot q^k}=g_{kj}\\dot q^j. $$\n然后：\n$$\\frac{d}{dt} \\left(g_{kj}\\dot q^j\\right)=\\frac{\\partial g_{kj}}{\\partial q^i}\\dot q^i\\dot q^j+g_{kj}\\ddot q^j. $$\n另一方面：\n$$ \\frac{\\partial L}{\\partial q^k}=\\frac12\\frac{\\partial g_{ij}}{\\partial q^k}\\dot q^i\\dot q^j-\\frac{\\partial V}{\\partial q^k}. $$\n代入 Euler–Lagrange equation：\n$$ g_{kj}\\ddot q^j+\\frac{\\partial g_{kj}}{\\partial q^i}\\dot q^i\\dot q^j-\\frac12\\frac{\\partial g_{ij}}{\\partial q^k}\\dot q^i\\dot q^j+\\frac{\\partial V}{\\partial q^k}=0. $$\n再乘 inverse metric $g^{\\ell k}$，你最终会得到：\n$$ \\boxed{ \\ddot q^\\ell+ \\Gamma^\\ell_{ij}\\dot q^i\\dot q^j=-g^{\\ell k}\\partial_kV.} $$\n其中 $\\Gamma^\\ell_{ij}$ 是由 metric 决定的 Christoffel symbols。\n当\n$$ V=0, $$\n它变成：\n$$ \\boxed{ \\ddot q^\\ell+ \\Gamma^\\ell_{ij}\\dot q^i\\dot q^j=0. } $$\n这就是 geodesic equation。\n这为什么就是 geodesic equation？\n沿曲线 $q(t)$，速度向量为 $\\dot q$。它沿自身运动的 covariant derivative 是\n$$ \\left(\\nabla_{\\dot q}\\dot q\\right)^\\ell = \\ddot q^\\ell+ \\Gamma^\\ell_{ij}\\dot q^i\\dot q^j. $$\n所以刚才的方程恰好就是\n$$ \\boxed{\\nabla_{\\dot q}\\dot q=0}. $$\n这表示速度向量沿曲线被 parallel transported：它没有相对于 manifold 的内禀加速度。\n这就是 geodesic 的动力学描述。\n严格地说，我们这里从 kinetic-energy action 推导的是以 affine parameter 参数化的 geodesic equation。它与长度泛函的变分密切相关，但两者对参数化的要求并不完全相同。\n下面分别解释这两个词：\nparallel transported\n先想象一个最熟悉的场景：你在平坦的地面上沿直线匀速行走。\n在平面上，你的速度向量可以写成\n$$ v(t)=(\\dot x(t),\\dot y(t)). $$\n如果你沿直线匀速运动，那么\n$$ \\frac{dv}{dt}=0. $$\n也就是说，速度向量的大小和方向都不变。\n但是，现在假设你沿着球面上的 great circle 运动。\n从三维空间看，你的速度向量会不断改变方向，因为你必须沿着球面运动。但是，这种变化有一部分只是因为球面本身弯曲了，并不意味着你在球面内部“转弯”了。\n这时候我们需要区分两种变化：\n普通导数 $\\frac{dv}{dt}$：在环境空间中观察向量的变化。 Covariant derivative $\\nabla_{\\dot q}v$：考虑 manifold 的几何结构后，衡量向量沿曲线的变化。 对于 geodesic：\n$$ \\boxed{\\nabla_{\\dot q}\\dot q=0} $$\n它的意思是：速度向量沿曲线的 covariant derivative 为零。\n注意，这不意味着普通加速度一定为零。球面上的自由粒子即使沿 geodesic 运动，在三维空间中仍然可以有法向加速度。\naffine parameter\n我们知道，同一条几何曲线，可以用不同的参数来描述。\n例如，平面上的一条直线可以写成\n$$ q(t)=(t,0). $$\n也可以写成\n$$ q(s)=(s^3,0). $$\n只要参数在考虑的区间内单调变化，这两种表达就描述了同一条直线上的同一段几何轨迹，只是走过各个点的参数节奏不同。\n但是，如果我们使用不同的参数，运动方程的形式不一定保持不变。\n对于 affine parameter $\\lambda$，geodesic equation 写作\n$$ \\boxed{ \\frac{d^2q^k}{d\\lambda^2} +\\Gamma^k_{ij} \\frac{dq^i}{d\\lambda} \\frac{dq^j}{d\\lambda}=0. } $$\n如果改用一个任意的非线性参数，方程通常会多出一项与速度成正比的项。\n所以 affine parameter 可以理解为：一种让 geodesic equation 保持标准形式的参数。\n对于有质量的自由粒子，适当选择的固有时间 $\\tau$ 就是一个 affine parameter。\n但是 geodesic 和长度泛函的变分不完全一样\n这是刚才两个概念之间真正的联系。\n我们已经知道，自由粒子的 kinetic-energy action 是\n$$ S[q]=\\frac12\\int g_{ij}\\dot q^i\\dot q^j dt. $$\n它要求\n$$ \\delta S=0, $$\n从而导出标准形式的 geodesic equation。这里的参数必须满足相应的 affine 参数条件。\n但如果我们直接研究曲线的长度：\n$$ \\ell[q]=\\int \\sqrt{g_{ij}\\dot q^i\\dot q^j} dt, $$\n那么长度只关心曲线的几何形状，不关心你沿着曲线运动的速度有多快。\n例如，同一条球面上的 great circle，无论你用什么合适的单调参数描述，它的长度都不变。\n因此：\nEnergy functional $\\displaystyle S[q]=\\frac12\\int |\\dot q|^2dt$：不仅涉及路径，还涉及参数化速度。 Length functional $\\displaystyle \\ell[q]=\\int |\\dot q|dt$：只依赖几何曲线本身，不依赖具体的单调参数化。 它们的 stationary curves 密切相关，但不能不加条件地把两个泛函及其参数化要求视为完全相同。\n对于非零速度的适当参数化，两者都可以导出 geodesic；energy functional 的标准 Euler–Lagrange equation 则对应 affine parameter。\n","wordCount":"1420","inLanguage":"en","datePublished":"2026-10-17T00:00:00Z","dateModified":"2026-10-17T00:00:00Z","author":{"@type":"Person","name":"Linmythos"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/"},"publisher":{"@type":"Organization","name":"Linmythos","logo":{"@type":"ImageObject","url":"https://linmythos.github.io/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://linmythos.github.io/ accesskey=h title="Linmythos (Alt + H)">Linmythos</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+这就是 configuration space 中的一条 trajectory。
+两个粒子的例子 假设有两个粒子：
+$$ \mathbf r_1(t),\mathbf r_2(t)\in\mathbb R^3. $$
+整个系统的 configuration 不是一个三维位置，而是
+$$ q(t)=(\mathbf r_1(t),\mathbf r_2(t)). $$
+因此
+$$ Q=\mathbb R^3\times \mathbb R^3=\mathbb R^6. $$
+于是 system point 实际上是在 six-dimensional configuration space 中运动：
+$$ q(t)\in\mathbb R^6. $$"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Physics","item":"https://linmythos.github.io/physics/"},{"@type":"ListItem","position":2,"name":"拉格朗日力学的几何视角","item":"https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"拉格朗日力学的几何视角","name":"拉格朗日力学的几何视角","description":"Configuration Space 设系统有 $n$ 个 degrees of freedom，我们写：\n$$ q_1,q_2,\\ldots,q_n. $$\n那么一个系统在某一时刻的 configuration 就可以表示为：\n$$ q=(q_1,\\ldots,q_n). $$\n于是所有可能的 configurations 构成：\n$$ \\boxed{\\mathcal C=\\text{configuration space}} $$\n随着时间演化：\n$$ q(t)=(q_1(t),\\ldots,q_n(t)), $$\n这就是 configuration space 中的一条 trajectory。\n两个粒子的例子 假设有两个粒子：\n$$ \\mathbf r_1(t),\\mathbf r_2(t)\\in\\mathbb R^3. $$\n整个系统的 configuration 不是一个三维位置，而是\n$$ q(t)=(\\mathbf r_1(t),\\mathbf r_2(t)). $$\n因此\n$$ Q=\\mathbb R^3\\times \\mathbb R^3=\\mathbb R^6. $$\n于是 system point 实际上是在 six-dimensional configuration space 中运动：\n$$ q(t)\\in\\mathbb R^6. $$\n","keywords":[],"articleBody":"Configuration Space 设系统有 $n$ 个 degrees of freedom，我们写：\n$$ q_1,q_2,\\ldots,q_n. $$\n那么一个系统在某一时刻的 configuration 就可以表示为：\n$$ q=(q_1,\\ldots,q_n). $$\n于是所有可能的 configurations 构成：\n$$ \\boxed{\\mathcal C=\\text{configuration space}} $$\n随着时间演化：\n$$ q(t)=(q_1(t),\\ldots,q_n(t)), $$\n这就是 configuration space 中的一条 trajectory。\n两个粒子的例子 假设有两个粒子：\n$$ \\mathbf r_1(t),\\mathbf r_2(t)\\in\\mathbb R^3. $$\n整个系统的 configuration 不是一个三维位置，而是\n$$ q(t)=(\\mathbf r_1(t),\\mathbf r_2(t)). $$\n因此\n$$ Q=\\mathbb R^3\\times \\mathbb R^3=\\mathbb R^6. $$\n于是 system point 实际上是在 six-dimensional configuration space 中运动：\n$$ q(t)\\in\\mathbb R^6. $$\n而物理上我们看到的是两条三维轨迹：\n$$ \\mathbf r_1(t),\\qquad \\mathbf r_2(t). $$\n自由 rigid body 例如一个自由 rigid body，它的 configuration 可以用\n$$ (x,y,z,\\phi,\\theta,\\psi) $$\n描述。所以\n$$ Q\\simeq \\mathbb R^3\\times SO(3). $$\n此时一个 configuration-space point\n$$ q=(x,y,z,\\phi,\\theta,\\psi) $$\n代表的是：\n整个刚体当前的位置 + 当前的 orientation。\n随着时间：\n$$ q(t)=(x(t),y(t),z(t),\\phi(t),\\theta(t),\\psi(t)), $$\n于是整个刚体的运动就是 $Q$ 中的一条 curve。\n但这条 curve 显然不是某个刚体质点在 physical space 中画出来的轨迹。\nHamilton’s Principle 构造一个 functional：\n$$ S\\left[q\\right]=\\int_{t_1}^{t_2}L(q,\\dot q,t),dt. $$\nHamilton’s Principle 说：\n$$ \\boxed{\\delta S=0} $$\n即真实运动 $q(t)$ 是使 action stationary 的那条 curve。\n更严格地说：\n在所有满足固定端点条件 $$ q(t_1)=q_1,\\qquad q(t_2)=q_2 $$ 的 admissible curves 中，真实的 motion 是使 action $S\\left[q\\right]$ stationary 的那一条。\nLagrangian Mechanics 的 Geometry 视角 我们已经有：\n$$ q(t)\\in Q. $$\n但是仅仅知道一个 configuration 不够，因为 mechanics 研究的是运动。\n所以我们还需要 $\\dot q(t)$，于是有：\n$$ \\boxed{L=L(q,\\dot q,t)} $$\n它实际上是在考虑：\n$$ (q,\\dot q) $$\n它对应一个特定的 tangent space：\n$$ T_qQ. $$\n所以一个状态是\n$$ \\boxed{(q,v),\\qquad v\\in T_qQ} $$\n把所有这些 tangent spaces 拼在一起，就是 tangent bundle：\n$$ \\boxed{ TQ=\\bigsqcup_{q\\in Q}T_qQ } $$\n因此：\n$$ \\boxed{ (q,\\dot q)\\in TQ. } $$\n在一个 coordinate chart 中，\n$$ \\boxed{(q_1,\\ldots,q_n,\\dot q_1,\\ldots,\\dot q_n)} $$\n就是 $TQ$ 上的局部 coordinates。\n而且：\n$$ \\boxed{\\dim TQ=n+n=2n}. $$\n$L(q,\\dot q,t)$ 本质上可以看成：\n$$ \\boxed{ L:TQ\\times\\mathbb R\\to\\mathbb R. } $$\nCalculus of Variations 我们先考虑一个最简单的 functional：\n$$ J\\left[y\\right]=\\int_{x_1}^{x_2}F(y,y’,x),dx. $$\n我们希望找到使 $J$ stationary 的 function $y(x)$。\n取\n$$ y(x)\\rightarrow y(x)+\\epsilon\\eta(x), $$\n定义：\n$$ J(\\epsilon)=\\int_{x_1}^{x_2}F(y+\\epsilon\\eta,;y’+\\epsilon\\eta’,;x),dx. $$\n于是：\n$$ \\delta J=\\int_{x_1}^{x_2}\\left( \\frac{\\partial F}{\\partial y}\\eta+\\frac{\\partial F}{\\partial y’}\\eta’\\right)dx. $$\n而 $\\displaystyle \\eta’=\\frac{d\\eta}{dx}$，所以第二项 integration by parts：\n$$ \\int \\frac{\\partial F}{\\partial y’}\\eta’, dx $$\n变成：\n$$ \\left[\\frac{\\partial F}{\\partial y’}\\eta\\right]_{x_1}^{x_2}-\\int\\frac{d}{dx} \\left(\\frac{\\partial F}{\\partial y’}\\right)\\eta, dx. $$\n由于：\n$$ \\eta(x_1)=\\eta(x_2)=0, $$\nboundary term 消失。\n于是：\n$$ \\delta J=\\int_{x_1}^{x_2}\\left[\\frac{\\partial F}{\\partial y}-\\frac{d}{dx}\\left( \\frac{\\partial F}{\\partial y’}\\right) \\right]\\eta, dx. $$\n而 $\\eta(x)$ 在内部是任意的。\n因此只能有：\n$$ \\boxed{\\frac{\\partial F}{\\partial y}-\\frac{d}{dx}\\frac{\\partial F}{\\partial y’}=0} $$\n这就是：Euler–Lagrange equation。\n关于端点条件的深层含义 “如果起点和终点不同，就没有比较的意义了。”\n准确地说：Hamilton’s Principle 把 actual motion 表述为一个 boundary-value problem：\n$$ (q_1,t_1)\\longrightarrow(q_2,t_2). $$\n在这个表述下，我们问：\n给定 initial configuration 和 final configuration，哪一条 admissible path 使 action stationary？\n但这和说\"实验上我们必须先知道最终位形，然后物理才预言路径\"不是一回事。\n这是 formulation 和 physical prediction 的区别。\n例如 Newtonian initial-value problem 通常给：\n$$ q(t_0),\\qquad \\dot q(t_0) $$\n然后由 equation of motion 预测未来：\n$$ q(t). $$\n而 Hamiltonian formulation 则可以把同一个 dynamics 表述成：\n$$ q(t_1)=q_1,\\qquad q(t_2)=q_2 $$\n之间的 variational problem。\n所以：\n$$ \\boxed{ \\text{initial-value formulation} \\neq \\text{boundary-value formulation} } $$\n但它们可以描述同一个 classical dynamics。\n回到力学变量 现在我们只需要做一个 substitution。\n把：\n$$ x\\rightarrow t, \\qquad y\\rightarrow q_i, \\qquad y’\\rightarrow\\dot q_i, \\qquad F\\rightarrow L $$\n就得到：\n$$ \\boxed{\\frac{d}{dt}\\frac{\\partial L}{\\partial\\dot q_i}-\\frac{\\partial L}{\\partial q_i}=0. } $$\nFundamental Lemma（变分法基本引理） 假设\n$$ \\int_{t_1}^{t_2}A(t)\\eta(t), dt=0 $$\n对任意 admissible variation $\\eta(t)$ 都成立。\n我们要证明：\n$$ A(t)\\equiv0. $$\n假设反过来，$A$ 不恒为零。那么存在某个区间 $I\\subset(t_1,t_2)$，使得 $A$ 在那里不为零。\n如果暂时假设 $A$ 连续，那么最简单的构造就是：\n$$ \\boxed{\\eta(t)=-A(t)} $$\n不过要注意：它必须满足 endpoint condition。可以取一个只在内部非零的 bump function $\\chi(t)$，令\n$$ \\eta(t)=-A(t)\\chi(t). $$\n于是\n$$ \\eta(t_1)=\\eta(t_2)=0. $$\n代回去：\n$$ \\int A\\eta, dt=-\\int A(t)^2\\chi(t), dt. $$\n选择 $\\chi\\geq0$，并且在 $A\\neq0$ 的地方严格为正，就得到\n$$ \\boxed{ \\int A(t)\\eta(t), dt\u003c0 } $$\n这与原来的\n$$ \\int A\\eta, dt=0 $$\n矛盾。\n因此：\n$$ \\boxed{A(t)=0}. $$\n到底怎么定义 $L$？ 有一个逻辑上的\"黑箱\"：\n为什么自然界的 dynamics 恰好可以由 $L=T-V$ 描述？\n先从最简单的一个粒子开始 考虑保守场中的一维粒子，现在我们希望构造一个 $L(x,\\dot x)$，使 Euler–Lagrange equation\n$$ \\frac{d}{dt}\\frac{\\partial L}{\\partial\\dot x}-\\frac{\\partial L}{\\partial x}=0 $$\n恰好变成 Newton’s equation。\n最自然的尝试是：\n$$ L=\\frac12m\\dot x^2-V(x). $$\n计算：\n$$ \\frac{d}{dt} \\frac{\\partial L}{\\partial\\dot x} =m\\ddot x. $$\n另一方面：\n$$ \\frac{\\partial L}{\\partial x} =-V’(x). $$\n即：\n$$ \\boxed{m\\ddot x=-V’(x)}. $$\n所以至少在这个例子里，$T-V$ 确实 reproduces Newtonian dynamics。\nLagrangian 的等价性 假设我们不用 $L=T-V$，而用：\n$$ \\boxed{L’=L+C} $$\n其中 $C$ 是一个 constant。\n那么：\n$$ \\frac{\\partial L’}{\\partial q_i}=\\frac{\\partial L}{\\partial q_i}, \\qquad \\frac{\\partial L’}{\\partial\\dot q_i}=\\frac{\\partial L}{\\partial\\dot q_i}. $$\n所以 Euler–Lagrange equations 完全不变。也就是说它们描述完全相同的 classical dynamics。\n进一步，如果：\n$$ \\boxed{ L’=L+\\frac{dF(q,t)}{dt} } $$\n那么它们也给出相同的 Euler–Lagrange equations。\n因为 action 变成：\n$$ S’=\\int_{t_1}^{t_2}L’,dt =S+\\int_{t_1}^{t_2}\\frac{dF}{dt},dt $$\n所以：\n$$ \\boxed{S’=S+F(q_2,t_2)-F(q_1,t_1).} $$\n由于 endpoints 固定：\n$$ \\delta F(q_1,t_1)= \\delta F(q_2,t_2)=0, $$\n因此：\n$$ \\delta S’=\\delta S. $$\n真正具有物理意义的并不是某个唯一的函数 $L(q,\\dot q,t)$，而是一个等价类：\n$$ \\boxed{ L\\sim L+\\frac{dF}{dt}. } $$\n所以我们不能把 $L=T-V$ 理解成\"自然界规定 Lagrangian 必须长这样\"。\n更准确的是：\n对于 ordinary conservative mechanical systems，$T-V$ 是一个能够正确编码 dynamics 的 convenient Lagrangian。\n一个非常漂亮的几何图景 更一般地，对于 generalized coordinates：\n$$ T= \\frac12 \\sum_{i,j} g_{ij}(q)\\dot q_i\\dot q_j. $$\n考虑：\n$$ L=\\frac12g_{ij}(q)\\dot q^i\\dot q^j-V(q). $$\n计算：\n$$ \\frac{\\partial L}{\\partial\\dot q^k}=g_{kj}\\dot q^j. $$\n然后：\n$$ \\frac{d}{dt} \\left(g_{kj}\\dot q^j\\right)=\\frac{\\partial g_{kj}}{\\partial q^i}\\dot q^i\\dot q^j+g_{kj}\\ddot q^j. $$\n另一方面：\n$$ \\frac{\\partial L}{\\partial q^k}=\\frac12\\frac{\\partial g_{ij}}{\\partial q^k}\\dot q^i\\dot q^j-\\frac{\\partial V}{\\partial q^k}. $$\n代入 Euler–Lagrange equation：\n$$ g_{kj}\\ddot q^j+\\frac{\\partial g_{kj}}{\\partial q^i}\\dot q^i\\dot q^j-\\frac12\\frac{\\partial g_{ij}}{\\partial q^k}\\dot q^i\\dot q^j+\\frac{\\partial V}{\\partial q^k}=0. $$\n再乘 inverse metric $g^{\\ell k}$，你最终会得到：\n$$ \\boxed{ \\ddot q^\\ell+ \\Gamma^\\ell_{ij}\\dot q^i\\dot q^j=-g^{\\ell k}\\partial_kV.} $$\n其中 $\\Gamma^\\ell_{ij}$ 是由 metric 决定的 Christoffel symbols。\n当 $V=0$，它变成：\n$$ \\boxed{ \\ddot q^\\ell+ \\Gamma^\\ell_{ij}\\dot q^i\\dot q^j=0. } $$\n这就是 geodesic equation。\n协变导数的视角 沿曲线 $q(t)$，速度向量为 $\\dot q$。它沿自身运动的 covariant derivative 是\n$$ \\left(\\nabla_{\\dot q}\\dot q\\right)^\\ell = \\ddot q^\\ell+ \\Gamma^\\ell_{ij}\\dot q^i\\dot q^j. $$\n所以刚才的方程恰好就是\n$$ \\boxed{\\nabla_{\\dot q}\\dot q=0}. $$\n这表示速度向量沿曲线被 parallel transported 了，它没有相对于 manifold 的内禀加速度。\n假设你沿着球面上的 great circle 运动，从三维空间看，你的速度向量会不断改变方向，因为你必须沿着球面运动。但是，这种变化有一部分只是因为球面本身弯曲了，并不意味着你在球面内部\"转弯\"了。\nAffine Parameter 我们知道，同一条几何曲线，可以用不同的参数来描述。\n例如，平面上的一条直线可以写成\n$$ q(t)=(t,0). $$\n也可以写成\n$$ q(s)=(s^3,0). $$\n只要参数在考虑的区间内单调变化，这两种表达就描述了同一条直线上的同一段几何轨迹，只是走过各个点的参数节奏不同。\n但是，如果我们使用不同的参数，运动方程的形式不一定保持不变。\n对于 affine parameter $\\lambda$，geodesic equation 写作\n$$ \\boxed{ \\frac{d^2q^k}{d\\lambda^2} +\\Gamma^k_{ij} \\frac{dq^i}{d\\lambda} \\frac{dq^j}{d\\lambda}=0. } $$\n如果改用一个任意的非线性参数，方程通常会多出一项与速度成正比的项。\n而 affine parameter 可以让 geodesic equation 保持标准形式。\n对于有质量的自由粒子，适当选择的固有时间 $\\tau$ 就是一个 affine parameter。\nEnergy functional 与 Length functional 自由粒子的 kinetic-energy action 是\n$$ S\\left[q\\right]=\\frac12\\int g_{ij}\\dot q^i\\dot q^j, dt. $$\n它要求\n$$ \\delta S=0, $$\n从而导出标准形式的 geodesic equation。这里的参数必须满足相应的 affine 参数条件。\n但如果我们直接研究曲线的长度：\n$$ \\ell\\left[q\\right]=\\int \\sqrt{g_{ij}\\dot q^i\\dot q^j}, dt, $$\n那么长度只关心曲线的几何形状，不关心你沿着曲线运动的速度有多快。\n因此：\nEnergy functional $\\displaystyle S\\left[q\\right]=\\frac12\\int \\left|\\dot q\\right|^2dt$：不仅涉及路径，还涉及参数化速度。 Length functional $\\displaystyle \\ell\\left[q\\right]=\\int \\left|\\dot q\\right|dt$：只依赖几何曲线本身，不依赖具体的单调参数化。 ","wordCount":"874","inLanguage":"en","datePublished":"2026-10-17T00:00:00Z","dateModified":"2026-10-17T00:00:00Z","author":{"@type":"Person","name":"Linmythos"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/"},"publisher":{"@type":"Organization","name":"Linmythos","logo":{"@type":"ImageObject","url":"https://linmythos.github.io/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://linmythos.github.io/ accesskey=h title="Linmythos (Alt + H)">Linmythos</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
 <svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://linmythos.github.io/math/ title=Mathematics><span>Mathematics</span></a></li><li><a href=https://linmythos.github.io/physics/ title=Physics><span>Physics</span></a></li><li><a href=https://linmythos.github.io/essays/ title=Essays><span>Essays</span></a></li><li><a href=https://linmythos.github.io/archives/ title=Archives><span>Archives</span></a></li><li><a href=https://linmythos.github.io/about/ title=About><span>About</span></a></li><li><a href=https://linmythos.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">拉格朗日力学的几何视角</h1><div class=post-meta><span title='2026-10-17 00:00:00 +0000 UTC'>October 17, 2026</span>&nbsp;·&nbsp;<span>7 min</span>&nbsp;·&nbsp;<span>Linmythos</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><li><a href=#configuration-space aria-label="Configuration Space">Configuration Space</a></li><li><a href=#hamiltons-principle aria-label="Hamilton&rsquo;s Principle">Hamilton&rsquo;s Principle</a></li><li><a href=#lagrangian-mechanics-%e7%9a%84-geometry-%e8%a7%86%e8%a7%92 aria-label="Lagrangian Mechanics 的 Geometry 视角">Lagrangian Mechanics 的 Geometry 视角</a></li><li><a href=#calculus-of-variations aria-label="Calculus of Variations">Calculus of Variations</a></li><li><a href=#%e5%88%b0%e5%ba%95%e6%80%8e%e4%b9%88%e5%ae%9a%e4%b9%89-l- aria-label="到底怎么定义 $L$ ？">到底怎么定义 $L$ ？</a></li><li><a href=#%e4%b8%80%e4%b8%aa%e9%9d%9e%e5%b8%b8%e6%bc%82%e4%ba%ae%e7%9a%84%e5%87%a0%e4%bd%95%e5%9b%be%e6%99%af aria-label=一个非常漂亮的几何图景>一个非常漂亮的几何图景</a></li></ul></div></details><div class="post-content md-content"><h3 id=configuration-space>Configuration Space<a hidden class=anchor aria-hidden=true href=#configuration-space>#</a></h3><p>我们已经知道 Newton&rsquo;s equation：</p><p>$$
-m\mathbf a=\mathbf F.
-$$</p><p>它当然可以解决大量问题。但假设一个系统有 $N$ 个 particles，有各种 constraints。直接使用 Cartesian coordinates：</p><p>$$
-\mathbf r_1,\mathbf r_2,\ldots,\mathbf r_N
-$$</p><p>我们最终需要处理 $3N$ 个 coordinates，再加上一堆 constraint equations。而物理系统真正的自由度可能只有 $n &lt; 3N$。所以我们问：能不能直接用描述这个系统真正自由度的 coordinates 来描述运动？</p><p>这就引出了：</p><p>$$
-\boxed{\text{generalized coordinates}}
-$$</p><p>设系统有 $n$ 个 degrees of freedom，我们写：</p><p>$$
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://linmythos.github.io/math/ title=Mathematics><span>Mathematics</span></a></li><li><a href=https://linmythos.github.io/physics/ title=Physics><span>Physics</span></a></li><li><a href=https://linmythos.github.io/essays/ title=Essays><span>Essays</span></a></li><li><a href=https://linmythos.github.io/archives/ title=Archives><span>Archives</span></a></li><li><a href=https://linmythos.github.io/about/ title=About><span>About</span></a></li><li><a href=https://linmythos.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">拉格朗日力学的几何视角</h1><div class=post-meta><span title='2026-10-17 00:00:00 +0000 UTC'>October 17, 2026</span>&nbsp;·&nbsp;<span>5 min</span>&nbsp;·&nbsp;<span>Linmythos</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><li><a href=#configuration-space aria-label="Configuration Space">Configuration Space</a><ul><li><a href=#%e4%b8%a4%e4%b8%aa%e7%b2%92%e5%ad%90%e7%9a%84%e4%be%8b%e5%ad%90 aria-label=两个粒子的例子>两个粒子的例子</a></li><li><a href=#%e8%87%aa%e7%94%b1-rigid-body aria-label="自由 rigid body">自由 rigid body</a></li></ul></li><li><a href=#hamiltons-principle aria-label="Hamilton&rsquo;s Principle">Hamilton&rsquo;s Principle</a></li><li><a href=#lagrangian-mechanics-%e7%9a%84-geometry-%e8%a7%86%e8%a7%92 aria-label="Lagrangian Mechanics 的 Geometry 视角">Lagrangian Mechanics 的 Geometry 视角</a></li><li><a href=#calculus-of-variations aria-label="Calculus of Variations">Calculus of Variations</a><ul><li><a href=#%e5%85%b3%e4%ba%8e%e7%ab%af%e7%82%b9%e6%9d%a1%e4%bb%b6%e7%9a%84%e6%b7%b1%e5%b1%82%e5%90%ab%e4%b9%89 aria-label=关于端点条件的深层含义>关于端点条件的深层含义</a></li><li><a href=#%e5%9b%9e%e5%88%b0%e5%8a%9b%e5%ad%a6%e5%8f%98%e9%87%8f aria-label=回到力学变量>回到力学变量</a></li></ul></li><li><a href=#fundamental-lemma%e5%8f%98%e5%88%86%e6%b3%95%e5%9f%ba%e6%9c%ac%e5%bc%95%e7%90%86 aria-label="Fundamental Lemma（变分法基本引理）">Fundamental Lemma（变分法基本引理）</a></li><li><a href=#%e5%88%b0%e5%ba%95%e6%80%8e%e4%b9%88%e5%ae%9a%e4%b9%89-l aria-label="到底怎么定义 $L$？">到底怎么定义 $L$？</a><ul><li><a href=#%e5%85%88%e4%bb%8e%e6%9c%80%e7%ae%80%e5%8d%95%e7%9a%84%e4%b8%80%e4%b8%aa%e7%b2%92%e5%ad%90%e5%bc%80%e5%a7%8b aria-label=先从最简单的一个粒子开始>先从最简单的一个粒子开始</a></li><li><a href=#lagrangian-%e7%9a%84%e7%ad%89%e4%bb%b7%e6%80%a7 aria-label="Lagrangian 的等价性">Lagrangian 的等价性</a></li></ul></li><li><a href=#%e4%b8%80%e4%b8%aa%e9%9d%9e%e5%b8%b8%e6%bc%82%e4%ba%ae%e7%9a%84%e5%87%a0%e4%bd%95%e5%9b%be%e6%99%af aria-label=一个非常漂亮的几何图景>一个非常漂亮的几何图景</a><ul><li><a href=#%e5%8d%8f%e5%8f%98%e5%af%bc%e6%95%b0%e7%9a%84%e8%a7%86%e8%a7%92 aria-label=协变导数的视角>协变导数的视角</a></li><li><a href=#affine-parameter aria-label="Affine Parameter">Affine Parameter</a></li><li><a href=#energy-functional-%e4%b8%8e-length-functional aria-label="Energy functional 与 Length functional">Energy functional 与 Length functional</a></li></ul></li></ul></div></details><div class="post-content md-content"><h2 id=configuration-space>Configuration Space<a hidden class=anchor aria-hidden=true href=#configuration-space>#</a></h2><p>设系统有 $n$ 个 degrees of freedom，我们写：</p><p>$$
 q_1,q_2,\ldots,q_n.
 $$</p><p>那么一个系统在某一时刻的 configuration 就可以表示为：</p><p>$$
 q=(q_1,\ldots,q_n).
@@ -74,61 +74,35 @@ $$</p><p>于是所有可能的 configurations 构成：</p><p>$$
 \boxed{\mathcal C=\text{configuration space}}
 $$</p><p>随着时间演化：</p><p>$$
 q(t)=(q_1(t),\ldots,q_n(t)),
-$$</p><p>这就是 configuration space 中的一条 trajectory。注意这个区别：</p><p>$$
-\boxed{
-\text{particle&rsquo;s trajectory in physical space}
-\neq
-\text{system&rsquo;s trajectory in configuration space}
-}
-$$</p><p>考虑一个 simple pendulum。物理空间里，摆球的位置是：</p><p>$$
-\mathbf r(t).
-$$</p><p>但如果绳长固定为 $l$，那么它实际上只有一个 degree of freedom。我们根本不需要 $x,y,z$。只需要：</p><p>$$
-\boxed{q=\theta}
-$$</p><p>于是 configuration space 本质上就是：</p><p>$$
-S^1
-$$</p><p>而系统的运动就是：</p><p>$$
-\theta(t).
-$$</p><p>所以可以把 Classical Mechanics 的一次抽象提升理解成：</p><p>$$
-\boxed{
-\mathbf r(t)
-\quad\longrightarrow\quad
-q(t)
-}
-$$</p><p>假设有两个粒子：</p><p>$$
+$$</p><p>这就是 configuration space 中的一条 trajectory。</p><h3 id=两个粒子的例子>两个粒子的例子<a hidden class=anchor aria-hidden=true href=#两个粒子的例子>#</a></h3><p>假设有两个粒子：</p><p>$$
 \mathbf r_1(t),\mathbf r_2(t)\in\mathbb R^3.
 $$</p><p>整个系统的 configuration 不是一个三维位置，而是</p><p>$$
 q(t)=(\mathbf r_1(t),\mathbf r_2(t)).
 $$</p><p>因此</p><p>$$
-Q=\mathbb R^3\times\mathbb R^3=\mathbb R^6.
-$$</p><p>于是 system point 实际上是在 <strong>six-dimensional configuration space</strong> 中运动：</p><p>$$
+Q=\mathbb R^3\times \mathbb R^3=\mathbb R^6.
+$$</p><p>于是 system point 实际上是在 six-dimensional configuration space 中运动：</p><p>$$
 q(t)\in\mathbb R^6.
 $$</p><p>而物理上我们看到的是两条三维轨迹：</p><p>$$
 \mathbf r_1(t),\qquad \mathbf r_2(t).
-$$</p><p>所以：</p><p>一个 configuration-space point = 整个系统在某一时刻的完整 configuration，而不是“某一个粒子的位置”。</p><p>再例如一个自由 rigid body。</p><p>它的 configuration 可以用</p><p>$$
+$$</p><h3 id=自由-rigid-body>自由 rigid body<a hidden class=anchor aria-hidden=true href=#自由-rigid-body>#</a></h3><p>例如一个自由 rigid body，它的 configuration 可以用</p><p>$$
 (x,y,z,\phi,\theta,\psi)
-$$</p><p>描述。</p><p>所以</p><p>$$
+$$</p><p>描述。所以</p><p>$$
 Q\simeq \mathbb R^3\times SO(3).
 $$</p><p>此时一个 configuration-space point</p><p>$$
 q=(x,y,z,\phi,\theta,\psi)
-$$</p><p>代表的是：</p><blockquote><p><strong>整个刚体当前的位置 + 当前的 orientation。</strong></p></blockquote><p>随着时间：</p><p>$$
+$$</p><p>代表的是：</p><blockquote><p>整个刚体当前的位置 + 当前的 orientation。</p></blockquote><p>随着时间：</p><p>$$
 q(t)=(x(t),y(t),z(t),\phi(t),\theta(t),\psi(t)),
-$$</p><p>于是整个刚体的运动就是 $Q$ 中的一条 curve。</p><p>但这条 curve 显然不是某个刚体质点在 physical space 中画出来的轨迹。</p><hr><h3 id=hamiltons-principle>Hamilton&rsquo;s Principle<a hidden class=anchor aria-hidden=true href=#hamiltons-principle>#</a></h3><p>相对于Newtonian mechanics，Lagrangian mechanics 换了一个视角：</p><p>$$
-q(t)
-$$</p><p>是一条 configuration space 中的 curve。</p><p>然后我们定义</p><p>$$
-L(q,\dot q,t)
-$$</p><p>并构造一个 functional：</p><p>$$
-S[q]=\int_{t_1}^{t_2}L(q,\dot q,t) dt.
-$$</p><p><strong>Hamilton&rsquo;s Principle</strong> 说：</p><p>$$
+$$</p><p>于是整个刚体的运动就是 $Q$ 中的一条 curve。</p><p>但这条 curve 显然不是某个刚体质点在 physical space 中画出来的轨迹。</p><hr><h2 id=hamiltons-principle>Hamilton&rsquo;s Principle<a hidden class=anchor aria-hidden=true href=#hamiltons-principle>#</a></h2><p>构造一个 functional：</p><p>$$
+S\left[q\right]=\int_{t_1}^{t_2}L(q,\dot q,t),dt.
+$$</p><p>Hamilton&rsquo;s Principle 说：</p><p>$$
 \boxed{\delta S=0}
-$$</p><p>即真实运动 $q(t)$ 是使 action stationary 的那条 curve。</p><p>更严格地说：</p><blockquote><p><strong>在所有满足固定端点条件</strong>
+$$</p><p>即真实运动 $q(t)$ 是使 action stationary 的那条 curve。</p><p>更严格地说：</p><blockquote><p>在所有满足固定端点条件
 $$
 q(t_1)=q_1,\qquad q(t_2)=q_2
 $$
-<strong>的 admissible curves 中，真实的 motion 是使 action $S[q]$ stationary 的那一条。</strong></p></blockquote><hr><h3 id=lagrangian-mechanics-的-geometry-视角>Lagrangian Mechanics 的 Geometry 视角<a hidden class=anchor aria-hidden=true href=#lagrangian-mechanics-的-geometry-视角>#</a></h3><p>我们已经有：</p><p>$$
+的 admissible curves 中，真实的 motion 是使 action $S\left[q\right]$ stationary 的那一条。</p></blockquote><hr><h2 id=lagrangian-mechanics-的-geometry-视角>Lagrangian Mechanics 的 Geometry 视角<a hidden class=anchor aria-hidden=true href=#lagrangian-mechanics-的-geometry-视角>#</a></h2><p>我们已经有：</p><p>$$
 q(t)\in Q.
-$$</p><p>但是仅仅知道一个 configuration 不够。</p><p>因为 mechanics 研究的是<strong>运动</strong>。</p><p>所以我们还需要：</p><p>$$
-\dot q(t).
-$$</p><p>于是 Lagrangian 是：</p><p>$$
+$$</p><p>但是仅仅知道一个 configuration 不够，因为 mechanics 研究的是运动。</p><p>所以我们还需要 $\dot q(t)$，于是有：</p><p>$$
 \boxed{L=L(q,\dot q,t)}
 $$</p><p>它实际上是在考虑：</p><p>$$
 (q,\dot q)
@@ -136,162 +110,51 @@ $$</p><p>它对应一个特定的 tangent space：</p><p>$$
 T_qQ.
 $$</p><p>所以一个状态是</p><p>$$
 \boxed{(q,v),\qquad v\in T_qQ}
-$$</p><p>把所有这些 tangent spaces 拼在一起，就是 <strong>tangent bundle</strong>：</p><p>$$
-\boxed{
-TQ=\bigsqcup_{q\in Q}T_qQ
-}
+$$</p><p>把所有这些 tangent spaces 拼在一起，就是 tangent bundle：</p><p>$$
+\boxed{ TQ=\bigsqcup_{q\in Q}T_qQ }
 $$</p><p>因此：</p><p>$$
-\boxed{
-(q,\dot q)\in TQ.
-}
+\boxed{ (q,\dot q)\in TQ. }
 $$</p><p>在一个 coordinate chart 中，</p><p>$$
 \boxed{(q_1,\ldots,q_n,\dot q_1,\ldots,\dot q_n)}
 $$</p><p>就是 $TQ$ 上的局部 coordinates。</p><p>而且：</p><p>$$
 \boxed{\dim TQ=n+n=2n}.
-$$</p><p>局部来看就是：</p><p>$$
-(q_1,\ldots,q_n)
-$$</p><p>负责告诉你<strong>在哪个 configuration</strong>，而</p><p>$$
-(\dot q_1,\ldots,\dot q_n)
-$$</p><p>负责告诉你<strong>在这个 configuration 上朝哪个 tangent direction 运动</strong>。</p><p>所以：</p><p>$$
-\boxed{(q_i,\dot q_i)}
-$$</p><p>正好给出了 $TQ$ 的 $2n$ 个局部 coordinates</p><p>现在考虑一个约束在球面上运动的质点，则：</p><p>configuration：</p><p>$$
-q\in S^2.
-$$</p><p>在这个点上，允许的 velocity 必须位于：</p><p>$$
-T_qS^2.
-$$</p><p>所以 instantaneous state 是：</p><p>$$
-\boxed{
-(q,\dot q),\qquad \dot q\in T_qS^2.
-}
-$$</p><p>于是整个 system 的 velocity space 就是：</p><p>$$
-TS^2.
-$$</p><p>而 Lagrangian：</p><p>$$
-L(q,\dot q,t)
-$$</p><p>本质上可以看成：</p><p>$$
-\boxed{
-L:TQ\times\mathbb R\to\mathbb R.
-}
-$$</p><p>那么在某个 $q$ ， $v=(v_x,v_y,v_z)$ 必须满足什么条件，才能成为</p><p>$$
-v\in T_qS^2?
-$$</p><p>因为 sphere 的 defining equation 是</p><p>$$
-f(q)=x^2+y^2+z^2-R^2=0.
-$$</p><p>沿着 sphere 上的一条 curve $q(t)$ 运动：</p><p>$$
-f(q(t))=0.
-$$</p><p>对 $t$ 求导：</p><p>$$
-\frac{d}{dt}(q\cdot q-R^2)=0,
-$$</p><p>所以</p><p>$$
-2q\cdot\dot q=0.
-$$</p><p>因此：</p><p>$$
-\boxed{q\cdot v=0}.
-$$</p><p>也就是说：</p><p>$$
-\boxed{T_qS^2={v\in\mathbb R^3\mid q\cdot v=0}}
-$$</p><p>velocity 必须位于 sphere 在 $q$ 点的 tangent plane。</p><p>回顾一下，我们现在已经得到：</p><p>$$
-\boxed{
-Q
-\overset{\text{configuration}}{\longrightarrow}
-TQ
-\overset{L}{\longrightarrow}
-\mathbb R
-}
-$$</p><p>即：</p><p>$$
-q\in Q,
-$$</p><p>$$
-(q,\dot q)\in TQ,
-$$</p><p>$$
-L(q,\dot q,t)\in\mathbb R.
-$$</p><p>然后我们把沿着一条 trajectory 的 Lagrangian 积起来：</p><p>$$
-S[q]=\int_{t_1}^{t_2}L(q(t),\dot q(t),t) dt.
-$$</p><p>最后要求：</p><p>$$
-\boxed{\delta S=0}.
-$$</p><hr><h3 id=calculus-of-variations>Calculus of Variations<a hidden class=anchor aria-hidden=true href=#calculus-of-variations>#</a></h3><p>我们先考虑一个最简单的 functional：</p><p>$$
-J[y]=\int_{x_1}^{x_2}F(y,y&rsquo;,x)dx.
-$$</p><p>我们希望找到使 $J$ stationary 的 function $y(x)$。</p><p>取：</p><p>$$
+$$</p><p>$L(q,\dot q,t)$ 本质上可以看成：</p><p>$$
+\boxed{ L:TQ\times\mathbb R\to\mathbb R. }
+$$</p><hr><h2 id=calculus-of-variations>Calculus of Variations<a hidden class=anchor aria-hidden=true href=#calculus-of-variations>#</a></h2><p>我们先考虑一个最简单的 functional：</p><p>$$
+J\left[y\right]=\int_{x_1}^{x_2}F(y,y&rsquo;,x),dx.
+$$</p><p>我们希望找到使 $J$ stationary 的 function $y(x)$。</p><p>取</p><p>$$
 y(x)\rightarrow y(x)+\epsilon\eta(x),
-$$</p><p>并要求：</p><p>$$
-\eta(x_1)=\eta(x_2)=0.
-$$</p><p>于是定义：</p><p>$$
-J(\epsilon)=\int_{x_1}^{x_2}F(y+\epsilon\eta,y&rsquo;+\epsilon\eta&rsquo;,x)dx.
-$$</p><p>真正的 stationary condition 是：</p><p>$$
-\boxed{
-\left.\frac{dJ}{d\epsilon}\right|_{\epsilon=0}=0.
-}
-$$</p><p>注意这个形式。</p><p>它和普通 calculus 中：</p><p>$$
-f&rsquo;(x_0)=0
-$$</p><p>完全同构。</p><p>只不过现在我们不是改变一个 number：</p><p>$$
-x\rightarrow x+\epsilon,
-$$</p><p>而是改变整个 function：</p><p>$$
-y(x)\rightarrow y(x)+\epsilon\eta(x).
+$$</p><p>定义：</p><p>$$
+J(\epsilon)=\int_{x_1}^{x_2}F(y+\epsilon\eta,;y&rsquo;+\epsilon\eta&rsquo;,;x),dx.
 $$</p><p>于是：</p><p>$$
-\delta J=\int_{x_1}^{x_2}\left(
-\frac{\partial F}{\partial y}\eta+\frac{\partial F}{\partial y&rsquo;}\eta&rsquo;\right)dx.
-$$</p><p>而</p><p>$$
-\eta&rsquo;=\frac{d\eta}{dx}.
-$$</p><p>所以第二项 integration by parts：</p><p>$$
-\int
-\frac{\partial F}{\partial y&rsquo;}\eta&rsquo; dx
+\delta J=\int_{x_1}^{x_2}\left( \frac{\partial F}{\partial y}\eta+\frac{\partial F}{\partial y&rsquo;}\eta&rsquo;\right)dx.
+$$</p><p>而 $\displaystyle \eta&rsquo;=\frac{d\eta}{dx}$，所以第二项 integration by parts：</p><p>$$
+\int \frac{\partial F}{\partial y&rsquo;}\eta&rsquo;, dx
 $$</p><p>变成：</p><p>$$
-\left[\frac{\partial F}{\partial y&rsquo;}\eta\right]_{x_1}^{x_2}-\int\frac{d}{dx}
-\left(\frac{\partial F}{\partial y&rsquo;}\right)\eta dx.
+\left[\frac{\partial F}{\partial y&rsquo;}\eta\right]_{x_1}^{x_2}-\int\frac{d}{dx} \left(\frac{\partial F}{\partial y&rsquo;}\right)\eta, dx.
 $$</p><p>由于：</p><p>$$
 \eta(x_1)=\eta(x_2)=0,
 $$</p><p>boundary term 消失。</p><p>于是：</p><p>$$
-\delta J=\int_{x_1}^{x_2}\left[\frac{\partial F}{\partial y}-\frac{d}{dx}\left(
-\frac{\partial F}{\partial y&rsquo;}\right)
-\right]\eta dx.
+\delta J=\int_{x_1}^{x_2}\left[\frac{\partial F}{\partial y}-\frac{d}{dx}\left( \frac{\partial F}{\partial y&rsquo;}\right) \right]\eta, dx.
 $$</p><p>而 $\eta(x)$ 在内部是任意的。</p><p>因此只能有：</p><p>$$
 \boxed{\frac{\partial F}{\partial y}-\frac{d}{dx}\frac{\partial F}{\partial y&rsquo;}=0}
-$$</p><p>这就是：<strong>Euler–Lagrange equation</strong></p><p>数学上，我们实际上是在定义一个<strong>路径空间上的问题</strong>：</p><p>Action 是一个 functional：</p><p>$$
-S:\mathcal P\rightarrow\mathbb R.
-$$</p><p>于是我们不是在比较任意两条 paths，而是在比较：</p><p>$$
-q(t),\quad q(t)+\epsilon\eta(t),\quad\ldots
-$$</p><p>这些<strong>具有相同 endpoints 的 nearby paths</strong>。</p><p>因此</p><p>$$
-\eta(t_1)=\eta(t_2)=0
-$$</p><p>恰恰表示：</p><p>$$
-q_\epsilon(t_1)=q(t_1),
-\qquad
-q_\epsilon(t_2)=q(t_2).
-$$</p><blockquote><p><strong>“如果起点和终点不同，就没有比较的意义了。”</strong></p></blockquote><p>准确地说：</p><p>Hamilton&rsquo;s Principle <strong>把 actual motion 表述为一个 boundary-value problem</strong>：</p><p>$$
+$$</p><p>这就是：<strong>Euler–Lagrange equation</strong>。</p><h3 id=关于端点条件的深层含义>关于端点条件的深层含义<a hidden class=anchor aria-hidden=true href=#关于端点条件的深层含义>#</a></h3><blockquote><p>&ldquo;如果起点和终点不同，就没有比较的意义了。&rdquo;</p></blockquote><p>准确地说：Hamilton&rsquo;s Principle 把 actual motion 表述为一个 boundary-value problem：</p><p>$$
 (q_1,t_1)\longrightarrow(q_2,t_2).
-$$</p><p>在这个表述下，我们问：</p><blockquote><p>给定 initial configuration 和 final configuration，哪一条 admissible path 使 action stationary？</p></blockquote><p>但这和说“实验上我们必须先知道最终位形，然后物理才预言路径”不是一回事。</p><p>这是 <strong>formulation</strong> 和 <strong>physical prediction</strong> 的区别。</p><p>例如 Newtonian initial-value problem 通常给：</p><p>$$
+$$</p><p>在这个表述下，我们问：</p><blockquote><p>给定 initial configuration 和 final configuration，哪一条 admissible path 使 action stationary？</p></blockquote><p>但这和说"实验上我们必须先知道最终位形，然后物理才预言路径"不是一回事。</p><p>这是 <strong>formulation</strong> 和 <strong>physical prediction</strong> 的区别。</p><p>例如 Newtonian initial-value problem 通常给：</p><p>$$
 q(t_0),\qquad \dot q(t_0)
 $$</p><p>然后由 equation of motion 预测未来：</p><p>$$
 q(t).
 $$</p><p>而 Hamiltonian formulation 则可以把同一个 dynamics 表述成：</p><p>$$
 q(t_1)=q_1,\qquad q(t_2)=q_2
 $$</p><p>之间的 variational problem。</p><p>所以：</p><p>$$
-\boxed{
-\text{initial-value formulation}
-\neq
-\text{boundary-value formulation}
-}
-$$</p><p>但它们可以描述<strong>同一个 classical dynamics</strong>。</p><p>现在我们只需要做一个 substitution</p><p>把：</p><p>$$
-x\rightarrow t,
-\qquad
-y\rightarrow q_i,
-\qquad
-y&rsquo;\rightarrow\dot q_i,
-\qquad
-F\rightarrow L
+\boxed{ \text{initial-value formulation} \neq \text{boundary-value formulation} }
+$$</p><p>但它们可以描述同一个 classical dynamics。</p><h3 id=回到力学变量>回到力学变量<a hidden class=anchor aria-hidden=true href=#回到力学变量>#</a></h3><p>现在我们只需要做一个 substitution。</p><p>把：</p><p>$$
+x\rightarrow t, \qquad y\rightarrow q_i, \qquad y&rsquo;\rightarrow\dot q_i, \qquad F\rightarrow L
 $$</p><p>就得到：</p><p>$$
-\boxed{\frac{d}{dt}\frac{\partial L}{\partial\dot q_i}-\frac{\partial L}{\partial q_i}=0.
-}
-$$</p><p>所以现在整个逻辑链已经闭合：</p><p>$$
-\boxed{
-\text{variation}
-\rightarrow
-\delta S=0
-\rightarrow
-\text{integration by parts}
-\rightarrow
-\text{Euler–Lagrange equation}
-}
-$$</p><hr><p>但请注意，我们刚才从</p><p>$$
-\delta S=\int_{t_1}^{t_2}
-A(t)\eta(t) dt=0
-$$</p><p>推出了</p><p>$$
-A(t)=0.
-$$</p><p><strong>为什么“对任意的 $\eta(t)$”就能够推出 $A(t)=0$？</strong></p><p>这其实是 <strong>fundamental lemma of the calculus of variations</strong> 的核心。</p><p>假设</p><p>$$
-\int_{t_1}^{t_2}A(t)\eta(t) dt=0
-$$</p><p>对<strong>任意 admissible variation</strong> $\eta(t)$ 都成立。</p><p>我们要证明：</p><p>$$
+\boxed{\frac{d}{dt}\frac{\partial L}{\partial\dot q_i}-\frac{\partial L}{\partial q_i}=0. }
+$$</p><hr><h2 id=fundamental-lemma变分法基本引理>Fundamental Lemma（变分法基本引理）<a hidden class=anchor aria-hidden=true href=#fundamental-lemma变分法基本引理>#</a></h2><p>假设</p><p>$$
+\int_{t_1}^{t_2}A(t)\eta(t), dt=0
+$$</p><p>对任意 admissible variation $\eta(t)$ 都成立。</p><p>我们要证明：</p><p>$$
 A(t)\equiv0.
 $$</p><p>假设反过来，$A$ 不恒为零。那么存在某个区间 $I\subset(t_1,t_2)$，使得 $A$ 在那里不为零。</p><p>如果暂时假设 $A$ 连续，那么最简单的构造就是：</p><p>$$
 \boxed{\eta(t)=-A(t)}
@@ -300,131 +163,75 @@ $$</p><p>不过要注意：它必须满足 endpoint condition。可以取一个�
 $$</p><p>于是</p><p>$$
 \eta(t_1)=\eta(t_2)=0.
 $$</p><p>代回去：</p><p>$$
-\int A\eta dt=-\int A(t)^2\chi(t) dt.
+\int A\eta, dt=-\int A(t)^2\chi(t), dt.
 $$</p><p>选择 $\chi\geq0$，并且在 $A\neq0$ 的地方严格为正，就得到</p><p>$$
-\boxed{
-\int A(t)\eta(t) dt&lt;0
-}
+\boxed{ \int A(t)\eta(t), dt&lt;0 }
 $$</p><p>这与原来的</p><p>$$
-\int A\eta dt=0
+\int A\eta, dt=0
 $$</p><p>矛盾。</p><p>因此：</p><p>$$
 \boxed{A(t)=0}.
-$$</p><hr><h3 id=到底怎么定义-l->到底怎么定义 $L$ ？<a hidden class=anchor aria-hidden=true href=#到底怎么定义-l->#</a></h3><p>刚才我们已经证明了：</p><p>$$
-\delta S=0
-\quad\Longrightarrow\quad
-\frac{d}{dt}\frac{\partial L}{\partial \dot q_i}
--\frac{\partial L}{\partial q_i}=0.
-$$</p><p>但这里其实有一个逻辑上的“黑箱”：</p><blockquote><p><strong>为什么自然界的 dynamics 恰好可以由</strong>
-$$
-L=T-V
-$$
-<strong>描述？</strong></p></blockquote><hr><p>先从最简单的一个粒子开始</p><p>考虑一维粒子：</p><p>$$
-x=x(t)
-$$</p><p>受到 conservative force</p><p>$$
-F(x)=-\frac{dV}{dx}.
-$$</p><p>Newton&rsquo;s equation 是：</p><p>$$
-m\ddot x=-V&rsquo;(x).
-$$</p><p>现在我们希望构造一个 $L(x,\dot x)$，使 Euler–Lagrange equation</p><p>$$\frac{d}{dt}\frac{\partial L}{\partial\dot x}-\frac{\partial L}{\partial x}=0
+$$</p><hr><h2 id=到底怎么定义-l>到底怎么定义 $L$？<a hidden class=anchor aria-hidden=true href=#到底怎么定义-l>#</a></h2><p>有一个逻辑上的"黑箱"：</p><blockquote><p>为什么自然界的 dynamics 恰好可以由 $L=T-V$ 描述？</p></blockquote><h3 id=先从最简单的一个粒子开始>先从最简单的一个粒子开始<a hidden class=anchor aria-hidden=true href=#先从最简单的一个粒子开始>#</a></h3><p>考虑保守场中的一维粒子，现在我们希望构造一个 $L(x,\dot x)$，使 Euler–Lagrange equation</p><p>$$
+\frac{d}{dt}\frac{\partial L}{\partial\dot x}-\frac{\partial L}{\partial x}=0
 $$</p><p>恰好变成 Newton&rsquo;s equation。</p><p>最自然的尝试是：</p><p>$$
 L=\frac12m\dot x^2-V(x).
 $$</p><p>计算：</p><p>$$
-\frac{\partial L}{\partial\dot x}=m\dot x
-$$</p><p>因此：</p><p>$$
-\frac{d}{dt}
-\frac{\partial L}{\partial\dot x}
-=m\ddot x.
+\frac{d}{dt} \frac{\partial L}{\partial\dot x} =m\ddot x.
 $$</p><p>另一方面：</p><p>$$
-\frac{\partial L}{\partial x}
-=-V&rsquo;(x).
-$$</p><p>所以：</p><p>$$
-m\ddot x+V&rsquo;(x)=0,
+\frac{\partial L}{\partial x} =-V&rsquo;(x).
 $$</p><p>即：</p><p>$$
 \boxed{m\ddot x=-V&rsquo;(x)}.
-$$</p><p>所以至少在这个例子里，$T-V$ 确实 reproduces Newtonian dynamics。</p><hr><p>这里有一个非常重要的问题</p><p>假设我们不用</p><p>$$
-L=T-V,
-$$</p><p>而用：</p><p>$$
+$$</p><p>所以至少在这个例子里，$T-V$ 确实 reproduces Newtonian dynamics。</p><h3 id=lagrangian-的等价性>Lagrangian 的等价性<a hidden class=anchor aria-hidden=true href=#lagrangian-的等价性>#</a></h3><p>假设我们不用 $L=T-V$，而用：</p><p>$$
 \boxed{L&rsquo;=L+C}
-$$</p><p>其中 $C$ 是一个 constant。</p><p>那么：</p><p>$$\frac{\partial L&rsquo;}{\partial q_i}=\frac{\partial L}{\partial q_i},
-$$</p><p>$$
+$$</p><p>其中 $C$ 是一个 constant。</p><p>那么：</p><p>$$
+\frac{\partial L&rsquo;}{\partial q_i}=\frac{\partial L}{\partial q_i},
+\qquad
 \frac{\partial L&rsquo;}{\partial\dot q_i}=\frac{\partial L}{\partial\dot q_i}.
-$$</p><p>所以 Euler–Lagrange equations 完全不变。</p><p>也就是说：</p><p>$$\boxed{L\quad\text{和}\quad L+C}
-$$</p><p>描述完全相同的 classical dynamics。</p><hr><p>甚至不只是 constant</p><p>更厉害的是，如果：</p><p>$$
-\boxed{
-L&rsquo;=L+\frac{dF(q,t)}{dt}
-}
+$$</p><p>所以 Euler–Lagrange equations 完全不变。也就是说它们描述完全相同的 classical dynamics。</p><p>进一步，如果：</p><p>$$
+\boxed{ L&rsquo;=L+\frac{dF(q,t)}{dt} }
 $$</p><p>那么它们也给出相同的 Euler–Lagrange equations。</p><p>因为 action 变成：</p><p>$$
-S&rsquo;=\int_{t_1}^{t_2}L&rsquo;dt
-$$</p><p>$$=S+\int_{t_1}^{t_2}\frac{dF}{dt} dt
-$$</p><p>所以：</p><p>$$\boxed{S&rsquo;=S+F(q_2,t_2)-F(q_1,t_1).}
+S&rsquo;=\int_{t_1}^{t_2}L&rsquo;,dt
+=S+\int_{t_1}^{t_2}\frac{dF}{dt},dt
+$$</p><p>所以：</p><p>$$
+\boxed{S&rsquo;=S+F(q_2,t_2)-F(q_1,t_1).}
 $$</p><p>由于 endpoints 固定：</p><p>$$
-\delta F(q_1,t_1)=
-\delta F(q_2,t_2)=0,
+\delta F(q_1,t_1)= \delta F(q_2,t_2)=0,
 $$</p><p>因此：</p><p>$$
 \delta S&rsquo;=\delta S.
-$$</p><p>于是：</p><p>$$
-L
-\quad\text{和}\quad
-L+\frac{dF}{dt}
-$$</p><p>产生相同的 equations of motion。</p><p>这告诉我们一个非常重要的事实</p><p><strong>Lagrangian 并不是唯一的。</strong></p><p>真正具有物理意义的并不是某个唯一的函数：</p><p>$$
-L(q,\dot q,t),
-$$</p><p>而是一个等价类：</p><p>$$
-\boxed{
-L\sim L+\frac{dF}{dt}.
-}
-$$</p><blockquote><p><strong>description 可以改变，但 physical dynamics 不改变。</strong></p></blockquote><p>所以我们不能把 $L=T-V$ 理解成：</p><blockquote><p>“自然界规定 Lagrangian 必须长这样。”</p></blockquote><p>更准确的是：</p><blockquote><p>对于 ordinary conservative mechanical systems，$T-V$ 是一个能够正确编码 dynamics 的 convenient Lagrangian。</p></blockquote><hr><h3 id=一个非常漂亮的几何图景>一个非常漂亮的几何图景<a hidden class=anchor aria-hidden=true href=#一个非常漂亮的几何图景>#</a></h3><p>更一般地，对于 generalized coordinates：</p><p>$$
-T=
-\frac12
-\sum_{i,j}
-g_{ij}(q)\dot q_i\dot q_j.
-$$</p><p>其中</p><p>$$
-\boxed{g_{ij}(q)}
-$$</p><p>这看起来已经非常像 differential geometry 里面的 <strong>metric</strong>。</p><p>事实上，这就是为什么在 configuration manifold 上，kinetic energy 可以自然地写成一种 metric structure。</p><p>考虑：</p><p>$$L=\frac12g_{ij}(q)\dot q^i\dot q^j-V(q).
-$$</p><p>计算：</p><p>$$\frac{\partial L}{\partial\dot q^k}=g_{kj}\dot q^j.
-$$</p><p>然后：</p><p>$$\frac{d}{dt}
-\left(g_{kj}\dot q^j\right)=\frac{\partial g_{kj}}{\partial q^i}\dot q^i\dot q^j+g_{kj}\ddot q^j.
+$$</p><p>真正具有物理意义的并不是某个唯一的函数 $L(q,\dot q,t)$，而是一个等价类：</p><p>$$
+\boxed{ L\sim L+\frac{dF}{dt}. }
+$$</p><p>所以我们不能把 $L=T-V$ 理解成"自然界规定 Lagrangian 必须长这样"。</p><p>更准确的是：</p><blockquote><p>对于 ordinary conservative mechanical systems，$T-V$ 是一个能够正确编码 dynamics 的 convenient Lagrangian。</p></blockquote><hr><h2 id=一个非常漂亮的几何图景>一个非常漂亮的几何图景<a hidden class=anchor aria-hidden=true href=#一个非常漂亮的几何图景>#</a></h2><p>更一般地，对于 generalized coordinates：</p><p>$$
+T= \frac12 \sum_{i,j} g_{ij}(q)\dot q_i\dot q_j.
+$$</p><p>考虑：</p><p>$$
+L=\frac12g_{ij}(q)\dot q^i\dot q^j-V(q).
+$$</p><p>计算：</p><p>$$
+\frac{\partial L}{\partial\dot q^k}=g_{kj}\dot q^j.
+$$</p><p>然后：</p><p>$$
+\frac{d}{dt} \left(g_{kj}\dot q^j\right)=\frac{\partial g_{kj}}{\partial q^i}\dot q^i\dot q^j+g_{kj}\ddot q^j.
 $$</p><p>另一方面：</p><p>$$
 \frac{\partial L}{\partial q^k}=\frac12\frac{\partial g_{ij}}{\partial q^k}\dot q^i\dot q^j-\frac{\partial V}{\partial q^k}.
 $$</p><p>代入 Euler–Lagrange equation：</p><p>$$
 g_{kj}\ddot q^j+\frac{\partial g_{kj}}{\partial q^i}\dot q^i\dot q^j-\frac12\frac{\partial g_{ij}}{\partial q^k}\dot q^i\dot q^j+\frac{\partial V}{\partial q^k}=0.
 $$</p><p>再乘 inverse metric $g^{\ell k}$，你最终会得到：</p><p>$$
-\boxed{
-\ddot q^\ell+
-\Gamma^\ell_{ij}\dot q^i\dot q^j=-g^{\ell k}\partial_kV.}
-$$</p><p>其中 $\Gamma^\ell_{ij}$ 是由 metric 决定的 Christoffel symbols。</p><p>当</p><p>$$
-V=0,
-$$</p><p>它变成：</p><p>$$
-\boxed{
-\ddot q^\ell+
-\Gamma^\ell_{ij}\dot q^i\dot q^j=0.
-}
-$$</p><p>这就是 <strong>geodesic equation</strong>。</p><hr><p>这为什么就是 geodesic equation？</p><p>沿曲线 $q(t)$，速度向量为 $\dot q$。它沿自身运动的 covariant derivative 是</p><p>$$
+\boxed{ \ddot q^\ell+ \Gamma^\ell_{ij}\dot q^i\dot q^j=-g^{\ell k}\partial_kV.}
+$$</p><p>其中 $\Gamma^\ell_{ij}$ 是由 metric 决定的 Christoffel symbols。</p><p>当 $V=0$，它变成：</p><p>$$
+\boxed{ \ddot q^\ell+ \Gamma^\ell_{ij}\dot q^i\dot q^j=0. }
+$$</p><p>这就是 <strong>geodesic equation</strong>。</p><h3 id=协变导数的视角>协变导数的视角<a hidden class=anchor aria-hidden=true href=#协变导数的视角>#</a></h3><p>沿曲线 $q(t)$，速度向量为 $\dot q$。它沿自身运动的 covariant derivative 是</p><p>$$
 \left(\nabla_{\dot q}\dot q\right)^\ell = \ddot q^\ell+ \Gamma^\ell_{ij}\dot q^i\dot q^j.
 $$</p><p>所以刚才的方程恰好就是</p><p>$$
 \boxed{\nabla_{\dot q}\dot q=0}.
-$$</p><p>这表示速度向量沿曲线被 parallel transported：它没有相对于 manifold 的内禀加速度。</p><p>这就是 geodesic 的动力学描述。</p><p>严格地说，我们这里从 kinetic-energy action 推导的是以 affine parameter 参数化的 geodesic equation。它与长度泛函的变分密切相关，但两者对参数化的要求并不完全相同。</p><p>下面分别解释这两个词：</p><p><strong>parallel transported</strong></p><p>先想象一个最熟悉的场景：你在平坦的地面上沿直线匀速行走。</p><p>在平面上，你的速度向量可以写成</p><p>$$
-v(t)=(\dot x(t),\dot y(t)).
-$$</p><p>如果你沿直线匀速运动，那么</p><p>$$
-\frac{dv}{dt}=0.
-$$</p><p>也就是说，速度向量的大小和方向都不变。</p><p>但是，现在假设你沿着球面上的 great circle 运动。</p><p>从三维空间看，你的速度向量会不断改变方向，因为你必须沿着球面运动。但是，这种变化有一部分只是因为球面本身弯曲了，并不意味着你在球面内部“转弯”了。</p><p>这时候我们需要区分两种变化：</p><ul><li>普通导数 $\frac{dv}{dt}$：在环境空间中观察向量的变化。</li><li>Covariant derivative $\nabla_{\dot q}v$：考虑 manifold 的几何结构后，衡量向量沿曲线的变化。</li></ul><p>对于 geodesic：</p><p>$$
-\boxed{\nabla_{\dot q}\dot q=0}
-$$</p><p>它的意思是：速度向量沿曲线的 covariant derivative 为零。</p><p>注意，这不意味着普通加速度一定为零。球面上的自由粒子即使沿 geodesic 运动，在三维空间中仍然可以有法向加速度。</p><p><strong>affine parameter</strong></p><p>我们知道，同一条几何曲线，可以用不同的参数来描述。</p><p>例如，平面上的一条直线可以写成</p><p>$$
+$$</p><p>这表示速度向量沿曲线被 parallel transported 了，它没有相对于 manifold 的内禀加速度。</p><blockquote><p>假设你沿着球面上的 great circle 运动，从三维空间看，你的速度向量会不断改变方向，因为你必须沿着球面运动。但是，这种变化有一部分只是因为球面本身弯曲了，并不意味着你在球面内部"转弯"了。</p></blockquote><hr><h3 id=affine-parameter>Affine Parameter<a hidden class=anchor aria-hidden=true href=#affine-parameter>#</a></h3><p>我们知道，同一条几何曲线，可以用不同的参数来描述。</p><p>例如，平面上的一条直线可以写成</p><p>$$
 q(t)=(t,0).
 $$</p><p>也可以写成</p><p>$$
 q(s)=(s^3,0).
 $$</p><p>只要参数在考虑的区间内单调变化，这两种表达就描述了同一条直线上的同一段几何轨迹，只是走过各个点的参数节奏不同。</p><p>但是，如果我们使用不同的参数，运动方程的形式不一定保持不变。</p><p>对于 affine parameter $\lambda$，geodesic equation 写作</p><p>$$
-\boxed{
-\frac{d^2q^k}{d\lambda^2}
-+\Gamma^k_{ij}
-\frac{dq^i}{d\lambda}
-\frac{dq^j}{d\lambda}=0.
-}
-$$</p><p>如果改用一个任意的非线性参数，方程通常会多出一项与速度成正比的项。</p><p>所以 affine parameter 可以理解为：一种让 geodesic equation 保持标准形式的参数。</p><p>对于有质量的自由粒子，适当选择的固有时间 $\tau$ 就是一个 affine parameter。</p><hr><p>但是 geodesic 和长度泛函的变分不完全一样</p><p>这是刚才两个概念之间真正的联系。</p><p>我们已经知道，自由粒子的 kinetic-energy action 是</p><p>$$
-S[q]=\frac12\int g_{ij}\dot q^i\dot q^j dt.
+\boxed{ \frac{d^2q^k}{d\lambda^2} +\Gamma^k_{ij} \frac{dq^i}{d\lambda} \frac{dq^j}{d\lambda}=0. }
+$$</p><p>如果改用一个任意的非线性参数，方程通常会多出一项与速度成正比的项。</p><p>而 affine parameter 可以让 geodesic equation 保持标准形式。</p><p>对于有质量的自由粒子，适当选择的固有时间 $\tau$ 就是一个 affine parameter。</p><hr><h3 id=energy-functional-与-length-functional>Energy functional 与 Length functional<a hidden class=anchor aria-hidden=true href=#energy-functional-与-length-functional>#</a></h3><p>自由粒子的 kinetic-energy action 是</p><p>$$
+S\left[q\right]=\frac12\int g_{ij}\dot q^i\dot q^j, dt.
 $$</p><p>它要求</p><p>$$
 \delta S=0,
 $$</p><p>从而导出标准形式的 geodesic equation。这里的参数必须满足相应的 affine 参数条件。</p><p>但如果我们直接研究曲线的长度：</p><p>$$
-\ell[q]=\int \sqrt{g_{ij}\dot q^i\dot q^j} dt,
-$$</p><p>那么长度只关心曲线的几何形状，不关心你沿着曲线运动的速度有多快。</p><p>例如，同一条球面上的 great circle，无论你用什么合适的单调参数描述，它的长度都不变。</p><p>因此：</p><ul><li>Energy functional $\displaystyle S[q]=\frac12\int |\dot q|^2dt$：不仅涉及路径，还涉及参数化速度。</li><li>Length functional $\displaystyle \ell[q]=\int |\dot q|dt$：只依赖几何曲线本身，不依赖具体的单调参数化。</li></ul><p>它们的 stationary curves 密切相关，但不能不加条件地把两个泛函及其参数化要求视为完全相同。</p><p>对于非零速度的适当参数化，两者都可以导出 geodesic；energy functional 的标准 Euler–Lagrange equation 则对应 affine parameter。</p></div><footer class=post-footer><ul class=post-tags></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://linmythos.github.io/>Linmythos</a></span> ·
+\ell\left[q\right]=\int \sqrt{g_{ij}\dot q^i\dot q^j}, dt,
+$$</p><p>那么长度只关心曲线的几何形状，不关心你沿着曲线运动的速度有多快。</p><p>因此：</p><ul><li><strong>Energy functional</strong> $\displaystyle S\left[q\right]=\frac12\int \left|\dot q\right|^2dt$：不仅涉及路径，还涉及参数化速度。</li><li><strong>Length functional</strong> $\displaystyle \ell\left[q\right]=\int \left|\dot q\right|dt$：只依赖几何曲线本身，不依赖具体的单调参数化。</li></ul></div><footer class=post-footer><ul class=post-tags></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://linmythos.github.io/>Linmythos</a></span> ·
 <span>Powered by
 <a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
 <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>

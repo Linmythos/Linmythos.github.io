@@ -57,20 +57,7 @@ $$&lt;/p&gt;
 &lt;p&gt;$$
 L=\frac12m(\dot r^2+r^2\dot\theta^2)-V(r).
 $$&lt;/p&gt;
-&lt;p&gt;现在做一个 transformation：&lt;/p&gt;</description></item><item><title>拉格朗日力学的几何视角</title><link>https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/</link><pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/</guid><description>&lt;h3 id="configuration-space"&gt;Configuration Space&lt;/h3&gt;
-&lt;p&gt;我们已经知道 Newton&amp;rsquo;s equation：&lt;/p&gt;
-&lt;p&gt;$$
-m\mathbf a=\mathbf F.
-$$&lt;/p&gt;
-&lt;p&gt;它当然可以解决大量问题。但假设一个系统有 $N$ 个 particles，有各种 constraints。直接使用 Cartesian coordinates：&lt;/p&gt;
-&lt;p&gt;$$
-\mathbf r_1,\mathbf r_2,\ldots,\mathbf r_N
-$$&lt;/p&gt;
-&lt;p&gt;我们最终需要处理 $3N$ 个 coordinates，再加上一堆 constraint equations。而物理系统真正的自由度可能只有 $n &amp;lt; 3N$。所以我们问：能不能直接用描述这个系统真正自由度的 coordinates 来描述运动？&lt;/p&gt;
-&lt;p&gt;这就引出了：&lt;/p&gt;
-&lt;p&gt;$$
-\boxed{\text{generalized coordinates}}
-$$&lt;/p&gt;
+&lt;p&gt;现在做一个 transformation：&lt;/p&gt;</description></item><item><title>拉格朗日力学的几何视角</title><link>https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/</link><pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/</guid><description>&lt;h2 id="configuration-space"&gt;Configuration Space&lt;/h2&gt;
 &lt;p&gt;设系统有 $n$ 个 degrees of freedom，我们写：&lt;/p&gt;
 &lt;p&gt;$$
 q_1,q_2,\ldots,q_n.
@@ -87,7 +74,24 @@ $$&lt;/p&gt;
 &lt;p&gt;$$
 q(t)=(q_1(t),\ldots,q_n(t)),
 $$&lt;/p&gt;
-&lt;p&gt;这就是 configuration space 中的一条 trajectory。注意这个区别：&lt;/p&gt;</description></item><item><title>二次曲线的仿射性质</title><link>https://linmythos.github.io/math/geometry/projective_geometry/affine-properties-and-metric-properties/</link><pubDate>Fri, 09 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/projective_geometry/affine-properties-and-metric-properties/</guid><description>&lt;h3 id="引入"&gt;引入&lt;/h3&gt;
+&lt;p&gt;这就是 configuration space 中的一条 trajectory。&lt;/p&gt;
+&lt;h3 id="两个粒子的例子"&gt;两个粒子的例子&lt;/h3&gt;
+&lt;p&gt;假设有两个粒子：&lt;/p&gt;
+&lt;p&gt;$$
+\mathbf r_1(t),\mathbf r_2(t)\in\mathbb R^3.
+$$&lt;/p&gt;
+&lt;p&gt;整个系统的 configuration 不是一个三维位置，而是&lt;/p&gt;
+&lt;p&gt;$$
+q(t)=(\mathbf r_1(t),\mathbf r_2(t)).
+$$&lt;/p&gt;
+&lt;p&gt;因此&lt;/p&gt;
+&lt;p&gt;$$
+Q=\mathbb R^3\times \mathbb R^3=\mathbb R^6.
+$$&lt;/p&gt;
+&lt;p&gt;于是 system point 实际上是在 six-dimensional configuration space 中运动：&lt;/p&gt;
+&lt;p&gt;$$
+q(t)\in\mathbb R^6.
+$$&lt;/p&gt;</description></item><item><title>二次曲线的仿射性质</title><link>https://linmythos.github.io/math/geometry/projective_geometry/affine-properties-and-metric-properties/</link><pubDate>Fri, 09 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/projective_geometry/affine-properties-and-metric-properties/</guid><description>&lt;h3 id="引入"&gt;引入&lt;/h3&gt;
 &lt;p&gt;在齐次坐标下，仿射变换：&lt;/p&gt;
 &lt;p&gt;$$ \rho \mathbf{x}&amp;rsquo; = A\mathbf{x},\quad A=(a_{ij})_{3\times3},\ \det A\neq0 $$&lt;/p&gt;
 &lt;p&gt;其中仿射变换满足 $a_{31}=a_{32}=0$，&lt;/p&gt;

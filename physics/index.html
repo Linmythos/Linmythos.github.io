@@ -48,14 +48,7 @@ $$ V=V(r). $$
 Lagrangian 为：
 $$ L=\frac12m(\dot r^2+r^2\dot\theta^2)-V(r). $$
 现在做一个 transformation：
-...</p></div><footer class=entry-footer><span title='2026-10-17 00:00:00 +0000 UTC'>October 17, 2026</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 对称性与守恒律: 诺特定理" href=https://linmythos.github.io/physics/classical-mechanics/symmetry-and-conservation-laws/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>拉格朗日力学的几何视角</h2></header><div class=entry-content><p>Configuration Space 我们已经知道 Newton’s equation：
-$$ m\mathbf a=\mathbf F. $$
-它当然可以解决大量问题。但假设一个系统有 $N$ 个 particles，有各种 constraints。直接使用 Cartesian coordinates：
-$$ \mathbf r_1,\mathbf r_2,\ldots,\mathbf r_N $$
-我们最终需要处理 $3N$ 个 coordinates，再加上一堆 constraint equations。而物理系统真正的自由度可能只有 $n &lt; 3N$。所以我们问：能不能直接用描述这个系统真正自由度的 coordinates 来描述运动？
-这就引出了：
-$$ \boxed{\text{generalized coordinates}} $$
-设系统有 $n$ 个 degrees of freedom，我们写：
+...</p></div><footer class=entry-footer><span title='2026-10-17 00:00:00 +0000 UTC'>October 17, 2026</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 对称性与守恒律: 诺特定理" href=https://linmythos.github.io/physics/classical-mechanics/symmetry-and-conservation-laws/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>拉格朗日力学的几何视角</h2></header><div class=entry-content><p>Configuration Space 设系统有 $n$ 个 degrees of freedom，我们写：
 $$ q_1,q_2,\ldots,q_n. $$
 那么一个系统在某一时刻的 configuration 就可以表示为：
 $$ q=(q_1,\ldots,q_n). $$
@@ -63,8 +56,16 @@ $$ q=(q_1,\ldots,q_n). $$
 $$ \boxed{\mathcal C=\text{configuration space}} $$
 随着时间演化：
 $$ q(t)=(q_1(t),\ldots,q_n(t)), $$
-这就是 configuration space 中的一条 trajectory。注意这个区别：
-...</p></div><footer class=entry-footer><span title='2026-10-17 00:00:00 +0000 UTC'>October 17, 2026</span>&nbsp;·&nbsp;<span>7 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 拉格朗日力学的几何视角" href=https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/></a></article></main><footer class=footer><span>&copy; 2026 <a href=https://linmythos.github.io/>Linmythos</a></span> ·
+这就是 configuration space 中的一条 trajectory。
+两个粒子的例子 假设有两个粒子：
+$$ \mathbf r_1(t),\mathbf r_2(t)\in\mathbb R^3. $$
+整个系统的 configuration 不是一个三维位置，而是
+$$ q(t)=(\mathbf r_1(t),\mathbf r_2(t)). $$
+因此
+$$ Q=\mathbb R^3\times \mathbb R^3=\mathbb R^6. $$
+于是 system point 实际上是在 six-dimensional configuration space 中运动：
+$$ q(t)\in\mathbb R^6. $$
+...</p></div><footer class=entry-footer><span title='2026-10-17 00:00:00 +0000 UTC'>October 17, 2026</span>&nbsp;·&nbsp;<span>5 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 拉格朗日力学的几何视角" href=https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/></a></article></main><footer class=footer><span>&copy; 2026 <a href=https://linmythos.github.io/>Linmythos</a></span> ·
 <span>Powered by
 <a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
 <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
