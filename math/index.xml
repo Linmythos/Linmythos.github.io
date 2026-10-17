@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Mathematics on Linmythos</title><link>https://linmythos.github.io/math/</link><description>Recent content in Mathematics on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Fri, 09 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/math/index.xml" rel="self" type="application/rss+xml"/><item><title>二次曲线的仿射性质</title><link>https://linmythos.github.io/math/geometry/affine-properties-and-metric-properties/</link><pubDate>Fri, 09 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/affine-properties-and-metric-properties/</guid><description>&lt;h3 id="引入"&gt;引入&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Mathematics on Linmythos</title><link>https://linmythos.github.io/math/</link><description>Recent content in Mathematics on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Fri, 09 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/math/index.xml" rel="self" type="application/rss+xml"/><item><title>二次曲线的仿射性质</title><link>https://linmythos.github.io/math/geometry/projective_geometry/affine-properties-and-metric-properties/</link><pubDate>Fri, 09 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/projective_geometry/affine-properties-and-metric-properties/</guid><description>&lt;h3 id="引入"&gt;引入&lt;/h3&gt;
 &lt;p&gt;在齐次坐标下，仿射变换：&lt;/p&gt;
 &lt;p&gt;$$ \rho \mathbf{x}&amp;rsquo; = A\mathbf{x},\quad A=(a_{ij})_{3\times3},\ \det A\neq0 $$&lt;/p&gt;
 &lt;p&gt;其中仿射变换满足 $a_{31}=a_{32}=0$，&lt;/p&gt;
@@ -13,38 +13,38 @@ $$ S = \sum_{i,j=1}^3 a_{ij} x_i x_j = 0 \xrightarrow{x_3=0} a_{11} x_1^2 + 2a_{
 &lt;li&gt;当 $\Delta &amp;gt; 0$ 时，无实根，相离 $\to$ &lt;strong&gt;椭圆型&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;当 $\Delta = 0$ 时，有相等实根，相切 $\to$ &lt;strong&gt;抛物型&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img loading="lazy" src="https://linmythos.github.io/math/geometry/affine-properties-and-metric-properties/v2-5c32f5625a5cdc76bca36bd32c2555d7~resize_1440_q75.png"&gt;&lt;/p&gt;</description></item><item><title>二次曲线的射影定义</title><link>https://linmythos.github.io/math/geometry/curve/</link><pubDate>Fri, 09 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/curve/</guid><description>&lt;h3 id="二次曲线的射影定义"&gt;二次曲线的射影定义&lt;/h3&gt;
+&lt;p&gt;&lt;img loading="lazy" src="https://linmythos.github.io/math/geometry/projective_geometry/affine-properties-and-metric-properties/v2-5c32f5625a5cdc76bca36bd32c2555d7~resize_1440_q75.png"&gt;&lt;/p&gt;</description></item><item><title>二次曲线的射影定义</title><link>https://linmythos.github.io/math/geometry/projective_geometry/curve/</link><pubDate>Fri, 09 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/projective_geometry/curve/</guid><description>&lt;h3 id="二次曲线的射影定义"&gt;二次曲线的射影定义&lt;/h3&gt;
 &lt;p&gt;我们不加证明地给出如下定理：&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;两个不同中心的射影对应线束对应直线的交点构成一条二次曲线。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;其逆定理亦成立。特别地，若这两个线束为透视对应，则构成两条直线（退化的二次曲线）（一条是透视轴，一条是中心连线）&lt;/p&gt;
 &lt;p&gt;注：这两个射影中心亦在此曲线上&lt;/p&gt;
 &lt;p&gt;接下来我们证明这两个中心不具有特殊性。&lt;/p&gt;
-&lt;p&gt;&lt;img loading="lazy" src="https://linmythos.github.io/math/geometry/curve/v2-c0fdeb62bb9a062b3293fdf1b409dba4~resize_1440_q75.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading="lazy" src="https://linmythos.github.io/math/geometry/projective_geometry/curve/v2-c0fdeb62bb9a062b3293fdf1b409dba4~resize_1440_q75.png"&gt;&lt;/p&gt;
 &lt;p&gt;设二次曲线 $\Gamma$ 是由以 $O, O&amp;rsquo;$ 为中心的射影线束 $O, O&amp;rsquo;$ 生成的。取 $\Gamma$ 上定点 $A, B, P$，$M$ 为 $\Gamma$ 上动点。
 依上述定理，$OC(A,B,P,M) \wedge O&amp;rsquo;(A,B,P,M)$&lt;/p&gt;
 &lt;p&gt;设 $OB \cap AM = B&amp;rsquo;$，$AM \cap OP = K$，$BM \cap O&amp;rsquo;P = K&amp;rsquo;$，$BM \cap O&amp;rsquo;A = A'$&lt;/p&gt;
 &lt;p&gt;$(A, B&amp;rsquo;, K, M) \eqsim O(A, B, P, M) \wedge O&amp;rsquo;(A, B, P, M) \eqsim (A&amp;rsquo;, B, K&amp;rsquo;, M)$&lt;/p&gt;
-&lt;p&gt;$\therefore (A, B&amp;rsquo;, K, M) \wedge (A&amp;rsquo;, B, K, M)$&lt;/p&gt;</description></item><item><title>帕斯卡定理与布利安桑定理</title><link>https://linmythos.github.io/math/geometry/pascaltheorem/</link><pubDate>Fri, 09 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/pascaltheorem/</guid><description>&lt;h3 id="帕斯卡与布列安桑定理"&gt;帕斯卡与布列安桑定理&lt;/h3&gt;
+&lt;p&gt;$\therefore (A, B&amp;rsquo;, K, M) \wedge (A&amp;rsquo;, B, K, M)$&lt;/p&gt;</description></item><item><title>帕斯卡定理与布利安桑定理</title><link>https://linmythos.github.io/math/geometry/projective_geometry/pascaltheorem/</link><pubDate>Fri, 09 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/projective_geometry/pascaltheorem/</guid><description>&lt;h3 id="帕斯卡与布列安桑定理"&gt;帕斯卡与布列安桑定理&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;帕斯卡定理：&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;对于任意一个内接于非退化二次曲线的简单六点形，它的三对对边的交点在一直线上。&lt;/strong&gt;
-&lt;img loading="lazy" src="https://linmythos.github.io/math/geometry/pascaltheorem/v2-04a65bcb62e3e8553c4bc127935bd6e5~resize_1440_q75.png"&gt;
+&lt;img loading="lazy" src="https://linmythos.github.io/math/geometry/projective_geometry/pascaltheorem/v2-04a65bcb62e3e8553c4bc127935bd6e5~resize_1440_q75.png"&gt;
 $ABC$为&lt;strong&gt;帕斯卡线&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;布列安桑定理：&lt;/strong&gt;
 对于任意一个外切于非退化二次曲线的简单六线形，它的三对对顶点连线共点。
-&lt;img loading="lazy" src="https://linmythos.github.io/math/geometry/pascaltheorem/v2-102241678a58e630f14be325644d68c6~resize_1440_q75.png"&gt;
+&lt;img loading="lazy" src="https://linmythos.github.io/math/geometry/projective_geometry/pascaltheorem/v2-102241678a58e630f14be325644d68c6~resize_1440_q75.png"&gt;
 $S点$为&lt;strong&gt;布列安桑点&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;这两个定理相互对偶，我们只需证明 Pascal 定理：&lt;/p&gt;
-&lt;p&gt;&lt;img loading="lazy" src="https://linmythos.github.io/math/geometry/pascaltheorem/v2-25d64ca91e2ef5f126aca4ae87c6d4dd~resize_1440_q75.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading="lazy" src="https://linmythos.github.io/math/geometry/projective_geometry/pascaltheorem/v2-25d64ca91e2ef5f126aca4ae87c6d4dd~resize_1440_q75.png"&gt;&lt;/p&gt;
 &lt;p&gt;六点形 $A_1A_2A_3A_4A_5A_6$&lt;/p&gt;
 &lt;p&gt;$L = A_1A_2 \cap A_4A_5$，$M = A_2A_3 \cap A_5A_6$&lt;/p&gt;
 &lt;p&gt;$N = A_3A_4 \cap A_1A_6$，$P = A_1A_6 \cap A_4A_5$，$Q = A_3A_4 \cap A_5A_6$&lt;/p&gt;
 &lt;p&gt;则 $(L, A_4, A_5, P) \eqsim A_1(A_2, A_4, A_5, A_6) \wedge A_3(A_2, A_4, A_5, A_6) \eqsim (M, Q, A_5, A_6)$&lt;/p&gt;
 &lt;p&gt;$\therefore (L, A_4, A_5, P) \eqsim (M, Q, A_5, A_6)$&lt;/p&gt;
-&lt;p&gt;$\therefore (L, A_4, A_5, P) \wedge (M, Q, A_5, A_6)$&lt;/p&gt;</description></item><item><title>极点与极线，自配极三角形,配极变换</title><link>https://linmythos.github.io/math/geometry/polarity-principle/</link><pubDate>Fri, 09 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/polarity-principle/</guid><description>&lt;p&gt;$ Attention$ ：&lt;strong&gt;本节讨论对象为非退化二次曲线​ $\Gamma$&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$\therefore (L, A_4, A_5, P) \wedge (M, Q, A_5, A_6)$&lt;/p&gt;</description></item><item><title>极点与极线，自配极三角形,配极变换</title><link>https://linmythos.github.io/math/geometry/projective_geometry/polarity-principle/</link><pubDate>Fri, 09 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/projective_geometry/polarity-principle/</guid><description>&lt;p&gt;$ Attention$ ：&lt;strong&gt;本节讨论对象为非退化二次曲线​ $\Gamma$&lt;/strong&gt;&lt;/p&gt;
 &lt;h3 id="极点与极线"&gt;极点与极线&lt;/h3&gt;
 &lt;p&gt;先将点列的调和共轭推广到二次曲线里：&lt;/p&gt;
 &lt;p&gt;对给定二次曲线 $\Gamma$，直线 $PQ$ （$P\notin\Gamma ，Q\notin\Gamma$）与 $\Gamma$ 交于 $M_1,M_2$，若交比 $(PQ,M_1M_2)=-1$，则称 $P,Q$ 关于 $\Gamma$ &lt;strong&gt;调和共轭&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;img loading="lazy" src="https://linmythos.github.io/math/geometry/polarity-principle/v2-7731b751f68f2e0370432062512cca85~resize_1440_q75.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading="lazy" src="https://linmythos.github.io/math/geometry/projective_geometry/polarity-principle/v2-7731b751f68f2e0370432062512cca85~resize_1440_q75.png"&gt;&lt;/p&gt;
 &lt;p&gt;设 $P(p_1,p_2,p_3),\ Q(q_1,q_2,q_3)$，$P\notin\Gamma ，Q\notin\Gamma$&lt;/p&gt;
 &lt;p&gt;$\Gamma: S=0$ ，则 $P,Q$ 关于 $\Gamma$ 调和共轭 $\iff S_{pq}=0$。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;proof&lt;/strong&gt;：设交点 $M_{1,2}$ 对应参数 $\lambda_{1,2}$，由 $(PQ,M_1M_2)=\frac{\lambda_1}{\lambda_2}=-1\Rightarrow \lambda_1+\lambda_2=0$。&lt;/p&gt;
@@ -57,7 +57,7 @@ $S点$为&lt;strong&gt;布列安桑点&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;1.两点连线的极点 = 两点极线的交点；两直线交点的极线 = 两直线极点的连线。&lt;/p&gt;
 &lt;p&gt;2.共线点的极线共点；共点线的极点共线。&lt;/p&gt;
 &lt;h3 id="自配极三角形"&gt;自配极三角形&lt;/h3&gt;
-&lt;p&gt;对$\Gamma$ 上内接四边形 $ABCD$，令 $X=AD\cap BC,\ Z=AB\cap CD,\ Y=AC\cap BD$，&lt;/p&gt;</description></item><item><title>射影变换</title><link>https://linmythos.github.io/math/geometry/projective-geometry/</link><pubDate>Thu, 08 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/projective-geometry/</guid><description>&lt;h3 id="单比"&gt;单比&lt;/h3&gt;
+&lt;p&gt;对$\Gamma$ 上内接四边形 $ABCD$，令 $X=AD\cap BC,\ Z=AB\cap CD,\ Y=AC\cap BD$，&lt;/p&gt;</description></item><item><title>射影变换</title><link>https://linmythos.github.io/math/geometry/projective_geometry/projective-geometry/</link><pubDate>Thu, 08 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/projective_geometry/projective-geometry/</guid><description>&lt;h3 id="单比"&gt;单比&lt;/h3&gt;
 &lt;p&gt;共线三点 $A, B, C$ 的单比定义为：&lt;/p&gt;
 &lt;p&gt;$$
 (ABC) = \frac{AB}{BC}
@@ -69,7 +69,7 @@ $$&lt;/p&gt;
 (P_1P_2, P_3P_4) = \frac{(P_1P_2P_3)}{(P_1P_2P_4)} = \frac{P_1P_3 \cdot P_2P_4}{P_1P_4 \cdot P_2P_3}
 $$&lt;/p&gt;
 &lt;p&gt;其中 $P_1, P_2$ 称为&lt;strong&gt;基点偶&lt;/strong&gt;，$P_3, P_4$ 称为&lt;strong&gt;分点偶&lt;/strong&gt;，$P_iP_j$ 为有向线段。&lt;/p&gt;
-&lt;p&gt;&lt;img loading="lazy" src="https://linmythos.github.io/math/geometry/projective-geometry/cross-ratio.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading="lazy" src="https://linmythos.github.io/math/geometry/projective_geometry/projective-geometry/cross-ratio.jpg"&gt;&lt;/p&gt;
 &lt;h3 id="交比的符号性质"&gt;交比的符号性质&lt;/h3&gt;
 &lt;p&gt;不难验证，当点偶 $P_1P_2$ 与 $P_3P_4$ &lt;strong&gt;分离&lt;/strong&gt;时，交比 $&amp;lt; 0$；当它们&lt;strong&gt;不分离&lt;/strong&gt;（共存&amp;hellip;&lt;/p&gt;
 &lt;p&gt;由定义，立刻得出如下性质：&lt;/p&gt;

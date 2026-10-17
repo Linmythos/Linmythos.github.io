@@ -1,1 +1,31 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Physics on Linmythos</title><link>https://linmythos.github.io/physics/</link><description>Recent content in Physics on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><atom:link href="https://linmythos.github.io/physics/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Physics on Linmythos</title><link>https://linmythos.github.io/physics/</link><description>Recent content in Physics on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sat, 17 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/physics/index.xml" rel="self" type="application/rss+xml"/><item><title>From Newtonian Mechanics to Lagrangian Mechanics</title><link>https://linmythos.github.io/physics/classical-mechanics/</link><pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/</guid><description>&lt;h3 id="configuration-space"&gt;Configuration Space&lt;/h3&gt;
+&lt;p&gt;我们已经知道 Newton&amp;rsquo;s equation：&lt;/p&gt;
+&lt;p&gt;$$
+m\mathbf a=\mathbf F.
+$$&lt;/p&gt;
+&lt;p&gt;它当然可以解决大量问题。但假设一个系统有 $N$ 个 particles，有各种 constraints。直接使用 Cartesian coordinates：&lt;/p&gt;
+&lt;p&gt;$$
+\mathbf r_1,\mathbf r_2,\ldots,\mathbf r_N
+$$&lt;/p&gt;
+&lt;p&gt;我们最终需要处理 $3N$ 个 coordinates，再加上一堆 constraint equations。而物理系统真正的自由度可能只有 $n &amp;lt; 3N$。所以我们问：能不能直接用描述这个系统真正自由度的 coordinates 来描述运动？&lt;/p&gt;
+&lt;p&gt;这就引出了：&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{\text{generalized coordinates}}
+$$&lt;/p&gt;
+&lt;p&gt;设系统有 $n$ 个 degrees of freedom，我们写：&lt;/p&gt;
+&lt;p&gt;$$
+q_1,q_2,\ldots,q_n.
+$$&lt;/p&gt;
+&lt;p&gt;那么一个系统在某一时刻的 configuration 就可以表示为：&lt;/p&gt;
+&lt;p&gt;$$
+q=(q_1,\ldots,q_n).
+$$&lt;/p&gt;
+&lt;p&gt;于是所有可能的 configurations 构成：&lt;/p&gt;
+&lt;p&gt;$$
+\boxed{\mathcal C=\text{configuration space}}
+$$&lt;/p&gt;
+&lt;p&gt;随着时间演化：&lt;/p&gt;
+&lt;p&gt;$$
+q(t)=(q_1(t),\ldots,q_n(t)),
+$$&lt;/p&gt;
+&lt;p&gt;这就是 configuration space 中的一条 trajectory。注意这个区别：&lt;/p&gt;</description></item></channel></rss>
