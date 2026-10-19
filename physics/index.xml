@@ -1,63 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Physics on Linmythos</title><link>https://linmythos.github.io/physics/</link><description>Recent content in Physics on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sat, 17 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/physics/index.xml" rel="self" type="application/rss+xml"/><item><title>哈密顿力学与辛几何</title><link>https://linmythos.github.io/physics/classical-mechanics/hamilton-mechanics/</link><pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/hamilton-mechanics/</guid><description>&lt;h2 id="legendre-transform"&gt;Legendre Transform&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;以下默认采用 Einstein summation convention&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;在 Lagrangian formulation 中，系统的状态由广义坐标和广义速度描述，运动方程是二阶微分方程&lt;/p&gt;
-&lt;p&gt;我们希望改用广义坐标 $q^i$ 和共轭动量 $p_i$ 描述状态，并且得到一阶方程&lt;/p&gt;
-&lt;p&gt;$$p_i=\frac{\partial L}{\partial\dot q^i}.$$&lt;/p&gt;
-&lt;p&gt;如果可以由这个关系解出&lt;/p&gt;
-&lt;p&gt;$$\dot q^i=\dot q^i(q,p,t),$$&lt;/p&gt;
-&lt;p&gt;那么就能把速度消去，构造只依赖于 $q,p,t$ 的 Hamiltonian：&lt;/p&gt;
-&lt;p&gt;$$\boxed{ H(q,p,t)=p_i\dot q^i-L(q,\dot q,t) }$$&lt;/p&gt;
-&lt;p&gt;为此，我们定义 velocity Hessian：&lt;/p&gt;
-&lt;p&gt;$$W_{ij} =\frac{\partial^2L} {\partial\dot q^i\partial\dot q^j}.$$&lt;/p&gt;
-&lt;p&gt;如果&lt;/p&gt;
-&lt;p&gt;$$\boxed{\det W\neq0},$$&lt;/p&gt;
-&lt;p&gt;那么在局部能反解出 $\dot q^i=\dot q^i(q,p,t)$。&lt;/p&gt;
-&lt;p&gt;具体来说，固定 $q,t$，考虑映射&lt;/p&gt;
-&lt;p&gt;$$
-\dot q\longmapsto p(\dot q), \qquad p_i=\frac{\partial L}{\partial\dot q^i}.
-$$&lt;/p&gt;
-&lt;p&gt;它对速度的 Jacobian 矩阵恰好就是&lt;/p&gt;
-&lt;p&gt;$$
-\frac{\partial p_i}{\partial\dot q^j}=W_{ij}.
-$$&lt;/p&gt;
-&lt;p&gt;因此，由 inverse function theorem，只要 $\det W\neq0$，我们就能在局部反解&lt;/p&gt;</description></item><item><title>对称性与守恒律: 诺特定理</title><link>https://linmythos.github.io/physics/classical-mechanics/symmetry-and-conservation-laws/</link><pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/symmetry-and-conservation-laws/</guid><description>&lt;p&gt;本文的目标是阐述一个思想：&lt;/p&gt;
-&lt;p&gt;$$
-\boxed{\text{Symmetry}\quad\Longrightarrow\quad\text{Conservation Law}}
-$$&lt;/p&gt;
-&lt;p&gt;我们先从特殊情况开始，最后走向 Noether&amp;rsquo;s theorem。&lt;/p&gt;
-&lt;h2 id="cyclic-coordinate"&gt;Cyclic coordinate&lt;/h2&gt;
-&lt;p&gt;如果某个 generalized coordinate $q_j$ 不显式出现在 Lagrangian 中，即&lt;/p&gt;
-&lt;p&gt;$$
-\boxed{\frac{\partial L}{\partial q_j}=0},
-$$&lt;/p&gt;
-&lt;p&gt;我们就称 $q_j$ 为 cyclic coordinate，也叫 ignorable coordinate。&lt;/p&gt;
-&lt;p&gt;Euler–Lagrange equation 立即给出：&lt;/p&gt;
-&lt;p&gt;$$
-\frac{d}{dt} \frac{\partial L}{\partial\dot q_j}=0.
-$$&lt;/p&gt;
-&lt;p&gt;定义 conjugate momentum：&lt;/p&gt;
-&lt;p&gt;$$
-p_j:=\frac{\partial L}{\partial\dot q_j},
-$$&lt;/p&gt;
-&lt;p&gt;便得到：&lt;/p&gt;
-&lt;p&gt;$$
-\boxed{p_j=\text{constant}}.
-$$&lt;/p&gt;
-&lt;p&gt;这就是一个可以直接使用的结论：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;如果 Lagrangian 不显含某个 coordinate，那么它对应的 conjugate momentum 守恒。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;hr&gt;
-&lt;h3 id="旋转对称性与角动量守恒"&gt;旋转对称性与角动量守恒&lt;/h3&gt;
-&lt;p&gt;考虑平面上的中心势：&lt;/p&gt;
-&lt;p&gt;$$
-V=V(r).
-$$&lt;/p&gt;
-&lt;p&gt;Lagrangian 为：&lt;/p&gt;
-&lt;p&gt;$$
-L=\frac12m(\dot r^2+r^2\dot\theta^2)-V(r).
-$$&lt;/p&gt;
-&lt;p&gt;现在做一个 transformation：&lt;/p&gt;</description></item><item><title>拉格朗日力学的几何视角</title><link>https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/</link><pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/</guid><description>&lt;h2 id="configuration-space"&gt;Configuration Space&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Physics on Linmythos</title><link>https://linmythos.github.io/physics/</link><description>Recent content in Physics on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sat, 17 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/physics/index.xml" rel="self" type="application/rss+xml"/><item><title>Classical Mechanics</title><link>https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/</link><pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/</guid><description>&lt;h1 id="lagrangian-mechanics-and-geometry"&gt;Lagrangian Mechanics and Geometry&lt;/h1&gt;
+&lt;h2 id="configuration-space"&gt;Configuration Space&lt;/h2&gt;
 &lt;p&gt;设系统有 $n$ 个 degrees of freedom，我们写：&lt;/p&gt;
 &lt;p&gt;$$
 q_1,q_2,\ldots,q_n.
@@ -88,7 +30,4 @@ $$&lt;/p&gt;
 &lt;p&gt;$$
 Q=\mathbb R^3\times \mathbb R^3=\mathbb R^6.
 $$&lt;/p&gt;
-&lt;p&gt;于是 system point 实际上是在 six-dimensional configuration space 中运动：&lt;/p&gt;
-&lt;p&gt;$$
-q(t)\in\mathbb R^6.
-$$&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;于是 system point 实际上是在 six-dimensional configuration space 中运动：&lt;/p&gt;</description></item></channel></rss>
