@@ -61,22 +61,23 @@
 &lt;p&gt;设 $F:\mathbb{R}^{,n+k}\to\mathbb{R}^{,k}$ 光滑，Jacobian 为 $DF=\bigl(\frac{\partial F^a}{\partial x^j}\bigr)$。若对所有 $p\in F^{-1}(0)$，$DF(p)$ 的秩均为 $k$（即 $0$ 是&lt;strong&gt;正则值&lt;/strong&gt;），则&lt;/p&gt;</description></item><item><title>Projective Geometry</title><link>https://linmythos.github.io/math/geometry/projective_geometry/projective-geometry/</link><pubDate>Thu, 08 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/projective_geometry/projective-geometry/</guid><description>&lt;p&gt;谨以此纪念我那充满戏剧性的、颓唐的、激情的高三。&lt;/p&gt;
 &lt;p&gt;在2026.4.21，佛山二模前夕，我花了一天读完了梅向明《高等几何》的前六章并做了学习笔记。早上6：40到的教室，晚上22：35才走。那时候虽然不知道自己学这些东西有什么用，但是就是很喜欢，无法自拔地学下去。&lt;/p&gt;
 &lt;p&gt;虽然一直在练用射影几何方法做解析几何题，但最后高考的时候也没有发挥用处，唉，值得一提的是，在佛山一模之后的寒假，我发现了一个能在正规考试中“使用”射影几何的方法：先用射影几何方法做出来，代数演绎上，用共线方程传递调和比，然后用分比性质猛猛导。肯定能做出来（不使用齐次坐标就能处理无穷远点的情况），而且非常快。&lt;/p&gt;
-&lt;p&gt;本篇文章介绍射影变换、二次曲线的射影理论、二次曲线的仿射性质，分别对应于原书的第三、四、五章。前两章由于比较多概念，我没有记下来。而且下面的内容也是经过一定增添的，尽量降低阅读难度，希望能帮助被解析几何害惨的高中同学。本文较为浅显，高中水平应该能轻松理解（）对于没有前置知识的读者，我深感抱歉。&lt;/p&gt;
+&lt;p&gt;本篇文章是在学习笔记的基础上扩写而成的，对于缺少前置知识的读者，我深感抱歉。&lt;/p&gt;
 &lt;h1 id="射影变换"&gt;射影变换&lt;/h1&gt;
-&lt;h2 id="单比"&gt;单比&lt;/h2&gt;
+&lt;h2 id="单比与交比"&gt;单比与交比&lt;/h2&gt;
+&lt;h3 id="点列情形"&gt;点列情形&lt;/h3&gt;
+&lt;h4 id="单比"&gt;单比&lt;/h4&gt;
 &lt;p&gt;共线三点 $A, B, C$ 的单比定义为：&lt;/p&gt;
-&lt;p&gt;$$&lt;/p&gt;
-&lt;p&gt;(ABC) = \frac{AB}{BC}
+&lt;p&gt;$$(ABC) = \frac{AB}{BC}
 $$&lt;/p&gt;
 &lt;p&gt;$AB$ 是有向线段。&lt;/p&gt;
-&lt;h2 id="交比的性质与证明"&gt;交比的性质与证明&lt;/h2&gt;
+&lt;h4 id="交比及其性质"&gt;交比及其性质&lt;/h4&gt;
 &lt;p&gt;共线四点 $P_1, P_2, P_3, P_4$ 的交比定义为：&lt;/p&gt;
 &lt;p&gt;$$
 (P_1P_2, P_3P_4) = \frac{(P_1P_2P_3)}{(P_1P_2P_4)} = \frac{P_1P_3 \cdot P_2P_4}{P_1P_4 \cdot P_2P_3}
 $$&lt;/p&gt;
 &lt;p&gt;其中 $P_1, P_2$ 称为&lt;strong&gt;基点偶&lt;/strong&gt;，$P_3, P_4$ 称为&lt;strong&gt;分点偶&lt;/strong&gt;，$P_iP_j$ 为有向线段。&lt;/p&gt;
 &lt;p&gt;&lt;img loading="lazy" src="https://linmythos.github.io/math/geometry/projective_geometry/projective-geometry/cross-ratio.jpg"&gt;&lt;/p&gt;
-&lt;h2 id="交比的符号性质"&gt;交比的符号性质&lt;/h2&gt;
+&lt;h4 id="交比的符号性质"&gt;交比的符号性质&lt;/h4&gt;
 &lt;p&gt;不难验证，当点偶 $P_1P_2$ 与 $P_3P_4$ &lt;strong&gt;分离&lt;/strong&gt;时，交比 $&amp;lt; 0$；当它们&lt;strong&gt;不分离&lt;/strong&gt;（共存&amp;hellip;&lt;/p&gt;
 &lt;p&gt;由定义，立刻得出如下性质：&lt;/p&gt;
 &lt;ol&gt;
@@ -89,7 +90,7 @@ $$
 (P_1P_3, P_2P_4) = \frac{P_1P_2 \cdot P_3P_4}{P_3P_2 \cdot P_1P_4} = -\frac{(P_1P_3 + P_3P_2)(P_3P_2 + P_2P_4)}{P_1P_4 \cdot P_2P_3}
 $$
 $$
-= \frac{P_1P_3 \cdot P_3P_2 + P_3P_2 \cdot P_2P_4 + P_3P_2 \cdot P_3P_2}{P_1P_4 \cdot P_2P_3} - \frac{P_1P_3 \cdot P_2P_4}{P_1P_4 \cdot P_2P_3} \
+= \frac{P_1P_3 \cdot P_3P_2 + P_3P_2 \cdot P_2P_4 + P_3P_2 \cdot P_3P_2}{P_1P_4 \cdot P_2P_3} - \frac{P_1P_3 \cdot P_2P_4}{P_1P_4 \cdot P_2P_3} \\
 = 1 - (P_1P_2, P_3P_4) \quad \square
 $$
 以上三条性质可分别记为：&lt;/p&gt;</description></item></channel></rss>
