@@ -1,0 +1,49 @@
+<!doctype html><html lang=en dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI | Linmythos</title><meta name=keywords content><meta name=description content="Notes on AI"><meta name=author content="Linmythos"><link rel=canonical href=https://linmythos.github.io/ai/><link crossorigin=anonymous href=/assets/css/stylesheet.5a42af7b68c8b1b7f3d0894c8a74d101cf31f37c1aa9bf8365395ef493e0dea4.css integrity="sha256-WkKve2jIsbfz0IlMinTRAc8x83waqb+DZTle9JPg3qQ=" rel="preload stylesheet" as=style><link rel=icon href=https://linmythos.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://linmythos.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://linmythos.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://linmythos.github.io/apple-touch-icon.png><link rel=mask-icon href=https://linmythos.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://linmythos.github.io/ai/index.xml title=rss><link rel=alternate hreflang=en href=https://linmythos.github.io/ai/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="https://linmythos.github.io/ai/"><meta property="og:site_name" content="Linmythos"><meta property="og:title" content="AI"><meta property="og:description" content="Notes on AI"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI"><meta name=twitter:description content="Notes on AI"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI","item":"https://linmythos.github.io/ai/"}]}</script></head><body class=list id=top><header class=header><nav class=header-nav><div class=logo><a href=https://linmythos.github.io/ accesskey=h title="Linmythos (Alt + H)">Linmythos</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://linmythos.github.io/math/ title=Mathematics><span>Mathematics</span></a></li><li><a href=https://linmythos.github.io/physics/ title=Physics><span>Physics</span></a></li><li><a href=https://linmythos.github.io/ai/ title=AI><span class=active>AI</span></a></li><li><a href=https://linmythos.github.io/neural-science/ title="Neural Science"><span>Neural Science</span></a></li><li><a href=https://linmythos.github.io/essays/ title=Essays><span>Essays</span></a></li><li><a href=https://linmythos.github.io/about/ title=About><span>About</span></a></li><li><a href=https://linmythos.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://linmythos.github.io/archives/ title=Archives><span>Archives</span></a></li></ul></nav></header><main class=main><header class=page-header><h1>AI</h1></header><div class="post-content md-content"><p>Notes on AI</p></div><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>智能计算的数学基础与科学前沿</h2></header><div class=entry-content><p>第一讲：机器为什么能够学习？ ——从函数逼近到统计学习理论 0. 核心问题 考虑一个简单任务：
+给定大量房屋的历史数据，包括面积、位置、房间数量和成交价格，希望构造一个模型，根据房屋特征预测其价格。
+我们可以将每套房屋表示为一个向量：
+[ x=(x_1,x_2,\ldots,x_d)\in\mathbb R^d, ]
+将其实际价格记为：
+[ y\in\mathbb R. ]
+我们希望找到一个函数：
+[ f:\mathbb R^d\longrightarrow\mathbb R, ]
+使得：
+[ f(x)\approx y. ]
+问题在于：我们只知道有限数量的样本，却希望模型能够预测尚未出现的数据。
+这就是机器学习的基本矛盾：
+[ \boxed{ \text{有限样本}\longrightarrow\text{未知规律} } ]
+机器学习的核心并不是简单地记忆数据，而是从有限观测中提取能够推广到新样本的规律。
+本讲将从数学角度解释这一过程。
+一、机器学习的数学形式化 1.1 数据与未知分布 设输入空间为 (\mathcal X)，输出空间为 (\mathcal Y)。
+数据由某个未知概率分布生成：
+[ (X,Y)\sim P. ]
+我们观察到独立同分布的训练样本：
+[ S={(x_1,y_1),(x_2,y_2),\ldots,(x_n,y_n)}. ]
+即：
+[ (x_i,y_i)\overset{\mathrm{i.i.d.}}{\sim}P. ]
+这里有三个重要对象：
+(P)：真实的数据生成分布； (S)：有限的训练样本； (f)：我们希望学习的预测函数。 机器学习算法根据样本 (S)，从某个函数集合中选择模型：
+[ \mathcal H={f_\theta:\theta\in\Theta}. ]
+因此，学习过程可以抽象为：
+[ A:S\longmapsto \widehat f. ]
+其中 (A) 是学习算法，(\widehat f) 是训练得到的模型。
+注意：学习算法并不知道真实分布 (P)，它只能利用有限样本间接推断规律。
+...</p></div><footer class=entry-footer><span title='2026-11-04 00:00:00 +0000 UTC'>November 4, 2026</span>&nbsp;·&nbsp;<span>108 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 智能计算的数学基础与科学前沿" href=https://linmythos.github.io/ai/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E5%92%8C%E7%A7%91%E5%AD%A6%E5%89%8D%E6%B2%BF/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>智能计算系统：从数学原理到芯片设计</h2></header><div class=entry-content><p>第一册：计算系统与性能基础 第一讲　从算法到芯片：计算系统的全栈视角 Lecture 1 — From Algorithms to Silicon: A Full-Stack View of Computing Systems
+1.1　引言：计算究竟是什么？ 计算机科学经常被简单地理解为研究算法与程序的学科，计算机工程则被理解为研究处理器和电路的学科。
+但现代计算系统远比这种划分复杂。
+一个算法最终需要在具体硬件上执行，而硬件所能提供的计算能力，又受到指令集、微体系结构、存储系统、制造工艺和功耗预算等因素的共同制约。
+因此，现代计算系统设计的核心问题并不只是：
+如何设计一个更快的算法？
+而是：
+如何使算法、编程模型、编译器、指令集、处理器架构和物理电路协同工作，从而在给定资源约束下实现最优的计算性能？
+这就是**软硬件协同设计（Hardware–Software Co-design）**的基本思想。
+1.1.1　计算系统的抽象层次 一个典型的计算系统可以分解为以下层次：
+[ \boxed{ \text{Algorithm} \longrightarrow \text{Program} \longrightarrow \text{Compiler} \longrightarrow \text{ISA} \longrightarrow \text{Microarchitecture} \longrightarrow \text{Logic Circuit} \longrightarrow \text{Transistor} } ]
+各层承担不同职责。
+层次 核心对象 主要问题 算法层 数学算法、数据结构 如何完成计算任务？ 程序层 源代码、算子 如何描述计算过程？ 编译层 中间表示、优化 Pass 如何将程序转化为高效代码？ 指令集层 ISA 软件可以使用哪些机器操作？ 微体系结构层 CPU、GPU、缓存、流水线 如何组织和执行指令？ 电路层 逻辑门、组合与时序电路 如何实现逻辑功能？ 器件层 CMOS 晶体管 如何通过物理器件实现电路？ 这些层次之间存在严格的依赖关系，但并非只能单向设计。
+...</p></div><footer class=entry-footer><span title='2026-11-04 00:00:00 +0000 UTC'>November 4, 2026</span>&nbsp;·&nbsp;<span>71 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 智能计算系统：从数学原理到芯片设计" href=https://linmythos.github.io/ai/%E8%8A%AF%E7%89%87%E8%AE%BE%E8%AE%A1/></a></article></main><footer class=footer><span>&copy; 2026 <a href=https://linmythos.github.io/>Linmythos</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script></body></html>
