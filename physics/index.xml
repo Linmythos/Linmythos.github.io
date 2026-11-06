@@ -1,71 +1,59 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Physics on Linmythos</title><link>https://linmythos.github.io/physics/</link><description>Recent content in Physics on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Tue, 03 Nov 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/physics/index.xml" rel="self" type="application/rss+xml"/><item><title>MZI网格的Reck架构与Clements架构</title><link>https://linmythos.github.io/physics/quantum/reck-clements%E5%88%86%E8%A7%A3/</link><pubDate>Tue, 03 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/quantum/reck-clements%E5%88%86%E8%A7%A3/</guid><description>&lt;h1 id="part-i--光学与电磁场基础"&gt;PART I · 光学与电磁场基础&lt;/h1&gt;
-&lt;h2 id="波动方程和平面波解"&gt;波动方程和平面波解&lt;/h2&gt;
-&lt;p&gt;考虑电场具有单一角频率 \(\omega\) 的情形：&lt;/p&gt;
-&lt;p&gt;\[ \mathbf E(\mathbf r,t) = \operatorname{Re} \left[ \boldsymbol{\mathcal E}(\mathbf r)e^{-i\omega t} \right]. \]&lt;/p&gt;
-&lt;p&gt;这里 \(\boldsymbol{\mathcal E}(\mathbf r)\) 是复振幅；&lt;/p&gt;
-&lt;p&gt;代入波动方程：&lt;/p&gt;
-&lt;p&gt;\[ \nabla^2\mathbf E -\mu\varepsilon \frac{\partial^2\mathbf E}{\partial t^2} =0. \]&lt;/p&gt;
-&lt;p&gt;由于&lt;/p&gt;
-&lt;p&gt;\[ \frac{\partial^2}{\partial t^2} e^{-i\omega t} =-\omega^2e^{-i\omega t}, \]&lt;/p&gt;
-&lt;p&gt;得到：&lt;/p&gt;
-&lt;p&gt;\[ \nabla^2\boldsymbol{\mathcal E} +\omega^2\mu\varepsilon \boldsymbol{\mathcal E}=0. \]&lt;/p&gt;
-&lt;p&gt;定义波数：&lt;/p&gt;
-&lt;p&gt;\[ k=\omega\sqrt{\mu\varepsilon} =\frac{n\omega}{c} =\frac{2\pi n}{\lambda_0}, \]&lt;/p&gt;
-&lt;p&gt;其中 \(\lambda_0\) 是真空波长。&lt;/p&gt;
-&lt;p&gt;于是：&lt;/p&gt;
-&lt;p&gt;\[ \boxed{ \nabla^2\boldsymbol{\mathcal E} +k^2\boldsymbol{\mathcal E}=0 } \]&lt;/p&gt;</description></item><item><title>集成光子器件调控、配校与优化</title><link>https://linmythos.github.io/physics/quantum/%E9%9B%86%E6%88%90%E5%85%89%E5%AD%90%E5%99%A8%E4%BB%B6%E8%B0%83%E6%8E%A7%E9%85%8D%E6%A0%A1%E4%B8%8E%E4%BC%98%E5%8C%96/</link><pubDate>Tue, 03 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/quantum/%E9%9B%86%E6%88%90%E5%85%89%E5%AD%90%E5%99%A8%E4%BB%B6%E8%B0%83%E6%8E%A7%E9%85%8D%E6%A0%A1%E4%B8%8E%E4%BC%98%E5%8C%96/</guid><description>&lt;h1 id="调控机制与器件"&gt;调控机制与器件&lt;/h1&gt;
-&lt;p&gt;对于沿 \(z\) 方向传播的单一波导模式：&lt;/p&gt;
-&lt;p&gt;\[ \mathcal E(x,y,z) = \mathbf e(x,y)e^{i\beta z}. \]&lt;/p&gt;
-&lt;p&gt;传播距离为 \(L\) 时，光场积累的相位为&lt;/p&gt;
-&lt;p&gt;\[ \phi=\beta L. \]&lt;/p&gt;
-&lt;p&gt;又因为&lt;/p&gt;
-&lt;p&gt;\[ \beta=k_0n_{\mathrm{eff}}, \]&lt;/p&gt;
-&lt;p&gt;所以&lt;/p&gt;
-&lt;p&gt;\[ \boxed{ \phi=\frac{2\pi}{\lambda_0}n_{\mathrm{eff}}L. } \]&lt;/p&gt;
-&lt;p&gt;现在假设外部控制信号改变了波导的有效折射率：&lt;/p&gt;
-&lt;p&gt;\[ n_{\mathrm{eff}}\longrightarrow n_{\mathrm{eff}}+\Delta n_{\mathrm{eff}}. \]&lt;/p&gt;
-&lt;p&gt;如果长度保持不变，那么相位变化为&lt;/p&gt;
-&lt;p&gt;\[ \Delta\phi = \frac{2\pi L}{\lambda_0}\Delta n_{\mathrm{eff}}. \]&lt;/p&gt;
-&lt;p&gt;这就是相位调制器最基本的工作原理。&lt;/p&gt;
-&lt;h2 id="热光效应thermo-optic-effect"&gt;热光效应（Thermo-optic Effect）&lt;/h2&gt;
-&lt;h3 id="基本物理机制"&gt;基本物理机制&lt;/h3&gt;
-&lt;p&gt;热光效应是指材料折射率随温度变化的现象。&lt;/p&gt;
-&lt;p&gt;定义热光系数：&lt;/p&gt;
-&lt;p&gt;\[ \boxed{ \frac{dn}{dT}. } \]&lt;/p&gt;
-&lt;p&gt;在温度变化较小、材料参数近似线性的情况下：&lt;/p&gt;
-&lt;p&gt;\[ \Delta n_{\mathrm{eff}} \approx \frac{dn_{\mathrm{eff}}}{dT}\Delta T. \]&lt;/p&gt;
-&lt;p&gt;代入得到：&lt;/p&gt;
-&lt;p&gt;\[ \boxed{ \Delta\phi \approx \frac{2\pi L}{\lambda_0} \frac{dn_{\mathrm{eff}}}{dT}\Delta T. } \]&lt;/p&gt;</description></item><item><title>Classical Mechanics</title><link>https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/</link><pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/</guid><description>&lt;p&gt;学过 Differential Geometry 之后重新学 Classical Mechanis ，有很多新的收获，此为学习笔记，持续更新。&lt;/p&gt;
-&lt;h1 id="lagrangian-mechanics-and-geometry"&gt;Lagrangian Mechanics and Geometry&lt;/h1&gt;
-&lt;h2 id="configuration-space"&gt;Configuration Space&lt;/h2&gt;
-&lt;p&gt;设系统有 $n$ 个 degrees of freedom，我们写：&lt;/p&gt;
-&lt;p&gt;$$
-q_1,q_2,\ldots,q_n.
-$$&lt;/p&gt;
-&lt;p&gt;那么一个系统在某一时刻的 configuration 就可以表示为：&lt;/p&gt;
-&lt;p&gt;$$
-q=(q_1,\ldots,q_n).
-$$&lt;/p&gt;
-&lt;p&gt;于是所有可能的 configurations 构成：&lt;/p&gt;
-&lt;p&gt;$$
-\boxed{\mathcal C=\text{configuration space}}
-$$&lt;/p&gt;
-&lt;p&gt;随着时间演化：&lt;/p&gt;
-&lt;p&gt;$$
-q(t)=(q_1(t),\ldots,q_n(t)),
-$$&lt;/p&gt;
-&lt;p&gt;这就是 configuration space 中的一条 trajectory。&lt;/p&gt;
-&lt;h3 id="两个粒子的例子"&gt;两个粒子的例子&lt;/h3&gt;
-&lt;p&gt;假设有两个粒子：&lt;/p&gt;
-&lt;p&gt;$$
-\mathbf r_1(t),\mathbf r_2(t)\in\mathbb R^3.
-$$&lt;/p&gt;
-&lt;p&gt;整个系统的 configuration 不是一个三维位置，而是&lt;/p&gt;
-&lt;p&gt;$$
-q(t)=(\mathbf r_1(t),\mathbf r_2(t)).
-$$&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Physics on Linmythos</title><link>https://linmythos.github.io/physics/</link><description>Recent content in Physics on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Tue, 03 Nov 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/physics/index.xml" rel="self" type="application/rss+xml"/><item><title>光量子信息与量子计算</title><link>https://linmythos.github.io/physics/quantum/%E5%85%89%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97/</link><pubDate>Tue, 03 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/quantum/%E5%85%89%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97/</guid><description>&lt;h2 id="第九讲从经典光场到量子光场电磁场的量子化"&gt;第九讲：从经典光场到量子光场——电磁场的量子化&lt;/h2&gt;
+&lt;p&gt;前面几讲，我们一直用复振幅描述光：&lt;/p&gt;
+&lt;p&gt;\[ E(z,t)=\operatorname{Re} \left[Ae^{i(kz-\omega t)}\right]. \]&lt;/p&gt;
+&lt;p&gt;在集成光子芯片中，我们把多个光学模式的复振幅组织成向量：&lt;/p&gt;
+&lt;p&gt;\[ \mathbf a_{\mathrm{out}}=U\mathbf a_{\mathrm{in}}. \]&lt;/p&gt;
+&lt;p&gt;这套理论属于经典电磁场理论。&lt;/p&gt;
+&lt;p&gt;但当我们研究单光子干涉、量子隐形传态、玻色采样和光量子计算时，仅仅描述光场的经典振幅就不够了。&lt;/p&gt;
+&lt;p&gt;我们需要回答：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一个光学模式中有多少个光子？&lt;/li&gt;
+&lt;li&gt;什么是单光子态？&lt;/li&gt;
+&lt;li&gt;光子如何通过分束器？&lt;/li&gt;
+&lt;li&gt;两个光子为什么会发生不同于经典光波的干涉？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些问题需要量子化电磁场理论。&lt;/p&gt;
+&lt;p&gt;本讲的核心路线是：&lt;/p&gt;
+&lt;p&gt;\[ \boxed{ \text{经典电磁场} \longrightarrow \text{谐振子} \longrightarrow \text{产生与湮灭算符} \longrightarrow \text{Fock 态} \longrightarrow \text{相干态} } \]&lt;/p&gt;
+&lt;p&gt;我们从最基础的数学结构开始。&lt;/p&gt;
+&lt;h2 id="91-为什么需要量子化电磁场"&gt;9.1 为什么需要量子化电磁场？&lt;/h2&gt;
+&lt;h3 id="911-经典光场的描述"&gt;9.1.1 经典光场的描述&lt;/h3&gt;
+&lt;p&gt;在经典理论中，一个单色光学模式可以用复振幅描述：&lt;/p&gt;
+&lt;p&gt;\[ E(t)=A\cos(\omega t+\phi). \]&lt;/p&gt;
+&lt;p&gt;这里：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;\(A\) 表示场振幅；&lt;/li&gt;
+&lt;li&gt;\(\omega\) 表示角频率；&lt;/li&gt;
+&lt;li&gt;\(\phi\) 表示相位。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在经典理论中，\(A\) 和 \(\phi\) 是确定的参数。&lt;/p&gt;
+&lt;p&gt;但是，光与物质的相互作用具有量子性质。例如光电效应、单光子探测和原子能级跃迁，都需要引入光子的概念。&lt;/p&gt;
+&lt;p&gt;我们需要一种理论，既能描述电磁场的传播，又能描述能量以光子为单位的量子化特征。&lt;/p&gt;
+&lt;p&gt;这就是量子化电磁场。&lt;/p&gt;
+&lt;h3 id="912-一个重要思想电磁场可以分解为模式"&gt;9.1.2 一个重要思想：电磁场可以分解为模式&lt;/h3&gt;
+&lt;p&gt;回顾第二讲的波导模式：&lt;/p&gt;
+&lt;p&gt;\[ \mathbf E(x,y,z) = \mathbf e(x,y)e^{i\beta z}. \]&lt;/p&gt;</description></item><item><title>非厄米量子系统的数学基础</title><link>https://linmythos.github.io/physics/quantum/nonhermitian/</link><pubDate>Tue, 03 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/quantum/nonhermitian/</guid><description>&lt;h1 id="从非幺正变换到非厄米哈密顿量"&gt;从非幺正变换到非厄米哈密顿量&lt;/h1&gt;
+&lt;h2 id="幺正演化与非幺正演化"&gt;幺正演化与非幺正演化&lt;/h2&gt;
+&lt;p&gt;在封闭量子系统中，态矢量满足薛定谔方程&lt;/p&gt;
+&lt;p&gt;\[ i\hbar\frac{d}{dt}|\psi(t)\rangle =H|\psi(t)\rangle, \]&lt;/p&gt;
+&lt;p&gt;其中 \(H=H^\dagger\) 是厄米哈密顿量。&lt;/p&gt;
+&lt;p&gt;若 \(H\) 不显含时间，演化算符为&lt;/p&gt;
+&lt;p&gt;\[ |\psi(t)\rangle=U(t)|\psi(0)\rangle, \qquad U(t)=e^{-iHt/\hbar}. \]&lt;/p&gt;
+&lt;p&gt;由于 \(H^\dagger=H\)，有&lt;/p&gt;
+&lt;p&gt;\[ \begin{aligned} U^\dagger U &amp;amp;=e^{iHt/\hbar}e^{-iHt/\hbar}\\ &amp;amp;=I. \end{aligned} \]&lt;/p&gt;
 &lt;p&gt;因此&lt;/p&gt;
-&lt;p&gt;$$
-Q=\mathbb R^3\times \mathbb R^3=\mathbb R^6.
-$$&lt;/p&gt;
-&lt;p&gt;于是 system point 实际上是在 six-dimensional configuration space 中运动：&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;\[ \boxed{U^\dagger U=I.} \]&lt;/p&gt;
+&lt;p&gt;这就是幺正演化。它保证态矢量的范数守恒：&lt;/p&gt;
+&lt;p&gt;\[ \langle\psi(t)|\psi(t)\rangle = \langle\psi(0)|\psi(0)\rangle. \]&lt;/p&gt;
+&lt;p&gt;但在开放系统中，粒子可能发生衰减、泄漏或损耗。此时，如果只描述系统内部的有效动力学，态矢量的范数就不一定守恒。&lt;/p&gt;
+&lt;p&gt;例如考虑&lt;/p&gt;
+&lt;p&gt;\[ H_{\mathrm{eff}} = H_0-\frac{i\hbar\gamma}{2}|B\rangle\langle B|, \qquad \gamma&amp;gt;0. \]&lt;/p&gt;
+&lt;p&gt;这里 \(|B\rangle\) 是发生衰减的状态，\(\gamma\) 是衰减率。&lt;/p&gt;
+&lt;p&gt;显然，&lt;/p&gt;
+&lt;p&gt;\[ H_{\mathrm{eff}}^\dagger\neq H_{\mathrm{eff}}. \]&lt;/p&gt;
+&lt;p&gt;所以它是一个非厄米哈密顿量。&lt;/p&gt;
+&lt;h2 id="非厄米哈密顿量导致概率衰减"&gt;非厄米哈密顿量导致概率衰减&lt;/h2&gt;
+&lt;p&gt;从薛定谔方程出发：&lt;/p&gt;
+&lt;p&gt;\[ i\hbar|\dot\psi\rangle =H_{\mathrm{eff}}|\psi\rangle. \]&lt;/p&gt;
+&lt;p&gt;取厄米共轭：&lt;/p&gt;
+&lt;p&gt;\[ -i\hbar\langle\dot\psi| = \langle\psi|H_{\mathrm{eff}}^\dagger. \]&lt;/p&gt;</description></item></channel></rss>

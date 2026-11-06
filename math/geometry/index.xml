@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>几何 on Linmythos</title><link>https://linmythos.github.io/math/geometry/</link><description>Recent content in 几何 on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Thu, 15 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/math/geometry/index.xml" rel="self" type="application/rss+xml"/><item><title>Differential Geometry</title><link>https://linmythos.github.io/math/geometry/differential-geometry/local/</link><pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/differential-geometry/local/</guid><description>&lt;p&gt;&lt;strong&gt;Warning:部分公式问题仍未解决，完整文章可通过首页的链接前往知乎查看&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;谨以此文纪念我逝去的夏天&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;暑假的最后几天开始学习微分几何，学了光滑流形基础和局部黎曼几何的大部分内容，那时候还想着自己很快就能学到纤维丛了。但是迫近开学，为了准备转专业考试，把更多时间花在了备考上（重新捡起强基题的感觉很难受，一些不好的回忆开始攻击我）。微分几何的学习也陷入停滞。恰好军训期间观训，趁着记忆还没有完全丧失，把局部黎曼几何补完了。由于整体黎曼几何需要更强的抽代基础，只好先跑去补了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id="0-全局约定"&gt;0. 全局约定&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Einstein 求和约定&lt;/strong&gt;：重复出现的上下指标自动求和。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;指标约定&lt;/strong&gt;：坐标指标用 $i,j,k,\ell,m$；抽象向量指标用 $X,Y,Z,W$。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;曲率约定&lt;/strong&gt;（全文锁定，与 Lee 一致）：&lt;/p&gt;
+&lt;p&gt;$$R(X,Y)Z=\nabla_X\nabla_YZ-\nabla_Y\nabla_XZ-\nabla_{[X,Y]}Z$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ 换用相反约定时，§14 的分量公式、截面曲率、Jacobi 方程的符号会整体翻转。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;$(k,l)$ 与 $(r,s)$ 记号&lt;/strong&gt;：本文统一用 $(k,l)$，表示 $k$ 个向量、$l$ 个余向量。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id="1-光滑流形基础"&gt;1. 光滑流形基础&lt;/h2&gt;
+&lt;h3 id="11-图卡与转移函数"&gt;1.1 图卡与转移函数&lt;/h3&gt;
+&lt;p&gt;设 $(U,\varphi)$、$(V,\psi)$ 是流形上的两个坐标图（chart），且 $U\cap V\neq\varnothing$。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;转移函数&lt;/strong&gt;（transition function）：&lt;/p&gt;
+&lt;p&gt;$$\psi\circ\varphi^{-1}:\ \varphi(U\cap V)\longrightarrow\psi(U\cap V)$$&lt;/p&gt;
+&lt;p&gt;若转移函数是 $C^\infty$（无穷次可微，光滑），则称两个 chart &lt;strong&gt;光滑相容&lt;/strong&gt;。由两两相容的坐标图构成的极大图册给出 $M$ 上的光滑结构。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;局部坐标&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;$$(x^1,x^2,\ldots,x^n)\ \longmapsto\ y^a=y^a(x^1,\ldots,x^n)$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Jacobi 矩阵&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;$$J=\frac{\partial y^a}{\partial x^i}$$&lt;/p&gt;
+&lt;p&gt;Jacobi 矩阵代表坐标变换的线性化（即切空间之间的线性映射）。&lt;/p&gt;
+&lt;h3 id="12-正则水平集定理构造子流形"&gt;1.2 正则水平集定理（构造子流形）&lt;/h3&gt;
+&lt;p&gt;设 $F:\mathbb{R}^{,n+k}\to\mathbb{R}^{,k}$ 光滑，Jacobian 为 $DF=\bigl(\frac{\partial F^a}{\partial x^j}\bigr)$。若对所有 $p\in F^{-1}(0)$，$DF(p)$ 的秩均为 $k$（即 $0$ 是&lt;strong&gt;正则值&lt;/strong&gt;），则&lt;/p&gt;</description></item><item><title>Projective Geometry</title><link>https://linmythos.github.io/math/geometry/projective_geometry/projective-geometry/</link><pubDate>Thu, 08 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/projective_geometry/projective-geometry/</guid><description>&lt;p&gt;谨以此纪念我那充满戏剧性的、颓唐的、激情的高三。&lt;/p&gt;
+&lt;p&gt;在2026.4.21，佛山二模前夕，我花了一天读完了梅向明《高等几何》的前六章并做了学习笔记。早上6：40到的教室，晚上22：35才走。那时候虽然不知道自己学这些东西有什么用，但是就是很喜欢，无法自拔地学下去。&lt;/p&gt;
+&lt;p&gt;虽然一直在练用射影几何方法做解析几何题，但最后高考的时候也没有发挥用处，唉，值得一提的是，在佛山一模之后的寒假，我发现了一个能在正规考试中“使用”射影几何的方法：先用射影几何方法做出来，代数演绎上，用共线方程传递调和比，然后用分比性质猛猛导。肯定能做出来（不使用齐次坐标就能处理无穷远点的情况），而且非常快。&lt;/p&gt;
+&lt;p&gt;本篇文章是在学习笔记的基础上扩写而成的，对于缺少前置知识的读者，我深感抱歉。&lt;/p&gt;
+&lt;h1 id="射影变换"&gt;射影变换&lt;/h1&gt;
+&lt;h2 id="单比与交比"&gt;单比与交比&lt;/h2&gt;
+&lt;h3 id="点列情形"&gt;点列情形&lt;/h3&gt;
+&lt;h4 id="单比"&gt;单比&lt;/h4&gt;
+&lt;p&gt;共线三点 $A, B, C$ 的单比定义为：&lt;/p&gt;
+&lt;p&gt;$$(ABC) = \frac{AB}{BC}
+$$&lt;/p&gt;
+&lt;p&gt;$AB$ 是有向线段。&lt;/p&gt;
+&lt;h4 id="交比及其性质"&gt;交比及其性质&lt;/h4&gt;
+&lt;p&gt;共线四点 $P_1, P_2, P_3, P_4$ 的交比定义为：&lt;/p&gt;
+&lt;p&gt;$$
+(P_1P_2, P_3P_4) = \frac{(P_1P_2P_3)}{(P_1P_2P_4)} = \frac{P_1P_3 \cdot P_2P_4}{P_1P_4 \cdot P_2P_3}
+$$&lt;/p&gt;
+&lt;p&gt;其中 $P_1, P_2$ 称为&lt;strong&gt;基点偶&lt;/strong&gt;，$P_3, P_4$ 称为&lt;strong&gt;分点偶&lt;/strong&gt;，$P_iP_j$ 为有向线段。&lt;/p&gt;
+&lt;p&gt;&lt;img loading="lazy" src="https://linmythos.github.io/math/geometry/projective_geometry/projective-geometry/cross-ratio.jpg"&gt;&lt;/p&gt;
+&lt;h4 id="交比的符号性质"&gt;交比的符号性质&lt;/h4&gt;
+&lt;p&gt;不难验证，当点偶 $P_1P_2$ 与 $P_3P_4$ &lt;strong&gt;分离&lt;/strong&gt;时，交比 $&amp;lt; 0$；当它们&lt;strong&gt;不分离&lt;/strong&gt;（共存&amp;hellip;&lt;/p&gt;
+&lt;p&gt;由定义，立刻得出如下性质：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;$(P_1P_2, P_3P_4) = (P_3P_4, P_1P_2)$&lt;/li&gt;
+&lt;li&gt;$(P_1P_2, P_3P_4) = \frac{1}{(P_2P_1, P_3P_4)}$&lt;/li&gt;
+&lt;li&gt;$1 - (P_1P_2, P_3P_4) = (P_1P_3, P_2P_4) = (P_4P_2, P_3P_1)$&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;性质③的证明：&lt;/strong&gt;
+$$
+(P_1P_3, P_2P_4) = \frac{P_1P_2 \cdot P_3P_4}{P_3P_2 \cdot P_1P_4} = -\frac{(P_1P_3 + P_3P_2)(P_3P_2 + P_2P_4)}{P_1P_4 \cdot P_2P_3}
+$$
+$$
+= \frac{P_1P_3 \cdot P_3P_2 + P_3P_2 \cdot P_2P_4 + P_3P_2 \cdot P_3P_2}{P_1P_4 \cdot P_2P_3} - \frac{P_1P_3 \cdot P_2P_4}{P_1P_4 \cdot P_2P_3} \\
+= 1 - (P_1P_2, P_3P_4) \quad \square
+$$
+以上三条性质可分别记为：&lt;/p&gt;</description></item></channel></rss>

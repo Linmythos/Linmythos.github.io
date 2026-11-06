@@ -1,0 +1,529 @@
+<!doctype html><html lang=en dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>量子测量不相容性：联合可测性、噪声与量子关联 | Linmythos</title><meta name=keywords content><meta name=description content="第一章　为什么需要测量不相容性？
+1.1 一个基本问题
+考虑单量子比特的两个投影测量：
+\[
+X=\sigma_x,\qquad Z=\sigma_z.
+\]
+对应的投影算符分别为
+\[
+P_{\pm|X}=\frac12(I\pm\sigma_x),
+\]
+\[
+P_{\pm|Z}=\frac12(I\pm\sigma_z).
+\]
+由于
+\[
+[\sigma_x,\sigma_z]=-2i\sigma_y\ne0,
+\]
+这两个观测量不对易。
+因此，它们不能被看作同一个锐利测量的两个经典后处理。
+但是，我们需要更精确地回答：
+两个测量究竟在什么意义下不能同时实现？
+这里不能简单地说“不对易就不能同时测量”，因为一般 POVM 的相容性与其对应效应算符是否对易并不完全等价。
+正确的概念是联合可测性（joint measurability）。
+1.2 联合可测性的直观含义
+假设有两个测量：
+\[
+\mathsf A={A_{a|x}}a,
+\qquad
+\mathsf B={B{b|y}}_b.
+\]
+它们相容，意味着存在一个共同测量
+\[
+\mathsf G={G_{ab}}_{a,b},
+\]
+使得
+\[
+\boxed{
+A_a=\sum_bG_{ab},
+\qquad
+B_b=\sum_aG_{ab}.
+}
+\]
+这里
+\[
+G_{ab}\ge0,\qquad
+\sum_{a,b}G_{ab}=I.
+\]
+换言之，先执行联合测量，获得联合结果 \((a,b)\)，再分别忽略其中一个结果，就可以得到原来的两个测量统计。
+这正是联合可测性的数学定义。
+1.3 定义
+定义 1.1（联合可测性）
+两个 POVM
+\[
+\mathsf A={A_a}_a,\qquad
+\mathsf B={B_b}_b
+\]"><meta name=author content="Linmythos"><link rel=canonical href=https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E6%B5%8B%E9%87%8F%E4%B8%8D%E7%9B%B8%E5%AE%B9%E6%80%A7/><link crossorigin=anonymous href=/assets/css/stylesheet.5a42af7b68c8b1b7f3d0894c8a74d101cf31f37c1aa9bf8365395ef493e0dea4.css integrity="sha256-WkKve2jIsbfz0IlMinTRAc8x83waqb+DZTle9JPg3qQ=" rel="preload stylesheet" as=style><link rel=icon href=https://linmythos.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://linmythos.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://linmythos.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://linmythos.github.io/apple-touch-icon.png><link rel=mask-icon href=https://linmythos.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E6%B5%8B%E9%87%8F%E4%B8%8D%E7%9B%B8%E5%AE%B9%E6%80%A7/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],packages:{"[+]":["ams"]}}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><meta property="og:url" content="https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E6%B5%8B%E9%87%8F%E4%B8%8D%E7%9B%B8%E5%AE%B9%E6%80%A7/"><meta property="og:site_name" content="Linmythos"><meta property="og:title" content="量子测量不相容性：联合可测性、噪声与量子关联"><meta property="og:description" content="第一章　为什么需要测量不相容性？ 1.1 一个基本问题 考虑单量子比特的两个投影测量：
+\[ X=\sigma_x,\qquad Z=\sigma_z. \]
+对应的投影算符分别为
+\[ P_{\pm|X}=\frac12(I\pm\sigma_x), \]
+\[ P_{\pm|Z}=\frac12(I\pm\sigma_z). \]
+由于
+\[ [\sigma_x,\sigma_z]=-2i\sigma_y\ne0, \]
+这两个观测量不对易。
+因此，它们不能被看作同一个锐利测量的两个经典后处理。
+但是，我们需要更精确地回答：
+两个测量究竟在什么意义下不能同时实现？
+这里不能简单地说“不对易就不能同时测量”，因为一般 POVM 的相容性与其对应效应算符是否对易并不完全等价。
+正确的概念是联合可测性（joint measurability）。
+1.2 联合可测性的直观含义 假设有两个测量：
+\[ \mathsf A={A_{a|x}}a, \qquad \mathsf B={B{b|y}}_b. \]
+它们相容，意味着存在一个共同测量
+\[ \mathsf G={G_{ab}}_{a,b}, \]
+使得
+\[ \boxed{ A_a=\sum_bG_{ab}, \qquad B_b=\sum_aG_{ab}. } \]
+这里
+\[ G_{ab}\ge0,\qquad \sum_{a,b}G_{ab}=I. \]
+换言之，先执行联合测量，获得联合结果 \((a,b)\)，再分别忽略其中一个结果，就可以得到原来的两个测量统计。
+这正是联合可测性的数学定义。
+1.3 定义 定义 1.1（联合可测性）
+两个 POVM
+\[ \mathsf A={A_a}_a,\qquad \mathsf B={B_b}_b \]"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="physics"><meta property="article:published_time" content="2026-11-05T00:00:00+00:00"><meta property="article:modified_time" content="2026-11-05T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="量子测量不相容性：联合可测性、噪声与量子关联"><meta name=twitter:description content="第一章　为什么需要测量不相容性？ 1.1 一个基本问题 考虑单量子比特的两个投影测量：
+\[ X=\sigma_x,\qquad Z=\sigma_z. \]
+对应的投影算符分别为
+\[ P_{\pm|X}=\frac12(I\pm\sigma_x), \]
+\[ P_{\pm|Z}=\frac12(I\pm\sigma_z). \]
+由于
+\[ [\sigma_x,\sigma_z]=-2i\sigma_y\ne0, \]
+这两个观测量不对易。
+因此，它们不能被看作同一个锐利测量的两个经典后处理。
+但是，我们需要更精确地回答：
+两个测量究竟在什么意义下不能同时实现？
+这里不能简单地说“不对易就不能同时测量”，因为一般 POVM 的相容性与其对应效应算符是否对易并不完全等价。
+正确的概念是联合可测性（joint measurability）。
+1.2 联合可测性的直观含义 假设有两个测量：
+\[ \mathsf A={A_{a|x}}a, \qquad \mathsf B={B{b|y}}_b. \]
+它们相容，意味着存在一个共同测量
+\[ \mathsf G={G_{ab}}_{a,b}, \]
+使得
+\[ \boxed{ A_a=\sum_bG_{ab}, \qquad B_b=\sum_aG_{ab}. } \]
+这里
+\[ G_{ab}\ge0,\qquad \sum_{a,b}G_{ab}=I. \]
+换言之，先执行联合测量，获得联合结果 \((a,b)\)，再分别忽略其中一个结果，就可以得到原来的两个测量统计。
+这正是联合可测性的数学定义。
+1.3 定义 定义 1.1（联合可测性）
+两个 POVM
+\[ \mathsf A={A_a}_a,\qquad \mathsf B={B_b}_b \]"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Physics","item":"https://linmythos.github.io/physics/"},{"@type":"ListItem","position":4,"name":"量子测量不相容性：联合可测性、噪声与量子关联","item":"https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E6%B5%8B%E9%87%8F%E4%B8%8D%E7%9B%B8%E5%AE%B9%E6%80%A7/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"量子测量不相容性：联合可测性、噪声与量子关联","name":"量子测量不相容性：联合可测性、噪声与量子关联","description":"第一章　为什么需要测量不相容性？ 1.1 一个基本问题 考虑单量子比特的两个投影测量：\n\\[ X=\\sigma_x,\\qquad Z=\\sigma_z. \\]\n对应的投影算符分别为\n\\[ P_{\\pm|X}=\\frac12(I\\pm\\sigma_x), \\]\n\\[ P_{\\pm|Z}=\\frac12(I\\pm\\sigma_z). \\]\n由于\n\\[ [\\sigma_x,\\sigma_z]=-2i\\sigma_y\\ne0, \\]\n这两个观测量不对易。\n因此，它们不能被看作同一个锐利测量的两个经典后处理。\n但是，我们需要更精确地回答：\n两个测量究竟在什么意义下不能同时实现？\n这里不能简单地说“不对易就不能同时测量”，因为一般 POVM 的相容性与其对应效应算符是否对易并不完全等价。\n正确的概念是联合可测性（joint measurability）。\n1.2 联合可测性的直观含义 假设有两个测量：\n\\[ \\mathsf A={A_{a|x}}a, \\qquad \\mathsf B={B{b|y}}_b. \\]\n它们相容，意味着存在一个共同测量\n\\[ \\mathsf G={G_{ab}}_{a,b}, \\]\n使得\n\\[ \\boxed{ A_a=\\sum_bG_{ab}, \\qquad B_b=\\sum_aG_{ab}. } \\]\n这里\n\\[ G_{ab}\\ge0,\\qquad \\sum_{a,b}G_{ab}=I. \\]\n换言之，先执行联合测量，获得联合结果 \\((a,b)\\)，再分别忽略其中一个结果，就可以得到原来的两个测量统计。\n这正是联合可测性的数学定义。\n1.3 定义 定义 1.1（联合可测性）\n两个 POVM\n\\[ \\mathsf A={A_a}_a,\\qquad \\mathsf B={B_b}_b \\]\n","keywords":[],"articleBody":"第一章　为什么需要测量不相容性？ 1.1 一个基本问题 考虑单量子比特的两个投影测量：\n\\[ X=\\sigma_x,\\qquad Z=\\sigma_z. \\]\n对应的投影算符分别为\n\\[ P_{\\pm|X}=\\frac12(I\\pm\\sigma_x), \\]\n\\[ P_{\\pm|Z}=\\frac12(I\\pm\\sigma_z). \\]\n由于\n\\[ [\\sigma_x,\\sigma_z]=-2i\\sigma_y\\ne0, \\]\n这两个观测量不对易。\n因此，它们不能被看作同一个锐利测量的两个经典后处理。\n但是，我们需要更精确地回答：\n两个测量究竟在什么意义下不能同时实现？\n这里不能简单地说“不对易就不能同时测量”，因为一般 POVM 的相容性与其对应效应算符是否对易并不完全等价。\n正确的概念是联合可测性（joint measurability）。\n1.2 联合可测性的直观含义 假设有两个测量：\n\\[ \\mathsf A={A_{a|x}}a, \\qquad \\mathsf B={B{b|y}}_b. \\]\n它们相容，意味着存在一个共同测量\n\\[ \\mathsf G={G_{ab}}_{a,b}, \\]\n使得\n\\[ \\boxed{ A_a=\\sum_bG_{ab}, \\qquad B_b=\\sum_aG_{ab}. } \\]\n这里\n\\[ G_{ab}\\ge0,\\qquad \\sum_{a,b}G_{ab}=I. \\]\n换言之，先执行联合测量，获得联合结果 \\((a,b)\\)，再分别忽略其中一个结果，就可以得到原来的两个测量统计。\n这正是联合可测性的数学定义。\n1.3 定义 定义 1.1（联合可测性）\n两个 POVM\n\\[ \\mathsf A={A_a}_a,\\qquad \\mathsf B={B_b}_b \\]\n称为相容的，如果存在 POVM\n\\[ \\mathsf G={G_{ab}}_{a,b} \\]\n满足\n\\[ \\boxed{ \\begin{aligned} A_a\u0026=\\sum_bG_{ab},\\ B_b\u0026=\\sum_aG_{ab}. \\end{aligned} } \\]\n否则称为不相容的。\n这里的 \\(A_a,B_b,G_{ab}\\) 都是正半定算符。\n1.4 一个重要定理：锐利投影测量的相容性 定理 1.1\n两个投影测量\n\\[ {P_a}_a,\\qquad {Q_b}_b \\]\n相容，当且仅当\n\\[ \\boxed{[P_a,Q_b]=0,\\qquad\\forall a,b.} \\]\n证明。\n先证必要性。\n假设存在联合 POVM：\n\\[ G_{ab}\\ge0, \\]\n满足\n\\[ P_a=\\sum_bG_{ab}, \\qquad Q_b=\\sum_aG_{ab}. \\]\n由于\n\\[ 0\\le G_{ab}\\le P_a, \\]\n而 \\(P_a\\) 是投影算符。\n对任意满足 \\(0\\le G\\le P\\) 的正算符，其中 \\(P\\) 为投影算符，有\n\\[ G=PGP. \\]\n因此\n\\[ P_aG_{ab}=G_{ab}=G_{ab}P_a. \\]\n类似地，\n\\[ Q_bG_{ab}=G_{ab}=G_{ab}Q_b. \\]\n于是\n\\[ \\begin{aligned} P_aQ_b \u0026=P_a\\sum_{a’}G_{a’b}\\ \u0026=G_{ab}, \\end{aligned} \\]\n其中利用了不同投影测量结果对应的支撑子空间正交。\n同理，\n\\[ Q_bP_a=G_{ab}. \\]\n因此\n\\[ P_aQ_b=Q_bP_a. \\]\n充分性方面，若所有投影算符彼此对易，则定义\n\\[ G_{ab}=P_aQ_b. \\]\n由于 \\(P_a,Q_b\\) 对易，它们的乘积仍是正半定投影算符。\n并且\n\\[ \\sum_bG_{ab} P_a\\sum_bQ_b P_a, \\]\n\\[ \\sum_aG_{ab} \\left(\\sum_aP_a\\right)Q_b Q_b. \\]\n所以 \\({G_{ab}}\\) 是联合 POVM。\n证毕。\n第二章　二值 qubit POVM 的 Bloch 表示 2.1 二结果 POVM 考虑单量子比特上的二结果 POVM：\n\\[ \\mathsf A={A_+,A_-}. \\]\n满足\n\\[ A_++A_-=I, \\]\n\\[ A_\\pm\\ge0. \\]\n因此只需要指定一个效应算符 \\(A_+\\)，另一个由\n\\[ A_-=I-A_+ \\]\n确定。\n2.2 Bloch 表示 任意厄米的二乘二矩阵可以写成\n\\[ A_+=\\frac12(\\alpha I+\\vec a\\cdot\\vec\\sigma). \\]\n其中\n\\[ \\alpha\\in\\mathbb R,\\qquad \\vec a\\in\\mathbb R^3. \\]\n由于\n\\[ A_+\\ge0, \\]\n其两个本征值必须非负。\n利用 Pauli 矩阵的性质，\n\\[ (\\vec a\\cdot\\vec\\sigma)^2 |\\vec a|^2I, \\]\n可以得到两个本征值：\n\\[ \\lambda_\\pm \\frac12(\\alpha\\pm|\\vec a|). \\]\n所以\n\\[ \\boxed{\\alpha\\ge|\\vec a|.} \\]\n另一方面，\n\\[ A_-=I-A_+ \\frac12((2-\\alpha)I-\\vec a\\cdot\\vec\\sigma). \\]\n由 \\(A_-\\ge0\\)，得到\n\\[ 2-\\alpha\\ge|\\vec a|. \\]\n综合起来：\n\\[ \\boxed{ |\\vec a|\\le\\min(\\alpha,2-\\alpha). } \\]\n2.3 无偏二值 POVM 特别地，当\n\\[ \\alpha=1 \\]\n时，得到无偏 POVM：\n\\[ \\boxed{ A_\\pm \\frac12(I\\pm\\vec a\\cdot\\vec\\sigma). } \\]\n其中\n\\[ |\\vec a|\\le1. \\]\n\\(|\\vec a|\\) 描述测量的锐利程度：\n\\(|\\vec a|=1\\)：锐利投影测量； \\(0\u003c|\\vec a|\u003c1\\)：非锐利测量； \\(|\\vec a|=0\\)：完全随机的测量。 因此，噪声可以在 Bloch 球上表现为测量向量的缩短。\n第三章　两个无偏二值 qubit 测量的相容性 3.1 问题设置 考虑两个无偏二值 POVM：\n\\[ A_\\pm \\frac12(I\\pm\\vec a\\cdot\\vec\\sigma), \\]\n\\[ B_\\pm \\frac12(I\\pm\\vec b\\cdot\\vec\\sigma). \\]\n其中\n\\[ |\\vec a|\\le1,\\qquad|\\vec b|\\le1. \\]\n我们希望判断这两个测量是否相容。\n3.2 联合 POVM 的一般形式 一个联合 POVM 有四个效应：\n\\[ G_{++},G_{+-},G_{-+},G_{–}. \\]\n它们满足\n\\[ G_{++}+G_{+-}=A_+, \\]\n\\[ G_{-+}+G_{–}=A_-, \\]\n\\[ G_{++}+G_{-+}=B_+, \\]\n\\[ G_{+-}+G_{–}=B_-. \\]\n对于无偏二值测量，可以构造具有对称形式的联合 POVM：\n\\[ \\boxed{ G_{st} \\frac14 \\left[ (1+st,c)I+ (s\\vec a+t\\vec b)\\cdot\\vec\\sigma \\right], } \\]\n其中\n\\[ s,t\\in{+1,-1}, \\]\n\\(c\\) 是待选择的实参数。\n3.3 验证边缘条件 对 \\(t\\) 求和：\n\\[ \\begin{aligned} \\sum_{t=\\pm1}G_{st} \u0026= \\frac14 \\sum_t \\left[ (1+stc)I+ (s\\vec a+t\\vec b)\\cdot\\vec\\sigma \\right]\\ \u0026= \\frac12(I+s\\vec a\\cdot\\vec\\sigma)\\ \u0026=A_s. \\end{aligned} \\]\n同理，\n\\[ \\sum_{s=\\pm1}G_{st}=B_t. \\]\n所以只要所有 \\(G_{st}\\) 都正半定，它们就是所需的联合 POVM。\n3.4 正半定条件 一个算符\n\\[ G=\\frac14(\\gamma I+\\vec v\\cdot\\vec\\sigma) \\]\n正半定，当且仅当\n\\[ \\gamma\\ge|\\vec v|. \\]\n因此，联合 POVM 正半定要求\n\\[ 1+c\\ge|\\vec a+\\vec b|, \\]\n\\[ 1+c\\ge|\\vec a-\\vec b|, \\]\n\\[ 1-c\\ge|\\vec a-\\vec b|, \\]\n\\[ 1-c\\ge|\\vec a+\\vec b|. \\]\n等价于存在 \\(c\\in[-1,1]\\)，使得\n\\[ \\max{|\\vec a+\\vec b|,|\\vec a-\\vec b|} \\le1+c \\]\n且\n\\[ \\max{|\\vec a+\\vec b|,|\\vec a-\\vec b|} \\le1-c. \\]\n所以必须有\n\\[ \\boxed{ |\\vec a+\\vec b|+|\\vec a-\\vec b|\\le2. } \\]\n对于无偏二值 qubit POVM，这一条件不仅是上述构造的充分条件，也是相容性的必要条件。必要性可通过对一般联合 POVM 作 Bloch 展开，并利用四个效应的正性与边缘约束得到。\n因此得到：\n定理 3.1（无偏二值 qubit POVM 相容性判据）\n\\[ \\boxed{ \\mathsf A,\\mathsf B\\text{ 相容} \\iff |\\vec a+\\vec b|+|\\vec a-\\vec b|\\le2. } \\]\n这是一条非常重要的几何判据。\n第四章　两个正交方向测量的噪声阈值 4.1 噪声化的 Pauli 测量 考虑\n\\[ A_\\pm \\frac12(I\\pm\\eta\\sigma_x), \\]\n\\[ B_\\pm \\frac12(I\\pm\\eta\\sigma_z), \\]\n其中\n\\[ 0\\le\\eta\\le1. \\]\n参数 \\(\\eta\\) 表示测量锐利程度。\n当 \\(\\eta=1\\) 时，是理想的 \\(X\\) 与 \\(Z\\) 投影测量。\n当 \\(\\eta=0\\) 时，两个测量都退化为随机测量。\n对应 Bloch 向量为\n\\[ \\vec a=\\eta(1,0,0), \\]\n\\[ \\vec b=\\eta(0,0,1). \\]\n因此\n\\[ |\\vec a+\\vec b|=\\sqrt2\\eta, \\]\n\\[ |\\vec a-\\vec b|=\\sqrt2\\eta. \\]\n代入定理 3.1：\n\\[ 2\\sqrt2\\eta\\le2. \\]\n所以\n\\[ \\boxed{\\eta\\le\\frac1{\\sqrt2}.} \\]\n这意味着：\n当 \\(\\eta\\le1/\\sqrt2\\) 时，两个噪声化测量相容； 当 \\(\\eta\u003e1/\\sqrt2\\) 时，两个测量不相容。 4.2 构造联合 POVM 当\n\\[ \\eta\\le\\frac1{\\sqrt2} \\]\n时，取\n\\[ \\boxed{ G_{st} \\frac14 \\left[ I+\\frac{\\eta}{1}\\left(s\\sigma_x+t\\sigma_z\\right) \\right] } \\]\n其中 \\(s,t=\\pm1\\)。\n其本征值为\n\\[ \\lambda_\\pm \\frac14(1\\pm\\sqrt2\\eta). \\]\n因此\n\\[ G_{st}\\ge0 \\iff \\eta\\le\\frac1{\\sqrt2}. \\]\n并且对 \\(t\\) 求和可得\n\\[ \\sum_tG_{st} \\frac12(I+s\\eta\\sigma_x)=A_s. \\]\n对 \\(s\\) 求和可得\n\\[ \\sum_sG_{st} \\frac12(I+t\\eta\\sigma_z)=B_t. \\]\n所以这一阈值是严格可达到的。\n第五章　一般夹角下的相容性 5.1 几何推导 现在令两个测量的 Bloch 向量长度相同：\n\\[ |\\vec a|=|\\vec b|=\\eta. \\]\n两方向夹角为\n\\[ \\theta\\in[0,\\pi]. \\]\n根据余弦定理：\n\\[ |\\vec a+\\vec b|^2 2\\eta^2(1+\\cos\\theta), \\]\n\\[ |\\vec a-\\vec b|^2 2\\eta^2(1-\\cos\\theta). \\]\n利用半角公式：\n\\[ 1+\\cos\\theta=2\\cos^2\\frac\\theta2, \\]\n\\[ 1-\\cos\\theta=2\\sin^2\\frac\\theta2. \\]\n得到\n\\[ |\\vec a+\\vec b| 2\\eta\\left|\\cos\\frac\\theta2\\right|, \\]\n\\[ |\\vec a-\\vec b| 2\\eta\\left|\\sin\\frac\\theta2\\right|. \\]\n由于 \\(\\theta\\in[0,\\pi]\\)，二者非负，因此相容性条件为\n\\[ 2\\eta \\left( \\cos\\frac\\theta2+\\sin\\frac\\theta2 \\right) \\le2. \\]\n所以\n\\[ \\boxed{ \\eta\\le \\frac1{ \\cos(\\theta/2)+\\sin(\\theta/2) }. } \\]\n5.2 特殊情况 若\n\\[ \\theta=0, \\]\n两个测量方向相同，阈值为\n\\[ \\eta\\le1. \\]\n任意锐利程度下均相容。\n若\n\\[ \\theta=\\frac\\pi2, \\]\n两个方向正交，得到\n\\[ \\eta\\le\\frac1{\\sqrt2}. \\]\n若\n\\[ \\theta=\\pi, \\]\n两个方向相反，仍然总是相容。\n这与物理直觉一致：测量同一个物理量的正反方向并不构成真正的测量冲突。\n第六章　测量不相容性与量子信息优势 6.1 从测量任务理解不相容性 假设 Bob 需要根据不同的输入选择测量方式。\n若两个测量相容，则存在共同 POVM：\n\\[ G_{ab}. \\]\nBob 可以先进行联合测量，再根据查询位置选择读取对应结果。\n因此，两个相容测量在这种任务中可以被一个共同测量模拟。\n若测量不相容，则不存在这样的共同 POVM。\n这意味着不同测量设置之间存在无法被单一经典后处理完全模拟的结构。\n6.2 与 \\(2\\to1\\) QRAC 的联系 上一讲中，我们构造了\n\\[ M_1=\\sigma_x,\\qquad M_2=\\sigma_z. \\]\n两个测量方向正交，因此它们不相容。\n相应的 QRAC 成功概率为\n\\[ P_{\\mathrm{succ}} \\frac12\\left(1+\\frac1{\\sqrt2}\\right). \\]\n如果将两个测量都噪声化：\n\\[ M_1=\\eta\\sigma_x,\\qquad M_2=\\eta\\sigma_z, \\]\n则相应的测量 POVM 为\n\\[ E_{\\pm|1} \\frac12(I\\pm\\eta\\sigma_x), \\]\n\\[ E_{\\pm|2} \\frac12(I\\pm\\eta\\sigma_z). \\]\n对于原来的编码态，成功概率变为\n\\[ \\boxed{ P_{\\mathrm{succ}} \\frac12\\left(1+\\frac{\\eta}{\\sqrt2}\\right). } \\]\n当\n\\[ \\eta\u003e\\frac1{\\sqrt2} \\]\n时，测量不相容。\n在这个特定编码与测量策略下，量子成功率超过经典基准 \\(3/4\\) 的条件恰好也是\n\\[ \\eta\u003e\\frac1{\\sqrt2}. \\]\n因此，这个例子中测量不相容性与 QRAC 量子优势具有相同阈值。\n但不能据此断言所有量子信息任务中的优势阈值都与测量不相容性阈值相同。\n第七章　测量不相容性与量子 Steering 7.1 从纠缠态出发 考虑 Alice 和 Bob 共享最大纠缠态\n\\[ |\\Phi^+\\rangle \\frac1{\\sqrt2}(|00\\rangle+|11\\rangle). \\]\nAlice 对自己的系统实施测量\n\\[ {A_{a|x}}_a. \\]\nBob 的未归一化条件态为\n\\[ \\boxed{ \\sigma_{a|x} \\operatorname{Tr}A \\left[ (A{a|x}\\otimes I) \\rho_{AB} \\right]. } \\]\n这里的\n\\[ {\\sigma_{a|x}}_{a,x} \\]\n称为 assemblage。\n它记录 Alice 选择不同测量并获得不同结果后，Bob 系统所对应的条件状态。\n7.2 局域隐状态模型 若 assemblage 可以写为\n\\[ \\boxed{ \\sigma_{a|x} \\sum_\\lambda p(\\lambda)p(a|x,\\lambda)\\rho_\\lambda, } \\]\n其中\n\\[ \\rho_\\lambda\\ge0,\\qquad \\operatorname{Tr}\\rho_\\lambda=1, \\]\n则称其具有局域隐状态模型（Local Hidden State Model, LHS）。\n若不存在这样的分解，则称 Alice 能够 steer Bob。\n这就是量子 steering 的基本定义。\n7.3 相容测量与 steering 一个重要结果是：\n定理 7.1\n对于 Alice 与 Bob 共享最大纠缠态的情形，Alice 的一组测量相容，当且仅当对应的 assemblage 具有局域隐状态模型。\n这揭示了测量不相容性与 steering 之间的深刻联系。\n其基本逻辑如下：\n若 Alice 的测量相容，则存在共同 POVM\n\\[ G_\\lambda, \\]\n使得\n\\[ A_{a|x} \\sum_\\lambda p(a|x,\\lambda)G_\\lambda. \\]\n将其作用于最大纠缠态，并利用最大纠缠态的 Choi 对应关系，可以得到\n\\[ \\sigma_{a|x} \\sum_\\lambda p(a|x,\\lambda)\\sigma_\\lambda. \\]\n因此 assemblage 存在 LHS 分解。\n反过来，对于最大纠缠态，若 assemblage 存在 LHS 分解，则可将对应的正算符通过最大纠缠态的算符—态对应关系反推出一个共同 POVM，从而证明测量相容。\n因此，在这一特定场景下，\n\\[ \\boxed{ \\text{测量不相容} \\iff \\text{可用于产生 steering}. } \\]\n注意，这一等价关系依赖最大纠缠态以及测量集合等条件，不能不加限制地推广到任意共享态。\n第八章　测量不相容性、Steering 与 Bell 非局域性 8.1 三种不同资源 现在可以把几个概念放在同一框架下：\n概念 核心问题 测量不相容性 多个测量能否由一个共同 POVM 模拟？ 量子 Steering 条件态能否由局域隐状态模型解释？ Bell 非局域性 联合概率能否由局域隐变量模型解释？ 它们分别关注测量、条件态和联合概率。\n8.2 资源层次 对于给定的双体量子态和测量场景，通常有如下关系：\n\\[ \\boxed{ \\text{Bell 非局域性} \\Longrightarrow \\text{Steering} \\Longrightarrow \\text{纠缠}. } \\]\n其逆命题一般不成立。\n例如：\n有些纠缠态不能在指定测量集合下产生 steering； 有些可 steering 的关联不能违反 Bell 不等式； 有些纠缠态不违反 CHSH 不等式。 测量不相容性与 steering 的关系更微妙：对于最大纠缠态，Alice 的测量不相容性可以直接转化为 steering；但对于一般共享态，测量不相容并不保证该态能够被 steer。\n因此，不能将测量不相容性简单地插入上述资源层次，视为与纠缠、steering、Bell 非局域性完全相同的状态性质。\n第九章　实验实现与数据分析 9.1 实验目标 我们希望检验两个噪声化 qubit 测量是否相容：\n\\[ A_\\pm=\\frac12(I\\pm\\eta\\sigma_x), \\]\n\\[ B_\\pm=\\frac12(I\\pm\\eta\\sigma_z). \\]\n理论预测：\n\\[ \\eta\\le\\frac1{\\sqrt2} \\]\n时相容。\n实验可以采用两种主要路线：\n直接构造候选联合 POVM，检验其边缘是否符合目标测量； 利用最大纠缠态，将测量不相容性转化为 steering 任务，并检验 LHS 模型是否可能。 9.2 光子偏振实现 令\n\\[ |0\\rangle=|H\\rangle,\\qquad |1\\rangle=|V\\rangle. \\]\n则\n\\[ \\sigma_z \\]\n对应水平/垂直偏振测量，\n\\[ \\sigma_x \\]\n对应对角/反对角偏振测量。\n通过在测量装置中引入适当的随机化或噪声化操作，可以实现\n\\[ E_{\\pm|X} \\frac12(I\\pm\\eta\\sigma_x), \\]\n\\[ E_{\\pm|Z} \\frac12(I\\pm\\eta\\sigma_z). \\]\n实验上应通过独立的量子态层析或测量标定确定实际 POVM，而不能仅凭波片角度推定其理想参数。\n9.3 联合 POVM 的实验检验 若采用第四章的联合 POVM：\n\\[ G_{st} \\frac14 \\left[ I+\\eta(s\\sigma_x+t\\sigma_z) \\right], \\]\n可以通过状态层析估计四个效应算符。\n对任意测试态\n\\[ \\rho=\\frac12(I+\\vec r\\cdot\\vec\\sigma), \\]\n其联合结果概率为\n\\[ p(s,t|\\rho) \\operatorname{Tr}(\\rho G_{st}). \\]\n计算得到\n\\[ \\boxed{ p(s,t|\\rho) \\frac14 \\left[ 1+\\eta(sr_x+tr_z) \\right]. } \\]\n对所有 \\(s,t\\) 求和：\n\\[ \\sum_{s,t}p(s,t|\\rho)=1. \\]\n边缘概率为\n\\[ p(s|\\rho) \\sum_t p(s,t|\\rho) \\frac12(1+s\\eta r_x), \\]\n\\[ p(t|\\rho) \\sum_s p(s,t|\\rho) \\frac12(1+t\\eta r_z). \\]\n这恰好对应目标测量。\n9.4 数据拟合 若对一组测试态 \\(\\rho_k\\) 进行测量，得到计数\n\\[ N_{st}^{(k)}, \\]\n则经验概率为\n\\[ \\hat p(s,t|\\rho_k) \\frac{N_{st}^{(k)}}{N_k}. \\]\n可以使用理论模型\n\\[ p(s,t|\\rho_k) \\operatorname{Tr}(\\rho_kG_{st}) \\]\n进行最大似然估计，得到参数 \\(\\eta\\) 的估计值。\n对于每个设置，计数服从多项分布：\n\\[ (N_{++},N_{+-},N_{-+},N_{–}) \\sim \\operatorname{Multinomial} (N,p_{++},p_{+-},p_{-+},p_{–}). \\]\n应当同时检验：\n效应算符是否正半定； POVM 是否归一化； 实验边缘是否与目标测量一致； 参数估计的不确定度； 是否存在系统误差。 9.5 实验判定的注意事项 如果实验成功实现了一个联合 POVM，并且其边缘与目标测量一致，那么可以证明目标测量相容。\n但反过来，如果某个候选联合测量没有实现成功，并不能直接证明目标测量不相容。\n要证明不相容，需要：\n使用严格的理论判据； 或构造测量不相容性见证； 或通过 steering 实验排除所有相容测量模型。 这一区别在实验报告中非常重要。\n第十章　测量不相容性见证 10.1 见证的基本思想 在纠缠理论中，我们可以构造纠缠见证：\n\\[ \\operatorname{Tr}(W\\rho)\\ge0 \\]\n对所有可分态成立，而某些纠缠态使其期望值为负。\n测量不相容性也有类似的见证方法。\n核心思想是构造一个线性或凸优化约束，使所有相容测量满足某个不等式，而不相容测量可以违反它。\n10.2 利用相容性判据构造见证 对于两个无偏二值 qubit POVM，\n\\[ A_\\pm=\\frac12(I\\pm\\vec a\\cdot\\vec\\sigma), \\]\n\\[ B_\\pm=\\frac12(I\\pm\\vec b\\cdot\\vec\\sigma), \\]\n相容性要求\n\\[ |\\vec a+\\vec b|+|\\vec a-\\vec b|\\le2. \\]\n因此定义\n\\[ W(\\mathsf A,\\mathsf B) |\\vec a+\\vec b|+|\\vec a-\\vec b|-2. \\]\n则\n\\[ \\boxed{ W\u003e0 \\Longrightarrow \\text{测量不相容}. } \\]\n对正交方向且锐利程度相同的测量，\n\\[ W=2\\sqrt2\\eta-2. \\]\n因此当\n\\[ \\eta\u003e\\frac1{\\sqrt2} \\]\n时，\n\\[ W\u003e0. \\]\n这提供了一个直接的相容性检验指标。\n第十一章　习题 基础题 1. 证明两个投影测量相容，当且仅当其投影算符彼此对易。\n2. 将一般二结果 qubit POVM 写成 Bloch 表示，并推导正半定条件。\n3. 对两个无偏二值 qubit POVM，验证联合 POVM 的边缘条件。\n4. 推导两个正交方向噪声测量的相容性阈值：\n\\[ \\eta\\le\\frac1{\\sqrt2}. \\]\n进阶题 5. 对两个夹角为 \\(\\theta\\) 的等强度无偏二值 qubit 测量，推导相容性阈值。\n6. 研究三个正交方向的噪声化 Pauli 测量：\n\\[ E_{\\pm|x} \\frac12(I\\pm\\eta\\sigma_x), \\]\n\\[ E_{\\pm|y} \\frac12(I\\pm\\eta\\sigma_y), \\]\n\\[ E_{\\pm|z} \\frac12(I\\pm\\eta\\sigma_z). \\]\n求三者共同相容的最大 \\(\\eta\\)。\n7. 对最大纠缠态，推导 Alice 的 POVM 与 Bob 条件态之间的算符—态对应关系。\n8. 证明：若一组测量相容，则它们不能通过任何共享态产生 steering。\n实验题 9. 设计一个偏振光子实验，实现两个噪声化测量，并估计其相容性阈值。\n10. 对四个联合结果的计数数据，建立多项分布似然函数，并说明如何估计 \\(\\eta\\)。\n11. 讨论为什么“没有观察到 steering”不能直接证明测量相容。\n12. 比较直接联合 POVM 检验与基于最大纠缠态的 steering 检验，各自的实验优缺点是什么？\n参考文献 P. Busch, Unsharp Reality and Joint Measurements for Spin Observables, Physical Review D, 33, 2253–2261 (1986). T. Heinosaari, D. Reitzner, P. Stano, Notes on joint measurability of quantum observables, Foundations of Physics, 38, 1133–1147 (2008). M. T. Quintino, T. Vértesi, N. Brunner, Joint measurability, Einstein-Podolsky-Rosen steering, and Bell nonlocality, Physical Review Letters, 113, 160402 (2014). R. Uola, T. Moroder, O. Gühne, Joint Measurability of Generalized Measurements Implies Classicality, Physical Review Letters, 113, 160403 (2014). M. T. Quintino, J. Bowles, F. Hirsch, N. Brunner, Incompatible quantum measurements admitting a local hidden variable model, Physical Review A, 93, 052115 (2016). 本讲小结 本讲建立了量子测量不相容性的基本理论：\n\\[ \\boxed{ \\text{联合 POVM} \\Longleftrightarrow \\text{测量相容性} } \\]\n对于两个无偏二值 qubit 测量：\n\\[ \\boxed{ |\\vec a+\\vec b|+|\\vec a-\\vec b|\\le2 } \\]\n是相容性的充要条件。\n对于两个正交方向的等强度噪声测量：\n\\[ \\boxed{ \\eta\\le\\frac1{\\sqrt2} } \\]\n是相容性阈值。\n同时，我们建立了如下联系：\n\\[ \\text{测量不相容性} \\longleftrightarrow \\text{Steering} \\longleftrightarrow \\text{量子信息优势}. \\]\n下一讲将进入 量子关联与量子网络：从经典相关、量子相关和无信号相关的数学结构出发，研究相关多面体、量子相关集合、Bell 场景的凸几何，以及多方量子关联与网络非局域性。\n","wordCount":"1403","inLanguage":"en","datePublished":"2026-11-05T00:00:00Z","dateModified":"2026-11-05T00:00:00Z","author":{"@type":"Person","name":"Linmythos"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E6%B5%8B%E9%87%8F%E4%B8%8D%E7%9B%B8%E5%AE%B9%E6%80%A7/"},"publisher":{"@type":"Organization","name":"Linmythos","logo":{"@type":"ImageObject","url":"https://linmythos.github.io/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://linmythos.github.io/ accesskey=h title="Linmythos (Alt + H)">Linmythos</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://linmythos.github.io/math/ title=Mathematics><span>Mathematics</span></a></li><li><a href=https://linmythos.github.io/physics/ title=Physics><span>Physics</span></a></li><li><a href=https://linmythos.github.io/ai/ title=AI><span>AI</span></a></li><li><a href=https://linmythos.github.io/neural-science/ title="Neural Science"><span>Neural Science</span></a></li><li><a href=https://linmythos.github.io/essays/ title=Essays><span>Essays</span></a></li><li><a href=https://linmythos.github.io/about/ title=About><span>About</span></a></li><li><a href=https://linmythos.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://linmythos.github.io/archives/ title=Archives><span>Archives</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">量子测量不相容性：联合可测性、噪声与量子关联</h1><div class=post-meta><span title='2026-11-05 00:00:00 +0000 UTC'>November 5, 2026</span>&nbsp;·&nbsp;<span>7 min</span>&nbsp;·&nbsp;<span>Linmythos</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><ul><li><a href=#%e7%ac%ac%e4%b8%80%e7%ab%a0%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e6%b5%8b%e9%87%8f%e4%b8%8d%e7%9b%b8%e5%ae%b9%e6%80%a7 aria-label=第一章　为什么需要测量不相容性？>第一章　为什么需要测量不相容性？</a><ul><li><a href=#11-%e4%b8%80%e4%b8%aa%e5%9f%ba%e6%9c%ac%e9%97%ae%e9%a2%98 aria-label="1.1 一个基本问题">1.1 一个基本问题</a></li><li><a href=#12-%e8%81%94%e5%90%88%e5%8f%af%e6%b5%8b%e6%80%a7%e7%9a%84%e7%9b%b4%e8%a7%82%e5%90%ab%e4%b9%89 aria-label="1.2 联合可测性的直观含义">1.2 联合可测性的直观含义</a></li><li><a href=#13-%e5%ae%9a%e4%b9%89 aria-label="1.3 定义">1.3 定义</a></li><li><a href=#14-%e4%b8%80%e4%b8%aa%e9%87%8d%e8%a6%81%e5%ae%9a%e7%90%86%e9%94%90%e5%88%a9%e6%8a%95%e5%bd%b1%e6%b5%8b%e9%87%8f%e7%9a%84%e7%9b%b8%e5%ae%b9%e6%80%a7 aria-label="1.4 一个重要定理：锐利投影测量的相容性">1.4 一个重要定理：锐利投影测量的相容性</a></li></ul></li></ul><li><a href=#p_asum_bq_b aria-label=P_a\sum_bQ_b>P_a\sum_bQ_b</a></li><li><a href=#leftsum_ap_arightq_b aria-label=\left(\sum_aP_a\right)Q_b>\left(\sum_aP_a\right)Q_b</a><ul><li><a href=#%e7%ac%ac%e4%ba%8c%e7%ab%a0%e4%ba%8c%e5%80%bc-qubit-povm-%e7%9a%84-bloch-%e8%a1%a8%e7%a4%ba aria-label="第二章　二值 qubit POVM 的 Bloch 表示">第二章　二值 qubit POVM 的 Bloch 表示</a><ul><li><a href=#21-%e4%ba%8c%e7%bb%93%e6%9e%9c-povm aria-label="2.1 二结果 POVM">2.1 二结果 POVM</a></li><li><a href=#22-bloch-%e8%a1%a8%e7%a4%ba aria-label="2.2 Bloch 表示">2.2 Bloch 表示</a></li><li><a href=#23-%e6%97%a0%e5%81%8f%e4%ba%8c%e5%80%bc-povm aria-label="2.3 无偏二值 POVM">2.3 无偏二值 POVM</a></li></ul></li><li><a href=#%e7%ac%ac%e4%b8%89%e7%ab%a0%e4%b8%a4%e4%b8%aa%e6%97%a0%e5%81%8f%e4%ba%8c%e5%80%bc-qubit-%e6%b5%8b%e9%87%8f%e7%9a%84%e7%9b%b8%e5%ae%b9%e6%80%a7 aria-label="第三章　两个无偏二值 qubit 测量的相容性">第三章　两个无偏二值 qubit 测量的相容性</a><ul><li><a href=#31-%e9%97%ae%e9%a2%98%e8%ae%be%e7%bd%ae aria-label="3.1 问题设置">3.1 问题设置</a></li><li><a href=#32-%e8%81%94%e5%90%88-povm-%e7%9a%84%e4%b8%80%e8%88%ac%e5%bd%a2%e5%bc%8f aria-label="3.2 联合 POVM 的一般形式">3.2 联合 POVM 的一般形式</a></li><li><a href=#33-%e9%aa%8c%e8%af%81%e8%be%b9%e7%bc%98%e6%9d%a1%e4%bb%b6 aria-label="3.3 验证边缘条件">3.3 验证边缘条件</a></li><li><a href=#34-%e6%ad%a3%e5%8d%8a%e5%ae%9a%e6%9d%a1%e4%bb%b6 aria-label="3.4 正半定条件">3.4 正半定条件</a></li></ul></li><li><a href=#%e7%ac%ac%e5%9b%9b%e7%ab%a0%e4%b8%a4%e4%b8%aa%e6%ad%a3%e4%ba%a4%e6%96%b9%e5%90%91%e6%b5%8b%e9%87%8f%e7%9a%84%e5%99%aa%e5%a3%b0%e9%98%88%e5%80%bc aria-label=第四章　两个正交方向测量的噪声阈值>第四章　两个正交方向测量的噪声阈值</a><ul><li><a href=#41-%e5%99%aa%e5%a3%b0%e5%8c%96%e7%9a%84-pauli-%e6%b5%8b%e9%87%8f aria-label="4.1 噪声化的 Pauli 测量">4.1 噪声化的 Pauli 测量</a></li><li><a href=#42-%e6%9e%84%e9%80%a0%e8%81%94%e5%90%88-povm aria-label="4.2 构造联合 POVM">4.2 构造联合 POVM</a></li></ul></li><li><a href=#%e7%ac%ac%e4%ba%94%e7%ab%a0%e4%b8%80%e8%88%ac%e5%a4%b9%e8%a7%92%e4%b8%8b%e7%9a%84%e7%9b%b8%e5%ae%b9%e6%80%a7 aria-label=第五章　一般夹角下的相容性>第五章　一般夹角下的相容性</a><ul><li><a href=#51-%e5%87%a0%e4%bd%95%e6%8e%a8%e5%af%bc aria-label="5.1 几何推导">5.1 几何推导</a></li><li><a href=#52-%e7%89%b9%e6%ae%8a%e6%83%85%e5%86%b5 aria-label="5.2 特殊情况">5.2 特殊情况</a></li></ul></li><li><a href=#%e7%ac%ac%e5%85%ad%e7%ab%a0%e6%b5%8b%e9%87%8f%e4%b8%8d%e7%9b%b8%e5%ae%b9%e6%80%a7%e4%b8%8e%e9%87%8f%e5%ad%90%e4%bf%a1%e6%81%af%e4%bc%98%e5%8a%bf aria-label=第六章　测量不相容性与量子信息优势>第六章　测量不相容性与量子信息优势</a><ul><li><a href=#61-%e4%bb%8e%e6%b5%8b%e9%87%8f%e4%bb%bb%e5%8a%a1%e7%90%86%e8%a7%a3%e4%b8%8d%e7%9b%b8%e5%ae%b9%e6%80%a7 aria-label="6.1 从测量任务理解不相容性">6.1 从测量任务理解不相容性</a></li><li><a href=#62-%e4%b8%8e-2to1-qrac-%e7%9a%84%e8%81%94%e7%b3%bb aria-label="6.2 与 \(2\to1\) QRAC 的联系">6.2 与 \(2\to1\) QRAC 的联系</a></li></ul></li><li><a href=#%e7%ac%ac%e4%b8%83%e7%ab%a0%e6%b5%8b%e9%87%8f%e4%b8%8d%e7%9b%b8%e5%ae%b9%e6%80%a7%e4%b8%8e%e9%87%8f%e5%ad%90-steering aria-label="第七章　测量不相容性与量子 Steering">第七章　测量不相容性与量子 Steering</a><ul><li><a href=#71-%e4%bb%8e%e7%ba%a0%e7%bc%a0%e6%80%81%e5%87%ba%e5%8f%91 aria-label="7.1 从纠缠态出发">7.1 从纠缠态出发</a></li><li><a href=#72-%e5%b1%80%e5%9f%9f%e9%9a%90%e7%8a%b6%e6%80%81%e6%a8%a1%e5%9e%8b aria-label="7.2 局域隐状态模型">7.2 局域隐状态模型</a></li><li><a href=#73-%e7%9b%b8%e5%ae%b9%e6%b5%8b%e9%87%8f%e4%b8%8e-steering aria-label="7.3 相容测量与 steering">7.3 相容测量与 steering</a></li></ul></li><li><a href=#%e7%ac%ac%e5%85%ab%e7%ab%a0%e6%b5%8b%e9%87%8f%e4%b8%8d%e7%9b%b8%e5%ae%b9%e6%80%a7steering-%e4%b8%8e-bell-%e9%9d%9e%e5%b1%80%e5%9f%9f%e6%80%a7 aria-label="第八章　测量不相容性、Steering 与 Bell 非局域性">第八章　测量不相容性、Steering 与 Bell 非局域性</a><ul><li><a href=#81-%e4%b8%89%e7%a7%8d%e4%b8%8d%e5%90%8c%e8%b5%84%e6%ba%90 aria-label="8.1 三种不同资源">8.1 三种不同资源</a></li><li><a href=#82-%e8%b5%84%e6%ba%90%e5%b1%82%e6%ac%a1 aria-label="8.2 资源层次">8.2 资源层次</a></li></ul></li><li><a href=#%e7%ac%ac%e4%b9%9d%e7%ab%a0%e5%ae%9e%e9%aa%8c%e5%ae%9e%e7%8e%b0%e4%b8%8e%e6%95%b0%e6%8d%ae%e5%88%86%e6%9e%90 aria-label=第九章　实验实现与数据分析>第九章　实验实现与数据分析</a><ul><li><a href=#91-%e5%ae%9e%e9%aa%8c%e7%9b%ae%e6%a0%87 aria-label="9.1 实验目标">9.1 实验目标</a></li><li><a href=#92-%e5%85%89%e5%ad%90%e5%81%8f%e6%8c%af%e5%ae%9e%e7%8e%b0 aria-label="9.2 光子偏振实现">9.2 光子偏振实现</a></li><li><a href=#93-%e8%81%94%e5%90%88-povm-%e7%9a%84%e5%ae%9e%e9%aa%8c%e6%a3%80%e9%aa%8c aria-label="9.3 联合 POVM 的实验检验">9.3 联合 POVM 的实验检验</a></li></ul></li></ul></li><li><a href=#sum_t-pstrho aria-label="\sum_t p(s,t|\rho)">\sum_t p(s,t|\rho)</a></li><li><a href=#sum_s-pstrho aria-label="\sum_s p(s,t|\rho)">\sum_s p(s,t|\rho)</a><ul><ul><li><a href=#94-%e6%95%b0%e6%8d%ae%e6%8b%9f%e5%90%88 aria-label="9.4 数据拟合">9.4 数据拟合</a></li><li><a href=#95-%e5%ae%9e%e9%aa%8c%e5%88%a4%e5%ae%9a%e7%9a%84%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9 aria-label="9.5 实验判定的注意事项">9.5 实验判定的注意事项</a></li></ul><li><a href=#%e7%ac%ac%e5%8d%81%e7%ab%a0%e6%b5%8b%e9%87%8f%e4%b8%8d%e7%9b%b8%e5%ae%b9%e6%80%a7%e8%a7%81%e8%af%81 aria-label=第十章　测量不相容性见证>第十章　测量不相容性见证</a><ul><li><a href=#101-%e8%a7%81%e8%af%81%e7%9a%84%e5%9f%ba%e6%9c%ac%e6%80%9d%e6%83%b3 aria-label="10.1 见证的基本思想">10.1 见证的基本思想</a></li><li><a href=#102-%e5%88%a9%e7%94%a8%e7%9b%b8%e5%ae%b9%e6%80%a7%e5%88%a4%e6%8d%ae%e6%9e%84%e9%80%a0%e8%a7%81%e8%af%81 aria-label="10.2 利用相容性判据构造见证">10.2 利用相容性判据构造见证</a></li></ul></li><li><a href=#%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0%e4%b9%a0%e9%a2%98 aria-label=第十一章　习题>第十一章　习题</a><ul><li><a href=#%e5%9f%ba%e7%a1%80%e9%a2%98 aria-label=基础题>基础题</a></li><li><a href=#%e8%bf%9b%e9%98%b6%e9%a2%98 aria-label=进阶题>进阶题</a></li><li><a href=#%e5%ae%9e%e9%aa%8c%e9%a2%98 aria-label=实验题>实验题</a></li></ul></li><li><a href=#%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae aria-label=参考文献>参考文献</a></li><li><a href=#%e6%9c%ac%e8%ae%b2%e5%b0%8f%e7%bb%93 aria-label=本讲小结>本讲小结</a></li></ul></li></ul></div></details><div class="post-content md-content"><h2 id=第一章为什么需要测量不相容性>第一章　为什么需要测量不相容性？<a hidden class=anchor aria-hidden=true href=#第一章为什么需要测量不相容性>#</a></h2><h3 id=11-一个基本问题>1.1 一个基本问题<a hidden class=anchor aria-hidden=true href=#11-一个基本问题>#</a></h3><p>考虑单量子比特的两个投影测量：</p><p>\[
+X=\sigma_x,\qquad Z=\sigma_z.
+\]</p><p>对应的投影算符分别为</p><p>\[
+P_{\pm|X}=\frac12(I\pm\sigma_x),
+\]</p><p>\[
+P_{\pm|Z}=\frac12(I\pm\sigma_z).
+\]</p><p>由于</p><p>\[
+[\sigma_x,\sigma_z]=-2i\sigma_y\ne0,
+\]</p><p>这两个观测量不对易。</p><p>因此，它们不能被看作同一个锐利测量的两个经典后处理。</p><p>但是，我们需要更精确地回答：</p><p><strong>两个测量究竟在什么意义下不能同时实现？</strong></p><p>这里不能简单地说“不对易就不能同时测量”，因为一般 POVM 的相容性与其对应效应算符是否对易并不完全等价。</p><p>正确的概念是联合可测性（joint measurability）。</p><h3 id=12-联合可测性的直观含义>1.2 联合可测性的直观含义<a hidden class=anchor aria-hidden=true href=#12-联合可测性的直观含义>#</a></h3><p>假设有两个测量：</p><p>\[
+\mathsf A={A_{a|x}}<em>a,
+\qquad
+\mathsf B={B</em>{b|y}}_b.
+\]</p><p>它们相容，意味着存在一个共同测量</p><p>\[
+\mathsf G={G_{ab}}_{a,b},
+\]</p><p>使得</p><p>\[
+\boxed{
+A_a=\sum_bG_{ab},
+\qquad
+B_b=\sum_aG_{ab}.
+}
+\]</p><p>这里</p><p>\[
+G_{ab}\ge0,\qquad
+\sum_{a,b}G_{ab}=I.
+\]</p><p>换言之，先执行联合测量，获得联合结果 \((a,b)\)，再分别忽略其中一个结果，就可以得到原来的两个测量统计。</p><p>这正是联合可测性的数学定义。</p><h3 id=13-定义>1.3 定义<a hidden class=anchor aria-hidden=true href=#13-定义>#</a></h3><p><strong>定义 1.1（联合可测性）</strong></p><p>两个 POVM</p><p>\[
+\mathsf A={A_a}_a,\qquad
+\mathsf B={B_b}_b
+\]</p><p>称为相容的，如果存在 POVM</p><p>\[
+\mathsf G={G_{ab}}_{a,b}
+\]</p><p>满足</p><p>\[
+\boxed{
+\begin{aligned}
+A_a&=\sum_bG_{ab},\
+B_b&=\sum_aG_{ab}.
+\end{aligned}
+}
+\]</p><p>否则称为不相容的。</p><p>这里的 \(A_a,B_b,G_{ab}\) 都是正半定算符。</p><h3 id=14-一个重要定理锐利投影测量的相容性>1.4 一个重要定理：锐利投影测量的相容性<a hidden class=anchor aria-hidden=true href=#14-一个重要定理锐利投影测量的相容性>#</a></h3><p><strong>定理 1.1</strong></p><p>两个投影测量</p><p>\[
+{P_a}_a,\qquad {Q_b}_b
+\]</p><p>相容，当且仅当</p><p>\[
+\boxed{[P_a,Q_b]=0,\qquad\forall a,b.}
+\]</p><p><strong>证明。</strong></p><p>先证必要性。</p><p>假设存在联合 POVM：</p><p>\[
+G_{ab}\ge0,
+\]</p><p>满足</p><p>\[
+P_a=\sum_bG_{ab},
+\qquad
+Q_b=\sum_aG_{ab}.
+\]</p><p>由于</p><p>\[
+0\le G_{ab}\le P_a,
+\]</p><p>而 \(P_a\) 是投影算符。</p><p>对任意满足 \(0\le G\le P\) 的正算符，其中 \(P\) 为投影算符，有</p><p>\[
+G=PGP.
+\]</p><p>因此</p><p>\[
+P_aG_{ab}=G_{ab}=G_{ab}P_a.
+\]</p><p>类似地，</p><p>\[
+Q_bG_{ab}=G_{ab}=G_{ab}Q_b.
+\]</p><p>于是</p><p>\[
+\begin{aligned}
+P_aQ_b
+&=P_a\sum_{a&rsquo;}G_{a&rsquo;b}\
+&=G_{ab},
+\end{aligned}
+\]</p><p>其中利用了不同投影测量结果对应的支撑子空间正交。</p><p>同理，</p><p>\[
+Q_bP_a=G_{ab}.
+\]</p><p>因此</p><p>\[
+P_aQ_b=Q_bP_a.
+\]</p><p>充分性方面，若所有投影算符彼此对易，则定义</p><p>\[
+G_{ab}=P_aQ_b.
+\]</p><p>由于 \(P_a,Q_b\) 对易，它们的乘积仍是正半定投影算符。</p><p>并且</p><h1 id=sum_bg_ab>\[
+\sum_bG_{ab}</h1><h1 id=p_asum_bq_b>P_a\sum_bQ_b<a hidden class=anchor aria-hidden=true href=#p_asum_bq_b>#</a></h1><p>P_a,
+\]</p><h1 id=sum_ag_ab>\[
+\sum_aG_{ab}</h1><h1 id=leftsum_ap_arightq_b>\left(\sum_aP_a\right)Q_b<a hidden class=anchor aria-hidden=true href=#leftsum_ap_arightq_b>#</a></h1><p>Q_b.
+\]</p><p>所以 \({G_{ab}}\) 是联合 POVM。</p><p>证毕。</p><hr><h2 id=第二章二值-qubit-povm-的-bloch-表示>第二章　二值 qubit POVM 的 Bloch 表示<a hidden class=anchor aria-hidden=true href=#第二章二值-qubit-povm-的-bloch-表示>#</a></h2><h3 id=21-二结果-povm>2.1 二结果 POVM<a hidden class=anchor aria-hidden=true href=#21-二结果-povm>#</a></h3><p>考虑单量子比特上的二结果 POVM：</p><p>\[
+\mathsf A={A_+,A_-}.
+\]</p><p>满足</p><p>\[
+A_++A_-=I,
+\]</p><p>\[
+A_\pm\ge0.
+\]</p><p>因此只需要指定一个效应算符 \(A_+\)，另一个由</p><p>\[
+A_-=I-A_+
+\]</p><p>确定。</p><h3 id=22-bloch-表示>2.2 Bloch 表示<a hidden class=anchor aria-hidden=true href=#22-bloch-表示>#</a></h3><p>任意厄米的二乘二矩阵可以写成</p><p>\[
+A_+=\frac12(\alpha I+\vec a\cdot\vec\sigma).
+\]</p><p>其中</p><p>\[
+\alpha\in\mathbb R,\qquad
+\vec a\in\mathbb R^3.
+\]</p><p>由于</p><p>\[
+A_+\ge0,
+\]</p><p>其两个本征值必须非负。</p><p>利用 Pauli 矩阵的性质，</p><h1 id=vec-acdotvecsigma2>\[
+(\vec a\cdot\vec\sigma)^2</h1><p>|\vec a|^2I,
+\]</p><p>可以得到两个本征值：</p><h1 id=lambda_pm>\[
+\lambda_\pm</h1><p>\frac12(\alpha\pm|\vec a|).
+\]</p><p>所以</p><p>\[
+\boxed{\alpha\ge|\vec a|.}
+\]</p><p>另一方面，</p><h1 id=a_-i-a_>\[
+A_-=I-A_+</h1><p>\frac12((2-\alpha)I-\vec a\cdot\vec\sigma).
+\]</p><p>由 \(A_-\ge0\)，得到</p><p>\[
+2-\alpha\ge|\vec a|.
+\]</p><p>综合起来：</p><p>\[
+\boxed{
+|\vec a|\le\min(\alpha,2-\alpha).
+}
+\]</p><h3 id=23-无偏二值-povm>2.3 无偏二值 POVM<a hidden class=anchor aria-hidden=true href=#23-无偏二值-povm>#</a></h3><p>特别地，当</p><p>\[
+\alpha=1
+\]</p><p>时，得到无偏 POVM：</p><h1 id=a_pm>\[
+\boxed{
+A_\pm</h1><p>\frac12(I\pm\vec a\cdot\vec\sigma).
+}
+\]</p><p>其中</p><p>\[
+|\vec a|\le1.
+\]</p><p>\(|\vec a|\) 描述测量的锐利程度：</p><ul><li>\(|\vec a|=1\)：锐利投影测量；</li><li>\(0&lt;|\vec a|&lt;1\)：非锐利测量；</li><li>\(|\vec a|=0\)：完全随机的测量。</li></ul><p>因此，噪声可以在 Bloch 球上表现为测量向量的缩短。</p><hr><h2 id=第三章两个无偏二值-qubit-测量的相容性>第三章　两个无偏二值 qubit 测量的相容性<a hidden class=anchor aria-hidden=true href=#第三章两个无偏二值-qubit-测量的相容性>#</a></h2><h3 id=31-问题设置>3.1 问题设置<a hidden class=anchor aria-hidden=true href=#31-问题设置>#</a></h3><p>考虑两个无偏二值 POVM：</p><h1 id=a_pm-1>\[
+A_\pm</h1><p>\frac12(I\pm\vec a\cdot\vec\sigma),
+\]</p><h1 id=b_pm>\[
+B_\pm</h1><p>\frac12(I\pm\vec b\cdot\vec\sigma).
+\]</p><p>其中</p><p>\[
+|\vec a|\le1,\qquad|\vec b|\le1.
+\]</p><p>我们希望判断这两个测量是否相容。</p><h3 id=32-联合-povm-的一般形式>3.2 联合 POVM 的一般形式<a hidden class=anchor aria-hidden=true href=#32-联合-povm-的一般形式>#</a></h3><p>一个联合 POVM 有四个效应：</p><p>\[
+G_{++},G_{+-},G_{-+},G_{&ndash;}.
+\]</p><p>它们满足</p><p>\[
+G_{++}+G_{+-}=A_+,
+\]</p><p>\[
+G_{-+}+G_{&ndash;}=A_-,
+\]</p><p>\[
+G_{++}+G_{-+}=B_+,
+\]</p><p>\[
+G_{+-}+G_{&ndash;}=B_-.
+\]</p><p>对于无偏二值测量，可以构造具有对称形式的联合 POVM：</p><h1 id=g_st>\[
+\boxed{
+G_{st}</h1><p>\frac14
+\left[
+(1+st,c)I+
+(s\vec a+t\vec b)\cdot\vec\sigma
+\right],
+}
+\]</p><p>其中</p><p>\[
+s,t\in{+1,-1},
+\]</p><p>\(c\) 是待选择的实参数。</p><h3 id=33-验证边缘条件>3.3 验证边缘条件<a hidden class=anchor aria-hidden=true href=#33-验证边缘条件>#</a></h3><p>对 \(t\) 求和：</p><p>\[
+\begin{aligned}
+\sum_{t=\pm1}G_{st}
+&=
+\frac14
+\sum_t
+\left[
+(1+stc)I+
+(s\vec a+t\vec b)\cdot\vec\sigma
+\right]\
+&=
+\frac12(I+s\vec a\cdot\vec\sigma)\
+&=A_s.
+\end{aligned}
+\]</p><p>同理，</p><p>\[
+\sum_{s=\pm1}G_{st}=B_t.
+\]</p><p>所以只要所有 \(G_{st}\) 都正半定，它们就是所需的联合 POVM。</p><h3 id=34-正半定条件>3.4 正半定条件<a hidden class=anchor aria-hidden=true href=#34-正半定条件>#</a></h3><p>一个算符</p><p>\[
+G=\frac14(\gamma I+\vec v\cdot\vec\sigma)
+\]</p><p>正半定，当且仅当</p><p>\[
+\gamma\ge|\vec v|.
+\]</p><p>因此，联合 POVM 正半定要求</p><p>\[
+1+c\ge|\vec a+\vec b|,
+\]</p><p>\[
+1+c\ge|\vec a-\vec b|,
+\]</p><p>\[
+1-c\ge|\vec a-\vec b|,
+\]</p><p>\[
+1-c\ge|\vec a+\vec b|.
+\]</p><p>等价于存在 \(c\in[-1,1]\)，使得</p><p>\[
+\max{|\vec a+\vec b|,|\vec a-\vec b|}
+\le1+c
+\]</p><p>且</p><p>\[
+\max{|\vec a+\vec b|,|\vec a-\vec b|}
+\le1-c.
+\]</p><p>所以必须有</p><p>\[
+\boxed{
+|\vec a+\vec b|+|\vec a-\vec b|\le2.
+}
+\]</p><p>对于无偏二值 qubit POVM，这一条件不仅是上述构造的充分条件，也是相容性的必要条件。必要性可通过对一般联合 POVM 作 Bloch 展开，并利用四个效应的正性与边缘约束得到。</p><p>因此得到：</p><p><strong>定理 3.1（无偏二值 qubit POVM 相容性判据）</strong></p><p>\[
+\boxed{
+\mathsf A,\mathsf B\text{ 相容}
+\iff
+|\vec a+\vec b|+|\vec a-\vec b|\le2.
+}
+\]</p><p>这是一条非常重要的几何判据。</p><hr><h2 id=第四章两个正交方向测量的噪声阈值>第四章　两个正交方向测量的噪声阈值<a hidden class=anchor aria-hidden=true href=#第四章两个正交方向测量的噪声阈值>#</a></h2><h3 id=41-噪声化的-pauli-测量>4.1 噪声化的 Pauli 测量<a hidden class=anchor aria-hidden=true href=#41-噪声化的-pauli-测量>#</a></h3><p>考虑</p><h1 id=a_pm-2>\[
+A_\pm</h1><p>\frac12(I\pm\eta\sigma_x),
+\]</p><h1 id=b_pm-1>\[
+B_\pm</h1><p>\frac12(I\pm\eta\sigma_z),
+\]</p><p>其中</p><p>\[
+0\le\eta\le1.
+\]</p><p>参数 \(\eta\) 表示测量锐利程度。</p><p>当 \(\eta=1\) 时，是理想的 \(X\) 与 \(Z\) 投影测量。</p><p>当 \(\eta=0\) 时，两个测量都退化为随机测量。</p><p>对应 Bloch 向量为</p><p>\[
+\vec a=\eta(1,0,0),
+\]</p><p>\[
+\vec b=\eta(0,0,1).
+\]</p><p>因此</p><p>\[
+|\vec a+\vec b|=\sqrt2\eta,
+\]</p><p>\[
+|\vec a-\vec b|=\sqrt2\eta.
+\]</p><p>代入定理 3.1：</p><p>\[
+2\sqrt2\eta\le2.
+\]</p><p>所以</p><p>\[
+\boxed{\eta\le\frac1{\sqrt2}.}
+\]</p><p>这意味着：</p><ul><li>当 \(\eta\le1/\sqrt2\) 时，两个噪声化测量相容；</li><li>当 \(\eta>1/\sqrt2\) 时，两个测量不相容。</li></ul><h3 id=42-构造联合-povm>4.2 构造联合 POVM<a hidden class=anchor aria-hidden=true href=#42-构造联合-povm>#</a></h3><p>当</p><p>\[
+\eta\le\frac1{\sqrt2}
+\]</p><p>时，取</p><h1 id=g_st-1>\[
+\boxed{
+G_{st}</h1><p>\frac14
+\left[
+I+\frac{\eta}{1}\left(s\sigma_x+t\sigma_z\right)
+\right]
+}
+\]</p><p>其中 \(s,t=\pm1\)。</p><p>其本征值为</p><h1 id=lambda_pm-1>\[
+\lambda_\pm</h1><p>\frac14(1\pm\sqrt2\eta).
+\]</p><p>因此</p><p>\[
+G_{st}\ge0
+\iff
+\eta\le\frac1{\sqrt2}.
+\]</p><p>并且对 \(t\) 求和可得</p><h1 id=sum_tg_st>\[
+\sum_tG_{st}</h1><p>\frac12(I+s\eta\sigma_x)=A_s.
+\]</p><p>对 \(s\) 求和可得</p><h1 id=sum_sg_st>\[
+\sum_sG_{st}</h1><p>\frac12(I+t\eta\sigma_z)=B_t.
+\]</p><p>所以这一阈值是严格可达到的。</p><hr><h2 id=第五章一般夹角下的相容性>第五章　一般夹角下的相容性<a hidden class=anchor aria-hidden=true href=#第五章一般夹角下的相容性>#</a></h2><h3 id=51-几何推导>5.1 几何推导<a hidden class=anchor aria-hidden=true href=#51-几何推导>#</a></h3><p>现在令两个测量的 Bloch 向量长度相同：</p><p>\[
+|\vec a|=|\vec b|=\eta.
+\]</p><p>两方向夹角为</p><p>\[
+\theta\in[0,\pi].
+\]</p><p>根据余弦定理：</p><h1 id=vec-avec-b2>\[
+|\vec a+\vec b|^2</h1><p>2\eta^2(1+\cos\theta),
+\]</p><h1 id=vec-a-vec-b2>\[
+|\vec a-\vec b|^2</h1><p>2\eta^2(1-\cos\theta).
+\]</p><p>利用半角公式：</p><p>\[
+1+\cos\theta=2\cos^2\frac\theta2,
+\]</p><p>\[
+1-\cos\theta=2\sin^2\frac\theta2.
+\]</p><p>得到</p><h1 id=vec-avec-b>\[
+|\vec a+\vec b|</h1><p>2\eta\left|\cos\frac\theta2\right|,
+\]</p><h1 id=vec-a-vec-b>\[
+|\vec a-\vec b|</h1><p>2\eta\left|\sin\frac\theta2\right|.
+\]</p><p>由于 \(\theta\in[0,\pi]\)，二者非负，因此相容性条件为</p><p>\[
+2\eta
+\left(
+\cos\frac\theta2+\sin\frac\theta2
+\right)
+\le2.
+\]</p><p>所以</p><p>\[
+\boxed{
+\eta\le
+\frac1{
+\cos(\theta/2)+\sin(\theta/2)
+}.
+}
+\]</p><h3 id=52-特殊情况>5.2 特殊情况<a hidden class=anchor aria-hidden=true href=#52-特殊情况>#</a></h3><p>若</p><p>\[
+\theta=0,
+\]</p><p>两个测量方向相同，阈值为</p><p>\[
+\eta\le1.
+\]</p><p>任意锐利程度下均相容。</p><p>若</p><p>\[
+\theta=\frac\pi2,
+\]</p><p>两个方向正交，得到</p><p>\[
+\eta\le\frac1{\sqrt2}.
+\]</p><p>若</p><p>\[
+\theta=\pi,
+\]</p><p>两个方向相反，仍然总是相容。</p><p>这与物理直觉一致：测量同一个物理量的正反方向并不构成真正的测量冲突。</p><hr><h2 id=第六章测量不相容性与量子信息优势>第六章　测量不相容性与量子信息优势<a hidden class=anchor aria-hidden=true href=#第六章测量不相容性与量子信息优势>#</a></h2><h3 id=61-从测量任务理解不相容性>6.1 从测量任务理解不相容性<a hidden class=anchor aria-hidden=true href=#61-从测量任务理解不相容性>#</a></h3><p>假设 Bob 需要根据不同的输入选择测量方式。</p><p>若两个测量相容，则存在共同 POVM：</p><p>\[
+G_{ab}.
+\]</p><p>Bob 可以先进行联合测量，再根据查询位置选择读取对应结果。</p><p>因此，两个相容测量在这种任务中可以被一个共同测量模拟。</p><p>若测量不相容，则不存在这样的共同 POVM。</p><p>这意味着不同测量设置之间存在无法被单一经典后处理完全模拟的结构。</p><h3 id=62-与-2to1-qrac-的联系>6.2 与 \(2\to1\) QRAC 的联系<a hidden class=anchor aria-hidden=true href=#62-与-2to1-qrac-的联系>#</a></h3><p>上一讲中，我们构造了</p><p>\[
+M_1=\sigma_x,\qquad M_2=\sigma_z.
+\]</p><p>两个测量方向正交，因此它们不相容。</p><p>相应的 QRAC 成功概率为</p><h1 id=p_mathrmsucc>\[
+P_{\mathrm{succ}}</h1><p>\frac12\left(1+\frac1{\sqrt2}\right).
+\]</p><p>如果将两个测量都噪声化：</p><p>\[
+M_1=\eta\sigma_x,\qquad
+M_2=\eta\sigma_z,
+\]</p><p>则相应的测量 POVM 为</p><h1 id=e_pm1>\[
+E_{\pm|1}</h1><p>\frac12(I\pm\eta\sigma_x),
+\]</p><h1 id=e_pm2>\[
+E_{\pm|2}</h1><p>\frac12(I\pm\eta\sigma_z).
+\]</p><p>对于原来的编码态，成功概率变为</p><h1 id=p_mathrmsucc-1>\[
+\boxed{
+P_{\mathrm{succ}}</h1><p>\frac12\left(1+\frac{\eta}{\sqrt2}\right).
+}
+\]</p><p>当</p><p>\[
+\eta>\frac1{\sqrt2}
+\]</p><p>时，测量不相容。</p><p>在这个特定编码与测量策略下，量子成功率超过经典基准 \(3/4\) 的条件恰好也是</p><p>\[
+\eta>\frac1{\sqrt2}.
+\]</p><p>因此，这个例子中测量不相容性与 QRAC 量子优势具有相同阈值。</p><p>但不能据此断言所有量子信息任务中的优势阈值都与测量不相容性阈值相同。</p><hr><h2 id=第七章测量不相容性与量子-steering>第七章　测量不相容性与量子 Steering<a hidden class=anchor aria-hidden=true href=#第七章测量不相容性与量子-steering>#</a></h2><h3 id=71-从纠缠态出发>7.1 从纠缠态出发<a hidden class=anchor aria-hidden=true href=#71-从纠缠态出发>#</a></h3><p>考虑 Alice 和 Bob 共享最大纠缠态</p><h1 id=phirangle>\[
+|\Phi^+\rangle</h1><p>\frac1{\sqrt2}(|00\rangle+|11\rangle).
+\]</p><p>Alice 对自己的系统实施测量</p><p>\[
+{A_{a|x}}_a.
+\]</p><p>Bob 的未归一化条件态为</p><h1 id=sigma_ax>\[
+\boxed{
+\sigma_{a|x}</h1><p>\operatorname{Tr}<em>A
+\left[
+(A</em>{a|x}\otimes I)
+\rho_{AB}
+\right].
+}
+\]</p><p>这里的</p><p>\[
+{\sigma_{a|x}}_{a,x}
+\]</p><p>称为 assemblage。</p><p>它记录 Alice 选择不同测量并获得不同结果后，Bob 系统所对应的条件状态。</p><h3 id=72-局域隐状态模型>7.2 局域隐状态模型<a hidden class=anchor aria-hidden=true href=#72-局域隐状态模型>#</a></h3><p>若 assemblage 可以写为</p><h1 id=sigma_ax-1>\[
+\boxed{
+\sigma_{a|x}</h1><p>\sum_\lambda
+p(\lambda)p(a|x,\lambda)\rho_\lambda,
+}
+\]</p><p>其中</p><p>\[
+\rho_\lambda\ge0,\qquad
+\operatorname{Tr}\rho_\lambda=1,
+\]</p><p>则称其具有局域隐状态模型（Local Hidden State Model, LHS）。</p><p>若不存在这样的分解，则称 Alice 能够 steer Bob。</p><p>这就是量子 steering 的基本定义。</p><h3 id=73-相容测量与-steering>7.3 相容测量与 steering<a hidden class=anchor aria-hidden=true href=#73-相容测量与-steering>#</a></h3><p>一个重要结果是：</p><p><strong>定理 7.1</strong></p><p>对于 Alice 与 Bob 共享最大纠缠态的情形，Alice 的一组测量相容，当且仅当对应的 assemblage 具有局域隐状态模型。</p><p>这揭示了测量不相容性与 steering 之间的深刻联系。</p><p>其基本逻辑如下：</p><p>若 Alice 的测量相容，则存在共同 POVM</p><p>\[
+G_\lambda,
+\]</p><p>使得</p><h1 id=a_ax>\[
+A_{a|x}</h1><p>\sum_\lambda
+p(a|x,\lambda)G_\lambda.
+\]</p><p>将其作用于最大纠缠态，并利用最大纠缠态的 Choi 对应关系，可以得到</p><h1 id=sigma_ax-2>\[
+\sigma_{a|x}</h1><p>\sum_\lambda
+p(a|x,\lambda)\sigma_\lambda.
+\]</p><p>因此 assemblage 存在 LHS 分解。</p><p>反过来，对于最大纠缠态，若 assemblage 存在 LHS 分解，则可将对应的正算符通过最大纠缠态的算符—态对应关系反推出一个共同 POVM，从而证明测量相容。</p><p>因此，在这一特定场景下，</p><p>\[
+\boxed{
+\text{测量不相容}
+\iff
+\text{可用于产生 steering}.
+}
+\]</p><p>注意，这一等价关系依赖最大纠缠态以及测量集合等条件，不能不加限制地推广到任意共享态。</p><hr><h2 id=第八章测量不相容性steering-与-bell-非局域性>第八章　测量不相容性、Steering 与 Bell 非局域性<a hidden class=anchor aria-hidden=true href=#第八章测量不相容性steering-与-bell-非局域性>#</a></h2><h3 id=81-三种不同资源>8.1 三种不同资源<a hidden class=anchor aria-hidden=true href=#81-三种不同资源>#</a></h3><p>现在可以把几个概念放在同一框架下：</p><table><thead><tr><th>概念</th><th>核心问题</th></tr></thead><tbody><tr><td>测量不相容性</td><td>多个测量能否由一个共同 POVM 模拟？</td></tr><tr><td>量子 Steering</td><td>条件态能否由局域隐状态模型解释？</td></tr><tr><td>Bell 非局域性</td><td>联合概率能否由局域隐变量模型解释？</td></tr></tbody></table><p>它们分别关注测量、条件态和联合概率。</p><h3 id=82-资源层次>8.2 资源层次<a hidden class=anchor aria-hidden=true href=#82-资源层次>#</a></h3><p>对于给定的双体量子态和测量场景，通常有如下关系：</p><p>\[
+\boxed{
+\text{Bell 非局域性}
+\Longrightarrow
+\text{Steering}
+\Longrightarrow
+\text{纠缠}.
+}
+\]</p><p>其逆命题一般不成立。</p><p>例如：</p><ul><li>有些纠缠态不能在指定测量集合下产生 steering；</li><li>有些可 steering 的关联不能违反 Bell 不等式；</li><li>有些纠缠态不违反 CHSH 不等式。</li></ul><p>测量不相容性与 steering 的关系更微妙：对于最大纠缠态，Alice 的测量不相容性可以直接转化为 steering；但对于一般共享态，测量不相容并不保证该态能够被 steer。</p><p>因此，不能将测量不相容性简单地插入上述资源层次，视为与纠缠、steering、Bell 非局域性完全相同的状态性质。</p><hr><h2 id=第九章实验实现与数据分析>第九章　实验实现与数据分析<a hidden class=anchor aria-hidden=true href=#第九章实验实现与数据分析>#</a></h2><h3 id=91-实验目标>9.1 实验目标<a hidden class=anchor aria-hidden=true href=#91-实验目标>#</a></h3><p>我们希望检验两个噪声化 qubit 测量是否相容：</p><p>\[
+A_\pm=\frac12(I\pm\eta\sigma_x),
+\]</p><p>\[
+B_\pm=\frac12(I\pm\eta\sigma_z).
+\]</p><p>理论预测：</p><p>\[
+\eta\le\frac1{\sqrt2}
+\]</p><p>时相容。</p><p>实验可以采用两种主要路线：</p><ol><li>直接构造候选联合 POVM，检验其边缘是否符合目标测量；</li><li>利用最大纠缠态，将测量不相容性转化为 steering 任务，并检验 LHS 模型是否可能。</li></ol><h3 id=92-光子偏振实现>9.2 光子偏振实现<a hidden class=anchor aria-hidden=true href=#92-光子偏振实现>#</a></h3><p>令</p><p>\[
+|0\rangle=|H\rangle,\qquad
+|1\rangle=|V\rangle.
+\]</p><p>则</p><p>\[
+\sigma_z
+\]</p><p>对应水平/垂直偏振测量，</p><p>\[
+\sigma_x
+\]</p><p>对应对角/反对角偏振测量。</p><p>通过在测量装置中引入适当的随机化或噪声化操作，可以实现</p><h1 id=e_pmx>\[
+E_{\pm|X}</h1><p>\frac12(I\pm\eta\sigma_x),
+\]</p><h1 id=e_pmz>\[
+E_{\pm|Z}</h1><p>\frac12(I\pm\eta\sigma_z).
+\]</p><p>实验上应通过独立的量子态层析或测量标定确定实际 POVM，而不能仅凭波片角度推定其理想参数。</p><h3 id=93-联合-povm-的实验检验>9.3 联合 POVM 的实验检验<a hidden class=anchor aria-hidden=true href=#93-联合-povm-的实验检验>#</a></h3><p>若采用第四章的联合 POVM：</p><h1 id=g_st-2>\[
+G_{st}</h1><p>\frac14
+\left[
+I+\eta(s\sigma_x+t\sigma_z)
+\right],
+\]</p><p>可以通过状态层析估计四个效应算符。</p><p>对任意测试态</p><p>\[
+\rho=\frac12(I+\vec r\cdot\vec\sigma),
+\]</p><p>其联合结果概率为</p><h1 id=pstrho>\[
+p(s,t|\rho)</h1><p>\operatorname{Tr}(\rho G_{st}).
+\]</p><p>计算得到</p><h1 id=pstrho-1>\[
+\boxed{
+p(s,t|\rho)</h1><p>\frac14
+\left[
+1+\eta(sr_x+tr_z)
+\right].
+}
+\]</p><p>对所有 \(s,t\) 求和：</p><p>\[
+\sum_{s,t}p(s,t|\rho)=1.
+\]</p><p>边缘概率为</p><h1 id=psrho>\[
+p(s|\rho)</h1><h1 id=sum_t-pstrho>\sum_t p(s,t|\rho)<a hidden class=anchor aria-hidden=true href=#sum_t-pstrho>#</a></h1><p>\frac12(1+s\eta r_x),
+\]</p><h1 id=ptrho>\[
+p(t|\rho)</h1><h1 id=sum_s-pstrho>\sum_s p(s,t|\rho)<a hidden class=anchor aria-hidden=true href=#sum_s-pstrho>#</a></h1><p>\frac12(1+t\eta r_z).
+\]</p><p>这恰好对应目标测量。</p><h3 id=94-数据拟合>9.4 数据拟合<a hidden class=anchor aria-hidden=true href=#94-数据拟合>#</a></h3><p>若对一组测试态 \(\rho_k\) 进行测量，得到计数</p><p>\[
+N_{st}^{(k)},
+\]</p><p>则经验概率为</p><h1 id=hat-pstrho_k>\[
+\hat p(s,t|\rho_k)</h1><p>\frac{N_{st}^{(k)}}{N_k}.
+\]</p><p>可以使用理论模型</p><h1 id=pstrho_k>\[
+p(s,t|\rho_k)</h1><p>\operatorname{Tr}(\rho_kG_{st})
+\]</p><p>进行最大似然估计，得到参数 \(\eta\) 的估计值。</p><p>对于每个设置，计数服从多项分布：</p><p>\[
+(N_{++},N_{+-},N_{-+},N_{&ndash;})
+\sim
+\operatorname{Multinomial}
+(N,p_{++},p_{+-},p_{-+},p_{&ndash;}).
+\]</p><p>应当同时检验：</p><ul><li>效应算符是否正半定；</li><li>POVM 是否归一化；</li><li>实验边缘是否与目标测量一致；</li><li>参数估计的不确定度；</li><li>是否存在系统误差。</li></ul><h3 id=95-实验判定的注意事项>9.5 实验判定的注意事项<a hidden class=anchor aria-hidden=true href=#95-实验判定的注意事项>#</a></h3><p>如果实验成功实现了一个联合 POVM，并且其边缘与目标测量一致，那么可以证明目标测量相容。</p><p>但反过来，如果某个候选联合测量没有实现成功，并不能直接证明目标测量不相容。</p><p>要证明不相容，需要：</p><ul><li>使用严格的理论判据；</li><li>或构造测量不相容性见证；</li><li>或通过 steering 实验排除所有相容测量模型。</li></ul><p>这一区别在实验报告中非常重要。</p><hr><h2 id=第十章测量不相容性见证>第十章　测量不相容性见证<a hidden class=anchor aria-hidden=true href=#第十章测量不相容性见证>#</a></h2><h3 id=101-见证的基本思想>10.1 见证的基本思想<a hidden class=anchor aria-hidden=true href=#101-见证的基本思想>#</a></h3><p>在纠缠理论中，我们可以构造纠缠见证：</p><p>\[
+\operatorname{Tr}(W\rho)\ge0
+\]</p><p>对所有可分态成立，而某些纠缠态使其期望值为负。</p><p>测量不相容性也有类似的见证方法。</p><p>核心思想是构造一个线性或凸优化约束，使所有相容测量满足某个不等式，而不相容测量可以违反它。</p><h3 id=102-利用相容性判据构造见证>10.2 利用相容性判据构造见证<a hidden class=anchor aria-hidden=true href=#102-利用相容性判据构造见证>#</a></h3><p>对于两个无偏二值 qubit POVM，</p><p>\[
+A_\pm=\frac12(I\pm\vec a\cdot\vec\sigma),
+\]</p><p>\[
+B_\pm=\frac12(I\pm\vec b\cdot\vec\sigma),
+\]</p><p>相容性要求</p><p>\[
+|\vec a+\vec b|+|\vec a-\vec b|\le2.
+\]</p><p>因此定义</p><h1 id=wmathsf-amathsf-b>\[
+W(\mathsf A,\mathsf B)</h1><p>|\vec a+\vec b|+|\vec a-\vec b|-2.
+\]</p><p>则</p><p>\[
+\boxed{
+W>0
+\Longrightarrow
+\text{测量不相容}.
+}
+\]</p><p>对正交方向且锐利程度相同的测量，</p><p>\[
+W=2\sqrt2\eta-2.
+\]</p><p>因此当</p><p>\[
+\eta>\frac1{\sqrt2}
+\]</p><p>时，</p><p>\[
+W>0.
+\]</p><p>这提供了一个直接的相容性检验指标。</p><hr><h2 id=第十一章习题>第十一章　习题<a hidden class=anchor aria-hidden=true href=#第十一章习题>#</a></h2><h3 id=基础题>基础题<a hidden class=anchor aria-hidden=true href=#基础题>#</a></h3><p><strong>1.</strong> 证明两个投影测量相容，当且仅当其投影算符彼此对易。</p><p><strong>2.</strong> 将一般二结果 qubit POVM 写成 Bloch 表示，并推导正半定条件。</p><p><strong>3.</strong> 对两个无偏二值 qubit POVM，验证联合 POVM 的边缘条件。</p><p><strong>4.</strong> 推导两个正交方向噪声测量的相容性阈值：</p><p>\[
+\eta\le\frac1{\sqrt2}.
+\]</p><h3 id=进阶题>进阶题<a hidden class=anchor aria-hidden=true href=#进阶题>#</a></h3><p><strong>5.</strong> 对两个夹角为 \(\theta\) 的等强度无偏二值 qubit 测量，推导相容性阈值。</p><p><strong>6.</strong> 研究三个正交方向的噪声化 Pauli 测量：</p><h1 id=e_pmx-1>\[
+E_{\pm|x}</h1><p>\frac12(I\pm\eta\sigma_x),
+\]</p><h1 id=e_pmy>\[
+E_{\pm|y}</h1><p>\frac12(I\pm\eta\sigma_y),
+\]</p><h1 id=e_pmz-1>\[
+E_{\pm|z}</h1><p>\frac12(I\pm\eta\sigma_z).
+\]</p><p>求三者共同相容的最大 \(\eta\)。</p><p><strong>7.</strong> 对最大纠缠态，推导 Alice 的 POVM 与 Bob 条件态之间的算符—态对应关系。</p><p><strong>8.</strong> 证明：若一组测量相容，则它们不能通过任何共享态产生 steering。</p><h3 id=实验题>实验题<a hidden class=anchor aria-hidden=true href=#实验题>#</a></h3><p><strong>9.</strong> 设计一个偏振光子实验，实现两个噪声化测量，并估计其相容性阈值。</p><p><strong>10.</strong> 对四个联合结果的计数数据，建立多项分布似然函数，并说明如何估计 \(\eta\)。</p><p><strong>11.</strong> 讨论为什么“没有观察到 steering”不能直接证明测量相容。</p><p><strong>12.</strong> 比较直接联合 POVM 检验与基于最大纠缠态的 steering 检验，各自的实验优缺点是什么？</p><hr><h2 id=参考文献>参考文献<a hidden class=anchor aria-hidden=true href=#参考文献>#</a></h2><ol><li>P. Busch, <em>Unsharp Reality and Joint Measurements for Spin Observables</em>, Physical Review D, 33, 2253–2261 (1986).</li><li>T. Heinosaari, D. Reitzner, P. Stano, <em>Notes on joint measurability of quantum observables</em>, Foundations of Physics, 38, 1133–1147 (2008).</li><li>M. T. Quintino, T. Vértesi, N. Brunner, <em>Joint measurability, Einstein-Podolsky-Rosen steering, and Bell nonlocality</em>, Physical Review Letters, 113, 160402 (2014).</li><li>R. Uola, T. Moroder, O. Gühne, <em>Joint Measurability of Generalized Measurements Implies Classicality</em>, Physical Review Letters, 113, 160403 (2014).</li><li>M. T. Quintino, J. Bowles, F. Hirsch, N. Brunner, <em>Incompatible quantum measurements admitting a local hidden variable model</em>, Physical Review A, 93, 052115 (2016).</li></ol><hr><h2 id=本讲小结>本讲小结<a hidden class=anchor aria-hidden=true href=#本讲小结>#</a></h2><p>本讲建立了量子测量不相容性的基本理论：</p><p>\[
+\boxed{
+\text{联合 POVM}
+\Longleftrightarrow
+\text{测量相容性}
+}
+\]</p><p>对于两个无偏二值 qubit 测量：</p><p>\[
+\boxed{
+|\vec a+\vec b|+|\vec a-\vec b|\le2
+}
+\]</p><p>是相容性的充要条件。</p><p>对于两个正交方向的等强度噪声测量：</p><p>\[
+\boxed{
+\eta\le\frac1{\sqrt2}
+}
+\]</p><p>是相容性阈值。</p><p>同时，我们建立了如下联系：</p><p>\[
+\text{测量不相容性}
+\longleftrightarrow
+\text{Steering}
+\longleftrightarrow
+\text{量子信息优势}.
+\]</p><p>下一讲将进入 <strong>量子关联与量子网络</strong>：从经典相关、量子相关和无信号相关的数学结构出发，研究相关多面体、量子相关集合、Bell 场景的凸几何，以及多方量子关联与网络非局域性。</p></div><footer class=post-footer><ul class=post-tags></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://linmythos.github.io/>Linmythos</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

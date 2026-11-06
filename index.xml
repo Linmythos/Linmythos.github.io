@@ -1,65 +1,748 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Linmythos</title><link>https://linmythos.github.io/</link><description>Recent content on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 04 Nov 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>智能计算的数学基础与科学前沿</title><link>https://linmythos.github.io/ai/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E5%92%8C%E7%A7%91%E5%AD%A6%E5%89%8D%E6%B2%BF/</link><pubDate>Wed, 04 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/ai/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E5%92%8C%E7%A7%91%E5%AD%A6%E5%89%8D%E6%B2%BF/</guid><description>&lt;h1 id="第一讲机器为什么能够学习"&gt;第一讲：机器为什么能够学习？&lt;/h1&gt;
-&lt;h2 id="从函数逼近到统计学习理论"&gt;——从函数逼近到统计学习理论&lt;/h2&gt;
-&lt;h2 id="0-核心问题"&gt;0. 核心问题&lt;/h2&gt;
-&lt;p&gt;考虑一个简单任务：&lt;/p&gt;
-&lt;p&gt;给定大量房屋的历史数据，包括面积、位置、房间数量和成交价格，希望构造一个模型，根据房屋特征预测其价格。&lt;/p&gt;
-&lt;p&gt;我们可以将每套房屋表示为一个向量：&lt;/p&gt;
-&lt;p&gt;[
-x=(x_1,x_2,\ldots,x_d)\in\mathbb R^d,
-]&lt;/p&gt;
-&lt;p&gt;将其实际价格记为：&lt;/p&gt;
-&lt;p&gt;[
-y\in\mathbb R.
-]&lt;/p&gt;
-&lt;p&gt;我们希望找到一个函数：&lt;/p&gt;
-&lt;p&gt;[
-f:\mathbb R^d\longrightarrow\mathbb R,
-]&lt;/p&gt;
-&lt;p&gt;使得：&lt;/p&gt;
-&lt;p&gt;[
-f(x)\approx y.
-]&lt;/p&gt;
-&lt;p&gt;问题在于：我们只知道有限数量的样本，却希望模型能够预测尚未出现的数据。&lt;/p&gt;
-&lt;p&gt;这就是机器学习的基本矛盾：&lt;/p&gt;
-&lt;p&gt;[
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Linmythos</title><link>https://linmythos.github.io/</link><description>Recent content on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Fri, 06 Nov 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>第 10 章　CW 同调与同调计算</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/cw%E5%90%8C%E8%B0%83%E4%B8%8E%E5%90%8C%E8%B0%83%E8%AE%A1%E7%AE%97/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/cw%E5%90%8C%E8%B0%83%E4%B8%8E%E5%90%8C%E8%B0%83%E8%AE%A1%E7%AE%97/</guid><description>&lt;h1 id="第-10-章cw-同调与同调计算cw-homology-and-homological-computations"&gt;第 10 章　CW 同调与同调计算（CW Homology and Homological Computations）&lt;/h1&gt;
+&lt;p&gt;第二编：同调理论&lt;/p&gt;
+&lt;p&gt;奇异同调适用于任意拓扑空间，但其链群通常具有无限多个生成元，直接计算往往十分困难。对于具有 CW 复形结构的空间，我们可以利用胞腔分解构造更精简的链复形，将拓扑问题转化为有限或较简单的代数计算。这就是胞腔同调（cellular homology）的基本思想。&lt;/p&gt;
+&lt;p&gt;本章将建立胞腔链复形，研究球面、环面及射影空间的同调，并进一步介绍 Euler 示性数与 Künneth 公式。它们是从基础同调理论走向现代代数拓扑的重要工具。&lt;/p&gt;
+&lt;h2 id="101-胞腔过滤"&gt;10.1 胞腔过滤&lt;/h2&gt;
+&lt;p&gt;设 \(X\) 是一个 CW 复形，记其 \(n\)-骨架为 \(X^n\)。于是有过滤：&lt;/p&gt;
+&lt;p&gt;\[ \varnothing=X^{-1}\subseteq X^0\subseteq X^1 \subseteq\cdots\subseteq X. \]&lt;/p&gt;
+&lt;p&gt;其中 \(X^n\) 由所有维数不超过 \(n\) 的胞腔组成。每一步 \(X^n\) 都是在 \(X^{n-1}\) 的基础上附着若干个 \(n\)-胞腔得到的。&lt;/p&gt;
+&lt;p&gt;考虑相对同调群 \(H_k(X^n,X^{n-1})\)。由于商空间 \(X^n/X^{n-1}\) 将整个低维骨架压缩为一点，而每个 \(n\)-胞腔对应一个 \(n\)-球面，因此有&lt;/p&gt;
+&lt;p&gt;\[ H_k(X^n,X^{n-1}) \cong \begin{cases} \displaystyle\bigoplus_{\text{\(n\)-胞腔}}\mathbb Z,&amp;amp;k=n,\\ 0,&amp;amp;k\neq n. \end{cases} \]&lt;/p&gt;
+&lt;p&gt;这说明，相对同调群只在与胞腔维数相同的阶数上非平凡。它使我们能够用胞腔直接构造一个远小于奇异链复形的链复形。&lt;/p&gt;
+&lt;h2 id="102-胞腔链复形"&gt;10.2 胞腔链复形&lt;/h2&gt;
+&lt;p&gt;定义第 \(n\) 阶胞腔链群为&lt;/p&gt;
+&lt;p&gt;\[ C_n^{\mathrm{cell}}(X)=H_n(X^n,X^{n-1}). \]&lt;/p&gt;</description></item><item><title>第 13 章　示性类与向量丛</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%87%A0%E4%BD%95%E4%B8%8E%E4%B8%8A%E5%90%8C%E8%B0%83/%E7%A4%BA%E6%80%A7%E7%B1%BB%E4%B8%8E%E5%90%91%E9%87%8F%E4%B8%9B/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%87%A0%E4%BD%95%E4%B8%8E%E4%B8%8A%E5%90%8C%E8%B0%83/%E7%A4%BA%E6%80%A7%E7%B1%BB%E4%B8%8E%E5%90%91%E9%87%8F%E4%B8%9B/</guid><description>&lt;h1 id="第-13-章示性类与向量丛characteristic-classes-and-vector-bundles"&gt;第 13 章　示性类与向量丛（Characteristic Classes and Vector Bundles）&lt;/h1&gt;
+&lt;p&gt;第三编：几何与上同调&lt;/p&gt;
+&lt;p&gt;上两章建立了上同调群及其乘法结构。现在我们转向一个更具几何意味的问题：如何利用上同调描述向量丛的拓扑性质？&lt;/p&gt;
+&lt;p&gt;向量丛是微分几何、代数几何和数学物理中的基本对象。切丛、余切丛、法丛以及规范场所涉及的丛结构，都可以纳入这一框架。一个向量丛通常无法通过局部坐标完全描述其整体性质，而示性类（characteristic classes）正是将向量丛的拓扑信息转化为上同调类的重要工具。&lt;/p&gt;
+&lt;p&gt;本章介绍向量丛的基本概念，以及 Stiefel–Whitney 类、Chern 类和 Pontryagin 类的基本思想。&lt;/p&gt;
+&lt;h2 id="131-向量丛"&gt;13.1 向量丛&lt;/h2&gt;
+&lt;p&gt;设 \(B\) 是一个拓扑空间。一个秩为 \(r\) 的实向量丛由三个对象组成：总空间 \(E\)、底空间 \(B\) 和投影映射 \(\pi:E\to B\)。对于每个 \(x\in B\)，纤维 \(E_x=\pi^{-1}(x)\) 是一个 \(r\) 维实向量空间。&lt;/p&gt;
+&lt;p&gt;要求对每个 \(x\in B\)，存在一个开邻域 \(U\subseteq B\)，以及同胚&lt;/p&gt;
+&lt;p&gt;\[ \varphi:\pi^{-1}(U)\longrightarrow U\times\mathbb R^r, \]&lt;/p&gt;
+&lt;p&gt;使得 \(\varphi\) 与投影映射相容，并且在每个纤维上限制为线性同构。这称为局部平凡化（local trivialization）。&lt;/p&gt;
+&lt;p&gt;换言之，向量丛在局部看起来总是乘积空间 \(U\times\mathbb R^r\)，但在整体上可能无法分解为 \(B\times\mathbb R^r\)。这种局部平凡、整体可能非平凡的结构正是向量丛的核心。&lt;/p&gt;
+&lt;p&gt;最简单的例子是平凡向量丛 \(E=B\times\mathbb R^r\)。一个重要的非平凡例子是 Möbius 带：它是圆周 \(S^1\) 上的实线丛，局部同胚于 \(U\times\mathbb R\)，但整体并不同构于 \(S^1\times\mathbb R\)。&lt;/p&gt;
+&lt;p&gt;对于光滑流形 \(M\)，其切丛 \(TM\) 是一个秩为 \(\dim M\) 的实向量丛，而余切丛 \(T^*M\) 则由各点的余切空间组成。&lt;/p&gt;</description></item><item><title>第 14 章　流形、定向与 Poincaré 对偶</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%87%A0%E4%BD%95%E4%B8%8E%E4%B8%8A%E5%90%8C%E8%B0%83/%E6%B5%81%E5%BD%A2%E5%AE%9A%E5%90%91%E4%B8%8E%E5%BA%9E%E5%8A%A0%E8%8E%B1%E5%AF%B9%E5%81%B6/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%87%A0%E4%BD%95%E4%B8%8E%E4%B8%8A%E5%90%8C%E8%B0%83/%E6%B5%81%E5%BD%A2%E5%AE%9A%E5%90%91%E4%B8%8E%E5%BA%9E%E5%8A%A0%E8%8E%B1%E5%AF%B9%E5%81%B6/</guid><description>&lt;h1 id="第-14-章流形定向与-poincaré-对偶manifolds-orientations-and-poincaré-duality"&gt;第 14 章　流形、定向与 Poincaré 对偶（Manifolds, Orientations and Poincaré Duality）&lt;/h1&gt;
+&lt;p&gt;第三编：几何与上同调&lt;/p&gt;
+&lt;p&gt;流形是现代几何学的基本研究对象。局部而言，流形与欧氏空间没有区别；整体而言，它却可能具有复杂的拓扑结构。前面建立的同调与上同调理论为研究这种整体结构提供了代数工具。本章将进一步揭示一个极其深刻的事实：对于闭定向流形，其 \(k\) 阶同调与 \(n-k\) 阶上同调之间存在自然的对偶关系。这就是 Poincaré 对偶定理。&lt;/p&gt;
+&lt;p&gt;这一理论不仅是代数拓扑的核心结果，也是微分几何、代数几何、指标理论及数学物理的重要基础。&lt;/p&gt;
+&lt;h2 id="141-拓扑流形与光滑流形"&gt;14.1 拓扑流形与光滑流形&lt;/h2&gt;
+&lt;p&gt;设 \(M\) 是一个 Hausdorff、第二可数拓扑空间。若对每个 \(p\in M\)，存在一个开邻域 \(U\) 及同胚 \(\varphi:U\to V\)，其中 \(V\subseteq\mathbb R^n\) 是开集，则称 \(M\) 为一个 \(n\) 维拓扑流形。&lt;/p&gt;
+&lt;p&gt;这些局部同胚称为坐标图（chart），一族覆盖 \(M\) 的坐标图称为图册（atlas）。如果坐标图之间的过渡映射均为光滑映射，则称该图册定义了一个光滑结构，\(M\) 相应称为光滑流形。&lt;/p&gt;
+&lt;p&gt;例如，圆周 \(S^1\)、球面 \(S^2\)、环面 \(T^2\) 都是二维或低维流形的典型例子。它们在局部都类似于欧氏空间，但整体拓扑结构各不相同。&lt;/p&gt;
+&lt;p&gt;流形的重要特点是：局部几何可以通过微分结构研究，而整体拓扑则需要借助同调、上同调及示性类等工具。&lt;/p&gt;
+&lt;h2 id="142-流形的定向"&gt;14.2 流形的定向&lt;/h2&gt;
+&lt;p&gt;在欧氏空间 \(\mathbb R^n\) 中，标准基 \((e_1,\ldots,e_n)\) 确定了一种定向。若另一组基与它之间的过渡矩阵行列式为正，则两组基确定相同定向；若行列式为负，则确定相反定向。&lt;/p&gt;
+&lt;p&gt;对于光滑流形 \(M\)，每个点 \(p\) 的切空间 \(T_pM\) 都是一个 \(n\) 维实向量空间。若能够在整个流形上连续地选择切空间的定向，则称 \(M\) 可定向（orientable）。&lt;/p&gt;
+&lt;p&gt;更准确地说，流形的定向是切丛 \(TM\) 的一个定向结构。由上一章的结论，\(M\) 可定向当且仅当其第一 Stiefel–Whitney 类满足 \(w_1(TM)=0\)。&lt;/p&gt;</description></item><item><title>第 15 章　高阶同伦群与 Hurewicz 定理</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E9%AB%98%E9%98%B6%E5%90%8C%E4%BC%A6%E8%AE%BA/%E9%AB%98%E9%98%B6%E5%90%8C%E4%BC%A6%E7%BE%A4%E4%B8%8E-hurewicz-%E5%AE%9A%E7%90%86/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E9%AB%98%E9%98%B6%E5%90%8C%E4%BC%A6%E8%AE%BA/%E9%AB%98%E9%98%B6%E5%90%8C%E4%BC%A6%E7%BE%A4%E4%B8%8E-hurewicz-%E5%AE%9A%E7%90%86/</guid><description>&lt;h1 id="第-15-章高阶同伦群与-hurewicz-定理higher-homotopy-groups-and-the-hurewicz-theorem"&gt;第 15 章　高阶同伦群与 Hurewicz 定理（Higher Homotopy Groups and the Hurewicz Theorem）&lt;/h1&gt;
+&lt;p&gt;第四编：同伦论的深化&lt;/p&gt;
+&lt;p&gt;基本群 \(\pi_1(X)\) 研究空间中闭道路在同伦意义下的分类，它能够检测空间的一维同伦结构。然而，基本群无法完整描述高维空间的拓扑性质。例如，对于 \(n\geq2\)，球面 \(S^n\) 是单连通的，但显然并不是可缩空间。这意味着，仅仅研究基本群远远不够，我们需要进一步引入高阶同伦群。&lt;/p&gt;
+&lt;p&gt;本章将建立高阶同伦群 \(\pi_n(X)\)，研究其基本性质，并介绍 Hurewicz 定理与 Whitehead 定理。这两条定理分别揭示同伦群与同调群之间的联系，以及何时同调信息足以决定同伦等价。&lt;/p&gt;
+&lt;h2 id="151-高阶同伦群"&gt;15.1 高阶同伦群&lt;/h2&gt;
+&lt;p&gt;设 \((X,x_0)\) 是带基点拓扑空间。对于 \(n\geq1\)，考虑保持基点的连续映射&lt;/p&gt;
+&lt;p&gt;\[ f:(S^n,s_0)\longrightarrow(X,x_0). \]&lt;/p&gt;
+&lt;p&gt;如果两个映射可以通过保持基点的同伦相互变形，则称它们基点同伦。所有这类映射的基点同伦类构成集合 \(\pi_n(X,x_0)\)。&lt;/p&gt;
+&lt;p&gt;对于 \(n=1\)，这正是此前定义的基本群。对于 \(n\geq2\)，通过将 \(S^n\) 沿赤道等方式分解，可以定义同伦类之间的乘法，并证明其满足群公理。于是得到第 \(n\) 阶同伦群：&lt;/p&gt;
+&lt;p&gt;\[ \pi_n(X,x_0)=[(S^n,s_0),(X,x_0)]_*. \]&lt;/p&gt;
+&lt;p&gt;这里右侧表示保持基点的同伦类集合。&lt;/p&gt;
+&lt;p&gt;定理 15.1 对于任意带基点拓扑空间 \((X,x_0)\)，当 \(n\geq2\) 时，\(\pi_n(X,x_0)\) 是 Abel 群。&lt;/p&gt;
+&lt;p&gt;这与基本群形成鲜明对比：\(\pi_1(X,x_0)\) 一般非交换，而所有高阶同伦群都是交换群。这一性质使高阶同伦群能够直接使用 Abel 群理论研究。&lt;/p&gt;
+&lt;h2 id="152-同伦群的函子性与基点问题"&gt;15.2 同伦群的函子性与基点问题&lt;/h2&gt;
+&lt;p&gt;设 \(f:(X,x_0)\to(Y,y_0)\) 是保持基点的连续映射。复合映射诱导群同态&lt;/p&gt;
+&lt;p&gt;\[ f_*:\pi_n(X,x_0)\longrightarrow\pi_n(Y,y_0), \qquad [f]\longmapsto[f\circ f]. \]&lt;/p&gt;</description></item><item><title>第 16 章　纤维化与谱序列</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E9%AB%98%E9%98%B6%E5%90%8C%E4%BC%A6%E8%AE%BA/%E7%BA%A4%E7%BB%B4%E5%8C%96%E4%B8%8E%E8%B0%B1%E5%BA%8F%E5%88%97/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E9%AB%98%E9%98%B6%E5%90%8C%E4%BC%A6%E8%AE%BA/%E7%BA%A4%E7%BB%B4%E5%8C%96%E4%B8%8E%E8%B0%B1%E5%BA%8F%E5%88%97/</guid><description>&lt;h1 id="第-16-章纤维化与谱序列fibrations-and-spectral-sequences"&gt;第 16 章　纤维化与谱序列（Fibrations and Spectral Sequences）&lt;/h1&gt;
+&lt;p&gt;第四编：同伦论的深化&lt;/p&gt;
+&lt;p&gt;前面我们建立了同调群、上同调环与高阶同伦群，并通过 Hurewicz 定理和 Whitehead 定理揭示了它们之间的联系。但对于复杂空间，直接计算同调群或同伦群仍然十分困难。一个自然的思路是：如果一个空间能够通过映射分解为底空间与纤维，是否可以利用二者的信息研究整体空间？&lt;/p&gt;
+&lt;p&gt;这引出了纤维化（fibration）。纤维化将空间的整体结构组织成一族相互联系的纤维，并通过长正合列联系底空间、总空间与纤维的同伦群。进一步地，谱序列（spectral sequence）提供了一种逐步逼近目标同调群或上同调群的代数计算机制。它是现代代数拓扑中最重要的计算工具之一。&lt;/p&gt;
+&lt;h2 id="161-纤维化的基本概念"&gt;16.1 纤维化的基本概念&lt;/h2&gt;
+&lt;p&gt;设 \(p:E\to B\) 是连续映射。直观而言，如果底空间 \(B\) 中的道路或同伦可以适当地提升到总空间 \(E\)，那么 \(p\) 就具有类似局部乘积结构的性质。&lt;/p&gt;
+&lt;p&gt;最基本的例子是投影映射 \(p:B\times F\to B\)，其纤维均同胚于 \(F\)。但一般纤维化不必是乘积空间，它允许纤维在整体上以非平凡方式变化。&lt;/p&gt;
+&lt;p&gt;称连续映射 \(p:E\to B\) 为一个 Hurewicz 纤维化，如果对于任意拓扑空间 \(X\)，任意映射 \(f:X\to E\)，以及任意同伦 \(H:X\times I\to B\) 满足 \(H(x,0)=p(f(x))\)，都存在提升同伦 \(\widetilde H:X\times I\to E\)，使得 \(\widetilde H(x,0)=f(x)\) 且 \(p\circ\widetilde H=H\)。&lt;/p&gt;
+&lt;p&gt;这称为同伦提升性质（homotopy lifting property）。如果这一性质只要求对 CW 复形或其他指定类别的空间成立，则会得到相应的较弱纤维化概念。&lt;/p&gt;
+&lt;p&gt;对于一个点 \(b_0\in B\)，其纤维定义为 \(F=p^{-1}(b_0)\)。在适当的连通性条件下，纤维化的所有纤维具有相同的同伦类型。&lt;/p&gt;
+&lt;h2 id="162-纤维化的基本例子"&gt;16.2 纤维化的基本例子&lt;/h2&gt;
+&lt;p&gt;例 1：乘积纤维化。 对任意拓扑空间 \(B,F\)，投影 \(p:B\times F\to B\) 是纤维化，其纤维同胚于 \(F\)。&lt;/p&gt;</description></item><item><title>第 17 章　广义同调、K 理论与稳定同伦</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E7%8E%B0%E4%BB%A3%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%B9%BF%E4%B9%89%E5%90%8C%E8%B0%83k%E7%90%86%E8%AE%BA%E4%B8%8E%E7%A8%B3%E5%AE%9A%E5%90%8C%E8%B0%83/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E7%8E%B0%E4%BB%A3%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%B9%BF%E4%B9%89%E5%90%8C%E8%B0%83k%E7%90%86%E8%AE%BA%E4%B8%8E%E7%A8%B3%E5%AE%9A%E5%90%8C%E8%B0%83/</guid><description>&lt;h1 id="第-17-章广义同调k-理论与稳定同伦generalized-homology-k-theory-and-stable-homotopy"&gt;第 17 章　广义同调、K 理论与稳定同伦（Generalized Homology, K-Theory and Stable Homotopy）&lt;/h1&gt;
+&lt;p&gt;第五编：现代代数拓扑&lt;/p&gt;
+&lt;p&gt;前面建立的奇异同调与上同调具有统一的代数结构，并且满足 Eilenberg–Steenrod 公理。然而，经典同调理论并不能捕获所有拓扑信息。现代代数拓扑进一步发展出一系列更丰富的理论，例如复 K 理论、配边同调与稳定同伦论。&lt;/p&gt;
+&lt;p&gt;这些理论的共同特点是：它们保留了同调论的基本思想，却改变了所研究的对象及其代数结构。尤其是 K 理论，它将向量丛的分类问题转化为广义上同调问题，并与指标理论、表示论及数学物理产生深刻联系。&lt;/p&gt;
+&lt;h2 id="171-从经典同调到广义同调"&gt;17.1 从经典同调到广义同调&lt;/h2&gt;
+&lt;p&gt;经典奇异同调 \(H_n(X)\) 将拓扑空间映射到 Abel 群，并满足 Eilenberg–Steenrod 公理。一个自然的问题是：是否存在其他满足类似公理的理论？&lt;/p&gt;
+&lt;p&gt;答案是肯定的。广义同调理论（generalized homology theory）通常满足同伦公理、正合公理、切除公理与可加性公理，但不要求满足经典的维数公理。&lt;/p&gt;
+&lt;p&gt;维数公理要求单点空间只有零阶同调群非平凡，即 \(H_0(\{p\})\cong\mathbb Z\)，而其他阶均为零。放弃这一要求后，便能够构造更丰富的同调理论。&lt;/p&gt;
+&lt;p&gt;例如，复配边同调、实配边同调以及拓扑 K 理论都属于广义同调理论的典型例子。它们可以检测经典同调无法充分反映的几何与拓扑结构。&lt;/p&gt;
+&lt;h2 id="172-广义上同调理论与谱"&gt;17.2 广义上同调理论与谱&lt;/h2&gt;
+&lt;p&gt;现代代数拓扑中，广义上同调理论可以通过拓扑谱（spectrum）统一描述。&lt;/p&gt;
+&lt;p&gt;一个谱 \(E\) 可以粗略理解为一列带基点空间 \(E_n\)，以及结构映射&lt;/p&gt;
+&lt;p&gt;\[ \Sigma E_n\longrightarrow E_{n+1}, \]&lt;/p&gt;
+&lt;p&gt;其中 \(\Sigma\) 表示悬挂构造。适当的谱还要求这些结构映射满足稳定性条件。&lt;/p&gt;
+&lt;p&gt;给定谱 \(E\)，可以定义广义上同调群：&lt;/p&gt;
+&lt;p&gt;\[ E^n(X)=[\Sigma^\infty X_+,\Sigma^n E], \]&lt;/p&gt;
+&lt;p&gt;其中 \(X_+\) 表示在 \(X\) 上添加一个不交基点，\(\Sigma^\infty\) 是稳定无穷悬挂函子，而方括号表示稳定同伦类。&lt;/p&gt;
+&lt;p&gt;类似地，还可以定义广义同调群 \(E_n(X)\)。谱的语言将许多不同的同调理论统一到一个框架中：不同的谱对应不同的广义同调理论。&lt;/p&gt;
+&lt;p&gt;例如，整数系数奇异同调对应 Eilenberg–Mac Lane 谱 \(H\mathbb Z\)，而复 K 理论对应周期性谱 \(KU\)。&lt;/p&gt;</description></item><item><title>第 18 章　现代代数拓扑的前沿接口</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E7%8E%B0%E4%BB%A3%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E7%8E%B0%E4%BB%A3%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91%E7%9A%84%E5%89%8D%E6%B2%BF%E6%8E%A5%E5%8F%A3/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E7%8E%B0%E4%BB%A3%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E7%8E%B0%E4%BB%A3%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91%E7%9A%84%E5%89%8D%E6%B2%BF%E6%8E%A5%E5%8F%A3/</guid><description>&lt;h1 id="第-18-章现代代数拓扑的前沿接口modern-interfaces-of-algebraic-topology"&gt;第 18 章　现代代数拓扑的前沿接口（Modern Interfaces of Algebraic Topology）&lt;/h1&gt;
+&lt;p&gt;第五编：现代代数拓扑&lt;/p&gt;
+&lt;p&gt;经过前十七章，我们已经建立了从基本拓扑空间、同伦论、同调论到向量丛、示性类、谱序列与稳定同伦的基本理论框架。本章作为全书最后一章，不再引入一套完整的新理论，而是考察代数拓扑如何与其他数学分支及数学物理相互作用。&lt;/p&gt;
+&lt;p&gt;我们将重点介绍 Morse 理论、Floer 同调、拓扑量子场论（TQFT）以及高阶范畴观点。这些理论代表了现代代数拓扑的若干重要发展方向，也展示了拓扑思想如何进入几何分析、辛几何、量子场论与现代数学基础。&lt;/p&gt;
+&lt;h2 id="181-morse-理论函数与拓扑"&gt;18.1 Morse 理论：函数与拓扑&lt;/h2&gt;
+&lt;p&gt;Morse 理论的核心思想十分优美：通过研究光滑函数的临界点，恢复流形的拓扑结构。&lt;/p&gt;
+&lt;p&gt;设 \(M\) 是一个光滑流形，\(f:M\to\mathbb R\) 是光滑函数。若 \(p\in M\) 满足 \(df_p=0\)，则称 \(p\) 为 \(f\) 的临界点。若在局部坐标下，Hessian 矩阵 \(\operatorname{Hess}_p(f)\) 非退化，则称 \(p\) 为 Morse 临界点，而 \(f\) 称为 Morse 函数。&lt;/p&gt;
+&lt;p&gt;在非退化临界点处，Hessian 矩阵的负特征值个数称为该临界点的 Morse 指数，记作 \(\operatorname{ind}(p)\)。它表示函数在该点附近具有多少个下降方向。&lt;/p&gt;
+&lt;p&gt;Morse 引理说明，在非退化临界点附近，可以选取局部坐标，使函数具有标准二次型：&lt;/p&gt;
+&lt;p&gt;\[ f(x)=f(p)-x_1^2-\cdots-x_\lambda^2 +x_{\lambda+1}^2+\cdots+x_n^2, \]&lt;/p&gt;
+&lt;p&gt;其中 \(\lambda=\operatorname{ind}(p)\)。&lt;/p&gt;
+&lt;p&gt;这意味着临界点附近的函数结构完全由其 Morse 指数决定。&lt;/p&gt;
+&lt;h2 id="182-morse-理论与-cw-复形"&gt;18.2 Morse 理论与 CW 复形&lt;/h2&gt;
+&lt;p&gt;设 \(M\) 是紧致流形，\(f:M\to\mathbb R\) 是 Morse 函数。随着实数 \(a\) 变化，考虑次水平集&lt;/p&gt;</description></item><item><title>第 6 章　群、模与链复形</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/</guid><description>&lt;h1 id="第-6-章群模与链复形"&gt;第 6 章　群、模与链复形&lt;/h1&gt;
+&lt;p&gt;Groups, Modules and Chain Complexes&lt;/p&gt;
+&lt;p&gt;第二编 · 同调理论&lt;/p&gt;
+&lt;h2 id="61-从拓扑空间到链复形"&gt;6.1 从拓扑空间到链复形&lt;/h2&gt;
+&lt;p&gt;前面我们通过基本群将闭合道路的同伦类转化为群，从而获得了空间的一维拓扑信息。但基本群并不足以完整刻画空间。例如，单连通空间的基本群均为平凡群，却可能具有完全不同的高维拓扑结构。&lt;/p&gt;
+&lt;p&gt;为了研究更高维的拓扑信息，我们需要一种新的代数工具：同调理论（Homology Theory）。&lt;/p&gt;
+&lt;p&gt;同调理论的基本思想是，将拓扑空间中的几何对象组织成一系列 Abel 群，并通过边界算子描述它们之间的关系。最终，我们通过边界算子的核与像构造同调群。&lt;/p&gt;
+&lt;p&gt;这一过程的代数基础就是链复形（Chain Complex）。&lt;/p&gt;
+&lt;h2 id="62-abel-群与自由-abel-群"&gt;6.2 Abel 群与自由 Abel 群&lt;/h2&gt;
+&lt;p&gt;定义 6.1（Abel 群） 若群 \(G\) 的运算满足交换律，即对任意 \(a,b\in G\)，有 \(ab=ba\)，则称 \(G\) 为 Abel 群，亦称交换群。&lt;/p&gt;
+&lt;p&gt;同调群天然具有 Abel 群结构，因此我们主要研究 Abel 群及其同态。&lt;/p&gt;
+&lt;p&gt;例如，整数加法群 \(\mathbb Z\)、有限循环群 \(\mathbb Z/n\mathbb Z\) 以及直积群 \(\mathbb Z^n\) 都是 Abel 群。&lt;/p&gt;
+&lt;p&gt;定义 6.2（自由 Abel 群） 若 Abel 群 \(G\) 存在一个子集 \(B\)，使得每个元素都能唯一表示为 \(B\) 中有限多个元素的整数线性组合，则称 \(G\) 为自由 Abel 群，\(B\) 称为一组基。&lt;/p&gt;</description></item><item><title>第 7 章　单纯同调</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E5%8D%95%E7%BA%AF%E5%90%8C%E8%B0%83/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E5%8D%95%E7%BA%AF%E5%90%8C%E8%B0%83/</guid><description>&lt;h1 id="第-7-章单纯同调"&gt;第 7 章　单纯同调&lt;/h1&gt;
+&lt;p&gt;Simplicial Homology&lt;/p&gt;
+&lt;p&gt;第二编 · 同调理论&lt;/p&gt;
+&lt;h2 id="71-从几何对象到链复形"&gt;7.1 从几何对象到链复形&lt;/h2&gt;
+&lt;p&gt;上一章我们建立了链复形与同调群的抽象理论。现在需要回答一个具体问题：如何从拓扑空间构造链复形？&lt;/p&gt;
+&lt;p&gt;一种自然的方法是将空间分解为点、线段、三角形及其高维推广，再利用这些几何单元构造链群和边界算子。这便是单纯同调（Simplicial Homology）的基本思想。&lt;/p&gt;
+&lt;p&gt;单纯同调是最直观的同调理论之一。它将几何空间中的洞转化为代数对象，使我们能够通过线性代数计算空间的拓扑不变量。&lt;/p&gt;
+&lt;h2 id="72-单纯形与单纯复形"&gt;7.2 单纯形与单纯复形&lt;/h2&gt;
+&lt;p&gt;定义 7.1（几何单纯形） 设 \(v_0,\ldots,v_n\in\mathbb R^m\) 为仿射无关的点，其凸包称为一个 \(n\) 维几何单纯形，记作 \([v_0,\ldots,v_n]\)。其中 \(n=0,1,2,3\) 时分别对应点、线段、三角形和四面体。&lt;/p&gt;
+&lt;p&gt;仿射无关意味着不存在非零实数 \(a_0,\ldots,a_n\)，使得 \(\sum_i a_i=0\) 且 \(\sum_i a_iv_i=0\)。&lt;/p&gt;
+&lt;p&gt;单纯形的每个面也是一个低维单纯形。例如，三角形的三个边和三个顶点都是它的面。&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://images.openai.com/static-rsc-4/1NFwBoJLtDVj7y-6pU1tNsiFIcUUNL8qiQXlRlztpvp8nsM95pFe3AVRYwLMNPg-qTvWJ3RukQMSs9HEtltvlSBUt9mMRDysloY5v4NwBS5cQe1FBJyeEIMv1RC0YsDL68HIg4OK1MY7WWHsSL15g4qcCJB3qcaY8Cyu15-7YH0?purpose=inline"&gt;Frontiers | Simplex polynomial in complex networks and its applications to compute the Euler characteristic&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.frontiersin.org/journals/computational-neuroscience/articles/10.3389/fncom.2025.1685586/full?utm_source=chatgpt.com"&gt;frontiersin.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;定义 7.2（抽象单纯复形） 设 \(V\) 为顶点集。若有限子集族 \(K\subseteq\mathcal P(V)\) 满足：对任意 \(\sigma\in K\)，其非空子集也属于 \(K\)，则称 \(K\) 为抽象单纯复形。&lt;/p&gt;
+&lt;p&gt;其中，\(K\) 的元素称为单纯形，包含 \(n+1\) 个顶点的单纯形称为 \(n\) 维单纯形。&lt;/p&gt;</description></item><item><title>第 8 章　奇异同调</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E5%A5%87%E5%BC%82%E5%90%8C%E8%B0%83/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E5%A5%87%E5%BC%82%E5%90%8C%E8%B0%83/</guid><description>&lt;h1 id="第-8-章奇异同调singular-homology"&gt;第 8 章　奇异同调（Singular Homology）&lt;/h1&gt;
+&lt;p&gt;第二编：同调理论&lt;/p&gt;
+&lt;p&gt;单纯同调通过三角剖分研究拓扑空间，将几何结构转化为代数对象。然而，并非每个拓扑空间都具有方便的三角剖分；即使存在，选择不同的剖分也可能使计算变得繁琐。我们希望构造一种不依赖于三角剖分、直接适用于任意拓扑空间的同调理论。奇异同调正是为此而建立的：它以标准单纯形到拓扑空间的连续映射作为基本生成元，将空间的拓扑信息编码为链复形。&lt;/p&gt;
+&lt;h2 id="81-标准单纯形与奇异单形"&gt;8.1 标准单纯形与奇异单形&lt;/h2&gt;
+&lt;p&gt;定义标准 \(n\)-单纯形为 \(\Delta^n=\{(t_0,\ldots,t_n)\in\mathbb R^{n+1}\mid t_i\geq0,\ \sum_{i=0}^n t_i=1\}\)。它是一个 \(n\) 维凸多面体：\(\Delta^0\) 是一点，\(\Delta^1\) 是线段，\(\Delta^2\) 是三角形，\(\Delta^3\) 是四面体。&lt;/p&gt;
+&lt;p&gt;给定拓扑空间 \(X\)，连续映射 \(\sigma:\Delta^n\to X\) 称为一个奇异 \(n\)-单形（singular \(n\)-simplex）。注意，奇异单形不要求是单射，也不要求保持维数：它可以将不同点映到同一点，甚至将整个标准单纯形映入 \(X\) 的某个低维子空间。这种宽松性使奇异同调能够适用于任意拓扑空间。&lt;/p&gt;
+&lt;p&gt;令 \(C_n(X)\) 为以所有奇异 \(n\)-单形为基的自由 Abel 群，其元素称为奇异 \(n\)-链。具体而言，\(C_n(X)\) 中的元素是有限形式和 \(c=\sum_\sigma a_\sigma\sigma\)，其中 \(a_\sigma\in\mathbb Z\)。这里的有限性意味着每个链只有有限多个非零系数，而奇异单形本身可以有无限多个。&lt;/p&gt;
+&lt;h2 id="82-边界算子与链复形"&gt;8.2 边界算子与链复形&lt;/h2&gt;
+&lt;p&gt;奇异同调的核心是定义边界算子。对于 \(0\leq i\leq n\)，定义面映射 \(\delta_i:\Delta^{n-1}\to\Delta^n\)，其作用是在第 \(i\) 个坐标位置插入零，即 \(\delta_i(t_0,\ldots,t_{n-1})=(t_0,\ldots,t_{i-1},0,t_i,\ldots,t_{n-1})\)。给定奇异单形 \(\sigma:\Delta^n\to X\)，记其第 \(i\) 个面为 \(\sigma_i=\sigma\circ\delta_i\)，并定义边界算子 \(\partial_n:C_n(X)\to C_{n-1}(X)\)：&lt;/p&gt;
+&lt;p&gt;\[ \partial_n\sigma=\sum_{i=0}^{n}(-1)^i\sigma_i. \]&lt;/p&gt;
+&lt;p&gt;边界算子通过线性延拓作用于所有奇异链。例如，对于奇异路径 \(\sigma:\Delta^1\to X\)，有 \(\partial_1\sigma=\sigma(1)-\sigma(0)\)，即终点减去起点；对于奇异三角形，则有 \(\partial_2\sigma=\sigma_0-\sigma_1+\sigma_2\)，三个边按照交替符号定向。&lt;/p&gt;
+&lt;p&gt;定理 8.1（边界算子的基本性质） 对任意拓扑空间 \(X\)，均有 \(\partial_{n-1}\circ\partial_n=0\)。&lt;/p&gt;</description></item><item><title>第 9 章　同调的基本定理</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E5%90%8C%E8%B0%83%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E5%90%8C%E8%B0%83%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/</guid><description>&lt;h1 id="第-9-章同调的基本定理the-fundamental-theorems-of-homology"&gt;第 9 章　同调的基本定理（The Fundamental Theorems of Homology）&lt;/h1&gt;
+&lt;p&gt;第二编：同调理论&lt;/p&gt;
+&lt;p&gt;前两章分别建立了单纯同调与奇异同调。我们已经能够将拓扑空间转化为链复形，并通过同调群提取其中的拓扑信息。但要真正发挥同调理论的计算能力，还需要建立一套系统的基本定理：如何研究子空间对整体空间的贡献？如何从局部信息恢复整体同调？如何将复杂空间分解为较简单的部分？&lt;/p&gt;
+&lt;p&gt;本章围绕这些问题介绍相对同调、同伦不变性、切除定理、Mayer–Vietoris 长正合列以及 Eilenberg–Steenrod 公理。这些结果构成现代代数拓扑中同调计算的基本框架。&lt;/p&gt;
+&lt;h2 id="91-相对同调"&gt;9.1 相对同调&lt;/h2&gt;
+&lt;p&gt;设 \(A\subseteq X\) 是拓扑空间 \(X\) 的子空间。此前定义的 \(H_n(X)\) 描述整个空间的同调信息，但有时我们更关心 \(X\) 相对于 \(A\) 的新增拓扑结构。为此，考虑包含映射 \(A\hookrightarrow X\) 所诱导的链映射 \(C_n(A)\to C_n(X)\)。由于该映射是单射，我们可以将 \(C_n(A)\) 视为 \(C_n(X)\) 的子群，并定义商链群 \(C_n(X,A)=C_n(X)/C_n(A)\)。&lt;/p&gt;
+&lt;p&gt;边界算子自然诱导商链群之间的同态，因为 \(\partial C_n(A)\subseteq C_{n-1}(A)\)。于是得到相对链复形，其同调群称为相对同调群：&lt;/p&gt;
+&lt;p&gt;\[ H_n(X,A)=H_n(C_\bullet(X,A)). \]&lt;/p&gt;
+&lt;p&gt;直观而言，相对同调将子空间 \(A\) 中的链视为零，从而只研究 \(X\) 相对于 \(A\) 的拓扑信息。&lt;/p&gt;
+&lt;p&gt;例如，取 \(X=D^n\)、\(A=S^{n-1}=\partial D^n\)。由于圆盘可缩，而其边界是一个球面，可以证明 \(H_k(D^n,S^{n-1})\cong\mathbb Z\) 当 \(k=n\)，其余阶均为零（对 \(n\geq1\)）。这个非平凡的相对同调类反映了圆盘内部相对于边界的 \(n\) 维结构。&lt;/p&gt;
+&lt;h2 id="92-长正合列"&gt;9.2 长正合列&lt;/h2&gt;
+&lt;p&gt;相对同调最重要的性质来自短正合链复形。由于 \(C_\bullet(A)\) 是 \(C_\bullet(X)\) 的子复形，存在短正合列：&lt;/p&gt;
+&lt;p&gt;\[ 0\longrightarrow C_\bullet(A) \longrightarrow C_\bullet(X) \longrightarrow C_\bullet(X,A) \longrightarrow0. \]&lt;/p&gt;</description></item><item><title>第1章：拓扑空间与连续映射</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E6%8B%93%E6%89%91%E4%B8%8E%E5%90%8C%E4%BC%A6/%E6%8B%93%E6%89%91%E7%A9%BA%E9%97%B4%E4%B8%8E%E8%BF%9E%E7%BB%AD%E6%98%A0%E5%B0%84/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E6%8B%93%E6%89%91%E4%B8%8E%E5%90%8C%E4%BC%A6/%E6%8B%93%E6%89%91%E7%A9%BA%E9%97%B4%E4%B8%8E%E8%BF%9E%E7%BB%AD%E6%98%A0%E5%B0%84/</guid><description>&lt;h2 id="11-从几何到拓扑"&gt;1.1 从几何到拓扑&lt;/h2&gt;
+&lt;p&gt;代数拓扑研究如何利用代数工具刻画拓扑空间的结构。其基本思想是：将几何空间转化为群、环、模等代数对象，再通过代数性质研究空间本身。&lt;/p&gt;
+&lt;p&gt;例如，圆周 \(S^1\)、球面 \(S^2\) 和环面 \(T^2\) 是三种不同的拓扑空间。我们希望回答：如何严格区分它们？如何描述空间中的洞？如何判断一个空间能否连续变形为另一个空间？&lt;/p&gt;
+&lt;p&gt;为此，我们首先需要明确什么是拓扑空间，以及什么是空间之间的连续映射。&lt;/p&gt;
+&lt;h2 id="12-拓扑空间"&gt;1.2 拓扑空间&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;定义 1.1（拓扑）&lt;/strong&gt; 设 \(X\) 为集合。若集合族 \(\mathcal T\subseteq\mathcal P(X)\) 满足：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;\(\varnothing,X\in\mathcal T\)；&lt;/li&gt;
+&lt;li&gt;任意多个 \(\mathcal T\) 中集合的并仍属于 \(\mathcal T\)；&lt;/li&gt;
+&lt;li&gt;有限多个 \(\mathcal T\) 中集合的交仍属于 \(\mathcal T\)；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;则称 \(\mathcal T\) 为 \(X\) 上的一个拓扑，二元组 \((X,\mathcal T)\) 称为拓扑空间。集合族 \(\mathcal T\) 中的元素称为开集。&lt;/p&gt;
+&lt;p&gt;拓扑公理刻画了一种抽象的邻近关系。它不要求空间具有距离，只要求开集满足上述三个条件。&lt;strong&gt;特别地，并集允许任意多个，而交集只要求有限多个。读者不妨思考一下为什么。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;例 1.1（典型拓扑） 任意集合 \(X\) 上存在两种极端的拓扑：离散拓扑 \(\mathcal T=\mathcal P(X)\)，其中所有子集都是开集；平凡拓扑 \(\mathcal T=\{\varnothing,X\}\)，其中只有空集与全集是开集。实数集 \(\mathbb R\) 上通常的拓扑则由所有开区间生成，其开集均可表示为开区间的任意并。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;定义 1.2（闭集）&lt;/strong&gt; 若 \(F\subseteq X\) 的补集 \(X\setminus F\) 是开集，则称 \(F\) 为闭集。由拓扑公理可知，任意多个闭集的交以及有限多个闭集的并仍为闭集。注意，开集与闭集并不互斥，一个集合可以同时是开集和闭集，称为既开又闭集（clopen set）。&lt;/p&gt;</description></item><item><title>第2章：同伦与同伦等价</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E6%8B%93%E6%89%91%E4%B8%8E%E5%90%8C%E4%BC%A6/%E5%90%8C%E4%BC%A6%E4%B8%8E%E5%90%8C%E4%BC%A6%E7%AD%89%E4%BB%B7/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E6%8B%93%E6%89%91%E4%B8%8E%E5%90%8C%E4%BC%A6/%E5%90%8C%E4%BC%A6%E4%B8%8E%E5%90%8C%E4%BC%A6%E7%AD%89%E4%BB%B7/</guid><description>&lt;p&gt;Homotopy and Homotopy Equivalence&lt;/p&gt;
+&lt;h2 id="21-从同胚到同伦"&gt;2.1 从同胚到同伦&lt;/h2&gt;
+&lt;p&gt;上一章我们通过同胚定义了拓扑空间之间的等价关系。但同胚要求存在连续双射，且其逆映射也连续。这一条件有时过于严格：两个空间可能具有相同的整体拓扑特征，却无法建立同胚。&lt;/p&gt;
+&lt;p&gt;例如，圆盘 \(D^2\) 与单点空间显然不同胚，但圆盘可以连续收缩到一个点。我们希望建立一种比同胚更宽松的等价关系，忽略空间中某些不影响整体拓扑结构的细节。&lt;/p&gt;
+&lt;p&gt;这便引出了同伦论（Homotopy Theory）。&lt;/p&gt;
+&lt;p&gt;同伦论研究连续映射在连续变形下的等价关系。它是代数拓扑最基本的理论之一，也是基本群和同调理论的出发点。&lt;/p&gt;
+&lt;h2 id="22-同伦"&gt;2.2 同伦&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;定义 2.1（同伦）&lt;/strong&gt; 设 \(X,Y\) 为拓扑空间，\(f,g:X\to Y\) 为连续映射。若存在连续映射 \(H:X\times[0,1]\to Y\)，满足对任意 \(x\in X\)，有 \(H(x,0)=f(x)\)，\(H(x,1)=g(x)\)，则称 \(f\) 与 \(g\) 同伦，记作 \(f\simeq g\)。映射 \(H\) 称为从 \(f\) 到 \(g\) 的同伦。&lt;/p&gt;
+&lt;p&gt;直观而言，同伦就是将映射视为随时间连续变化的过程：在 \(t=0\) 时得到 \(f\)，在 \(t=1\) 时得到 \(g\)，中间过程始终保持连续。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="alt text" loading="lazy" src="https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E6%8B%93%E6%89%91%E4%B8%8E%E5%90%8C%E4%BC%A6/%E5%90%8C%E4%BC%A6%E4%B8%8E%E5%90%8C%E4%BC%A6%E7%AD%89%E4%BB%B7/image.png"&gt;&lt;/p&gt;
+&lt;p&gt;图片来源：&lt;a href="https://kotobank.jp/word/%E3%81%BB%E3%82%82%E3%81%A8%E3%81%B4%E3%83%BC-3170043?utm_source=chatgpt.com"&gt;kotobank.jp&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;例 2.1（凸空间中的映射同伦） 设 \(Y\) 为实向量空间中的凸子集，\(f,g:X\to Y\) 为连续映射。定义 \(H(x,t)=(1-t)f(x)+tg(x)\)，则 \(H\) 是从 \(f\) 到 \(g\) 的同伦。因此，任意两个映射到凸空间中的连续映射都同伦。&lt;/p&gt;
+&lt;p&gt;注：设 \(V\) 是一个实向量空间，\(C\subseteq V\)。如果对于任意 \(x,y\in C\) 以及任意 \(t\in[0,1]\)，都有
+\(
+tx+(1-t)y\in C,
+\) 则称 \(C\) 是一个凸集（convex set）。直观地说：凸集内任意两点之间的线段，都完全包含在这个集合中。&lt;/p&gt;</description></item><item><title>第3章:基本群</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E6%8B%93%E6%89%91%E4%B8%8E%E5%90%8C%E4%BC%A6/%E5%9F%BA%E6%9C%AC%E7%BE%A4/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E6%8B%93%E6%89%91%E4%B8%8E%E5%90%8C%E4%BC%A6/%E5%9F%BA%E6%9C%AC%E7%BE%A4/</guid><description>&lt;h1 id="第-3-章基本群"&gt;第 3 章　基本群&lt;/h1&gt;
+&lt;p&gt;The Fundamental Group&lt;/p&gt;
+&lt;p&gt;第一编 · 拓扑与同伦论&lt;/p&gt;
+&lt;h2 id="31-从闭合道路到代数结构"&gt;3.1 从闭合道路到代数结构&lt;/h2&gt;
+&lt;p&gt;上一章我们引入了同伦，研究连续映射在连续变形下的等价关系。现在考虑一个更具体的问题：给定拓扑空间 \(X\) 中的一点 \(x_0\)，能否利用从 \(x_0\) 出发又回到 \(x_0\) 的闭合道路，刻画空间的拓扑结构？&lt;/p&gt;
+&lt;p&gt;例如，圆周 \(S^1\) 上存在无法连续收缩为常值道路的闭合道路，而球面 \(S^2\) 上任意闭合道路都可以连续收缩为一点。这种差异反映了两个空间不同的拓扑结构。&lt;/p&gt;
+&lt;p&gt;基本群（Fundamental Group）正是将这种差异代数化的工具。它通过闭合道路的同伦类构造群，从而将空间中的一维拓扑信息转化为代数结构。&lt;/p&gt;
+&lt;h2 id="32-道路与道路同伦"&gt;3.2 道路与道路同伦&lt;/h2&gt;
+&lt;p&gt;定义 3.1（道路） 设 \(X\) 为拓扑空间。连续映射 \(\gamma:[0,1]\to X\) 称为一条道路，其起点为 \(\gamma(0)\)，终点为 \(\gamma(1)\)。若 \(\gamma(0)=\gamma(1)=x_0\)，则称其为以 \(x_0\) 为基点的闭合道路或环路（loop）。&lt;/p&gt;
+&lt;p&gt;定义 3.2（道路同伦） 设 \(\alpha,\beta:[0,1]\to X\) 是具有相同起点和终点的道路。若存在连续映射 \(H:[0,1]\times[0,1]\to X\)，满足 \(H(s,0)=\alpha(s)\)、\(H(s,1)=\beta(s)\)，且对任意 \(t\in[0,1]\)，有 \(H(0,t)=\alpha(0)=\beta(0)\)、\(H(1,t)=\alpha(1)=\beta(1)\)，则称 \(\alpha,\beta\) 相对端点同伦。&lt;/p&gt;
+&lt;p&gt;也就是说，道路可以在保持起点和终点不动的条件下连续变形。&lt;/p&gt;
+&lt;p&gt;特别地，当道路均以 \(x_0\) 为起点和终点时，这种同伦称为基点保持同伦。&lt;/p&gt;
+&lt;h2 id="33-道路的乘法与逆"&gt;3.3 道路的乘法与逆&lt;/h2&gt;
+&lt;p&gt;为了构造群，我们需要定义道路之间的乘法。&lt;/p&gt;
+&lt;p&gt;设 \(\alpha,\beta:[0,1]\to X\)，满足 \(\alpha(1)=\beta(0)\)。定义它们的复合道路：&lt;/p&gt;
+&lt;p&gt;\[ (\alpha*\beta)(t)= \begin{cases} \alpha(2t),&amp;amp;0\leq t\leq \frac12,\\ \beta(2t-1),&amp;amp;\frac12\leq t\leq1. \end{cases} \]&lt;/p&gt;</description></item><item><title>第5章:CW 复形与胞腔结构</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E6%8B%93%E6%89%91%E4%B8%8E%E5%90%8C%E4%BC%A6/cw%E5%A4%8D%E5%BD%A2%E4%B8%8E%E8%83%9E%E8%85%94%E7%BB%93%E6%9E%84/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E6%8B%93%E6%89%91%E4%B8%8E%E5%90%8C%E4%BC%A6/cw%E5%A4%8D%E5%BD%A2%E4%B8%8E%E8%83%9E%E8%85%94%E7%BB%93%E6%9E%84/</guid><description>&lt;h1 id="第-5-章cw-复形与胞腔结构"&gt;第 5 章　CW 复形与胞腔结构&lt;/h1&gt;
+&lt;p&gt;CW Complexes and Cell Structures&lt;/p&gt;
+&lt;p&gt;第一编 · 拓扑与同伦论&lt;/p&gt;
+&lt;h2 id="51-为什么需要-cw-复形"&gt;5.1 为什么需要 CW 复形？&lt;/h2&gt;
+&lt;p&gt;前面我们通过基本群和覆盖空间研究了拓扑空间的整体结构。但对于复杂空间，直接从开集和连续映射出发进行研究往往十分困难。我们希望找到一种方法，将空间分解为若干简单的基本单元，再通过这些单元之间的粘合关系恢复整体空间。&lt;/p&gt;
+&lt;p&gt;例如，圆周可以看作一个点和一条端点粘合的线段；球面可以看作一个点和一个圆盘沿边界粘合；环面则可以由一个二维胞腔与若干低维胞腔组合得到。&lt;/p&gt;
+&lt;p&gt;CW 复形正是实现这一思想的工具。它将拓扑空间组织成不同维数的胞腔，并通过附着映射描述它们之间的关系。&lt;/p&gt;
+&lt;p&gt;CW 复形是代数拓扑中最重要的空间模型之一。奇异同调、胞腔同调、同伦群以及谱序列等理论都与其密切相关。&lt;/p&gt;
+&lt;h2 id="52-胞腔与胞腔附着"&gt;5.2 胞腔与胞腔附着&lt;/h2&gt;
+&lt;p&gt;首先定义最基本的几何单元。&lt;/p&gt;
+&lt;p&gt;定义 5.1（$n$ 维胞腔） 设 $D^n$ 为 $n$ 维闭圆盘，其内部 $\operatorname{int}(D^n)$ 同胚于 $\mathbb R^n$。称 $\operatorname{int}(D^n)$ 为一个 $n$ 维胞腔（$n$-cell），记作 $e^n$。&lt;/p&gt;
+&lt;p&gt;其边界为 $\partial D^n=S^{n-1}$。&lt;/p&gt;
+&lt;p&gt;胞腔的核心特征是：每个 $n$ 维胞腔的内部同胚于开 $n$ 维圆盘，而其边界由低维结构构成。&lt;/p&gt;
+&lt;p&gt;定义 5.2（胞腔附着） 设 $X$ 为拓扑空间，$f:S^{n-1}\to X$ 为连续映射。将 $D^n$ 的边界点 $x\in S^{n-1}$ 与 $f(x)\in X$ 识别，所得商空间 $X\cup_f D^n$ 称为沿 $f$ 附着一个 $n$ 维胞腔所得的空间。&lt;/p&gt;</description></item><item><title>阿尔茨海默病与 Tau 蛋白病理</title><link>https://linmythos.github.io/neural-science/%E7%A5%9E%E7%BB%8F%E7%A7%91%E5%AD%A6%E7%9A%84%E5%88%86%E5%AD%90%E6%9C%BA%E5%88%B6%E4%B8%8E%E6%95%B0%E5%AD%A6%E7%89%A9%E7%90%86%E5%9F%BA%E7%A1%80/%E9%98%BF%E5%B0%94%E8%8C%A8%E6%B5%B7%E9%BB%98%E7%97%85%E4%B8%8Etau%E8%9B%8B%E7%99%BD%E7%97%85%E7%90%86/%E9%98%BF%E5%B0%94%E8%8C%A8%E6%B5%B7%E9%BB%98%E7%97%85%E7%9A%84%E7%97%85%E7%90%86%E5%9F%BA%E7%A1%80/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/neural-science/%E7%A5%9E%E7%BB%8F%E7%A7%91%E5%AD%A6%E7%9A%84%E5%88%86%E5%AD%90%E6%9C%BA%E5%88%B6%E4%B8%8E%E6%95%B0%E5%AD%A6%E7%89%A9%E7%90%86%E5%9F%BA%E7%A1%80/%E9%98%BF%E5%B0%94%E8%8C%A8%E6%B5%B7%E9%BB%98%E7%97%85%E4%B8%8Etau%E8%9B%8B%E7%99%BD%E7%97%85%E7%90%86/%E9%98%BF%E5%B0%94%E8%8C%A8%E6%B5%B7%E9%BB%98%E7%97%85%E7%9A%84%E7%97%85%E7%90%86%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="讲义25app加工aβ生成与淀粉样蛋白病理从分子结构到聚集机制"&gt;讲义25——APP加工、Aβ生成与淀粉样蛋白病理：从分子结构到聚集机制&lt;/h1&gt;
+&lt;p&gt;专题方向：分子神经生物学 · 蛋白质生物物理学 · 聚集动力学&lt;/p&gt;
+&lt;h2 id="一导言从神经退行性疾病到分子病理"&gt;一、导言：从神经退行性疾病到分子病理&lt;/h2&gt;
+&lt;p&gt;阿尔茨海默病（Alzheimer’s disease, AD）是最常见的神经退行性疾病之一。其典型病理特征包括：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;细胞外淀粉样斑块（amyloid plaques）：主要由 β-淀粉样蛋白（amyloid-β, Aβ）聚集形成。&lt;/li&gt;
+&lt;li&gt;细胞内神经原纤维缠结（neurofibrillary tangles, NFTs）：主要由异常构象的 Tau 蛋白聚集形成。&lt;/li&gt;
+&lt;li&gt;突触功能障碍与神经元损伤：与认知功能下降密切相关。&lt;/li&gt;
+&lt;li&gt;神经炎症与脑网络改变：参与疾病的发生和进展。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a href="https://images.openai.com/static-rsc-4/MqEy3g2fHWUj55JVvbAd6zoyZYI1XoxvRgdPB2qkwSMyJnZ0JxYi2-2wTYhicZt8ldNR5cnqcn9EAdXpCGgTq4CVfiUpzOWVAgYNQQabVL70U21H-PMc2kao97BE1l1gg42_UQJkf2ClZ0cmb9rmTGBDuRkDbxbnjmKpsDfK71w?purpose=inline"&gt;Biolegend Biotin (azide-free) anti-β-Amyloid, 1-16, Quantity: Each of 1 | Fisher Scientific&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://images.openai.com/static-rsc-4/pYNKhlVjTlJQlzazUzGqhWFWFaim_UoIWDu5z2Xa9bu7_rSdo2s95x-M3f4GpGP7HB8canWP1Jkrsswfoy_7Kf9fE-y230RdXOhrMkDujmb5wRFLpkycuPc0GWG30uB9oPmLqNKz2h5lvpQKAXkn9shmyDX0dMfY9EcbQhELXTQ?purpose=inline"&gt;2C2 AD NFT &amp;amp; Ghost tangles Biels 5 | Tau - Neurofibrillary Tangles, Threads &amp;amp; Plaques | Alzheimer Disease | NEURODEGENERATION | Washington University Experience&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://images.openai.com/static-rsc-4/qJPXhD3Q3Odva2Q06Z3XW5fFLHJfcUjs9A6aoYyDKS7qxdiNqPT3GlNjSJDuNzSdZio4hB7IMd2EZ3mlU7jFcz2lUUBTzMNiLzAywafuemL2Eu9dG_l9HTeZJJHOJkw6DywLl4YWvb7tttoDPacD8Bfel_RGt4G3zonyuZkqtrE?purpose=inline"&gt;Publisher of Open Access Journals | MDPI&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://images.openai.com/static-rsc-4/jLWsiJIb7nfU6CoMyRv-b799O1ClNvRytpk-gWx9FU_YyeJ3DFN92G7d_C7wXYgN-vFSO3N_y5pzzuI71V8g6c2KdRFXo8pFW5eu3iPMuGXHiOEGGSkuvrvv0vX5QEejvoT5Aek3ib2EmR6cHC_dHwbbPu-D7WzYLANAx-9PlXk?purpose=inline"&gt;Neuropathology of Alzheimer&amp;rsquo;s Disease - PMC&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Bell 不等式与量子非局域性</title><link>https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/bell%E4%B8%8D%E7%AD%89%E5%BC%8F%E4%B8%8E%E9%87%8F%E5%AD%90%E9%9D%9E%E5%B1%80%E5%9F%9F%E6%80%A7/</link><pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/bell%E4%B8%8D%E7%AD%89%E5%BC%8F%E4%B8%8E%E9%87%8F%E5%AD%90%E9%9D%9E%E5%B1%80%E5%9F%9F%E6%80%A7/</guid><description>&lt;h1 id="量子信息与量子计算基础讲义四"&gt;量子信息与量子计算基础讲义（四）&lt;/h1&gt;
+&lt;h2 id="第一章bell-实验关联从何而来"&gt;第一章　Bell 实验：关联从何而来？&lt;/h2&gt;
+&lt;h3 id="11-双方测量场景"&gt;1.1 双方测量场景&lt;/h3&gt;
+&lt;p&gt;考虑两个相距较远的实验者 Alice 与 Bob。二人共享一个双量子比特态&lt;/p&gt;
+&lt;p&gt;\[
+\rho_{AB}\in\mathcal D(\mathcal H_A\otimes\mathcal H_B).
+\]&lt;/p&gt;
+&lt;p&gt;Alice 可以从两个测量设置中选择一个：&lt;/p&gt;
+&lt;p&gt;\[
+x\in{0,1},
+\]&lt;/p&gt;
+&lt;p&gt;Bob 同样可以选择：&lt;/p&gt;
+&lt;p&gt;\[
+y\in{0,1}.
+\]&lt;/p&gt;
+&lt;p&gt;双方各自得到一个二值结果：&lt;/p&gt;
+&lt;p&gt;\[
+a,b\in{-1,+1}.
+\]&lt;/p&gt;
+&lt;p&gt;实验的统计结果由条件概率分布描述：&lt;/p&gt;
+&lt;p&gt;\[
+p(a,b|x,y).
+\]&lt;/p&gt;
+&lt;p&gt;它表示：在 Alice 选择测量 \(x\)、Bob 选择测量 \(y\) 的条件下，二人分别获得结果 \(a,b\) 的联合概率。&lt;/p&gt;
+&lt;p&gt;对于量子系统，若双方的测量分别由 POVM 元素&lt;/p&gt;
+&lt;p&gt;\[
+{E_{a|x}}&lt;em&gt;a,\qquad {F&lt;/em&gt;{b|y}}_b
+\]&lt;/p&gt;
+&lt;p&gt;描述，则 Born 规则给出&lt;/p&gt;
+&lt;h1 id="pabxy"&gt;\[
 \boxed{
-\text{有限样本}\longrightarrow\text{未知规律}
+p(a,b|x,y)&lt;/h1&gt;
+&lt;p&gt;\operatorname{Tr}
+\left[
+\rho_{AB}
+(E_{a|x}\otimes F_{b|y})
+\right].
 }
-]&lt;/p&gt;
-&lt;p&gt;机器学习的核心并不是简单地记忆数据，而是从有限观测中提取能够推广到新样本的规律。&lt;/p&gt;
-&lt;p&gt;本讲将从数学角度解释这一过程。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h1 id="一机器学习的数学形式化"&gt;一、机器学习的数学形式化&lt;/h1&gt;
-&lt;h2 id="11-数据与未知分布"&gt;1.1 数据与未知分布&lt;/h2&gt;
-&lt;p&gt;设输入空间为 (\mathcal X)，输出空间为 (\mathcal Y)。&lt;/p&gt;
-&lt;p&gt;数据由某个未知概率分布生成：&lt;/p&gt;
-&lt;p&gt;[
-(X,Y)\sim P.
-]&lt;/p&gt;
-&lt;p&gt;我们观察到独立同分布的训练样本：&lt;/p&gt;
-&lt;p&gt;[
-S={(x_1,y_1),(x_2,y_2),\ldots,(x_n,y_n)}.
-]&lt;/p&gt;
-&lt;p&gt;即：&lt;/p&gt;
-&lt;p&gt;[
-(x_i,y_i)\overset{\mathrm{i.i.d.}}{\sim}P.
-]&lt;/p&gt;
-&lt;p&gt;这里有三个重要对象：&lt;/p&gt;
+\]&lt;/p&gt;
+&lt;p&gt;这里的局域性体现在 Alice 的测量算符只作用于 \(\mathcal H_A\)，Bob 的测量算符只作用于 \(\mathcal H_B\)。&lt;/p&gt;</description></item><item><title>神经科学与神经系统的物理基础</title><link>https://linmythos.github.io/neural-science/%E7%A5%9E%E7%BB%8F%E7%A7%91%E5%AD%A6%E7%9A%84%E5%88%86%E5%AD%90%E6%9C%BA%E5%88%B6%E4%B8%8E%E6%95%B0%E5%AD%A6%E7%89%A9%E7%90%86%E5%9F%BA%E7%A1%80/%E7%A5%9E%E7%BB%8F%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%89%A9%E7%90%86%E5%9F%BA%E7%A1%80/%E7%A5%9E%E7%BB%8F%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84/</link><pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/neural-science/%E7%A5%9E%E7%BB%8F%E7%A7%91%E5%AD%A6%E7%9A%84%E5%88%86%E5%AD%90%E6%9C%BA%E5%88%B6%E4%B8%8E%E6%95%B0%E5%AD%A6%E7%89%A9%E7%90%86%E5%9F%BA%E7%A1%80/%E7%A5%9E%E7%BB%8F%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%89%A9%E7%90%86%E5%9F%BA%E7%A1%80/%E7%A5%9E%E7%BB%8F%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84/</guid><description>&lt;h1 id="专题系列神经科学的分子机制与数学物理基础"&gt;专题系列：神经科学的分子机制与数学物理基础&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://images.openai.com/static-rsc-4/uEyggICVyo9adw3wLoUUJCzFelUIeUe0nZr2ZQrZif-v5bHw1hZUTb7YRTFcsl1ZrCYXffZVZaBciZ3eK0Lr_tjfX5L_VOzmkCKDzCcu7-IFBLbWj1olZDI2saj9Ei_6KoXMDGXwZEFP1EcOGkuCgXGDMqG-ylnApPLDdxKkBaM?purpose=inline"&gt;Examining Alzheimer’s Disease from chromatin to cell state | 10x Genomics&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://images.openai.com/static-rsc-4/UGJn6wUM3es-hYZQQraywJTEB-kRR6qXjWSJ8QpZnLf9-_20LuD6t590z1djp-pXvPGeLRKthB0YHEtO4ivETtU4TOQYHXjd9YoOWvg-U9krHVYc8NP4ak4Rj6_oXzgyDlq017Npqb50Ay9A9jI2HDW_b6i-VgwOW0YIBxqlR24?purpose=inline"&gt;Remodeling myelination: implications for mechanisms of neural plasticity | Nature Neuroscience&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://images.openai.com/static-rsc-4/isxkhecNDcAdgjxzQTDhJ-162kHVrSs2I1SoJHaCxoYW7hI0da6ApEWiQajetFTfh5loPE9keTfjsCtDHbMbfrLnRkztG69Ojc23-rzIE7mX7Gf-__0nCGIuGodOzp3OSXPo_l7dh0D4F167Ei6rSca5fQG85Qy_RAVAuOTaQLc?purpose=inline"&gt;The NewroBus platform: engineered humanized anti-TfR1 nanobodies for efficient brain delivery | Cell Communication and Signaling | Springer Nature Link&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;10&lt;/p&gt;
+&lt;h2 id="一总体规划"&gt;一、总体规划&lt;/h2&gt;
+&lt;p&gt;我建议分成五册，共约 20 篇讲义。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;册次&lt;/th&gt;
+&lt;th&gt;主题&lt;/th&gt;
+&lt;th&gt;核心问题&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;第一册&lt;/td&gt;
+&lt;td&gt;神经科学与神经系统的物理基础&lt;/td&gt;
+&lt;td&gt;神经系统如何工作？&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;第二册&lt;/td&gt;
+&lt;td&gt;阿尔茨海默病与 Tau 蛋白病理&lt;/td&gt;
+&lt;td&gt;蛋白质异常如何导致神经退行性改变？&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;第三册&lt;/td&gt;
+&lt;td&gt;蛋白质降解与抗体治疗&lt;/td&gt;
+&lt;td&gt;如何设计分子层面的治疗策略？&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;第四册&lt;/td&gt;
+&lt;td&gt;血脑屏障与神经药物递送&lt;/td&gt;
+&lt;td&gt;如何把药物送入大脑？&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;第五册&lt;/td&gt;
+&lt;td&gt;SELENOF、MYRF 与脑髓鞘形成&lt;/td&gt;
+&lt;td&gt;分子调控如何决定神经细胞成熟？&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;此外，最后会安排一篇综合性的数学物理专题，把前面出现的动力学、统计物理、分子结合、反应扩散、网络科学和信息论串联起来。&lt;/p&gt;</description></item><item><title>第 11 章　上同调群</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%87%A0%E4%BD%95%E4%B8%8E%E4%B8%8A%E5%90%8C%E8%B0%83/%E4%B8%8A%E5%90%8C%E8%B0%83%E7%BE%A4/</link><pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%87%A0%E4%BD%95%E4%B8%8E%E4%B8%8A%E5%90%8C%E8%B0%83/%E4%B8%8A%E5%90%8C%E8%B0%83%E7%BE%A4/</guid><description>&lt;h1 id="第-11-章上同调群cohomology-groups"&gt;第 11 章　上同调群（Cohomology Groups）&lt;/h1&gt;
+&lt;p&gt;第二编：同调理论&lt;/p&gt;
+&lt;p&gt;同调理论通过链复形研究拓扑空间中的洞，但它主要提供的是一组 Abel 群。事实上，拓扑空间还具有更丰富的代数结构，而上同调正是揭示这些结构的重要工具。&lt;/p&gt;
+&lt;p&gt;上同调并不是简单地重新定义一遍同调。它通过对链群取 Hom，将链复形转化为上链复形，并由此得到一系列新的代数不变量。与同调的协变性不同，上同调具有反变性；更重要的是，上同调群之间还可以进一步定义乘法，从而形成上同调环。这将是下一章的主题。&lt;/p&gt;
+&lt;h2 id="111-上链复形"&gt;11.1 上链复形&lt;/h2&gt;
+&lt;p&gt;设 \(C_\bullet(X)\) 是拓扑空间 \(X\) 的奇异链复形。定义第 \(n\) 阶奇异上链群为&lt;/p&gt;
+&lt;p&gt;\[ C^n(X;G)=\operatorname{Hom}(C_n(X),G), \]&lt;/p&gt;
+&lt;p&gt;其中 \(G\) 是一个 Abel 群，称为系数群。上链是从奇异链群到系数群的群同态。特别地，当 \(G=\mathbb Z\) 时，简记为 \(C^n(X)\)。&lt;/p&gt;
+&lt;p&gt;由于链群之间存在边界算子 \(\partial_n:C_n(X)\to C_{n-1}(X)\)，可以通过复合定义上边界算子&lt;/p&gt;
+&lt;p&gt;\[ \delta^n:C^n(X;G)\longrightarrow C^{n+1}(X;G), \qquad \delta^n(\varphi)=\varphi\circ\partial_{n+1}. \]&lt;/p&gt;
+&lt;p&gt;也就是说，对任意 \(c\in C_{n+1}(X)\)，有 \((\delta^n\varphi)(c)=\varphi(\partial_{n+1}c)\)。&lt;/p&gt;
+&lt;p&gt;由于 \(\partial^2=0\)，有 \(\delta^{n+1}\delta^n=0\)。因此得到上链复形：&lt;/p&gt;
+&lt;p&gt;\[ 0\longrightarrow C^0(X;G) \xrightarrow{\delta^0}C^1(X;G) \xrightarrow{\delta^1}C^2(X;G) \xrightarrow{\delta^2}\cdots. \]&lt;/p&gt;
+&lt;p&gt;注意方向与链复形相反：链复形的边界算子降低维数，而上链复形的上边界算子提高次数。&lt;/p&gt;
+&lt;h2 id="112-上同调群"&gt;11.2 上同调群&lt;/h2&gt;
+&lt;p&gt;定义第 \(n\) 阶上循环群与上边界群分别为 \(Z^n(X;G)=\ker\delta^n\) 和 \(B^n(X;G)=\operatorname{im}\delta^{n-1}\)。由 \(\delta^2=0\)，有 \(B^n(X;G)\subseteq Z^n(X;G)\)，因此定义第 \(n\) 阶上同调群：&lt;/p&gt;
+&lt;p&gt;\[ \boxed{ H^n(X;G)= \frac{\ker\delta^n}{\operatorname{im}\delta^{n-1}}. } \]&lt;/p&gt;</description></item><item><title>第 12 章　杯积与上同调环</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%87%A0%E4%BD%95%E4%B8%8E%E4%B8%8A%E5%90%8C%E8%B0%83/%E6%9D%AF%E7%A7%AF%E4%B8%8E%E4%B8%8A%E5%90%8C%E8%B0%83%E7%8E%AF/</link><pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%87%A0%E4%BD%95%E4%B8%8E%E4%B8%8A%E5%90%8C%E8%B0%83/%E6%9D%AF%E7%A7%AF%E4%B8%8E%E4%B8%8A%E5%90%8C%E8%B0%83%E7%8E%AF/</guid><description>&lt;h1 id="第-12-章杯积与上同调环cup-products-and-cohomology-rings"&gt;第 12 章　杯积与上同调环（Cup Products and Cohomology Rings）&lt;/h1&gt;
+&lt;p&gt;第二编：同调理论&lt;/p&gt;
+&lt;p&gt;上一章建立了上同调群 \(H^n(X;G)\)，并说明它们是拓扑空间的反变不变量。然而，仅仅知道各阶上同调群，还不足以完整揭示空间的代数结构。一个更深刻的问题是：不同次数的上同调类之间能否定义自然的乘法？&lt;/p&gt;
+&lt;p&gt;答案是肯定的。通过杯积（cup product），可以将一个 \(p\) 阶上同调类与一个 \(q\) 阶上同调类相乘，得到一个 \(p+q\) 阶上同调类。所有次数的上同调群由此组成一个分次环，称为上同调环（cohomology ring）。它不仅记录各阶上同调群，还记录不同维度拓扑信息之间的相互作用。&lt;/p&gt;
+&lt;h2 id="121-外积与对角映射"&gt;12.1 外积与对角映射&lt;/h2&gt;
+&lt;p&gt;杯积的构造建立在两个基本操作之上：外积与对角映射。&lt;/p&gt;
+&lt;p&gt;设 \(X,Y\) 为拓扑空间，\(\alpha\in H^p(X;R)\)、\(\beta\in H^q(Y;R)\)，其中 \(R\) 是交换环。可以定义外积&lt;/p&gt;
+&lt;p&gt;\[ \alpha\times\beta\in H^{p+q}(X\times Y;R). \]&lt;/p&gt;
+&lt;p&gt;它将两个空间上的上同调类组合成乘积空间上的上同调类。&lt;/p&gt;
+&lt;p&gt;另一方面，对任意拓扑空间 \(X\)，定义对角映射 \(\Delta:X\to X\times X\)，满足 \(\Delta(x)=(x,x)\)。由于上同调具有反变性，对角映射诱导拉回 \(\Delta^*:H^*(X\times X;R)\to H^*(X;R)\)。&lt;/p&gt;
+&lt;p&gt;于是定义杯积：&lt;/p&gt;
+&lt;p&gt;\[ \boxed{ \alpha\smile\beta = \Delta^*(\alpha\times\beta). } \]&lt;/p&gt;
+&lt;p&gt;其中 \(\alpha\in H^p(X;R)\)、\(\beta\in H^q(X;R)\)，而 \(\alpha\smile\beta\in H^{p+q}(X;R)\)。这一定义揭示了杯积的几何本质：先将两个上同调类放到乘积空间上，再沿对角映射拉回到原空间。&lt;/p&gt;
+&lt;h2 id="122-奇异上链上的杯积"&gt;12.2 奇异上链上的杯积&lt;/h2&gt;
+&lt;p&gt;为了进行具体计算，需要在上链层面定义杯积。设 \(\varphi\in C^p(X;R)\)、\(\psi\in C^q(X;R)\)。对任意奇异 \((p+q)\)-单形 \(\sigma:\Delta^{p+q}\to X\)，定义&lt;/p&gt;
+&lt;p&gt;\[ (\varphi\smile\psi)(\sigma) = \varphi(\sigma|[v_0,\ldots,v_p]) \cdot \psi(\sigma|[v_p,\ldots,v_{p+q}]). \]&lt;/p&gt;</description></item><item><title>量子信息与量子计算基础讲义（八）量子纠缠的实验制备与表征：从 SPDC 到量子态层析</title><link>https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E7%BA%A0%E7%BC%A0%E7%9A%84%E5%AE%9E%E9%AA%8C%E5%88%B6%E5%A4%87%E4%B8%8E%E8%A1%A8%E5%BE%81/</link><pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E7%BA%A0%E7%BC%A0%E7%9A%84%E5%AE%9E%E9%AA%8C%E5%88%B6%E5%A4%87%E4%B8%8E%E8%A1%A8%E5%BE%81/</guid><description>&lt;h2 id="第一章实验问题如何知道一个量子态是纠缠态"&gt;第一章　实验问题：如何知道一个量子态是纠缠态？&lt;/h2&gt;
+&lt;h3 id="11-理论态与实验态"&gt;1.1 理论态与实验态&lt;/h3&gt;
+&lt;p&gt;在理想理论模型中，我们可以写出 Bell 态：&lt;/p&gt;
+&lt;h1 id="phirangle"&gt;\[
+|\Phi^+\rangle&lt;/h1&gt;
+&lt;p&gt;\frac1{\sqrt2}(|00\rangle+|11\rangle).
+\]&lt;/p&gt;
+&lt;p&gt;对应密度算符为&lt;/p&gt;
+&lt;h1 id="rho_phi"&gt;\[
+\rho_{\Phi^+}&lt;/h1&gt;
+&lt;p&gt;|\Phi^+\rangle\langle\Phi^+|.
+\]&lt;/p&gt;
+&lt;p&gt;展开：&lt;/p&gt;
+&lt;p&gt;\[
+\begin{aligned}
+\rho_{\Phi^+}
+=\frac12(&amp;amp;|00\rangle\langle00|
++|00\rangle\langle11|\
+&amp;amp;+|11\rangle\langle00|
++|11\rangle\langle11|).
+\end{aligned}
+\]&lt;/p&gt;
+&lt;p&gt;但真实实验中，制备过程受到各种噪声影响。&lt;/p&gt;
+&lt;p&gt;实际获得的状态一般不是理想 Bell 态，而是某个未知密度矩阵：&lt;/p&gt;
+&lt;p&gt;\[
+\rho_{\mathrm{exp}}.
+\]&lt;/p&gt;
+&lt;p&gt;实验者真正需要回答的是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;实际制备出的量子态是什么？&lt;/li&gt;
+&lt;li&gt;它与目标 Bell 态有多接近？&lt;/li&gt;
+&lt;li&gt;它是否确实是纠缠态？&lt;/li&gt;
+&lt;li&gt;统计误差是否足以支持实验结论？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这四个问题分别对应：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;(P)：真实的数据生成分布；&lt;/li&gt;
-&lt;li&gt;(S)：有限的训练样本；&lt;/li&gt;
-&lt;li&gt;(f)：我们希望学习的预测函数。&lt;/li&gt;
+&lt;li&gt;量子态层析；&lt;/li&gt;
+&lt;li&gt;态保真度；&lt;/li&gt;
+&lt;li&gt;纠缠见证；&lt;/li&gt;
+&lt;li&gt;统计推断。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;机器学习算法根据样本 (S)，从某个函数集合中选择模型：&lt;/p&gt;
-&lt;p&gt;[
-\mathcal H={f_\theta:\theta\in\Theta}.
-]&lt;/p&gt;
-&lt;p&gt;因此，学习过程可以抽象为：&lt;/p&gt;
-&lt;p&gt;[
-A:S\longmapsto \widehat f.
-]&lt;/p&gt;
-&lt;p&gt;其中 (A) 是学习算法，(\widehat f) 是训练得到的模型。&lt;/p&gt;
-&lt;p&gt;注意：学习算法并不知道真实分布 (P)，它只能利用有限样本间接推断规律。&lt;/p&gt;</description></item><item><title>智能计算系统：从数学原理到芯片设计</title><link>https://linmythos.github.io/ai/%E8%8A%AF%E7%89%87%E8%AE%BE%E8%AE%A1/</link><pubDate>Wed, 04 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/ai/%E8%8A%AF%E7%89%87%E8%AE%BE%E8%AE%A1/</guid><description>&lt;h2 id="第一册计算系统与性能基础"&gt;第一册：计算系统与性能基础&lt;/h2&gt;
+&lt;hr&gt;
+&lt;h2 id="第二章spdc纠缠光子对的产生"&gt;第二章　SPDC：纠缠光子对的产生&lt;/h2&gt;
+&lt;h3 id="21-自发参量下转换"&gt;2.1 自发参量下转换&lt;/h3&gt;
+&lt;p&gt;自发参量下转换（Spontaneous Parametric Down-Conversion, SPDC）是一种常见的纠缠光子源技术。&lt;/p&gt;
+&lt;p&gt;当高频泵浦光进入具有二阶非线性极化率的晶体时，可能发生一个泵浦光子转化为两个低频光子的过程。&lt;/p&gt;
+&lt;p&gt;通常称为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;泵浦光子：pump；&lt;/li&gt;
+&lt;li&gt;信号光子：signal；&lt;/li&gt;
+&lt;li&gt;闲置光子：idler。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;能量守恒要求&lt;/p&gt;
+&lt;p&gt;\[
+\boxed{
+\omega_p=\omega_s+\omega_i.
+}
+\]&lt;/p&gt;
+&lt;p&gt;在理想的相位匹配条件下，还要求动量守恒：&lt;/p&gt;
+&lt;p&gt;\[
+\boxed{
+\vec k_p=\vec k_s+\vec k_i.
+}
+\]&lt;/p&gt;</description></item><item><title>量子关联与量子网络：凸几何、Bell 场景与网络非局域性</title><link>https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E5%85%B3%E8%81%94%E4%B8%8E%E9%87%8F%E5%AD%90%E7%BD%91%E7%BB%9C/</link><pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E5%85%B3%E8%81%94%E4%B8%8E%E9%87%8F%E5%AD%90%E7%BD%91%E7%BB%9C/</guid><description>&lt;h2 id="第一章从-bell-不等式到相关集合"&gt;第一章　从 Bell 不等式到相关集合&lt;/h2&gt;
+&lt;h3 id="11-bell-实验的概率描述"&gt;1.1 Bell 实验的概率描述&lt;/h3&gt;
+&lt;p&gt;考虑两个空间分离的实验者 Alice 和 Bob。&lt;/p&gt;
+&lt;p&gt;Alice 的测量设置为&lt;/p&gt;
+&lt;p&gt;\[
+x\in\mathcal X,
+\]&lt;/p&gt;
+&lt;p&gt;测量结果为&lt;/p&gt;
+&lt;p&gt;\[
+a\in\mathcal A.
+\]&lt;/p&gt;
+&lt;p&gt;Bob 的测量设置为&lt;/p&gt;
+&lt;p&gt;\[
+y\in\mathcal Y,
+\]&lt;/p&gt;
+&lt;p&gt;测量结果为&lt;/p&gt;
+&lt;p&gt;\[
+b\in\mathcal B.
+\]&lt;/p&gt;
+&lt;p&gt;整个实验由条件概率分布&lt;/p&gt;
+&lt;p&gt;\[
+\boxed{p(a,b|x,y)}
+\]&lt;/p&gt;
+&lt;p&gt;描述。&lt;/p&gt;
+&lt;p&gt;对于固定的输入集合和输出集合，一个 Bell 场景对应一个有限维概率空间。&lt;/p&gt;
+&lt;p&gt;例如，CHSH 场景中：&lt;/p&gt;
+&lt;p&gt;\[
+\mathcal X=\mathcal Y={0,1},
+\]&lt;/p&gt;
+&lt;p&gt;\[
+\mathcal A=\mathcal B={-1,+1}.
+\]&lt;/p&gt;
+&lt;p&gt;因此共有&lt;/p&gt;
+&lt;p&gt;\[
+2\times2\times2\times2=16
+\]&lt;/p&gt;
+&lt;p&gt;个条件概率。&lt;/p&gt;
+&lt;p&gt;但这些概率并非相互独立，因为每组输入都必须满足归一化：&lt;/p&gt;
+&lt;p&gt;\[
+\sum_{a,b}p(a,b|x,y)=1.
+\]&lt;/p&gt;
+&lt;p&gt;此外，若要求无信号，还需要满足额外约束。&lt;/p&gt;
+&lt;h3 id="12-无信号相关集合"&gt;1.2 无信号相关集合&lt;/h3&gt;
+&lt;p&gt;定义 Alice 的边缘概率：&lt;/p&gt;
+&lt;p&gt;\[
+p_A(a|x,y)=\sum_b p(a,b|x,y).
+\]&lt;/p&gt;</description></item><item><title>量子态、密度算符与复合系统</title><link>https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E6%80%81%E5%AF%86%E5%BA%A6%E7%AE%97%E7%AC%A6%E4%B8%8E%E5%A4%8D%E5%90%88%E7%B3%BB%E7%BB%9F/</link><pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E6%80%81%E5%AF%86%E5%BA%A6%E7%AE%97%E7%AC%A6%E4%B8%8E%E5%A4%8D%E5%90%88%E7%B3%BB%E7%BB%9F/</guid><description>&lt;h1 id="量子信息与量子计算基础讲义一"&gt;量子信息与量子计算基础讲义（一）&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Quantum States, Density Operators and Composite Systems&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="本篇目标"&gt;本篇目标&lt;/h2&gt;
+&lt;p&gt;本篇建立量子信息理论的数学基础。&lt;/p&gt;
+&lt;p&gt;完成本篇后，应当能够：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;理解量子态与希尔伯特空间的关系；&lt;/li&gt;
+&lt;li&gt;熟练使用 Dirac 符号；&lt;/li&gt;
+&lt;li&gt;理解纯态、混态与密度算符；&lt;/li&gt;
+&lt;li&gt;从统计混合构造密度矩阵；&lt;/li&gt;
+&lt;li&gt;掌握张量积与复合量子系统；&lt;/li&gt;
+&lt;li&gt;理解纠缠态与可分态；&lt;/li&gt;
+&lt;li&gt;熟练计算偏迹；&lt;/li&gt;
+&lt;li&gt;理解整体纯态与局部混态之间的关系；&lt;/li&gt;
+&lt;li&gt;掌握量子比特的 Bloch 球表示。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;本篇不预设读者已经学习过量子信息，只要求具备复线性代数的基本知识。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id="第一章-希尔伯特空间与量子态"&gt;第一章 希尔伯特空间与量子态&lt;/h1&gt;
+&lt;h2 id="11-量子态的数学载体"&gt;1.1 量子态的数学载体&lt;/h2&gt;
+&lt;p&gt;经典力学中，一个粒子的状态可以由位置和动量描述：&lt;/p&gt;
+&lt;p&gt;\[
+(q,p)\in\Gamma,
+\]&lt;/p&gt;
+&lt;p&gt;其中 \(\Gamma\) 是相空间。&lt;/p&gt;
+&lt;p&gt;量子力学采用不同的数学结构：一个纯量子态由复希尔伯特空间中的单位向量描述。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;定义 1.1（希尔伯特空间）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;复内积空间 \(\mathcal H\) 若关于由内积诱导的范数完备，则称为复希尔伯特空间。&lt;/p&gt;
+&lt;p&gt;量子信息中最常见的是有限维希尔伯特空间：&lt;/p&gt;
+&lt;p&gt;\[
+\mathcal H=\mathbb C^d.
+\]&lt;/p&gt;
+&lt;p&gt;在量子比特系统中：&lt;/p&gt;
+&lt;p&gt;\[
+\mathcal H=\mathbb C^2.
+\]&lt;/p&gt;
+&lt;p&gt;我们通常选取一组标准正交基：&lt;/p&gt;
+&lt;p&gt;\[
+|0\rangle=
+\begin{pmatrix}
+1\0
+\end{pmatrix},
+\qquad
+|1\rangle=
+\begin{pmatrix}
+0\1
+\end{pmatrix}.
+\]&lt;/p&gt;
+&lt;p&gt;它们满足：&lt;/p&gt;
+&lt;p&gt;\[
+\langle0|0\rangle=1,
+\qquad
+\langle1|1\rangle=1,
+\]&lt;/p&gt;</description></item><item><title>量子测量不相容性：联合可测性、噪声与量子关联</title><link>https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E6%B5%8B%E9%87%8F%E4%B8%8D%E7%9B%B8%E5%AE%B9%E6%80%A7/</link><pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E6%B5%8B%E9%87%8F%E4%B8%8D%E7%9B%B8%E5%AE%B9%E6%80%A7/</guid><description>&lt;h2 id="第一章为什么需要测量不相容性"&gt;第一章　为什么需要测量不相容性？&lt;/h2&gt;
+&lt;h3 id="11-一个基本问题"&gt;1.1 一个基本问题&lt;/h3&gt;
+&lt;p&gt;考虑单量子比特的两个投影测量：&lt;/p&gt;
+&lt;p&gt;\[
+X=\sigma_x,\qquad Z=\sigma_z.
+\]&lt;/p&gt;
+&lt;p&gt;对应的投影算符分别为&lt;/p&gt;
+&lt;p&gt;\[
+P_{\pm|X}=\frac12(I\pm\sigma_x),
+\]&lt;/p&gt;
+&lt;p&gt;\[
+P_{\pm|Z}=\frac12(I\pm\sigma_z).
+\]&lt;/p&gt;
+&lt;p&gt;由于&lt;/p&gt;
+&lt;p&gt;\[
+[\sigma_x,\sigma_z]=-2i\sigma_y\ne0,
+\]&lt;/p&gt;
+&lt;p&gt;这两个观测量不对易。&lt;/p&gt;
+&lt;p&gt;因此，它们不能被看作同一个锐利测量的两个经典后处理。&lt;/p&gt;
+&lt;p&gt;但是，我们需要更精确地回答：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;两个测量究竟在什么意义下不能同时实现？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这里不能简单地说“不对易就不能同时测量”，因为一般 POVM 的相容性与其对应效应算符是否对易并不完全等价。&lt;/p&gt;
+&lt;p&gt;正确的概念是联合可测性（joint measurability）。&lt;/p&gt;
+&lt;h3 id="12-联合可测性的直观含义"&gt;1.2 联合可测性的直观含义&lt;/h3&gt;
+&lt;p&gt;假设有两个测量：&lt;/p&gt;
+&lt;p&gt;\[
+\mathsf A={A_{a|x}}&lt;em&gt;a,
+\qquad
+\mathsf B={B&lt;/em&gt;{b|y}}_b.
+\]&lt;/p&gt;
+&lt;p&gt;它们相容，意味着存在一个共同测量&lt;/p&gt;
+&lt;p&gt;\[
+\mathsf G={G_{ab}}_{a,b},
+\]&lt;/p&gt;
+&lt;p&gt;使得&lt;/p&gt;
+&lt;p&gt;\[
+\boxed{
+A_a=\sum_bG_{ab},
+\qquad
+B_b=\sum_aG_{ab}.
+}
+\]&lt;/p&gt;
+&lt;p&gt;这里&lt;/p&gt;
+&lt;p&gt;\[
+G_{ab}\ge0,\qquad
+\sum_{a,b}G_{ab}=I.
+\]&lt;/p&gt;
+&lt;p&gt;换言之，先执行联合测量，获得联合结果 \((a,b)\)，再分别忽略其中一个结果，就可以得到原来的两个测量统计。&lt;/p&gt;
+&lt;p&gt;这正是联合可测性的数学定义。&lt;/p&gt;
+&lt;h3 id="13-定义"&gt;1.3 定义&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;定义 1.1（联合可测性）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;两个 POVM&lt;/p&gt;
+&lt;p&gt;\[
+\mathsf A={A_a}_a,\qquad
+\mathsf B={B_b}_b
+\]&lt;/p&gt;</description></item><item><title>量子测量理论：投影测量、POVM 与量子仪器</title><link>https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E6%B5%8B%E9%87%8F%E7%90%86%E8%AE%BA/</link><pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E6%B5%8B%E9%87%8F%E7%90%86%E8%AE%BA/</guid><description>&lt;p&gt;&lt;strong&gt;Quantum Measurement Theory: Projective Measurements, POVMs and Quantum Instruments&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="本篇目标"&gt;本篇目标&lt;/h2&gt;
+&lt;p&gt;本篇系统建立量子测量的数学理论。&lt;/p&gt;
+&lt;p&gt;完成本篇后，应当能够：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;从 Born 规则理解量子测量概率；&lt;/li&gt;
+&lt;li&gt;掌握可观测量的谱分解；&lt;/li&gt;
+&lt;li&gt;理解投影测量及其测量后状态；&lt;/li&gt;
+&lt;li&gt;区分投影测量与一般 POVM；&lt;/li&gt;
+&lt;li&gt;掌握 POVM 的构造与概率计算；&lt;/li&gt;
+&lt;li&gt;理解测量算符与 Kraus 表示；&lt;/li&gt;
+&lt;li&gt;理解量子仪器及测量反作用；&lt;/li&gt;
+&lt;li&gt;掌握 Naimark 扩张定理；&lt;/li&gt;
+&lt;li&gt;理解测量对量子态的退相干作用；&lt;/li&gt;
+&lt;li&gt;为后续测量不相容性、Bell 实验和 QRAC 建立数学基础。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h1 id="第一章-量子测量的基本问题"&gt;第一章 量子测量的基本问题&lt;/h1&gt;
+&lt;h2 id="11-从量子态到测量结果"&gt;1.1 从量子态到测量结果&lt;/h2&gt;
+&lt;p&gt;在第一篇中，我们建立了量子态的数学描述：&lt;/p&gt;
+&lt;p&gt;\[
+\rho\geq0,\qquad
+\operatorname{Tr}(\rho)=1.
+\]&lt;/p&gt;
+&lt;p&gt;量子态本身并不是实验中直接读取的物理量。实验者需要通过测量获得经典结果。&lt;/p&gt;
+&lt;p&gt;例如，一个量子比特处于：&lt;/p&gt;
+&lt;h1 id="psirangle"&gt;\[
+|\psi\rangle&lt;/h1&gt;
+&lt;p&gt;\alpha|0\rangle+\beta|1\rangle.
+\]&lt;/p&gt;
+&lt;p&gt;若在计算基：&lt;/p&gt;
+&lt;p&gt;\[
+{|0\rangle,|1\rangle}
+\]&lt;/p&gt;
+&lt;p&gt;下测量，实验结果只有两种可能：&lt;/p&gt;
+&lt;p&gt;\[
+0,\qquad 1.
+\]&lt;/p&gt;
+&lt;p&gt;对应概率为：&lt;/p&gt;
+&lt;p&gt;\[
+p(0)=|\alpha|^2,
+\]&lt;/p&gt;
+&lt;p&gt;\[
+p(1)=|\beta|^2.
+\]&lt;/p&gt;
+&lt;p&gt;因此，量子测量涉及三个问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可能出现哪些结果？&lt;/li&gt;
+&lt;li&gt;每种结果出现的概率是多少？&lt;/li&gt;
+&lt;li&gt;测量后系统处于什么状态？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这三个问题共同构成量子测量理论。&lt;/p&gt;</description></item><item><title>量子纠缠与量子关联</title><link>https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E7%BA%A0%E7%BC%A0%E4%B8%8E%E9%87%8F%E5%AD%90%E5%85%B3%E8%81%94/</link><pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E7%BA%A0%E7%BC%A0%E4%B8%8E%E9%87%8F%E5%AD%90%E5%85%B3%E8%81%94/</guid><description>&lt;h1 id="量子信息与量子计算基础讲义三"&gt;量子信息与量子计算基础讲义（三）&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Quantum Entanglement and Quantum Correlations&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="本篇目标"&gt;本篇目标&lt;/h2&gt;
+&lt;p&gt;本篇系统研究量子纠缠及其统计关联结构。&lt;/p&gt;
+&lt;p&gt;完成本篇后，应当能够：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;理解纠缠的数学定义及物理意义；&lt;/li&gt;
+&lt;li&gt;熟练使用 Schmidt 分解；&lt;/li&gt;
+&lt;li&gt;掌握纯态纠缠的判定；&lt;/li&gt;
+&lt;li&gt;理解混态可分性；&lt;/li&gt;
+&lt;li&gt;掌握部分转置与 PPT 判据；&lt;/li&gt;
+&lt;li&gt;理解纠缠见证；&lt;/li&gt;
+&lt;li&gt;掌握 Bell 态的关联性质；&lt;/li&gt;
+&lt;li&gt;区分纠缠、量子关联与 Bell 非局域性；&lt;/li&gt;
+&lt;li&gt;理解量子 steering；&lt;/li&gt;
+&lt;li&gt;为 QRAC、Bell 不等式和测量不相容性建立理论基础。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h1 id="第一章-纠缠的基本概念"&gt;第一章 纠缠的基本概念&lt;/h1&gt;
+&lt;h2 id="11-从复合系统出发"&gt;1.1 从复合系统出发&lt;/h2&gt;
+&lt;p&gt;设两个量子系统分别具有希尔伯特空间：&lt;/p&gt;
+&lt;p&gt;\[
+\mathcal H_A,\qquad \mathcal H_B.
+\]&lt;/p&gt;
+&lt;p&gt;复合系统的希尔伯特空间为：&lt;/p&gt;
+&lt;h1 id="mathcal-h_ab"&gt;\[
+\mathcal H_{AB}&lt;/h1&gt;
+&lt;p&gt;\mathcal H_A\otimes\mathcal H_B.
+\]&lt;/p&gt;
+&lt;p&gt;若两个系统分别处于：&lt;/p&gt;
+&lt;p&gt;\[
+|\psi\rangle_A,
+\qquad
+|\phi\rangle_B,
+\]&lt;/p&gt;
+&lt;p&gt;则整体状态为：&lt;/p&gt;
+&lt;h1 id="psirangle_ab"&gt;\[
+|\Psi\rangle_{AB}&lt;/h1&gt;
+&lt;p&gt;|\psi\rangle_A\otimes|\phi\rangle_B.
+\]&lt;/p&gt;
+&lt;p&gt;例如：&lt;/p&gt;
+&lt;h1 id="psirangle"&gt;\[
+|\Psi\rangle&lt;/h1&gt;
+&lt;p&gt;\frac{|0\rangle+|1\rangle}{\sqrt2}
+\otimes|0\rangle.
+\]&lt;/p&gt;
+&lt;p&gt;展开：&lt;/p&gt;
+&lt;h1 id="psirangle-1"&gt;\[
+|\Psi\rangle&lt;/h1&gt;
+&lt;p&gt;\frac{|00\rangle+|10\rangle}{\sqrt2}.
+\]&lt;/p&gt;</description></item><item><title>量子随机访问码：编码、测量与量子优势</title><link>https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E9%9A%8F%E6%9C%BA%E8%AE%BF%E9%97%AE%E7%A0%81/</link><pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E9%9A%8F%E6%9C%BA%E8%AE%BF%E9%97%AE%E7%A0%81/</guid><description>&lt;h1 id="量子信息与量子计算基础讲义五"&gt;量子信息与量子计算基础讲义（五）&lt;/h1&gt;
+&lt;h2 id="第一章随机访问码问题"&gt;第一章　随机访问码问题&lt;/h2&gt;
+&lt;h3 id="11-经典信息编码"&gt;1.1 经典信息编码&lt;/h3&gt;
+&lt;p&gt;假设 Alice 持有一个二进制字符串&lt;/p&gt;
+&lt;p&gt;\[
+x=(x_1,x_2,\ldots,x_n)\in{0,1}^n.
+\]&lt;/p&gt;
+&lt;p&gt;她希望将信息发送给 Bob，但受到通信容量限制，只能发送 \(m\) 个比特，其中&lt;/p&gt;
+&lt;p&gt;\[
+m&amp;lt;n.
+\]&lt;/p&gt;
+&lt;p&gt;Bob 收到消息后，可以随机选择一个位置&lt;/p&gt;
+&lt;p&gt;\[
+i\in{1,\ldots,n},
+\]&lt;/p&gt;
+&lt;p&gt;并希望恢复 Alice 原始字符串中的第 \(i\) 位：&lt;/p&gt;
+&lt;p&gt;\[
+x_i.
+\]&lt;/p&gt;
+&lt;p&gt;这里的关键限制是：Alice 发送消息时并不知道 Bob 将来会查询哪个位置。&lt;/p&gt;
+&lt;p&gt;这种编码问题称为随机访问码（Random Access Code, RAC）。&lt;/p&gt;
+&lt;h3 id="12-数学定义"&gt;1.2 数学定义&lt;/h3&gt;
+&lt;p&gt;一个经典随机访问码由编码函数&lt;/p&gt;
+&lt;p&gt;\[
+f:{0,1}^n\longrightarrow{0,1}^m
+\]&lt;/p&gt;
+&lt;p&gt;和解码策略构成。&lt;/p&gt;
+&lt;p&gt;Alice 发送&lt;/p&gt;
+&lt;p&gt;\[
+m=f(x).
+\]&lt;/p&gt;
+&lt;p&gt;Bob 根据查询位置 \(i\) 和消息 \(m\)，输出估计值&lt;/p&gt;
+&lt;p&gt;\[
+\hat x_i=g_i(m).
+\]&lt;/p&gt;
+&lt;p&gt;如果允许随机编码和随机解码，则可以将 \(f\) 和 \(g_i\) 理解为概率策略。&lt;/p&gt;
+&lt;p&gt;定义成功概率：&lt;/p&gt;
+&lt;h1 id="p_mathrmsucc"&gt;\[
+P_{\mathrm{succ}}&lt;/h1&gt;
+&lt;p&gt;\Pr[\hat x_i=x_i].
+\]&lt;/p&gt;</description></item><item><title>集成光子学（三）：从参数辨识到优化理论</title><link>https://linmythos.github.io/physics/quantum/%E9%9B%86%E6%88%90%E5%85%89%E5%AD%90%E5%AD%A6/%E4%B8%89%E4%BB%8E%E5%8F%82%E6%95%B0%E8%BE%A8%E8%AF%86%E5%88%B0%E4%BC%98%E5%8C%96%E7%90%86%E8%AE%BA/</link><pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/quantum/%E9%9B%86%E6%88%90%E5%85%89%E5%AD%90%E5%AD%A6/%E4%B8%89%E4%BB%8E%E5%8F%82%E6%95%B0%E8%BE%A8%E8%AF%86%E5%88%B0%E4%BC%98%E5%8C%96%E7%90%86%E8%AE%BA/</guid><description>&lt;h1 id="1参数辨识与可观测性"&gt;1.参数辨识与可观测性&lt;/h1&gt;
+&lt;h2 id="11-参数辨识"&gt;1.1 参数辨识&lt;/h2&gt;
+&lt;p&gt;在理想的集成光子芯片中，我们可以根据设计参数计算出器件的理论响应。&lt;/p&gt;
+&lt;p&gt;例如，对于一个 Mach–Zehnder 干涉仪（MZI），其输出可以由分束比和相位差决定。假设两臂的相位差为 $\phi$，则理想情况下有&lt;/p&gt;
+&lt;p&gt;$$ P_{\mathrm{out}} = P_{\mathrm{in}}\cos^2\frac{\phi}{2}. $$&lt;/p&gt;
+&lt;p&gt;如果我们知道 $\phi$，就可以计算输出功率。&lt;/p&gt;
+&lt;p&gt;但是，真实芯片与理想模型之间往往存在差异：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;波导尺寸存在制造误差；&lt;/li&gt;
+&lt;li&gt;定向耦合器的实际分束比偏离设计值；&lt;/li&gt;
+&lt;li&gt;相位调制器的电压—相位响应并不完全理想；&lt;/li&gt;
+&lt;li&gt;电极之间存在热串扰；&lt;/li&gt;
+&lt;li&gt;光传播过程中存在损耗；&lt;/li&gt;
+&lt;li&gt;温度变化会改变材料折射率。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因此，实际器件的响应不仅取决于我们施加的控制信号，还取决于一组未知的器件参数。&lt;/p&gt;
+&lt;p&gt;我们希望通过实验测量反推出这些参数。&lt;/p&gt;
+&lt;p&gt;这就是&lt;strong&gt;参数辨识（Parameter Identification&lt;/strong&gt;问题。&lt;/p&gt;
+&lt;p&gt;设器件的未知参数为&lt;/p&gt;
+&lt;p&gt;$$ \mathbf p= \begin{pmatrix} p_1\\ p_2\\ \vdots\\ p_m \end{pmatrix} \in\mathbb R^m. $$&lt;/p&gt;
+&lt;p&gt;例如，对于一个具有两个相位调制臂的 MZI，可以考虑&lt;/p&gt;
+&lt;p&gt;$$ \mathbf p= \begin{pmatrix} \kappa\\ \alpha\\ \beta\\ \gamma \end{pmatrix}, $$&lt;/p&gt;
+&lt;p&gt;其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$\kappa$：耦合器参数；&lt;/li&gt;
+&lt;li&gt;$\alpha,\beta$：两臂的相位响应参数；&lt;/li&gt;
+&lt;li&gt;$\gamma$：损耗参数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我们施加某个已知输入 $\mathbf u$，测量器件输出 $\mathbf y$。&lt;/p&gt;
+&lt;p&gt;一般可以写成&lt;/p&gt;
+&lt;p&gt;$$ \boxed{ \mathbf y=h(\mathbf p,\mathbf u)+\boldsymbol\epsilon. } $$&lt;/p&gt;
+&lt;p&gt;其中：&lt;/p&gt;</description></item><item><title>集成光子学（四）：光计算与光神经网络</title><link>https://linmythos.github.io/physics/quantum/%E9%9B%86%E6%88%90%E5%85%89%E5%AD%90%E5%AD%A6/%E5%9B%9B%E5%85%89%E8%AE%A1%E7%AE%97%E4%B8%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</link><pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/quantum/%E9%9B%86%E6%88%90%E5%85%89%E5%AD%90%E5%AD%A6/%E5%9B%9B%E5%85%89%E8%AE%A1%E7%AE%97%E4%B8%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</guid><description>&lt;p&gt;本文以集成光子器件为实现背景，讨论经典光学计算及其非线性扩展，并不局限于某一种材料平台或芯片架构。&lt;/p&gt;
+&lt;h1 id="1-相干光学计算与神经网络"&gt;1. 相干光学计算与神经网络&lt;/h1&gt;
+&lt;p&gt;矩阵—向量乘法是科学计算和人工神经网络中的基本操作。光学系统的优势在于，在适当的物理条件下，许多光学通道可以同时传播，线性变换由器件结构和干涉过程直接完成。&lt;/p&gt;
+&lt;p&gt;光学计算包含三个层次：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;光学传播：光场如何经过器件；&lt;/li&gt;
+&lt;li&gt;数学运算：光场传播对应什么矩阵变换；&lt;/li&gt;
+&lt;li&gt;信息处理：如何编码输入、读取输出，并完成计算任务。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="11-光场编码向量"&gt;1.1 光场编码向量&lt;/h2&gt;
+&lt;p&gt;考虑 $N$ 个光学通道。每个通道对应一个波导模式，其复振幅为&lt;/p&gt;
+&lt;p&gt;$$ a_j=A_je^{i\phi_j}. $$&lt;/p&gt;
+&lt;p&gt;将所有通道的复振幅组成向量：&lt;/p&gt;
+&lt;p&gt;$$ \boxed{ \mathbf a= \begin{pmatrix} a_1\\a_2\\\vdots\\a_N \end{pmatrix} \in\mathbb C^N. } $$&lt;/p&gt;
+&lt;p&gt;因此，一个 $N$ 维复向量可以直接编码为 $N$ 个光学模式的复振幅。&lt;/p&gt;
+&lt;p&gt;如果只改变振幅，就称为振幅编码；如果主要利用相位变化，则称为相位编码。&lt;/p&gt;
+&lt;p&gt;实际系统还可以采用不同的输入调制方案，例如通过强度调制器、相位调制器或二者组合来编码数据。&lt;/p&gt;
+&lt;h3 id="112-相干叠加"&gt;1.1.2 相干叠加&lt;/h3&gt;
+&lt;p&gt;设输入光场为&lt;/p&gt;
+&lt;p&gt;$$ \mathbf a_{\mathrm{in}}\in\mathbb C^N. $$&lt;/p&gt;
+&lt;p&gt;经过一个线性光学网络后：&lt;/p&gt;
+&lt;p&gt;$$ \boxed{ \mathbf a_{\mathrm{out}} = U\mathbf a_{\mathrm{in}}. } $$&lt;/p&gt;
+&lt;p&gt;其中 $U\in\mathbb C^{N\times N}$ 是光学网络的传输矩阵。&lt;/p&gt;
+&lt;p&gt;展开第 $i$ 个输出通道：&lt;/p&gt;
+&lt;p&gt;$$ \boxed{ a_{\mathrm{out},i} = \sum_{j=1}^N U_{ij}a_{\mathrm{in},j}. }$$&lt;/p&gt;
+&lt;p&gt;要让不同输入通道的光场产生稳定的干涉，必须保持它们之间适当的相干关系。&lt;/p&gt;
+&lt;p&gt;设两束光的复振幅为&lt;/p&gt;</description></item><item><title>智能计算系统：从数学原理到芯片设计</title><link>https://linmythos.github.io/ai/%E8%8A%AF%E7%89%87%E8%AE%BE%E8%AE%A1/</link><pubDate>Wed, 04 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/ai/%E8%8A%AF%E7%89%87%E8%AE%BE%E8%AE%A1/</guid><description>&lt;h2 id="第一册计算系统与性能基础"&gt;第一册：计算系统与性能基础&lt;/h2&gt;
 &lt;h1 id="第一讲从算法到芯片计算系统的全栈视角"&gt;第一讲　从算法到芯片：计算系统的全栈视角&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;Lecture 1 — From Algorithms to Silicon: A Full-Stack View of Computing Systems&lt;/strong&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -142,44 +825,151 @@ A:S\longmapsto \widehat f.
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;这些层次之间存在严格的依赖关系，但并非只能单向设计。&lt;/p&gt;</description></item><item><title>脑疾病</title><link>https://linmythos.github.io/neural-science/%E8%84%91%E7%96%BE%E7%97%85/</link><pubDate>Wed, 04 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/neural-science/%E8%84%91%E7%96%BE%E7%97%85/</guid><description/></item><item><title>MZI网格的Reck架构与Clements架构</title><link>https://linmythos.github.io/physics/quantum/reck-clements%E5%88%86%E8%A7%A3/</link><pubDate>Tue, 03 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/quantum/reck-clements%E5%88%86%E8%A7%A3/</guid><description>&lt;h1 id="part-i--光学与电磁场基础"&gt;PART I · 光学与电磁场基础&lt;/h1&gt;
-&lt;h2 id="波动方程和平面波解"&gt;波动方程和平面波解&lt;/h2&gt;
-&lt;p&gt;考虑电场具有单一角频率 \(\omega\) 的情形：&lt;/p&gt;
-&lt;p&gt;\[ \mathbf E(\mathbf r,t) = \operatorname{Re} \left[ \boldsymbol{\mathcal E}(\mathbf r)e^{-i\omega t} \right]. \]&lt;/p&gt;
-&lt;p&gt;这里 \(\boldsymbol{\mathcal E}(\mathbf r)\) 是复振幅；&lt;/p&gt;
+&lt;p&gt;这些层次之间存在严格的依赖关系，但并非只能单向设计。&lt;/p&gt;</description></item><item><title>机器学习与神经网络导论</title><link>https://linmythos.github.io/ai/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</link><pubDate>Wed, 04 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/ai/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</guid><description>&lt;h1 id="机器学习从函数逼近到统计学习理论"&gt;机器学习——从函数逼近到统计学习理论&lt;/h1&gt;
+&lt;h2 id="核心问题"&gt;核心问题&lt;/h2&gt;
+&lt;p&gt;考虑一个简单任务：&lt;/p&gt;
+&lt;p&gt;给定大量房屋的历史数据，包括面积、位置、房间数量和成交价格，希望构造一个模型，根据房屋特征预测其价格。&lt;/p&gt;
+&lt;p&gt;我们可以将每套房屋表示为一个向量：&lt;/p&gt;
+&lt;p&gt;$$
+x=(x_1,x_2,\ldots,x_d)\in\mathbb R^d,
+$$&lt;/p&gt;
+&lt;p&gt;将其实际价格记为：&lt;/p&gt;
+&lt;p&gt;$$
+y\in\mathbb R.
+$$&lt;/p&gt;
+&lt;p&gt;我们希望找到一个函数：&lt;/p&gt;
+&lt;p&gt;$$
+f:\mathbb R^d\longrightarrow\mathbb R,
+$$&lt;/p&gt;
+&lt;p&gt;使得：&lt;/p&gt;
+&lt;p&gt;$$
+f(x)\approx y.
+$$&lt;/p&gt;
+&lt;p&gt;机器学习的任务就是在有限的样本中找出普适的规律。&lt;/p&gt;
+&lt;h2 id="机器学习的数学形式化"&gt;机器学习的数学形式化&lt;/h2&gt;
+&lt;h3 id="数据与未知分布"&gt;数据与未知分布&lt;/h3&gt;
+&lt;p&gt;设输入空间为 $\mathcal X$，输出空间为 $\mathcal Y$。数据由某个未知概率分布生成：&lt;/p&gt;
+&lt;p&gt;$$
+(X,Y)\sim P.
+$$&lt;/p&gt;
+&lt;p&gt;我们观察到独立同分布的训练样本：&lt;/p&gt;
+&lt;p&gt;$$
+S={(x_1,y_1),(x_2,y_2),\ldots,(x_n,y_n)}.
+$$&lt;/p&gt;
+&lt;p&gt;即：&lt;/p&gt;
+&lt;p&gt;$$
+(x_i,y_i)\overset{\mathrm{i.i.d.}}{\sim}P.
+$$&lt;/p&gt;
+&lt;p&gt;机器学习算法根据样本 $S$，从某个函数集合中选择模型：&lt;/p&gt;
+&lt;p&gt;$$
+\mathcal H={f_\theta:\theta\in\Theta}.
+$$&lt;/p&gt;
+&lt;p&gt;因此，学习过程可以抽象为：&lt;/p&gt;
+&lt;p&gt;$$
+A:S\longmapsto \widehat f.
+$$&lt;/p&gt;
+&lt;p&gt;其中 $A$ 是学习算法，$\widehat f$ 是训练得到的模型。&lt;/p&gt;
+&lt;p&gt;注意：学习算法并不知道真实分布 $P$，它只能利用有限样本间接推断规律。&lt;/p&gt;
+&lt;h3 id="损失函数"&gt;损失函数&lt;/h3&gt;
+&lt;p&gt;为了衡量模型预测的好坏程度，引入损失函数，将预测任务转化为数学上的优化问题：&lt;/p&gt;
+&lt;p&gt;$$
+\ell:\mathcal Y\times\mathcal Y\longrightarrow\mathbb R_{\geq 0}.
+$$&lt;/p&gt;</description></item><item><title>光量子信息与量子计算</title><link>https://linmythos.github.io/physics/quantum/%E5%85%89%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97/</link><pubDate>Tue, 03 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/quantum/%E5%85%89%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97/</guid><description>&lt;h2 id="第九讲从经典光场到量子光场电磁场的量子化"&gt;第九讲：从经典光场到量子光场——电磁场的量子化&lt;/h2&gt;
+&lt;p&gt;前面几讲，我们一直用复振幅描述光：&lt;/p&gt;
+&lt;p&gt;\[ E(z,t)=\operatorname{Re} \left[Ae^{i(kz-\omega t)}\right]. \]&lt;/p&gt;
+&lt;p&gt;在集成光子芯片中，我们把多个光学模式的复振幅组织成向量：&lt;/p&gt;
+&lt;p&gt;\[ \mathbf a_{\mathrm{out}}=U\mathbf a_{\mathrm{in}}. \]&lt;/p&gt;
+&lt;p&gt;这套理论属于经典电磁场理论。&lt;/p&gt;
+&lt;p&gt;但当我们研究单光子干涉、量子隐形传态、玻色采样和光量子计算时，仅仅描述光场的经典振幅就不够了。&lt;/p&gt;
+&lt;p&gt;我们需要回答：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一个光学模式中有多少个光子？&lt;/li&gt;
+&lt;li&gt;什么是单光子态？&lt;/li&gt;
+&lt;li&gt;光子如何通过分束器？&lt;/li&gt;
+&lt;li&gt;两个光子为什么会发生不同于经典光波的干涉？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些问题需要量子化电磁场理论。&lt;/p&gt;
+&lt;p&gt;本讲的核心路线是：&lt;/p&gt;
+&lt;p&gt;\[ \boxed{ \text{经典电磁场} \longrightarrow \text{谐振子} \longrightarrow \text{产生与湮灭算符} \longrightarrow \text{Fock 态} \longrightarrow \text{相干态} } \]&lt;/p&gt;
+&lt;p&gt;我们从最基础的数学结构开始。&lt;/p&gt;
+&lt;h2 id="91-为什么需要量子化电磁场"&gt;9.1 为什么需要量子化电磁场？&lt;/h2&gt;
+&lt;h3 id="911-经典光场的描述"&gt;9.1.1 经典光场的描述&lt;/h3&gt;
+&lt;p&gt;在经典理论中，一个单色光学模式可以用复振幅描述：&lt;/p&gt;
+&lt;p&gt;\[ E(t)=A\cos(\omega t+\phi). \]&lt;/p&gt;
+&lt;p&gt;这里：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;\(A\) 表示场振幅；&lt;/li&gt;
+&lt;li&gt;\(\omega\) 表示角频率；&lt;/li&gt;
+&lt;li&gt;\(\phi\) 表示相位。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在经典理论中，\(A\) 和 \(\phi\) 是确定的参数。&lt;/p&gt;
+&lt;p&gt;但是，光与物质的相互作用具有量子性质。例如光电效应、单光子探测和原子能级跃迁，都需要引入光子的概念。&lt;/p&gt;
+&lt;p&gt;我们需要一种理论，既能描述电磁场的传播，又能描述能量以光子为单位的量子化特征。&lt;/p&gt;
+&lt;p&gt;这就是量子化电磁场。&lt;/p&gt;
+&lt;h3 id="912-一个重要思想电磁场可以分解为模式"&gt;9.1.2 一个重要思想：电磁场可以分解为模式&lt;/h3&gt;
+&lt;p&gt;回顾第二讲的波导模式：&lt;/p&gt;
+&lt;p&gt;\[ \mathbf E(x,y,z) = \mathbf e(x,y)e^{i\beta z}. \]&lt;/p&gt;</description></item><item><title>集成光子学（一）：MZI网格的Reck架构与Clements架构</title><link>https://linmythos.github.io/physics/quantum/%E9%9B%86%E6%88%90%E5%85%89%E5%AD%90%E5%AD%A6/%E4%B8%80mzi%E7%BD%91%E6%A0%BC%E7%9A%84reck%E6%9E%B6%E6%9E%84%E4%B8%8Eclements%E6%9E%B6%E6%9E%84/</link><pubDate>Tue, 03 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/quantum/%E9%9B%86%E6%88%90%E5%85%89%E5%AD%90%E5%AD%A6/%E4%B8%80mzi%E7%BD%91%E6%A0%BC%E7%9A%84reck%E6%9E%B6%E6%9E%84%E4%B8%8Eclements%E6%9E%B6%E6%9E%84/</guid><description>&lt;h1 id="1-光学与电磁场基础"&gt;1. 光学与电磁场基础&lt;/h1&gt;
+&lt;h2 id="11-波动方程和平面波解"&gt;1.1 波动方程和平面波解&lt;/h2&gt;
+&lt;p&gt;考虑电场具有单一角频率 $\omega$ 的情形：&lt;/p&gt;
+&lt;p&gt;$$ \mathbf E(\mathbf r,t) = \operatorname{Re} \left[ \boldsymbol{\mathcal E}(\mathbf r)e^{-i\omega t} \right]. $$&lt;/p&gt;
+&lt;p&gt;这里 $\boldsymbol{\mathcal E}(\mathbf r)$ 是复振幅；&lt;/p&gt;
 &lt;p&gt;代入波动方程：&lt;/p&gt;
-&lt;p&gt;\[ \nabla^2\mathbf E -\mu\varepsilon \frac{\partial^2\mathbf E}{\partial t^2} =0. \]&lt;/p&gt;
+&lt;p&gt;$$ \nabla^2\mathbf E -\mu\varepsilon \frac{\partial^2\mathbf E}{\partial t^2} =0. $$&lt;/p&gt;
 &lt;p&gt;由于&lt;/p&gt;
-&lt;p&gt;\[ \frac{\partial^2}{\partial t^2} e^{-i\omega t} =-\omega^2e^{-i\omega t}, \]&lt;/p&gt;
+&lt;p&gt;$$ \frac{\partial^2}{\partial t^2} e^{-i\omega t} =-\omega^2e^{-i\omega t}, $$&lt;/p&gt;
 &lt;p&gt;得到：&lt;/p&gt;
-&lt;p&gt;\[ \nabla^2\boldsymbol{\mathcal E} +\omega^2\mu\varepsilon \boldsymbol{\mathcal E}=0. \]&lt;/p&gt;
+&lt;p&gt;$$ \nabla^2\boldsymbol{\mathcal E} +\omega^2\mu\varepsilon \boldsymbol{\mathcal E}=0. $$&lt;/p&gt;
 &lt;p&gt;定义波数：&lt;/p&gt;
-&lt;p&gt;\[ k=\omega\sqrt{\mu\varepsilon} =\frac{n\omega}{c} =\frac{2\pi n}{\lambda_0}, \]&lt;/p&gt;
-&lt;p&gt;其中 \(\lambda_0\) 是真空波长。&lt;/p&gt;
+&lt;p&gt;$$ k=\omega\sqrt{\mu\varepsilon} =\frac{n\omega}{c} =\frac{2\pi n}{\lambda_0}, $$&lt;/p&gt;
+&lt;p&gt;其中 $\lambda_0$ 是真空波长。&lt;/p&gt;
 &lt;p&gt;于是：&lt;/p&gt;
-&lt;p&gt;\[ \boxed{ \nabla^2\boldsymbol{\mathcal E} +k^2\boldsymbol{\mathcal E}=0 } \]&lt;/p&gt;</description></item><item><title>集成光子器件调控、配校与优化</title><link>https://linmythos.github.io/physics/quantum/%E9%9B%86%E6%88%90%E5%85%89%E5%AD%90%E5%99%A8%E4%BB%B6%E8%B0%83%E6%8E%A7%E9%85%8D%E6%A0%A1%E4%B8%8E%E4%BC%98%E5%8C%96/</link><pubDate>Tue, 03 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/quantum/%E9%9B%86%E6%88%90%E5%85%89%E5%AD%90%E5%99%A8%E4%BB%B6%E8%B0%83%E6%8E%A7%E9%85%8D%E6%A0%A1%E4%B8%8E%E4%BC%98%E5%8C%96/</guid><description>&lt;h1 id="调控机制与器件"&gt;调控机制与器件&lt;/h1&gt;
-&lt;p&gt;对于沿 \(z\) 方向传播的单一波导模式：&lt;/p&gt;
-&lt;p&gt;\[ \mathcal E(x,y,z) = \mathbf e(x,y)e^{i\beta z}. \]&lt;/p&gt;
-&lt;p&gt;传播距离为 \(L\) 时，光场积累的相位为&lt;/p&gt;
-&lt;p&gt;\[ \phi=\beta L. \]&lt;/p&gt;
+&lt;p&gt;$$ \boxed{ \nabla^2\boldsymbol{\mathcal E} +k^2\boldsymbol{\mathcal E}=0 } $$&lt;/p&gt;</description></item><item><title>集成光子学（二）：器件-调控-配置-校准</title><link>https://linmythos.github.io/physics/quantum/%E9%9B%86%E6%88%90%E5%85%89%E5%AD%90%E5%AD%A6/%E4%BA%8C%E5%99%A8%E4%BB%B6-%E8%B0%83%E6%8E%A7-%E9%85%8D%E7%BD%AE-%E6%A0%A1%E5%87%86/</link><pubDate>Tue, 03 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/quantum/%E9%9B%86%E6%88%90%E5%85%89%E5%AD%90%E5%AD%A6/%E4%BA%8C%E5%99%A8%E4%BB%B6-%E8%B0%83%E6%8E%A7-%E9%85%8D%E7%BD%AE-%E6%A0%A1%E5%87%86/</guid><description>&lt;h1 id="调控机制与器件"&gt;调控机制与器件&lt;/h1&gt;
+&lt;p&gt;对于沿 $z$ 方向传播的单一波导模式：&lt;/p&gt;
+&lt;p&gt;$$ \mathcal E(x,y,z) = \mathbf e(x,y)e^{i\beta z}. $$&lt;/p&gt;
+&lt;p&gt;传播距离为 $L$ 时，光场积累的相位为&lt;/p&gt;
+&lt;p&gt;$$ \phi=\beta L. $$&lt;/p&gt;
 &lt;p&gt;又因为&lt;/p&gt;
-&lt;p&gt;\[ \beta=k_0n_{\mathrm{eff}}, \]&lt;/p&gt;
+&lt;p&gt;$$ \beta=k_0n_{\mathrm{eff}}, $$&lt;/p&gt;
 &lt;p&gt;所以&lt;/p&gt;
-&lt;p&gt;\[ \boxed{ \phi=\frac{2\pi}{\lambda_0}n_{\mathrm{eff}}L. } \]&lt;/p&gt;
+&lt;p&gt;$$ \boxed{ \phi=\frac{2\pi}{\lambda_0}n_{\mathrm{eff}}L. } $$&lt;/p&gt;
 &lt;p&gt;现在假设外部控制信号改变了波导的有效折射率：&lt;/p&gt;
-&lt;p&gt;\[ n_{\mathrm{eff}}\longrightarrow n_{\mathrm{eff}}+\Delta n_{\mathrm{eff}}. \]&lt;/p&gt;
+&lt;p&gt;$$ n_{\mathrm{eff}}\longrightarrow n_{\mathrm{eff}}+\Delta n_{\mathrm{eff}}. $$&lt;/p&gt;
 &lt;p&gt;如果长度保持不变，那么相位变化为&lt;/p&gt;
-&lt;p&gt;\[ \Delta\phi = \frac{2\pi L}{\lambda_0}\Delta n_{\mathrm{eff}}. \]&lt;/p&gt;
+&lt;p&gt;$$ \Delta\phi = \frac{2\pi L}{\lambda_0}\Delta n_{\mathrm{eff}}. $$&lt;/p&gt;
 &lt;p&gt;这就是相位调制器最基本的工作原理。&lt;/p&gt;
 &lt;h2 id="热光效应thermo-optic-effect"&gt;热光效应（Thermo-optic Effect）&lt;/h2&gt;
 &lt;h3 id="基本物理机制"&gt;基本物理机制&lt;/h3&gt;
 &lt;p&gt;热光效应是指材料折射率随温度变化的现象。&lt;/p&gt;
 &lt;p&gt;定义热光系数：&lt;/p&gt;
-&lt;p&gt;\[ \boxed{ \frac{dn}{dT}. } \]&lt;/p&gt;
+&lt;p&gt;$$ \boxed{ \frac{dn}{dT}. } $$&lt;/p&gt;
 &lt;p&gt;在温度变化较小、材料参数近似线性的情况下：&lt;/p&gt;
-&lt;p&gt;\[ \Delta n_{\mathrm{eff}} \approx \frac{dn_{\mathrm{eff}}}{dT}\Delta T. \]&lt;/p&gt;
+&lt;p&gt;$$ \Delta n_{\mathrm{eff}} \approx \frac{dn_{\mathrm{eff}}}{dT}\Delta T. $$&lt;/p&gt;
 &lt;p&gt;代入得到：&lt;/p&gt;
-&lt;p&gt;\[ \boxed{ \Delta\phi \approx \frac{2\pi L}{\lambda_0} \frac{dn_{\mathrm{eff}}}{dT}\Delta T. } \]&lt;/p&gt;</description></item><item><title>Point Set Topology</title><link>https://linmythos.github.io/math/topology/point-set-topology/</link><pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/point-set-topology/</guid><description>&lt;p&gt;&lt;strong&gt;Warning:部分公式问题仍未解决，完整文章可通过首页的链接前往知乎查看&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$$ \boxed{ \Delta\phi \approx \frac{2\pi L}{\lambda_0} \frac{dn_{\mathrm{eff}}}{dT}\Delta T. } $$&lt;/p&gt;</description></item><item><title>非厄米量子系统的数学基础</title><link>https://linmythos.github.io/physics/quantum/nonhermitian/</link><pubDate>Tue, 03 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/quantum/nonhermitian/</guid><description>&lt;h1 id="从非幺正变换到非厄米哈密顿量"&gt;从非幺正变换到非厄米哈密顿量&lt;/h1&gt;
+&lt;h2 id="幺正演化与非幺正演化"&gt;幺正演化与非幺正演化&lt;/h2&gt;
+&lt;p&gt;在封闭量子系统中，态矢量满足薛定谔方程&lt;/p&gt;
+&lt;p&gt;\[ i\hbar\frac{d}{dt}|\psi(t)\rangle =H|\psi(t)\rangle, \]&lt;/p&gt;
+&lt;p&gt;其中 \(H=H^\dagger\) 是厄米哈密顿量。&lt;/p&gt;
+&lt;p&gt;若 \(H\) 不显含时间，演化算符为&lt;/p&gt;
+&lt;p&gt;\[ |\psi(t)\rangle=U(t)|\psi(0)\rangle, \qquad U(t)=e^{-iHt/\hbar}. \]&lt;/p&gt;
+&lt;p&gt;由于 \(H^\dagger=H\)，有&lt;/p&gt;
+&lt;p&gt;\[ \begin{aligned} U^\dagger U &amp;amp;=e^{iHt/\hbar}e^{-iHt/\hbar}\\ &amp;amp;=I. \end{aligned} \]&lt;/p&gt;
+&lt;p&gt;因此&lt;/p&gt;
+&lt;p&gt;\[ \boxed{U^\dagger U=I.} \]&lt;/p&gt;
+&lt;p&gt;这就是幺正演化。它保证态矢量的范数守恒：&lt;/p&gt;
+&lt;p&gt;\[ \langle\psi(t)|\psi(t)\rangle = \langle\psi(0)|\psi(0)\rangle. \]&lt;/p&gt;
+&lt;p&gt;但在开放系统中，粒子可能发生衰减、泄漏或损耗。此时，如果只描述系统内部的有效动力学，态矢量的范数就不一定守恒。&lt;/p&gt;
+&lt;p&gt;例如考虑&lt;/p&gt;
+&lt;p&gt;\[ H_{\mathrm{eff}} = H_0-\frac{i\hbar\gamma}{2}|B\rangle\langle B|, \qquad \gamma&amp;gt;0. \]&lt;/p&gt;
+&lt;p&gt;这里 \(|B\rangle\) 是发生衰减的状态，\(\gamma\) 是衰减率。&lt;/p&gt;
+&lt;p&gt;显然，&lt;/p&gt;
+&lt;p&gt;\[ H_{\mathrm{eff}}^\dagger\neq H_{\mathrm{eff}}. \]&lt;/p&gt;
+&lt;p&gt;所以它是一个非厄米哈密顿量。&lt;/p&gt;
+&lt;h2 id="非厄米哈密顿量导致概率衰减"&gt;非厄米哈密顿量导致概率衰减&lt;/h2&gt;
+&lt;p&gt;从薛定谔方程出发：&lt;/p&gt;
+&lt;p&gt;\[ i\hbar|\dot\psi\rangle =H_{\mathrm{eff}}|\psi\rangle. \]&lt;/p&gt;
+&lt;p&gt;取厄米共轭：&lt;/p&gt;
+&lt;p&gt;\[ -i\hbar\langle\dot\psi| = \langle\psi|H_{\mathrm{eff}}^\dagger. \]&lt;/p&gt;</description></item><item><title>Point Set Topology</title><link>https://linmythos.github.io/math/topology/point-set-topology/</link><pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/point-set-topology/</guid><description>&lt;p&gt;&lt;strong&gt;Warning:部分公式问题仍未解决，完整文章可通过首页的链接前往知乎查看&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;2026.8.18&lt;/p&gt;
 &lt;p&gt;点集拓扑学习笔记————纪念我疯狂的夏天&lt;/p&gt;
 &lt;p&gt;这两天学点集拓扑的时候，才发现：&lt;strong&gt;学习的本质，就是把&amp;quot;神秘&amp;quot;还原为&amp;quot;朴素&amp;quot;的过程。&lt;/strong&gt;&lt;/p&gt;
@@ -201,40 +991,17 @@ A:S\longmapsto \widehat f.
 &lt;/blockquote&gt;
 &lt;h3 id="12-三个典型例子"&gt;1.2 三个典型例子&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;例 1（离散拓扑）&lt;/strong&gt;　取 $X = \begin{cases}a, b, c\end{cases}$，规定 $X$ 的所有子集都是开集，即 $\mathcal{T} = \mathcal{P}(X)$，得到离散拓扑。它是最细的拓扑。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;例 2（标准拓扑）&lt;/strong&gt;　在 $\mathbb{R}$ 上，规定开集为所有开区间 $(a, b)$ 的任意并，得到 $\mathbb{R}$ 的标准拓扑。这里有两个容易混淆的点：&lt;/p&gt;</description></item><item><title>Classical Mechanics</title><link>https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/</link><pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/lagrangian-mechanics-geometry/</guid><description>&lt;p&gt;学过 Differential Geometry 之后重新学 Classical Mechanis ，有很多新的收获，此为学习笔记，持续更新。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;例 2（标准拓扑）&lt;/strong&gt;　在 $\mathbb{R}$ 上，规定开集为所有开区间 $(a, b)$ 的任意并，得到 $\mathbb{R}$ 的标准拓扑。这里有两个容易混淆的点：&lt;/p&gt;</description></item><item><title>Classical Mechanics</title><link>https://linmythos.github.io/physics/classical-mechanics/%E7%90%86%E8%AE%BA%E5%8A%9B%E5%AD%A6%E4%B8%8E%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/</link><pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/%E7%90%86%E8%AE%BA%E5%8A%9B%E5%AD%A6%E4%B8%8E%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/</guid><description>&lt;p&gt;学过 Differential Geometry 之后重新学 Classical Mechanics，有很多新的收获，此为学习笔记，持续更新。&lt;/p&gt;
 &lt;h1 id="lagrangian-mechanics-and-geometry"&gt;Lagrangian Mechanics and Geometry&lt;/h1&gt;
 &lt;h2 id="configuration-space"&gt;Configuration Space&lt;/h2&gt;
-&lt;p&gt;设系统有 $n$ 个 degrees of freedom，我们写：&lt;/p&gt;
-&lt;p&gt;$$
-q_1,q_2,\ldots,q_n.
-$$&lt;/p&gt;
-&lt;p&gt;那么一个系统在某一时刻的 configuration 就可以表示为：&lt;/p&gt;
-&lt;p&gt;$$
-q=(q_1,\ldots,q_n).
-$$&lt;/p&gt;
-&lt;p&gt;于是所有可能的 configurations 构成：&lt;/p&gt;
-&lt;p&gt;$$
-\boxed{\mathcal C=\text{configuration space}}
-$$&lt;/p&gt;
-&lt;p&gt;随着时间演化：&lt;/p&gt;
-&lt;p&gt;$$
-q(t)=(q_1(t),\ldots,q_n(t)),
-$$&lt;/p&gt;
-&lt;p&gt;这就是 configuration space 中的一条 trajectory。&lt;/p&gt;
+&lt;p&gt;设系统有 $n$ 个 degrees of freedom，写作 $q_1,q_2,\ldots,q_n$，则某一时刻的 configuration 可表示为 $q=(q_1,\ldots,q_n)$，所有可能的 configurations 构成 configuration space $\mathcal C$。
+随时间演化 $q(t)=(q_1(t),\ldots,q_n(t))$，就是 $\mathcal C$ 中的一条 trajectory。&lt;/p&gt;
 &lt;h3 id="两个粒子的例子"&gt;两个粒子的例子&lt;/h3&gt;
-&lt;p&gt;假设有两个粒子：&lt;/p&gt;
-&lt;p&gt;$$
-\mathbf r_1(t),\mathbf r_2(t)\in\mathbb R^3.
-$$&lt;/p&gt;
-&lt;p&gt;整个系统的 configuration 不是一个三维位置，而是&lt;/p&gt;
-&lt;p&gt;$$
-q(t)=(\mathbf r_1(t),\mathbf r_2(t)).
-$$&lt;/p&gt;
-&lt;p&gt;因此&lt;/p&gt;
-&lt;p&gt;$$
-Q=\mathbb R^3\times \mathbb R^3=\mathbb R^6.
-$$&lt;/p&gt;
-&lt;p&gt;于是 system point 实际上是在 six-dimensional configuration space 中运动：&lt;/p&gt;</description></item><item><title>Differential Geometry</title><link>https://linmythos.github.io/math/geometry/differential-geometry/local/</link><pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/differential-geometry/local/</guid><description>&lt;p&gt;&lt;strong&gt;Warning:部分公式问题仍未解决，完整文章可通过首页的链接前往知乎查看&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;假设有两个粒子 $\mathbf r_1(t),\mathbf r_2(t)\in\mathbb R^3$，整个系统的 configuration 不是一个三维位置，而是 $q(t)=(\mathbf r_1(t),\mathbf r_2(t))$，因此 $Q=\mathbb R^3\times\mathbb R^3=\mathbb R^6$。
+于是 system point 实际上是在 six-dimensional configuration space 中运动，即 $q(t)\in\mathbb R^6$；而物理上我们看到的是两条三维轨迹 $\mathbf r_1(t)$ 与 $\mathbf r_2(t)$。&lt;/p&gt;
+&lt;h3 id="自由-rigid-body"&gt;自由 rigid body&lt;/h3&gt;
+&lt;p&gt;例如一个自由 rigid body，其 configuration 可用 $(x,y,z,\phi,\theta,\psi)$ 描述，故 $Q\simeq\mathbb R^3\times SO(3)$。
+此时一个 configuration-space point $q=(x,y,z,\phi,\theta,\psi)$ 代表的是整个刚体当前的位置加当前的 orientation；随时间 $q(t)=(x(t),y(t),z(t),\phi(t),\theta(t),\psi(t))$，整个刚体的运动就是 $Q$ 中的一条 curve。&lt;/p&gt;</description></item><item><title>Differential Geometry</title><link>https://linmythos.github.io/math/geometry/differential-geometry/local/</link><pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/differential-geometry/local/</guid><description>&lt;p&gt;&lt;strong&gt;Warning:部分公式问题仍未解决，完整文章可通过首页的链接前往知乎查看&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;谨以此文纪念我逝去的夏天&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;暑假的最后几天开始学习微分几何，学了光滑流形基础和局部黎曼几何的大部分内容，那时候还想着自己很快就能学到纤维丛了。但是迫近开学，为了准备转专业考试，把更多时间花在了备考上（重新捡起强基题的感觉很难受，一些不好的回忆开始攻击我）。微分几何的学习也陷入停滞。恰好军训期间观训，趁着记忆还没有完全丧失，把局部黎曼几何补完了。由于整体黎曼几何需要更强的抽代基础，只好先跑去补了。&lt;/p&gt;

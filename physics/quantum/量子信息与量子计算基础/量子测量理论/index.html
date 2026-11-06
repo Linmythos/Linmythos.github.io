@@ -1,0 +1,791 @@
+<!doctype html><html lang=en dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>量子测量理论：投影测量、POVM 与量子仪器 | Linmythos</title><meta name=keywords content><meta name=description content="Quantum Measurement Theory: Projective Measurements, POVMs and Quantum Instruments
+
+本篇目标
+本篇系统建立量子测量的数学理论。
+完成本篇后，应当能够：
+
+从 Born 规则理解量子测量概率；
+掌握可观测量的谱分解；
+理解投影测量及其测量后状态；
+区分投影测量与一般 POVM；
+掌握 POVM 的构造与概率计算；
+理解测量算符与 Kraus 表示；
+理解量子仪器及测量反作用；
+掌握 Naimark 扩张定理；
+理解测量对量子态的退相干作用；
+为后续测量不相容性、Bell 实验和 QRAC 建立数学基础。
+
+
+第一章 量子测量的基本问题
+1.1 从量子态到测量结果
+在第一篇中，我们建立了量子态的数学描述：
+\[
+\rho\geq0,\qquad
+\operatorname{Tr}(\rho)=1.
+\]
+量子态本身并不是实验中直接读取的物理量。实验者需要通过测量获得经典结果。
+例如，一个量子比特处于：
+\[
+|\psi\rangle
+\alpha|0\rangle+\beta|1\rangle.
+\]
+若在计算基：
+\[
+{|0\rangle,|1\rangle}
+\]
+下测量，实验结果只有两种可能：
+\[
+0,\qquad 1.
+\]
+对应概率为：
+\[
+p(0)=|\alpha|^2,
+\]
+\[
+p(1)=|\beta|^2.
+\]
+因此，量子测量涉及三个问题：
+
+可能出现哪些结果？
+每种结果出现的概率是多少？
+测量后系统处于什么状态？
+
+这三个问题共同构成量子测量理论。"><meta name=author content="Linmythos"><link rel=canonical href=https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E6%B5%8B%E9%87%8F%E7%90%86%E8%AE%BA/><link crossorigin=anonymous href=/assets/css/stylesheet.5a42af7b68c8b1b7f3d0894c8a74d101cf31f37c1aa9bf8365395ef493e0dea4.css integrity="sha256-WkKve2jIsbfz0IlMinTRAc8x83waqb+DZTle9JPg3qQ=" rel="preload stylesheet" as=style><link rel=icon href=https://linmythos.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://linmythos.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://linmythos.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://linmythos.github.io/apple-touch-icon.png><link rel=mask-icon href=https://linmythos.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E6%B5%8B%E9%87%8F%E7%90%86%E8%AE%BA/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],packages:{"[+]":["ams"]}}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><meta property="og:url" content="https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E6%B5%8B%E9%87%8F%E7%90%86%E8%AE%BA/"><meta property="og:site_name" content="Linmythos"><meta property="og:title" content="量子测量理论：投影测量、POVM 与量子仪器"><meta property="og:description" content="Quantum Measurement Theory: Projective Measurements, POVMs and Quantum Instruments
+本篇目标 本篇系统建立量子测量的数学理论。
+完成本篇后，应当能够：
+从 Born 规则理解量子测量概率； 掌握可观测量的谱分解； 理解投影测量及其测量后状态； 区分投影测量与一般 POVM； 掌握 POVM 的构造与概率计算； 理解测量算符与 Kraus 表示； 理解量子仪器及测量反作用； 掌握 Naimark 扩张定理； 理解测量对量子态的退相干作用； 为后续测量不相容性、Bell 实验和 QRAC 建立数学基础。 第一章 量子测量的基本问题 1.1 从量子态到测量结果 在第一篇中，我们建立了量子态的数学描述：
+\[ \rho\geq0,\qquad \operatorname{Tr}(\rho)=1. \]
+量子态本身并不是实验中直接读取的物理量。实验者需要通过测量获得经典结果。
+例如，一个量子比特处于：
+\[ |\psi\rangle \alpha|0\rangle+\beta|1\rangle. \]
+若在计算基：
+\[ {|0\rangle,|1\rangle} \]
+下测量，实验结果只有两种可能：
+\[ 0,\qquad 1. \]
+对应概率为：
+\[ p(0)=|\alpha|^2, \]
+\[ p(1)=|\beta|^2. \]
+因此，量子测量涉及三个问题：
+可能出现哪些结果？ 每种结果出现的概率是多少？ 测量后系统处于什么状态？ 这三个问题共同构成量子测量理论。"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="physics"><meta property="article:published_time" content="2026-11-05T00:00:00+00:00"><meta property="article:modified_time" content="2026-11-05T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="量子测量理论：投影测量、POVM 与量子仪器"><meta name=twitter:description content="Quantum Measurement Theory: Projective Measurements, POVMs and Quantum Instruments
+本篇目标 本篇系统建立量子测量的数学理论。
+完成本篇后，应当能够：
+从 Born 规则理解量子测量概率； 掌握可观测量的谱分解； 理解投影测量及其测量后状态； 区分投影测量与一般 POVM； 掌握 POVM 的构造与概率计算； 理解测量算符与 Kraus 表示； 理解量子仪器及测量反作用； 掌握 Naimark 扩张定理； 理解测量对量子态的退相干作用； 为后续测量不相容性、Bell 实验和 QRAC 建立数学基础。 第一章 量子测量的基本问题 1.1 从量子态到测量结果 在第一篇中，我们建立了量子态的数学描述：
+\[ \rho\geq0,\qquad \operatorname{Tr}(\rho)=1. \]
+量子态本身并不是实验中直接读取的物理量。实验者需要通过测量获得经典结果。
+例如，一个量子比特处于：
+\[ |\psi\rangle \alpha|0\rangle+\beta|1\rangle. \]
+若在计算基：
+\[ {|0\rangle,|1\rangle} \]
+下测量，实验结果只有两种可能：
+\[ 0,\qquad 1. \]
+对应概率为：
+\[ p(0)=|\alpha|^2, \]
+\[ p(1)=|\beta|^2. \]
+因此，量子测量涉及三个问题：
+可能出现哪些结果？ 每种结果出现的概率是多少？ 测量后系统处于什么状态？ 这三个问题共同构成量子测量理论。"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Physics","item":"https://linmythos.github.io/physics/"},{"@type":"ListItem","position":4,"name":"量子测量理论：投影测量、POVM 与量子仪器","item":"https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E6%B5%8B%E9%87%8F%E7%90%86%E8%AE%BA/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"量子测量理论：投影测量、POVM 与量子仪器","name":"量子测量理论：投影测量、POVM 与量子仪器","description":"Quantum Measurement Theory: Projective Measurements, POVMs and Quantum Instruments\n本篇目标 本篇系统建立量子测量的数学理论。\n完成本篇后，应当能够：\n从 Born 规则理解量子测量概率； 掌握可观测量的谱分解； 理解投影测量及其测量后状态； 区分投影测量与一般 POVM； 掌握 POVM 的构造与概率计算； 理解测量算符与 Kraus 表示； 理解量子仪器及测量反作用； 掌握 Naimark 扩张定理； 理解测量对量子态的退相干作用； 为后续测量不相容性、Bell 实验和 QRAC 建立数学基础。 第一章 量子测量的基本问题 1.1 从量子态到测量结果 在第一篇中，我们建立了量子态的数学描述：\n\\[ \\rho\\geq0,\\qquad \\operatorname{Tr}(\\rho)=1. \\]\n量子态本身并不是实验中直接读取的物理量。实验者需要通过测量获得经典结果。\n例如，一个量子比特处于：\n\\[ |\\psi\\rangle \\alpha|0\\rangle+\\beta|1\\rangle. \\]\n若在计算基：\n\\[ {|0\\rangle,|1\\rangle} \\]\n下测量，实验结果只有两种可能：\n\\[ 0,\\qquad 1. \\]\n对应概率为：\n\\[ p(0)=|\\alpha|^2, \\]\n\\[ p(1)=|\\beta|^2. \\]\n因此，量子测量涉及三个问题：\n可能出现哪些结果？ 每种结果出现的概率是多少？ 测量后系统处于什么状态？ 这三个问题共同构成量子测量理论。\n","keywords":[],"articleBody":"Quantum Measurement Theory: Projective Measurements, POVMs and Quantum Instruments\n本篇目标 本篇系统建立量子测量的数学理论。\n完成本篇后，应当能够：\n从 Born 规则理解量子测量概率； 掌握可观测量的谱分解； 理解投影测量及其测量后状态； 区分投影测量与一般 POVM； 掌握 POVM 的构造与概率计算； 理解测量算符与 Kraus 表示； 理解量子仪器及测量反作用； 掌握 Naimark 扩张定理； 理解测量对量子态的退相干作用； 为后续测量不相容性、Bell 实验和 QRAC 建立数学基础。 第一章 量子测量的基本问题 1.1 从量子态到测量结果 在第一篇中，我们建立了量子态的数学描述：\n\\[ \\rho\\geq0,\\qquad \\operatorname{Tr}(\\rho)=1. \\]\n量子态本身并不是实验中直接读取的物理量。实验者需要通过测量获得经典结果。\n例如，一个量子比特处于：\n\\[ |\\psi\\rangle \\alpha|0\\rangle+\\beta|1\\rangle. \\]\n若在计算基：\n\\[ {|0\\rangle,|1\\rangle} \\]\n下测量，实验结果只有两种可能：\n\\[ 0,\\qquad 1. \\]\n对应概率为：\n\\[ p(0)=|\\alpha|^2, \\]\n\\[ p(1)=|\\beta|^2. \\]\n因此，量子测量涉及三个问题：\n可能出现哪些结果？ 每种结果出现的概率是多少？ 测量后系统处于什么状态？ 这三个问题共同构成量子测量理论。\n1.2 经典测量与量子测量 经典系统的测量通常被理想化为读取一个已经存在的物理量。\n量子系统则具有不同结构。\n例如，对：\n\\[ |+\\rangle \\frac{|0\\rangle+|1\\rangle}{\\sqrt2} \\]\n进行计算基测量：\n\\[ p(0)=p(1)=\\frac12. \\]\n若得到结果 0，在理想投影测量下，系统将变为：\n\\[ |0\\rangle. \\]\n因此，测量不仅产生经典信息，还可能改变量子态。\n测量反作用是量子信息理论的基本现象。\n第二章 可观测量与谱分解 2.1 可观测量 量子力学中，一个可观测量由希尔伯特空间上的厄米算符描述。\n定义 2.1（可观测量）\n线性算符 \\(A\\) 若满足：\n\\[ \\boxed{A^\\dagger=A,} \\]\n则称为厄米算符。\n有限维厄米算符的本征值均为实数。\n设：\n\\[ A|a_i\\rangle=a_i|a_i\\rangle. \\]\n其中：\n\\(a_i\\) 是本征值； \\(|a_i\\rangle\\) 是对应本征态。 根据有限维谱定理，厄米算符可以进行谱分解。\n若本征值互不相同，则：\n\\[ \\boxed{ A=\\sum_i a_i|a_i\\rangle\\langle a_i|. } \\]\n更一般地，若存在简并，则：\n\\[ \\boxed{ A=\\sum_i a_iP_i, } \\]\n其中 \\(P_i\\) 是投影到本征值 \\(a_i\\) 对应本征子空间的正交投影算符。\n2.2 投影算符 定义 2.2（正交投影算符）\n算符 \\(P\\) 若满足：\n\\[ P^\\dagger=P, \\]\n\\[ P^2=P, \\]\n则称为正交投影算符。\n若：\n\\[ P=|\\phi\\rangle\\langle\\phi|, \\]\n且：\n\\[ \\langle\\phi|\\phi\\rangle=1, \\]\n则 \\(P\\) 是投影到一维子空间的秩一投影。\n投影算符满足：\n\\[ P|\\phi\\rangle=|\\phi\\rangle. \\]\n若：\n\\[ |\\psi\\rangle\\perp|\\phi\\rangle, \\]\n则：\n\\[ P|\\psi\\rangle=0. \\]\n2.3 谱投影的性质 对于：\n\\[ A=\\sum_i a_iP_i, \\]\n不同本征值对应的投影满足：\n\\[ \\boxed{ P_iP_j=\\delta_{ij}P_i. } \\]\n并且：\n\\[ \\boxed{ \\sum_iP_i=I. } \\]\n因此，谱投影构成一组完备的正交投影。\n2.4 量子比特的 Pauli 测量 考虑：\n\\[ A=\\sigma_z= \\begin{pmatrix} 1\u00260\\ 0\u0026-1 \\end{pmatrix}. \\]\n其本征值为：\n\\[ a_+=1,\\qquad a_-=-1. \\]\n对应本征态：\n\\[ |0\\rangle,\\qquad |1\\rangle. \\]\n谱分解：\n\\[ \\sigma_z |0\\rangle\\langle0| |1\\rangle\\langle1|. \\]\n定义：\n\\[ P_0=|0\\rangle\\langle0|, \\qquad P_1=|1\\rangle\\langle1|. \\]\n则：\n\\[ \\sigma_z=P_0-P_1. \\]\n同理：\n\\[ \\sigma_x= |+\\rangle\\langle+| |-\\rangle\\langle-|. \\]\n所以：\n测量 \\(\\sigma_z\\)：在计算基测量； 测量 \\(\\sigma_x\\)：在 Hadamard 基测量； 测量 \\(\\sigma_y\\)：在圆偏振基测量。 这三种测量将在后续光子实验中反复出现。\n第三章 Born 规则 3.1 纯态的测量概率 设系统处于纯态：\n\\[ |\\psi\\rangle. \\]\n对可观测量：\n\\[ A=\\sum_i a_iP_i \\]\n进行测量。\nBorn 规则规定：\n\\[ \\boxed{ p(a_i)=\\langle\\psi|P_i|\\psi\\rangle. } \\]\n若 \\(P_i\\) 是秩一投影：\n\\[ P_i=|a_i\\rangle\\langle a_i|, \\]\n则：\n\\[ p(a_i) \\langle\\psi|a_i\\rangle \\langle a_i|\\psi\\rangle. \\]\n即：\n\\[ \\boxed{ p(a_i)=|\\langle a_i|\\psi\\rangle|^2. } \\]\n这就是量子测量概率的基本公式。\n3.2 密度矩阵形式 对一般量子态：\n\\[ \\rho, \\]\nBorn 规则推广为：\n\\[ \\boxed{ p(a_i)=\\operatorname{Tr}(\\rho P_i). } \\]\n当：\n\\[ \\rho=|\\psi\\rangle\\langle\\psi| \\]\n时：\n\\[ \\operatorname{Tr}(\\rho P_i) \\operatorname{Tr} ( |\\psi\\rangle\\langle\\psi|P_i ). \\]\n利用迹的循环性质：\n\\[ \\operatorname{Tr}(ABC) \\operatorname{Tr}(BCA), \\]\n得到：\n\\[ \\operatorname{Tr}(\\rho P_i) \\langle\\psi|P_i|\\psi\\rangle. \\]\n因此，密度矩阵形式包含纯态形式作为特殊情况。\n3.3 概率归一化 由：\n\\[ \\sum_iP_i=I, \\]\n可得：\n\\[ \\sum_ip(a_i) \\sum_i\\operatorname{Tr}(\\rho P_i). \\]\n利用迹的线性性：\n\\[ \\operatorname{Tr} \\left( \\rho\\sum_iP_i \\right). \\]\n因此：\n\\[ \\operatorname{Tr}(\\rho I). \\]\n于是：\n\\[ \\boxed{ \\sum_ip(a_i)=1. } \\]\nBorn 规则与投影完备性保证了概率归一化。\n3.4 测量期望值 测量结果为 \\(a_i\\) 的概率为：\n\\[ p(a_i)=\\operatorname{Tr}(\\rho P_i). \\]\n因此，测量结果的期望值：\n\\[ \\mathbb E[A] \\sum_i a_ip(a_i). \\]\n代入：\n\\[ \\mathbb E[A] \\sum_i a_i\\operatorname{Tr}(\\rho P_i). \\]\n利用迹的线性性：\n\\[ \\operatorname{Tr} \\left[ \\rho\\sum_i a_iP_i \\right]. \\]\n所以：\n\\[ \\boxed{ \\langle A\\rangle \\operatorname{Tr}(\\rho A). } \\]\n这是量子力学中最重要的期望值公式之一。\n3.5 方差 测量结果的方差定义为：\n\\[ (\\Delta A)^2 \\langle A^2\\rangle-\\langle A\\rangle^2. \\]\n其中：\n\\[ \\langle A^2\\rangle \\operatorname{Tr}(\\rho A^2). \\]\n因此：\n\\[ \\boxed{ (\\Delta A)^2 \\operatorname{Tr}(\\rho A^2) [\\operatorname{Tr}(\\rho A)]^2. } \\]\n第四章 投影测量与测量后状态 4.1 Lüders 投影测量 定义 4.1（投影测量）\n一组投影算符：\n\\[ {P_i} \\]\n若满足：\n\\[ P_iP_j=\\delta_{ij}P_i, \\]\n以及：\n\\[ \\sum_iP_i=I, \\]\n则称其为一组投影测量。\n当系统处于状态 \\(\\rho\\) 时，结果 \\(i\\) 的概率为：\n\\[ \\boxed{ p(i)=\\operatorname{Tr}(\\rho P_i). } \\]\n若测得结果 \\(i\\)，采用 Lüders 更新规则时，测量后的状态为：\n\\[ \\boxed{ \\rho_i= \\frac{P_i\\rho P_i} {\\operatorname{Tr}(\\rho P_i)}. } \\]\n这里假设：\n\\[ p(i)\u003e0. \\]\n4.2 为什么需要左右各乘一个投影算符？ 不能简单地写：\n\\[ \\rho_i=P_i\\rho. \\]\n因为一般而言：\n\\[ P_i\\rho \\]\n不一定是厄米算符。\n同样：\n\\[ \\rho P_i \\]\n也不一定是厄米算符。\n而：\n\\[ P_i\\rho P_i \\]\n满足厄米性，并且是正半定的。\n此外：\n\\[ \\operatorname{Tr}(P_i\\rho P_i) \\operatorname{Tr}(\\rho P_i^2) \\operatorname{Tr}(\\rho P_i). \\]\n因此，归一化后：\n\\[ \\operatorname{Tr}(\\rho_i)=1. \\]\n4.3 例题：测量一个叠加态 考虑：\n\\[ |\\psi\\rangle \\frac{|0\\rangle+|1\\rangle}{\\sqrt2}. \\]\n初态密度矩阵：\n\\[ \\rho= \\frac12 \\begin{pmatrix} 1\u00261\\ 1\u00261 \\end{pmatrix}. \\]\n在计算基进行投影测量：\n\\[ P_0= \\begin{pmatrix} 1\u00260\\ 0\u00260 \\end{pmatrix}, \\]\n\\[ P_1= \\begin{pmatrix} 0\u00260\\ 0\u00261 \\end{pmatrix}. \\]\n结果 0 的概率：\n\\[ p(0)=\\operatorname{Tr}(\\rho P_0)=\\frac12. \\]\n测量后：\n\\[ \\rho_0 \\frac{P_0\\rho P_0}{p(0)}. \\]\n计算：\n\\[ P_0\\rho P_0 \\frac12 \\begin{pmatrix} 1\u00260\\ 0\u00260 \\end{pmatrix}. \\]\n所以：\n\\[ \\boxed{ \\rho_0= \\begin{pmatrix} 1\u00260\\ 0\u00260 \\end{pmatrix} |0\\rangle\\langle0|. } \\]\n同理：\n\\[ \\rho_1=|1\\rangle\\langle1|. \\]\n这说明计算基测量会将原来的相干叠加态投影到某个计算基态。\n4.4 非选择性测量 有时实验者只知道测量发生了，但不记录测量结果。\n此时，测量后的状态是：\n\\[ \\boxed{ \\rho' \\sum_iP_i\\rho P_i. } \\]\n这称为非选择性投影测量。\n对上一节的叠加态：\n\\[ \\rho= \\frac12 \\begin{pmatrix} 1\u00261\\ 1\u00261 \\end{pmatrix}, \\]\n有：\n\\[ \\rho' P_0\\rho P_0+P_1\\rho P_1. \\]\n因此：\n\\[ \\boxed{ \\rho' \\frac12 \\begin{pmatrix} 1\u00260\\ 0\u00261 \\end{pmatrix}. } \\]\n原来的非对角元消失了。\n这说明测量在计算基中消除了不同基态之间的相干项。\n4.5 退相干的数学表达 对于一般密度矩阵：\n\\[ \\rho= \\begin{pmatrix} \\rho_{00}\u0026\\rho_{01}\\ \\rho_{10}\u0026\\rho_{11} \\end{pmatrix}, \\]\n计算基非选择性投影测量给出：\n\\[ \\boxed{ \\rho’= \\begin{pmatrix} \\rho_{00}\u00260\\ 0\u0026\\rho_{11} \\end{pmatrix}. } \\]\n这称为完全去相干信道（在该基下）。\n注意：这里消失的是指定测量基下的非对角元。退相干并不是无条件地把所有基下的相干性都消除。\n第五章 一般 POVM 投影测量是量子测量的一种重要形式，但并不是最一般的形式。\n实际实验中，探测器可能不完美，测量结果也可能包含多个非正交的响应。\n因此，需要更一般的测量理论。\n5.1 POVM 的定义 定义 5.1（POVM）\n设：\n\\[ {E_i}_{i=1}^n \\]\n是一组作用于希尔伯特空间 \\(\\mathcal H\\) 的算符。\n若满足：\n\\[ \\boxed{ E_i\\geq0 } \\]\n以及：\n\\[ \\boxed{ \\sum_iE_i=I, } \\]\n则称其为一个正算符值测量（Positive Operator-Valued Measure, POVM）。\n其中：\n\\[ E_i \\]\n称为 POVM 元素。\n对系统状态 \\(\\rho\\)，测量结果 \\(i\\) 的概率为：\n\\[ \\boxed{ p(i)=\\operatorname{Tr}(\\rho E_i). } \\]\n5.2 为什么 POVM 元素只要求正半定？ 由于测量概率必须满足：\n\\[ p(i)\\geq0, \\]\n所以对任意纯态：\n\\[ |\\psi\\rangle, \\]\n必须有：\n\\[ \\langle\\psi|E_i|\\psi\\rangle\\geq0. \\]\n这恰好要求：\n\\[ E_i\\geq0. \\]\n而概率归一化要求：\n\\[ \\sum_i p(i)=1. \\]\n即：\n\\[ \\operatorname{Tr} \\left( \\rho\\sum_iE_i \\right)=1. \\]\n对所有密度矩阵都成立，因此：\n\\[ \\sum_iE_i=I. \\]\n这就是 POVM 两个条件的来源。\n5.3 投影测量是 POVM 的特殊情况 若：\n\\[ E_i=P_i, \\]\n且：\n\\[ P_iP_j=\\delta_{ij}P_i, \\]\n则：\n\\[ E_i\\geq0, \\qquad \\sum_iE_i=I. \\]\n因此，投影测量是 POVM 的特殊情况。\n但一般 POVM 不要求：\n\\[ E_i^2=E_i. \\]\n也不要求：\n\\[ E_iE_j=0 \\qquad(i\\neq j). \\]\n这正是两者的区别。\n5.4 POVM 元素的本征值范围 因为：\n\\[ E_i\\geq0, \\]\n所以所有本征值非负。\n又因为：\n\\[ I-E_i \\sum_{j\\neq i}E_j\\geq0, \\]\n所以：\n\\[ E_i\\leq I. \\]\n因此：\n\\[ \\boxed{ 0\\leq E_i\\leq I. } \\]\n5.5 二结果 qubit POVM 考虑：\n\\[ E_0= \\frac12(I+\\eta\\sigma_z), \\]\n\\[ E_1= \\frac12(I-\\eta\\sigma_z). \\]\n其中：\n\\[ 0\\leq\\eta\\leq1. \\]\n首先：\n\\[ E_0+E_1=I. \\]\n其次，\\(\\sigma_z\\) 的本征值为 \\(\\pm1\\)，因此：\n\\[ E_0 \\]\n的本征值为：\n\\[ \\frac{1+\\eta}{2}, \\qquad \\frac{1-\\eta}{2}. \\]\n当：\n\\[ 0\\leq\\eta\\leq1 \\]\n时，两者均非负。\n同理：\n\\[ E_1\\geq0. \\]\n所以这是一组合法 POVM。\n其测量概率：\n\\[ p(0)=\\operatorname{Tr}(\\rho E_0), \\]\n\\[ p(1)=\\operatorname{Tr}(\\rho E_1). \\]\n若：\n\\[ \\rho= \\frac12(I+r_x\\sigma_x+r_y\\sigma_y+r_z\\sigma_z), \\]\n则：\n\\[ \\boxed{ p(0)=\\frac{1+\\eta r_z}{2}, } \\]\n\\[ \\boxed{ p(1)=\\frac{1-\\eta r_z}{2}. } \\]\n参数 \\(\\eta\\) 控制测量对 Bloch 向量 \\(z\\) 分量的敏感程度。\n\\(\\eta=1\\)：理想 \\(z\\) 方向投影测量； \\(\\eta=0\\)：两个结果各以 \\(1/2\\) 的概率出现，与输入态无关。 5.6 三结果 qubit POVM 考虑三个单位向量：\n\\[ \\vec n_1=(1,0,0), \\]\n\\[ \\vec n_2= \\left(-\\frac12,\\frac{\\sqrt3}{2},0\\right), \\]\n\\[ \\vec n_3= \\left(-\\frac12,-\\frac{\\sqrt3}{2},0\\right). \\]\n它们满足：\n\\[ |\\vec n_i|=1, \\]\n以及：\n\\[ \\sum_{i=1}^3\\vec n_i=0. \\]\n定义：\n\\[ \\boxed{ E_i= \\frac13(I+\\vec n_i\\cdot\\vec\\sigma). } \\]\n验证正定性。\n由于：\n\\[ (\\vec n_i\\cdot\\vec\\sigma)^2=I, \\]\n其本征值为：\n\\[ \\pm1. \\]\n因此：\n\\[ I+\\vec n_i\\cdot\\vec\\sigma \\]\n的本征值为：\n\\[ 0,\\quad2. \\]\n所以：\n\\[ E_i\\geq0. \\]\n再验证完备性：\n\\[ \\sum_iE_i I+\\frac13 \\left( \\sum_i\\vec n_i \\right)\\cdot\\vec\\sigma. \\]\n由于：\n\\[ \\sum_i\\vec n_i=0, \\]\n所以：\n\\[ \\boxed{ \\sum_iE_i=I. } \\]\n这是一组合法的三结果 POVM。\n5.7 POVM 的物理意义 为什么需要多个非正交结果？\n一个典型场景是量子态判别。\n假设 Alice 可能制备两个非正交态：\n\\[ |\\psi_0\\rangle,\\qquad |\\psi_1\\rangle. \\]\nBob 希望判断 Alice 制备的是哪一个。\n如果两个态不正交，则一般无法通过一次测量以概率 1 完美区分。\n但通过合适的 POVM，可以实现：\n允许某些结果是不确定的； 在给出确定判断时保证判断正确； 或者最大化平均判别成功率。 这类问题称为量子态判别（Quantum State Discrimination）。\n它是 POVM 的重要应用。\n第六章 测量算符与 Kraus 表示 POVM 只描述测量结果的概率，还不足以确定测量后状态。\n为此，引入测量算符。\n6.1 测量算符 定义 6.1（测量算符）\n一组算符：\n\\[ {M_i} \\]\n若满足：\n\\[ \\boxed{ \\sum_iM_i^\\dagger M_i=I, } \\]\n则构成一组完备测量算符。\n测量结果 \\(i\\) 的概率为：\n\\[ \\boxed{ p(i)= \\operatorname{Tr} (M_i\\rho M_i^\\dagger). } \\]\n利用迹的循环性质：\n\\[ p(i) \\operatorname{Tr} (\\rho M_i^\\dagger M_i). \\]\n定义：\n\\[ \\boxed{ E_i=M_i^\\dagger M_i. } \\]\n则：\n\\[ p(i)=\\operatorname{Tr}(\\rho E_i). \\]\n因此，测量算符总能诱导一个 POVM。\n6.2 测量后的状态 若测得结果 \\(i\\)，则：\n\\[ \\boxed{ \\rho_i= \\frac{ M_i\\rho M_i^\\dagger }{ \\operatorname{Tr}(M_i\\rho M_i^\\dagger) }. } \\]\n如果不记录测量结果：\n\\[ \\boxed{ \\rho’= \\sum_iM_i\\rho M_i^\\dagger. } \\]\n注意：\n\\[ E_i=M_i^\\dagger M_i \\]\n决定测量概率，但不唯一决定 \\(M_i\\)。\n因此，同一个 POVM 可以对应不同的测量后状态。\n6.3 同一 POVM 的不同测量实现 设：\n\\[ E_i \\]\n为给定 POVM 元素。\n利用极分解，可以写成：\n\\[ M_i=U_i\\sqrt{E_i}, \\]\n其中 \\(U_i\\) 是适当的酉算符或部分等距算符。\n于是：\n\\[ M_i^\\dagger M_i \\sqrt{E_i}U_i^\\dagger U_i\\sqrt{E_i}. \\]\n在相关支撑空间上：\n\\[ M_i^\\dagger M_i=E_i. \\]\n但测量后：\n\\[ M_i\\rho M_i^\\dagger U_i\\sqrt{E_i}\\rho\\sqrt{E_i}U_i^\\dagger. \\]\n不同 \\(U_i\\) 会导致不同的测量后状态。\n所以：\n\\[ \\boxed{ \\text{相同 POVM} \\not\\Rightarrow \\text{相同测量反作用}. } \\]\n6.4 Lüders 测量 对 POVM：\n\\[ {E_i}, \\]\n一种自然的测量实现是：\n\\[ \\boxed{ M_i=\\sqrt{E_i}. } \\]\n此时：\n\\[ \\rho_i \\frac{ \\sqrt{E_i}\\rho\\sqrt{E_i} }{ \\operatorname{Tr}(\\rho E_i) }. \\]\n对于投影测量：\n\\[ E_i=P_i, \\]\n由于：\n\\[ \\sqrt{P_i}=P_i, \\]\n所以恢复：\n\\[ \\rho_i= \\frac{P_i\\rho P_i} {\\operatorname{Tr}(\\rho P_i)}. \\]\n这正是 Lüders 更新规则。\n第七章 量子仪器与量子信道 7.1 为什么还需要量子仪器？ POVM 描述：\n\\[ \\text{测量结果的概率}. \\]\n测量算符描述：\n\\[ \\text{给定测量结果后的状态更新}. \\]\n但实验中可能存在更复杂的过程：\n一个测量结果对应多个内部测量路径； 辅助系统被丢弃； 环境与系统发生相互作用； 不同 Kraus 算符对应同一个经典结果。 因此，需要进一步推广。\n7.2 量子仪器 定义 7.1（量子仪器）\n一个量子仪器由一组完全正的线性映射：\n\\[ {\\mathcal I_i} \\]\n组成，使得：\n\\[ \\mathcal I=\\sum_i\\mathcal I_i \\]\n是一个迹保持量子信道。\n测量结果 \\(i\\) 的概率：\n\\[ \\boxed{ p(i)=\\operatorname{Tr}[\\mathcal I_i(\\rho)]. } \\]\n测量后的条件态：\n\\[ \\boxed{ \\rho_i= \\frac{\\mathcal I_i(\\rho)}{p(i)}. } \\]\n非选择性输出态：\n\\[ \\boxed{ \\rho’=\\sum_i\\mathcal I_i(\\rho). } \\]\n7.3 Kraus 表示 每个完全正映射都可以写成 Kraus 形式：\n\\[ \\boxed{ \\mathcal I_i(\\rho) \\sum_\\alpha K_{i\\alpha}\\rho K_{i\\alpha}^\\dagger. } \\]\n其中：\n\\[ E_i= \\sum_\\alpha K_{i\\alpha}^\\dagger K_{i\\alpha}. \\]\n整体完备性条件：\n\\[ \\boxed{ \\sum_{i,\\alpha} K_{i\\alpha}^\\dagger K_{i\\alpha}=I. } \\]\n这里：\n\\(i\\)：实际记录的测量结果； \\(\\alpha\\)：同一结果下未被区分的内部过程。 7.4 POVM 与量子仪器的关系 给定一个量子仪器：\n\\[ {\\mathcal I_i}, \\]\n可以定义：\n\\[ E_i=\\mathcal I_i^*(I), \\]\n其中 \\(\\mathcal I_i^*\\) 是其对偶映射。\n于是：\n\\[ p(i)=\\operatorname{Tr}(\\rho E_i). \\]\n因此，每个量子仪器都诱导一个 POVM。\n但是反过来：\n给定一个 POVM，并不能唯一确定对应的量子仪器。\n这再次说明：\n\\[ \\boxed{ \\text{POVM 描述统计结果，量子仪器描述完整测量过程}. } \\]\n7.5 量子信道 忽略测量结果后：\n\\[ \\mathcal E(\\rho) \\sum_{i,\\alpha} K_{i\\alpha}\\rho K_{i\\alpha}^\\dagger. \\]\n这是一个量子信道。\n其满足：\n完全正性； 迹保持性。 迹保持性：\n\\[ \\operatorname{Tr}[\\mathcal E(\\rho)] \\operatorname{Tr}(\\rho). \\]\n完全正性要求即使系统与任意辅助系统纠缠，扩展映射仍保持正性。\n量子信道是量子噪声和开放系统动力学的基本数学对象。\n第八章 Naimark 扩张定理 POVM 与投影测量之间存在一个深刻关系。\n定理 8.1（Naimark 扩张定理）\n任意有限维 POVM 都可以通过扩展希尔伯特空间上的投影测量实现。\n换言之：\n在适当引入辅助系统后，一般 POVM 可以看作更大系统上的投影测量。\n8.1 定理的构造思路 设原系统希尔伯特空间为：\n\\[ \\mathcal H. \\]\n给定 POVM：\n\\[ {E_i}_{i=1}^n. \\]\n定义辅助空间：\n\\[ \\mathcal K=\\mathbb C^n. \\]\n取其标准正交基：\n\\[ {|i\\rangle}_{i=1}^n. \\]\n构造映射：\n\\[ V:\\mathcal H\\rightarrow\\mathcal H\\otimes\\mathcal K, \\]\n令：\n\\[ \\boxed{ V|\\psi\\rangle \\sum_i\\sqrt{E_i}|\\psi\\rangle\\otimes|i\\rangle. } \\]\n首先验证 \\(V\\) 是等距映射：\n\\[ V^\\dagger V \\sum_iE_i I. \\]\n所以：\n\\[ \\langle V\\psi|V\\psi\\rangle \\langle\\psi|\\psi\\rangle. \\]\n定义扩展空间上的投影：\n\\[ P_i=I\\otimes|i\\rangle\\langle i|. \\]\n则：\n\\[ V^\\dagger P_iV E_i. \\]\n因此：\n\\[ \\boxed{ \\langle\\psi|E_i|\\psi\\rangle \\langle V\\psi|P_i|V\\psi\\rangle. } \\]\n左边是原系统的 POVM 概率，右边是扩展系统的投影测量概率。\n这证明了 POVM 可以由扩展空间上的投影测量实现。\n8.2 物理解释 可以将整个过程理解为：\n原系统与辅助系统组合； 通过适当的相互作用建立系统与辅助系统之间的关联； 对辅助系统或扩展系统进行投影测量； 将辅助自由度忽略。 因此，原系统上的非投影测量可以通过更大的系统上的投影测量实现。\nNaimark 扩张揭示了 POVM 与投影测量在数学上的统一性。\n第九章 测量反作用与量子退相干 9.1 一个噪声化 qubit 测量 考虑：\n\\[ E_\\pm= \\frac12(I\\pm\\eta\\sigma_z), \\]\n其中：\n\\[ 0\\leq\\eta\\leq1. \\]\n采用 Lüders 实现：\n\\[ M_\\pm=\\sqrt{E_\\pm}. \\]\n因为：\n\\[ \\sigma_z= \\begin{pmatrix} 1\u00260\\ 0\u0026-1 \\end{pmatrix}, \\]\n所以：\n\\[ E_+ \\begin{pmatrix} \\frac{1+\\eta}{2}\u00260\\ 0\u0026\\frac{1-\\eta}{2} \\end{pmatrix}. \\]\n于是：\n\\[ M_+ \\begin{pmatrix} \\sqrt{\\frac{1+\\eta}{2}}\u00260\\ 0\u0026\\sqrt{\\frac{1-\\eta}{2}} \\end{pmatrix}. \\]\n同理：\n\\[ M_- \\begin{pmatrix} \\sqrt{\\frac{1-\\eta}{2}}\u00260\\ 0\u0026\\sqrt{\\frac{1+\\eta}{2}} \\end{pmatrix}. \\]\n9.2 非选择性测量信道 设输入态：\n\\[ \\rho= \\begin{pmatrix} \\rho_{00}\u0026\\rho_{01}\\ \\rho_{10}\u0026\\rho_{11} \\end{pmatrix}. \\]\n测量后：\n\\[ \\rho' M_+\\rho M_+ + M_-\\rho M_-. \\]\n先计算第一项：\n\\[ M_+\\rho M_+ \\begin{pmatrix} \\frac{1+\\eta}{2}\\rho_{00} \u0026 \\frac{\\sqrt{1-\\eta^2}}2\\rho_{01} \\ \\frac{\\sqrt{1-\\eta^2}}2\\rho_{10} \u0026 \\frac{1-\\eta}{2}\\rho_{11} \\end{pmatrix}. \\]\n第二项：\n\\[ M_-\\rho M_- \\begin{pmatrix} \\frac{1-\\eta}{2}\\rho_{00} \u0026 \\frac{\\sqrt{1-\\eta^2}}2\\rho_{01} \\ \\frac{\\sqrt{1-\\eta^2}}2\\rho_{10} \u0026 \\frac{1+\\eta}{2}\\rho_{11} \\end{pmatrix}. \\]\n相加：\n\\[ \\boxed{ \\rho' \\begin{pmatrix} \\rho_{00}\u0026\\sqrt{1-\\eta^2}\\rho_{01}\\ \\sqrt{1-\\eta^2}\\rho_{10}\u0026\\rho_{11} \\end{pmatrix}. } \\]\n因此：\n\\(z\\) 方向的布居不变； \\(x,y\\) 方向的相干性被削弱。 9.3 Bloch 球上的测量反作用 输入态：\n\\[ \\rho= \\frac12 (I+r_x\\sigma_x+r_y\\sigma_y+r_z\\sigma_z). \\]\n输出态：\n\\[ \\boxed{ \\rho' \\frac12 \\left[ I+ \\sqrt{1-\\eta^2}r_x\\sigma_x + \\sqrt{1-\\eta^2}r_y\\sigma_y + r_z\\sigma_z \\right]. } \\]\n因此 Bloch 向量变为：\n\\[ \\boxed{ \\vec r' \\left( \\sqrt{1-\\eta^2}r_x, \\sqrt{1-\\eta^2}r_y, r_z \\right). } \\]\n这是一个沿 \\(z\\) 方向保留、横向收缩的变换。\n当：\n\\[ \\eta=0 \\]\n时：\n\\[ \\vec r’=\\vec r. \\]\n测量不提取任何关于 \\(z\\) 分量的信息，也不扰动系统。\n当：\n\\[ \\eta=1 \\]\n时：\n\\[ \\vec r’=(0,0,r_z). \\]\n所有横向相干性消失。\n这就是理想 \\(z\\) 基测量造成的完全退相干。\n9.4 信息提取与测量扰动 测量锐度 \\(\\eta\\) 越大，测量结果越能反映输入态的 \\(z\\) 分量。\n但与此同时，横向相干性损失越大。\n因此，信息提取与量子态扰动之间存在权衡。\n这正是后续序贯测量研究的基础：\n第一个观察者希望提取尽可能多的信息； 后续观察者希望系统保留尽可能多的量子特征。 两者的目标并不总是一致。\n第十章 本篇总结与核心概念辨析 本篇建立了量子测量的完整数学框架。\n10.1 四个核心层次 数学对象 描述内容 可观测量 \\(A\\) 物理量及其可能测量值 POVM \\({E_i}\\) 测量结果的概率统计 测量算符 \\({M_i}\\) 单个测量结果对应的状态更新 量子仪器 \\({\\mathcal I_i}\\) 完整的测量结果与条件态演化 10.2 重要公式 投影测量概率：\n\\[ p(i)=\\operatorname{Tr}(\\rho P_i). \\]\n投影测量后状态：\n\\[ \\rho_i= \\frac{P_i\\rho P_i}{p(i)}. \\]\n非选择性投影测量：\n\\[ \\rho’=\\sum_iP_i\\rho P_i. \\]\nPOVM 完备性：\n\\[ E_i\\geq0, \\qquad \\sum_iE_i=I. \\]\nPOVM 概率：\n\\[ p(i)=\\operatorname{Tr}(\\rho E_i). \\]\n测量算符与 POVM：\n\\[ E_i=M_i^\\dagger M_i. \\]\n测量算符完备性：\n\\[ \\sum_iM_i^\\dagger M_i=I. \\]\n条件态更新：\n\\[ \\rho_i= \\frac{M_i\\rho M_i^\\dagger}{p(i)}. \\]\n非选择性量子信道：\n\\[ \\mathcal E(\\rho) \\sum_iM_i\\rho M_i^\\dagger. \\]\n第十一章 习题 第一组：谱分解与 Born 规则 习题 1.\n求：\n\\[ A= \\begin{pmatrix} 1\u00260\\ 0\u0026-1 \\end{pmatrix} \\]\n的谱分解，并写出对应的两个投影算符。\n习题 2.\n设：\n\\[ |\\psi\\rangle \\frac{|0\\rangle+i|1\\rangle}{\\sqrt2}. \\]\n分别计算在 \\(\\sigma_x,\\sigma_y,\\sigma_z\\) 测量下得到正本征值的概率。\n习题 3.\n证明：\n\\[ \\langle A\\rangle=\\operatorname{Tr}(\\rho A). \\]\n习题 4.\n证明对于任意 POVM：\n\\[ 0\\leq E_i\\leq I. \\]\n第二组：投影测量 习题 5.\n对：\n\\[ |\\psi\\rangle \\cos\\frac\\theta2|0\\rangle + e^{i\\phi}\\sin\\frac\\theta2|1\\rangle, \\]\n计算计算基测量后的两个条件态。\n习题 6.\n证明非选择性投影测量：\n\\[ \\rho’=\\sum_iP_i\\rho P_i \\]\n保持迹和正半定性。\n习题 7.\n对一个一般 qubit 密度矩阵计算 \\(\\sigma_z\\) 投影测量后的非选择性状态。\n第三组：POVM 习题 8.\n验证：\n\\[ E_\\pm= \\frac12(I\\pm\\eta\\sigma_x) \\]\n在：\n\\[ 0\\leq\\eta\\leq1 \\]\n时构成合法 POVM。\n习题 9.\n验证第三章给出的三结果 qubit POVM。\n习题 10.\n设：\n\\[ E_1= \\begin{pmatrix} 0.7\u00260\\ 0\u00260.2 \\end{pmatrix}, \\]\n\\[ E_2= \\begin{pmatrix} 0.3\u00260\\ 0\u00260.8 \\end{pmatrix}. \\]\n证明它们构成一个二结果 POVM，并计算输入态：\n\\[ |\\psi\\rangle= \\frac{|0\\rangle+|1\\rangle}{\\sqrt2} \\]\n时的两个测量概率。\n第四组：测量算符与量子仪器 习题 11.\n对：\n\\[ E_\\pm=\\frac12(I\\pm\\eta\\sigma_z) \\]\n求其 Lüders 测量算符。\n习题 12.\n验证：\n\\[ \\sum_iM_i^\\dagger M_i=I \\]\n能够保证非选择性测量保持迹。\n习题 13.\n构造一个 POVM，并给出两种具有相同 POVM 元素、但测量后状态不同的测量实现。\n第五组：测量扰动 习题 14.\n从 Kraus 形式出发，推导噪声化 \\(z\\) 测量对 Bloch 向量的影响。\n习题 15.\n讨论：\n\\[ \\eta\\rightarrow0, \\qquad \\eta\\rightarrow1 \\]\n时测量信息提取能力和测量扰动的变化。\n习题 16.\n证明对于任意输入态，非选择性测量满足：\n\\[ \\operatorname{Tr}(\\rho’^2) \\leq \\operatorname{Tr}(\\rho^2) \\]\n是否总成立？若不成立，请给出反例或说明适用条件。\n进一步阅读 Nielsen \u0026 Chuang, Quantum Computation and Quantum Information，Quantum Measurements 相关章节。 Watrous, The Theory of Quantum Information，Positive Operators、Measurements、Quantum Channels。 Busch, Lahti, Pellonpää \u0026 Ylinen, Quantum Measurement。 Holevo, Probabilistic and Statistical Aspects of Quantum Theory。 ","wordCount":"1898","inLanguage":"en","datePublished":"2026-11-05T00:00:00Z","dateModified":"2026-11-05T00:00:00Z","author":{"@type":"Person","name":"Linmythos"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E6%B5%8B%E9%87%8F%E7%90%86%E8%AE%BA/"},"publisher":{"@type":"Organization","name":"Linmythos","logo":{"@type":"ImageObject","url":"https://linmythos.github.io/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://linmythos.github.io/ accesskey=h title="Linmythos (Alt + H)">Linmythos</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://linmythos.github.io/math/ title=Mathematics><span>Mathematics</span></a></li><li><a href=https://linmythos.github.io/physics/ title=Physics><span>Physics</span></a></li><li><a href=https://linmythos.github.io/ai/ title=AI><span>AI</span></a></li><li><a href=https://linmythos.github.io/neural-science/ title="Neural Science"><span>Neural Science</span></a></li><li><a href=https://linmythos.github.io/essays/ title=Essays><span>Essays</span></a></li><li><a href=https://linmythos.github.io/about/ title=About><span>About</span></a></li><li><a href=https://linmythos.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://linmythos.github.io/archives/ title=Archives><span>Archives</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">量子测量理论：投影测量、POVM 与量子仪器</h1><div class=post-meta><span title='2026-11-05 00:00:00 +0000 UTC'>November 5, 2026</span>&nbsp;·&nbsp;<span>9 min</span>&nbsp;·&nbsp;<span>Linmythos</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><ul><li><a href=#%e6%9c%ac%e7%af%87%e7%9b%ae%e6%a0%87 aria-label=本篇目标>本篇目标</a></li></ul><li><a href=#%e7%ac%ac%e4%b8%80%e7%ab%a0-%e9%87%8f%e5%ad%90%e6%b5%8b%e9%87%8f%e7%9a%84%e5%9f%ba%e6%9c%ac%e9%97%ae%e9%a2%98 aria-label="第一章 量子测量的基本问题">第一章 量子测量的基本问题</a><ul><li><a href=#11-%e4%bb%8e%e9%87%8f%e5%ad%90%e6%80%81%e5%88%b0%e6%b5%8b%e9%87%8f%e7%bb%93%e6%9e%9c aria-label="1.1 从量子态到测量结果">1.1 从量子态到测量结果</a></li><li><a href=#12-%e7%bb%8f%e5%85%b8%e6%b5%8b%e9%87%8f%e4%b8%8e%e9%87%8f%e5%ad%90%e6%b5%8b%e9%87%8f aria-label="1.2 经典测量与量子测量">1.2 经典测量与量子测量</a></li></ul></li><li><a href=#%e7%ac%ac%e4%ba%8c%e7%ab%a0-%e5%8f%af%e8%a7%82%e6%b5%8b%e9%87%8f%e4%b8%8e%e8%b0%b1%e5%88%86%e8%a7%a3 aria-label="第二章 可观测量与谱分解">第二章 可观测量与谱分解</a><ul><li><a href=#21-%e5%8f%af%e8%a7%82%e6%b5%8b%e9%87%8f aria-label="2.1 可观测量">2.1 可观测量</a></li><li><a href=#22-%e6%8a%95%e5%bd%b1%e7%ae%97%e7%ac%a6 aria-label="2.2 投影算符">2.2 投影算符</a></li><li><a href=#23-%e8%b0%b1%e6%8a%95%e5%bd%b1%e7%9a%84%e6%80%a7%e8%b4%a8 aria-label="2.3 谱投影的性质">2.3 谱投影的性质</a></li><li><a href=#24-%e9%87%8f%e5%ad%90%e6%af%94%e7%89%b9%e7%9a%84-pauli-%e6%b5%8b%e9%87%8f aria-label="2.4 量子比特的 Pauli 测量">2.4 量子比特的 Pauli 测量</a></li><li><a href=#0ranglelangle0 aria-label=|0\rangle\langle0|>|0\rangle\langle0|</a></li></ul></li><li><a href=#%e7%ac%ac%e4%b8%89%e7%ab%a0-born-%e8%a7%84%e5%88%99 aria-label="第三章 Born 规则">第三章 Born 规则</a><ul><li><a href=#31-%e7%ba%af%e6%80%81%e7%9a%84%e6%b5%8b%e9%87%8f%e6%a6%82%e7%8e%87 aria-label="3.1 纯态的测量概率">3.1 纯态的测量概率</a></li><li><a href=#32-%e5%af%86%e5%ba%a6%e7%9f%a9%e9%98%b5%e5%bd%a2%e5%bc%8f aria-label="3.2 密度矩阵形式">3.2 密度矩阵形式</a></li><li><a href=#33-%e6%a6%82%e7%8e%87%e5%bd%92%e4%b8%80%e5%8c%96 aria-label="3.3 概率归一化">3.3 概率归一化</a></li></ul></li><li><a href=#heading aria-label=\[>\[</a></li><li><a href=#heading-1 aria-label=\[>\[</a><ul><li><a href=#34-%e6%b5%8b%e9%87%8f%e6%9c%9f%e6%9c%9b%e5%80%bc aria-label="3.4 测量期望值">3.4 测量期望值</a></li></ul></li><li><a href=#heading-2 aria-label=\[>\[</a><ul><li><a href=#35-%e6%96%b9%e5%b7%ae aria-label="3.5 方差">3.5 方差</a></li><li><a href=#operatornametrrho-a2 aria-label="\operatorname{Tr}(\rho A^2)">\operatorname{Tr}(\rho A^2)</a></li></ul></li><li><a href=#%e7%ac%ac%e5%9b%9b%e7%ab%a0-%e6%8a%95%e5%bd%b1%e6%b5%8b%e9%87%8f%e4%b8%8e%e6%b5%8b%e9%87%8f%e5%90%8e%e7%8a%b6%e6%80%81 aria-label="第四章 投影测量与测量后状态">第四章 投影测量与测量后状态</a><ul><li><a href=#41-l%c3%bcders-%e6%8a%95%e5%bd%b1%e6%b5%8b%e9%87%8f aria-label="4.1 Lüders 投影测量">4.1 Lüders 投影测量</a></li><li><a href=#42-%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e5%b7%a6%e5%8f%b3%e5%90%84%e4%b9%98%e4%b8%80%e4%b8%aa%e6%8a%95%e5%bd%b1%e7%ae%97%e7%ac%a6 aria-label="4.2 为什么需要左右各乘一个投影算符？">4.2 为什么需要左右各乘一个投影算符？</a></li></ul></li><li><a href=#operatornametrrho-p_i2 aria-label="\operatorname{Tr}(\rho P_i^2)">\operatorname{Tr}(\rho P_i^2)</a><ul><li><a href=#43-%e4%be%8b%e9%a2%98%e6%b5%8b%e9%87%8f%e4%b8%80%e4%b8%aa%e5%8f%a0%e5%8a%a0%e6%80%81 aria-label="4.3 例题：测量一个叠加态">4.3 例题：测量一个叠加态</a></li><li><a href=#44-%e9%9d%9e%e9%80%89%e6%8b%a9%e6%80%a7%e6%b5%8b%e9%87%8f aria-label="4.4 非选择性测量">4.4 非选择性测量</a></li><li><a href=#45-%e9%80%80%e7%9b%b8%e5%b9%b2%e7%9a%84%e6%95%b0%e5%ad%a6%e8%a1%a8%e8%be%be aria-label="4.5 退相干的数学表达">4.5 退相干的数学表达</a></li></ul></li><li><a href=#%e7%ac%ac%e4%ba%94%e7%ab%a0-%e4%b8%80%e8%88%ac-povm aria-label="第五章 一般 POVM">第五章 一般 POVM</a><ul><li><a href=#51-povm-%e7%9a%84%e5%ae%9a%e4%b9%89 aria-label="5.1 POVM 的定义">5.1 POVM 的定义</a></li><li><a href=#52-%e4%b8%ba%e4%bb%80%e4%b9%88-povm-%e5%85%83%e7%b4%a0%e5%8f%aa%e8%a6%81%e6%b1%82%e6%ad%a3%e5%8d%8a%e5%ae%9a aria-label="5.2 为什么 POVM 元素只要求正半定？">5.2 为什么 POVM 元素只要求正半定？</a></li><li><a href=#53-%e6%8a%95%e5%bd%b1%e6%b5%8b%e9%87%8f%e6%98%af-povm-%e7%9a%84%e7%89%b9%e6%ae%8a%e6%83%85%e5%86%b5 aria-label="5.3 投影测量是 POVM 的特殊情况">5.3 投影测量是 POVM 的特殊情况</a></li><li><a href=#54-povm-%e5%85%83%e7%b4%a0%e7%9a%84%e6%9c%ac%e5%be%81%e5%80%bc%e8%8c%83%e5%9b%b4 aria-label="5.4 POVM 元素的本征值范围">5.4 POVM 元素的本征值范围</a></li><li><a href=#55-%e4%ba%8c%e7%bb%93%e6%9e%9c-qubit-povm aria-label="5.5 二结果 qubit POVM">5.5 二结果 qubit POVM</a></li><li><a href=#56-%e4%b8%89%e7%bb%93%e6%9e%9c-qubit-povm aria-label="5.6 三结果 qubit POVM">5.6 三结果 qubit POVM</a></li><li><a href=#57-povm-%e7%9a%84%e7%89%a9%e7%90%86%e6%84%8f%e4%b9%89 aria-label="5.7 POVM 的物理意义">5.7 POVM 的物理意义</a></li></ul></li><li><a href=#%e7%ac%ac%e5%85%ad%e7%ab%a0-%e6%b5%8b%e9%87%8f%e7%ae%97%e7%ac%a6%e4%b8%8e-kraus-%e8%a1%a8%e7%a4%ba aria-label="第六章 测量算符与 Kraus 表示">第六章 测量算符与 Kraus 表示</a><ul><li><a href=#61-%e6%b5%8b%e9%87%8f%e7%ae%97%e7%ac%a6 aria-label="6.1 测量算符">6.1 测量算符</a></li><li><a href=#62-%e6%b5%8b%e9%87%8f%e5%90%8e%e7%9a%84%e7%8a%b6%e6%80%81 aria-label="6.2 测量后的状态">6.2 测量后的状态</a></li><li><a href=#63-%e5%90%8c%e4%b8%80-povm-%e7%9a%84%e4%b8%8d%e5%90%8c%e6%b5%8b%e9%87%8f%e5%ae%9e%e7%8e%b0 aria-label="6.3 同一 POVM 的不同测量实现">6.3 同一 POVM 的不同测量实现</a></li><li><a href=#64-l%c3%bcders-%e6%b5%8b%e9%87%8f aria-label="6.4 Lüders 测量">6.4 Lüders 测量</a></li></ul></li><li><a href=#%e7%ac%ac%e4%b8%83%e7%ab%a0-%e9%87%8f%e5%ad%90%e4%bb%aa%e5%99%a8%e4%b8%8e%e9%87%8f%e5%ad%90%e4%bf%a1%e9%81%93 aria-label="第七章 量子仪器与量子信道">第七章 量子仪器与量子信道</a><ul><li><a href=#71-%e4%b8%ba%e4%bb%80%e4%b9%88%e8%bf%98%e9%9c%80%e8%a6%81%e9%87%8f%e5%ad%90%e4%bb%aa%e5%99%a8 aria-label="7.1 为什么还需要量子仪器？">7.1 为什么还需要量子仪器？</a></li><li><a href=#72-%e9%87%8f%e5%ad%90%e4%bb%aa%e5%99%a8 aria-label="7.2 量子仪器">7.2 量子仪器</a></li><li><a href=#73-kraus-%e8%a1%a8%e7%a4%ba aria-label="7.3 Kraus 表示">7.3 Kraus 表示</a></li><li><a href=#74-povm-%e4%b8%8e%e9%87%8f%e5%ad%90%e4%bb%aa%e5%99%a8%e7%9a%84%e5%85%b3%e7%b3%bb aria-label="7.4 POVM 与量子仪器的关系">7.4 POVM 与量子仪器的关系</a></li><li><a href=#75-%e9%87%8f%e5%ad%90%e4%bf%a1%e9%81%93 aria-label="7.5 量子信道">7.5 量子信道</a></li></ul></li><li><a href=#%e7%ac%ac%e5%85%ab%e7%ab%a0-naimark-%e6%89%a9%e5%bc%a0%e5%ae%9a%e7%90%86 aria-label="第八章 Naimark 扩张定理">第八章 Naimark 扩张定理</a><ul><li><a href=#81-%e5%ae%9a%e7%90%86%e7%9a%84%e6%9e%84%e9%80%a0%e6%80%9d%e8%b7%af aria-label="8.1 定理的构造思路">8.1 定理的构造思路</a></li></ul></li><li><a href=#sum_ie_i-1 aria-label=\sum_iE_i>\sum_iE_i</a><ul><li><a href=#82-%e7%89%a9%e7%90%86%e8%a7%a3%e9%87%8a aria-label="8.2 物理解释">8.2 物理解释</a></li></ul></li><li><a href=#%e7%ac%ac%e4%b9%9d%e7%ab%a0-%e6%b5%8b%e9%87%8f%e5%8f%8d%e4%bd%9c%e7%94%a8%e4%b8%8e%e9%87%8f%e5%ad%90%e9%80%80%e7%9b%b8%e5%b9%b2 aria-label="第九章 测量反作用与量子退相干">第九章 测量反作用与量子退相干</a><ul><li><a href=#91-%e4%b8%80%e4%b8%aa%e5%99%aa%e5%a3%b0%e5%8c%96-qubit-%e6%b5%8b%e9%87%8f aria-label="9.1 一个噪声化 qubit 测量">9.1 一个噪声化 qubit 测量</a></li><li><a href=#92-%e9%9d%9e%e9%80%89%e6%8b%a9%e6%80%a7%e6%b5%8b%e9%87%8f%e4%bf%a1%e9%81%93 aria-label="9.2 非选择性测量信道">9.2 非选择性测量信道</a></li><li><a href=#93-bloch-%e7%90%83%e4%b8%8a%e7%9a%84%e6%b5%8b%e9%87%8f%e5%8f%8d%e4%bd%9c%e7%94%a8 aria-label="9.3 Bloch 球上的测量反作用">9.3 Bloch 球上的测量反作用</a></li><li><a href=#94-%e4%bf%a1%e6%81%af%e6%8f%90%e5%8f%96%e4%b8%8e%e6%b5%8b%e9%87%8f%e6%89%b0%e5%8a%a8 aria-label="9.4 信息提取与测量扰动">9.4 信息提取与测量扰动</a></li></ul></li><li><a href=#%e7%ac%ac%e5%8d%81%e7%ab%a0-%e6%9c%ac%e7%af%87%e6%80%bb%e7%bb%93%e4%b8%8e%e6%a0%b8%e5%bf%83%e6%a6%82%e5%bf%b5%e8%be%a8%e6%9e%90 aria-label="第十章 本篇总结与核心概念辨析">第十章 本篇总结与核心概念辨析</a><ul><li><a href=#101-%e5%9b%9b%e4%b8%aa%e6%a0%b8%e5%bf%83%e5%b1%82%e6%ac%a1 aria-label="10.1 四个核心层次">10.1 四个核心层次</a></li><li><a href=#102-%e9%87%8d%e8%a6%81%e5%85%ac%e5%bc%8f aria-label="10.2 重要公式">10.2 重要公式</a></li></ul></li><li><a href=#%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0-%e4%b9%a0%e9%a2%98 aria-label="第十一章 习题">第十一章 习题</a><ul><li><a href=#%e7%ac%ac%e4%b8%80%e7%bb%84%e8%b0%b1%e5%88%86%e8%a7%a3%e4%b8%8e-born-%e8%a7%84%e5%88%99 aria-label="第一组：谱分解与 Born 规则">第一组：谱分解与 Born 规则</a></li><li><a href=#%e7%ac%ac%e4%ba%8c%e7%bb%84%e6%8a%95%e5%bd%b1%e6%b5%8b%e9%87%8f aria-label=第二组：投影测量>第二组：投影测量</a></li><li><a href=#%e7%ac%ac%e4%b8%89%e7%bb%84povm aria-label=第三组：POVM>第三组：POVM</a></li><li><a href=#%e7%ac%ac%e5%9b%9b%e7%bb%84%e6%b5%8b%e9%87%8f%e7%ae%97%e7%ac%a6%e4%b8%8e%e9%87%8f%e5%ad%90%e4%bb%aa%e5%99%a8 aria-label=第四组：测量算符与量子仪器>第四组：测量算符与量子仪器</a></li><li><a href=#%e7%ac%ac%e4%ba%94%e7%bb%84%e6%b5%8b%e9%87%8f%e6%89%b0%e5%8a%a8 aria-label=第五组：测量扰动>第五组：测量扰动</a></li></ul></li><li><a href=#%e8%bf%9b%e4%b8%80%e6%ad%a5%e9%98%85%e8%af%bb aria-label=进一步阅读>进一步阅读</a></li></ul></div></details><div class="post-content md-content"><p><strong>Quantum Measurement Theory: Projective Measurements, POVMs and Quantum Instruments</strong></p><hr><h2 id=本篇目标>本篇目标<a hidden class=anchor aria-hidden=true href=#本篇目标>#</a></h2><p>本篇系统建立量子测量的数学理论。</p><p>完成本篇后，应当能够：</p><ol><li>从 Born 规则理解量子测量概率；</li><li>掌握可观测量的谱分解；</li><li>理解投影测量及其测量后状态；</li><li>区分投影测量与一般 POVM；</li><li>掌握 POVM 的构造与概率计算；</li><li>理解测量算符与 Kraus 表示；</li><li>理解量子仪器及测量反作用；</li><li>掌握 Naimark 扩张定理；</li><li>理解测量对量子态的退相干作用；</li><li>为后续测量不相容性、Bell 实验和 QRAC 建立数学基础。</li></ol><hr><h1 id=第一章-量子测量的基本问题>第一章 量子测量的基本问题<a hidden class=anchor aria-hidden=true href=#第一章-量子测量的基本问题>#</a></h1><h2 id=11-从量子态到测量结果>1.1 从量子态到测量结果<a hidden class=anchor aria-hidden=true href=#11-从量子态到测量结果>#</a></h2><p>在第一篇中，我们建立了量子态的数学描述：</p><p>\[
+\rho\geq0,\qquad
+\operatorname{Tr}(\rho)=1.
+\]</p><p>量子态本身并不是实验中直接读取的物理量。实验者需要通过测量获得经典结果。</p><p>例如，一个量子比特处于：</p><h1 id=psirangle>\[
+|\psi\rangle</h1><p>\alpha|0\rangle+\beta|1\rangle.
+\]</p><p>若在计算基：</p><p>\[
+{|0\rangle,|1\rangle}
+\]</p><p>下测量，实验结果只有两种可能：</p><p>\[
+0,\qquad 1.
+\]</p><p>对应概率为：</p><p>\[
+p(0)=|\alpha|^2,
+\]</p><p>\[
+p(1)=|\beta|^2.
+\]</p><p>因此，量子测量涉及三个问题：</p><ul><li>可能出现哪些结果？</li><li>每种结果出现的概率是多少？</li><li>测量后系统处于什么状态？</li></ul><p>这三个问题共同构成量子测量理论。</p><h2 id=12-经典测量与量子测量>1.2 经典测量与量子测量<a hidden class=anchor aria-hidden=true href=#12-经典测量与量子测量>#</a></h2><p>经典系统的测量通常被理想化为读取一个已经存在的物理量。</p><p>量子系统则具有不同结构。</p><p>例如，对：</p><h1 id=rangle>\[
+|+\rangle</h1><p>\frac{|0\rangle+|1\rangle}{\sqrt2}
+\]</p><p>进行计算基测量：</p><p>\[
+p(0)=p(1)=\frac12.
+\]</p><p>若得到结果 0，在理想投影测量下，系统将变为：</p><p>\[
+|0\rangle.
+\]</p><p>因此，测量不仅产生经典信息，还可能改变量子态。</p><p>测量反作用是量子信息理论的基本现象。</p><hr><h1 id=第二章-可观测量与谱分解>第二章 可观测量与谱分解<a hidden class=anchor aria-hidden=true href=#第二章-可观测量与谱分解>#</a></h1><h2 id=21-可观测量>2.1 可观测量<a hidden class=anchor aria-hidden=true href=#21-可观测量>#</a></h2><p>量子力学中，一个可观测量由希尔伯特空间上的厄米算符描述。</p><p><strong>定义 2.1（可观测量）</strong></p><p>线性算符 \(A\) 若满足：</p><p>\[
+\boxed{A^\dagger=A,}
+\]</p><p>则称为厄米算符。</p><p>有限维厄米算符的本征值均为实数。</p><p>设：</p><p>\[
+A|a_i\rangle=a_i|a_i\rangle.
+\]</p><p>其中：</p><ul><li>\(a_i\) 是本征值；</li><li>\(|a_i\rangle\) 是对应本征态。</li></ul><p>根据有限维谱定理，厄米算符可以进行谱分解。</p><p>若本征值互不相同，则：</p><p>\[
+\boxed{
+A=\sum_i a_i|a_i\rangle\langle a_i|.
+}
+\]</p><p>更一般地，若存在简并，则：</p><p>\[
+\boxed{
+A=\sum_i a_iP_i,
+}
+\]</p><p>其中 \(P_i\) 是投影到本征值 \(a_i\) 对应本征子空间的正交投影算符。</p><h2 id=22-投影算符>2.2 投影算符<a hidden class=anchor aria-hidden=true href=#22-投影算符>#</a></h2><p><strong>定义 2.2（正交投影算符）</strong></p><p>算符 \(P\) 若满足：</p><p>\[
+P^\dagger=P,
+\]</p><p>\[
+P^2=P,
+\]</p><p>则称为正交投影算符。</p><p>若：</p><p>\[
+P=|\phi\rangle\langle\phi|,
+\]</p><p>且：</p><p>\[
+\langle\phi|\phi\rangle=1,
+\]</p><p>则 \(P\) 是投影到一维子空间的秩一投影。</p><p>投影算符满足：</p><p>\[
+P|\phi\rangle=|\phi\rangle.
+\]</p><p>若：</p><p>\[
+|\psi\rangle\perp|\phi\rangle,
+\]</p><p>则：</p><p>\[
+P|\psi\rangle=0.
+\]</p><h2 id=23-谱投影的性质>2.3 谱投影的性质<a hidden class=anchor aria-hidden=true href=#23-谱投影的性质>#</a></h2><p>对于：</p><p>\[
+A=\sum_i a_iP_i,
+\]</p><p>不同本征值对应的投影满足：</p><p>\[
+\boxed{
+P_iP_j=\delta_{ij}P_i.
+}
+\]</p><p>并且：</p><p>\[
+\boxed{
+\sum_iP_i=I.
+}
+\]</p><p>因此，谱投影构成一组完备的正交投影。</p><h2 id=24-量子比特的-pauli-测量>2.4 量子比特的 Pauli 测量<a hidden class=anchor aria-hidden=true href=#24-量子比特的-pauli-测量>#</a></h2><p>考虑：</p><p>\[
+A=\sigma_z=
+\begin{pmatrix}
+1&amp;0\
+0&-1
+\end{pmatrix}.
+\]</p><p>其本征值为：</p><p>\[
+a_+=1,\qquad a_-=-1.
+\]</p><p>对应本征态：</p><p>\[
+|0\rangle,\qquad |1\rangle.
+\]</p><p>谱分解：</p><h1 id=sigma_z>\[
+\sigma_z</h1><h2 id=0ranglelangle0>|0\rangle\langle0|<a hidden class=anchor aria-hidden=true href=#0ranglelangle0>#</a></h2><p>|1\rangle\langle1|.
+\]</p><p>定义：</p><p>\[
+P_0=|0\rangle\langle0|,
+\qquad
+P_1=|1\rangle\langle1|.
+\]</p><p>则：</p><p>\[
+\sigma_z=P_0-P_1.
+\]</p><p>同理：</p><h2 id=ranglelangle>\[
+\sigma_x=
+|+\rangle\langle+|</h2><p>|-\rangle\langle-|.
+\]</p><p>所以：</p><ul><li>测量 \(\sigma_z\)：在计算基测量；</li><li>测量 \(\sigma_x\)：在 Hadamard 基测量；</li><li>测量 \(\sigma_y\)：在圆偏振基测量。</li></ul><p>这三种测量将在后续光子实验中反复出现。</p><hr><h1 id=第三章-born-规则>第三章 Born 规则<a hidden class=anchor aria-hidden=true href=#第三章-born-规则>#</a></h1><h2 id=31-纯态的测量概率>3.1 纯态的测量概率<a hidden class=anchor aria-hidden=true href=#31-纯态的测量概率>#</a></h2><p>设系统处于纯态：</p><p>\[
+|\psi\rangle.
+\]</p><p>对可观测量：</p><p>\[
+A=\sum_i a_iP_i
+\]</p><p>进行测量。</p><p>Born 规则规定：</p><p>\[
+\boxed{
+p(a_i)=\langle\psi|P_i|\psi\rangle.
+}
+\]</p><p>若 \(P_i\) 是秩一投影：</p><p>\[
+P_i=|a_i\rangle\langle a_i|,
+\]</p><p>则：</p><h1 id=pa_i>\[
+p(a_i)</h1><p>\langle\psi|a_i\rangle
+\langle a_i|\psi\rangle.
+\]</p><p>即：</p><p>\[
+\boxed{
+p(a_i)=|\langle a_i|\psi\rangle|^2.
+}
+\]</p><p>这就是量子测量概率的基本公式。</p><h2 id=32-密度矩阵形式>3.2 密度矩阵形式<a hidden class=anchor aria-hidden=true href=#32-密度矩阵形式>#</a></h2><p>对一般量子态：</p><p>\[
+\rho,
+\]</p><p>Born 规则推广为：</p><p>\[
+\boxed{
+p(a_i)=\operatorname{Tr}(\rho P_i).
+}
+\]</p><p>当：</p><p>\[
+\rho=|\psi\rangle\langle\psi|
+\]</p><p>时：</p><h1 id=operatornametrrho-p_i>\[
+\operatorname{Tr}(\rho P_i)</h1><p>\operatorname{Tr}
+(
+|\psi\rangle\langle\psi|P_i
+).
+\]</p><p>利用迹的循环性质：</p><h1 id=operatornametrabc>\[
+\operatorname{Tr}(ABC)</h1><p>\operatorname{Tr}(BCA),
+\]</p><p>得到：</p><h1 id=operatornametrrho-p_i-1>\[
+\operatorname{Tr}(\rho P_i)</h1><p>\langle\psi|P_i|\psi\rangle.
+\]</p><p>因此，密度矩阵形式包含纯态形式作为特殊情况。</p><h2 id=33-概率归一化>3.3 概率归一化<a hidden class=anchor aria-hidden=true href=#33-概率归一化>#</a></h2><p>由：</p><p>\[
+\sum_iP_i=I,
+\]</p><p>可得：</p><h1 id=sum_ipa_i>\[
+\sum_ip(a_i)</h1><p>\sum_i\operatorname{Tr}(\rho P_i).
+\]</p><p>利用迹的线性性：</p><h1 id=heading>\[<a hidden class=anchor aria-hidden=true href=#heading>#</a></h1><p>\operatorname{Tr}
+\left(
+\rho\sum_iP_i
+\right).
+\]</p><p>因此：</p><h1 id=heading-1>\[<a hidden class=anchor aria-hidden=true href=#heading-1>#</a></h1><p>\operatorname{Tr}(\rho I).
+\]</p><p>于是：</p><p>\[
+\boxed{
+\sum_ip(a_i)=1.
+}
+\]</p><p>Born 规则与投影完备性保证了概率归一化。</p><h2 id=34-测量期望值>3.4 测量期望值<a hidden class=anchor aria-hidden=true href=#34-测量期望值>#</a></h2><p>测量结果为 \(a_i\) 的概率为：</p><p>\[
+p(a_i)=\operatorname{Tr}(\rho P_i).
+\]</p><p>因此，测量结果的期望值：</p><h1 id=mathbb-ea>\[
+\mathbb E[A]</h1><p>\sum_i a_ip(a_i).
+\]</p><p>代入：</p><h1 id=mathbb-ea-1>\[
+\mathbb E[A]</h1><p>\sum_i a_i\operatorname{Tr}(\rho P_i).
+\]</p><p>利用迹的线性性：</p><h1 id=heading-2>\[<a hidden class=anchor aria-hidden=true href=#heading-2>#</a></h1><p>\operatorname{Tr}
+\left[
+\rho\sum_i a_iP_i
+\right].
+\]</p><p>所以：</p><h1 id=langle-arangle>\[
+\boxed{
+\langle A\rangle</h1><p>\operatorname{Tr}(\rho A).
+}
+\]</p><p>这是量子力学中最重要的期望值公式之一。</p><h2 id=35-方差>3.5 方差<a hidden class=anchor aria-hidden=true href=#35-方差>#</a></h2><p>测量结果的方差定义为：</p><h1 id=delta-a2>\[
+(\Delta A)^2</h1><p>\langle A^2\rangle-\langle A\rangle^2.
+\]</p><p>其中：</p><h1 id=langle-a2rangle>\[
+\langle A^2\rangle</h1><p>\operatorname{Tr}(\rho A^2).
+\]</p><p>因此：</p><h1 id=delta-a2-1>\[
+\boxed{
+(\Delta A)^2</h1><h2 id=operatornametrrho-a2>\operatorname{Tr}(\rho A^2)<a hidden class=anchor aria-hidden=true href=#operatornametrrho-a2>#</a></h2><p>[\operatorname{Tr}(\rho A)]^2.
+}
+\]</p><hr><h1 id=第四章-投影测量与测量后状态>第四章 投影测量与测量后状态<a hidden class=anchor aria-hidden=true href=#第四章-投影测量与测量后状态>#</a></h1><h2 id=41-lüders-投影测量>4.1 Lüders 投影测量<a hidden class=anchor aria-hidden=true href=#41-lüders-投影测量>#</a></h2><p><strong>定义 4.1（投影测量）</strong></p><p>一组投影算符：</p><p>\[
+{P_i}
+\]</p><p>若满足：</p><p>\[
+P_iP_j=\delta_{ij}P_i,
+\]</p><p>以及：</p><p>\[
+\sum_iP_i=I,
+\]</p><p>则称其为一组投影测量。</p><p>当系统处于状态 \(\rho\) 时，结果 \(i\) 的概率为：</p><p>\[
+\boxed{
+p(i)=\operatorname{Tr}(\rho P_i).
+}
+\]</p><p>若测得结果 \(i\)，采用 Lüders 更新规则时，测量后的状态为：</p><p>\[
+\boxed{
+\rho_i=
+\frac{P_i\rho P_i}
+{\operatorname{Tr}(\rho P_i)}.
+}
+\]</p><p>这里假设：</p><p>\[
+p(i)>0.
+\]</p><h2 id=42-为什么需要左右各乘一个投影算符>4.2 为什么需要左右各乘一个投影算符？<a hidden class=anchor aria-hidden=true href=#42-为什么需要左右各乘一个投影算符>#</a></h2><p>不能简单地写：</p><p>\[
+\rho_i=P_i\rho.
+\]</p><p>因为一般而言：</p><p>\[
+P_i\rho
+\]</p><p>不一定是厄米算符。</p><p>同样：</p><p>\[
+\rho P_i
+\]</p><p>也不一定是厄米算符。</p><p>而：</p><p>\[
+P_i\rho P_i
+\]</p><p>满足厄米性，并且是正半定的。</p><p>此外：</p><h1 id=operatornametrp_irho-p_i>\[
+\operatorname{Tr}(P_i\rho P_i)</h1><h1 id=operatornametrrho-p_i2>\operatorname{Tr}(\rho P_i^2)<a hidden class=anchor aria-hidden=true href=#operatornametrrho-p_i2>#</a></h1><p>\operatorname{Tr}(\rho P_i).
+\]</p><p>因此，归一化后：</p><p>\[
+\operatorname{Tr}(\rho_i)=1.
+\]</p><h2 id=43-例题测量一个叠加态>4.3 例题：测量一个叠加态<a hidden class=anchor aria-hidden=true href=#43-例题测量一个叠加态>#</a></h2><p>考虑：</p><h1 id=psirangle-1>\[
+|\psi\rangle</h1><p>\frac{|0\rangle+|1\rangle}{\sqrt2}.
+\]</p><p>初态密度矩阵：</p><p>\[
+\rho=
+\frac12
+\begin{pmatrix}
+1&amp;1\
+1&amp;1
+\end{pmatrix}.
+\]</p><p>在计算基进行投影测量：</p><p>\[
+P_0=
+\begin{pmatrix}
+1&amp;0\
+0&amp;0
+\end{pmatrix},
+\]</p><p>\[
+P_1=
+\begin{pmatrix}
+0&amp;0\
+0&amp;1
+\end{pmatrix}.
+\]</p><p>结果 0 的概率：</p><p>\[
+p(0)=\operatorname{Tr}(\rho P_0)=\frac12.
+\]</p><p>测量后：</p><h1 id=rho_0>\[
+\rho_0</h1><p>\frac{P_0\rho P_0}{p(0)}.
+\]</p><p>计算：</p><h1 id=p_0rho-p_0>\[
+P_0\rho P_0</h1><p>\frac12
+\begin{pmatrix}
+1&amp;0\
+0&amp;0
+\end{pmatrix}.
+\]</p><p>所以：</p><h1 id=endpmatrix>\[
+\boxed{
+\rho_0=
+\begin{pmatrix}
+1&amp;0\
+0&amp;0
+\end{pmatrix}</h1><p>|0\rangle\langle0|.
+}
+\]</p><p>同理：</p><p>\[
+\rho_1=|1\rangle\langle1|.
+\]</p><p>这说明计算基测量会将原来的相干叠加态投影到某个计算基态。</p><h2 id=44-非选择性测量>4.4 非选择性测量<a hidden class=anchor aria-hidden=true href=#44-非选择性测量>#</a></h2><p>有时实验者只知道测量发生了，但不记录测量结果。</p><p>此时，测量后的状态是：</p><h1 id=rho>\[
+\boxed{
+\rho'</h1><p>\sum_iP_i\rho P_i.
+}
+\]</p><p>这称为非选择性投影测量。</p><p>对上一节的叠加态：</p><p>\[
+\rho=
+\frac12
+\begin{pmatrix}
+1&amp;1\
+1&amp;1
+\end{pmatrix},
+\]</p><p>有：</p><h1 id=rho-1>\[
+\rho'</h1><p>P_0\rho P_0+P_1\rho P_1.
+\]</p><p>因此：</p><h1 id=rho-2>\[
+\boxed{
+\rho'</h1><p>\frac12
+\begin{pmatrix}
+1&amp;0\
+0&amp;1
+\end{pmatrix}.
+}
+\]</p><p>原来的非对角元消失了。</p><p>这说明测量在计算基中消除了不同基态之间的相干项。</p><h2 id=45-退相干的数学表达>4.5 退相干的数学表达<a hidden class=anchor aria-hidden=true href=#45-退相干的数学表达>#</a></h2><p>对于一般密度矩阵：</p><p>\[
+\rho=
+\begin{pmatrix}
+\rho_{00}&\rho_{01}\
+\rho_{10}&\rho_{11}
+\end{pmatrix},
+\]</p><p>计算基非选择性投影测量给出：</p><p>\[
+\boxed{
+\rho&rsquo;=
+\begin{pmatrix}
+\rho_{00}&amp;0\
+0&\rho_{11}
+\end{pmatrix}.
+}
+\]</p><p>这称为完全去相干信道（在该基下）。</p><p>注意：这里消失的是指定测量基下的非对角元。退相干并不是无条件地把所有基下的相干性都消除。</p><hr><h1 id=第五章-一般-povm>第五章 一般 POVM<a hidden class=anchor aria-hidden=true href=#第五章-一般-povm>#</a></h1><p>投影测量是量子测量的一种重要形式，但并不是最一般的形式。</p><p>实际实验中，探测器可能不完美，测量结果也可能包含多个非正交的响应。</p><p>因此，需要更一般的测量理论。</p><h2 id=51-povm-的定义>5.1 POVM 的定义<a hidden class=anchor aria-hidden=true href=#51-povm-的定义>#</a></h2><p><strong>定义 5.1（POVM）</strong></p><p>设：</p><p>\[
+{E_i}_{i=1}^n
+\]</p><p>是一组作用于希尔伯特空间 \(\mathcal H\) 的算符。</p><p>若满足：</p><p>\[
+\boxed{
+E_i\geq0
+}
+\]</p><p>以及：</p><p>\[
+\boxed{
+\sum_iE_i=I,
+}
+\]</p><p>则称其为一个正算符值测量（Positive Operator-Valued Measure, POVM）。</p><p>其中：</p><p>\[
+E_i
+\]</p><p>称为 POVM 元素。</p><p>对系统状态 \(\rho\)，测量结果 \(i\) 的概率为：</p><p>\[
+\boxed{
+p(i)=\operatorname{Tr}(\rho E_i).
+}
+\]</p><h2 id=52-为什么-povm-元素只要求正半定>5.2 为什么 POVM 元素只要求正半定？<a hidden class=anchor aria-hidden=true href=#52-为什么-povm-元素只要求正半定>#</a></h2><p>由于测量概率必须满足：</p><p>\[
+p(i)\geq0,
+\]</p><p>所以对任意纯态：</p><p>\[
+|\psi\rangle,
+\]</p><p>必须有：</p><p>\[
+\langle\psi|E_i|\psi\rangle\geq0.
+\]</p><p>这恰好要求：</p><p>\[
+E_i\geq0.
+\]</p><p>而概率归一化要求：</p><p>\[
+\sum_i p(i)=1.
+\]</p><p>即：</p><p>\[
+\operatorname{Tr}
+\left(
+\rho\sum_iE_i
+\right)=1.
+\]</p><p>对所有密度矩阵都成立，因此：</p><p>\[
+\sum_iE_i=I.
+\]</p><p>这就是 POVM 两个条件的来源。</p><h2 id=53-投影测量是-povm-的特殊情况>5.3 投影测量是 POVM 的特殊情况<a hidden class=anchor aria-hidden=true href=#53-投影测量是-povm-的特殊情况>#</a></h2><p>若：</p><p>\[
+E_i=P_i,
+\]</p><p>且：</p><p>\[
+P_iP_j=\delta_{ij}P_i,
+\]</p><p>则：</p><p>\[
+E_i\geq0,
+\qquad
+\sum_iE_i=I.
+\]</p><p>因此，投影测量是 POVM 的特殊情况。</p><p>但一般 POVM 不要求：</p><p>\[
+E_i^2=E_i.
+\]</p><p>也不要求：</p><p>\[
+E_iE_j=0
+\qquad(i\neq j).
+\]</p><p>这正是两者的区别。</p><h2 id=54-povm-元素的本征值范围>5.4 POVM 元素的本征值范围<a hidden class=anchor aria-hidden=true href=#54-povm-元素的本征值范围>#</a></h2><p>因为：</p><p>\[
+E_i\geq0,
+\]</p><p>所以所有本征值非负。</p><p>又因为：</p><h1 id=i-e_i>\[
+I-E_i</h1><p>\sum_{j\neq i}E_j\geq0,
+\]</p><p>所以：</p><p>\[
+E_i\leq I.
+\]</p><p>因此：</p><p>\[
+\boxed{
+0\leq E_i\leq I.
+}
+\]</p><h2 id=55-二结果-qubit-povm>5.5 二结果 qubit POVM<a hidden class=anchor aria-hidden=true href=#55-二结果-qubit-povm>#</a></h2><p>考虑：</p><p>\[
+E_0=
+\frac12(I+\eta\sigma_z),
+\]</p><p>\[
+E_1=
+\frac12(I-\eta\sigma_z).
+\]</p><p>其中：</p><p>\[
+0\leq\eta\leq1.
+\]</p><p>首先：</p><p>\[
+E_0+E_1=I.
+\]</p><p>其次，\(\sigma_z\) 的本征值为 \(\pm1\)，因此：</p><p>\[
+E_0
+\]</p><p>的本征值为：</p><p>\[
+\frac{1+\eta}{2},
+\qquad
+\frac{1-\eta}{2}.
+\]</p><p>当：</p><p>\[
+0\leq\eta\leq1
+\]</p><p>时，两者均非负。</p><p>同理：</p><p>\[
+E_1\geq0.
+\]</p><p>所以这是一组合法 POVM。</p><p>其测量概率：</p><p>\[
+p(0)=\operatorname{Tr}(\rho E_0),
+\]</p><p>\[
+p(1)=\operatorname{Tr}(\rho E_1).
+\]</p><p>若：</p><p>\[
+\rho=
+\frac12(I+r_x\sigma_x+r_y\sigma_y+r_z\sigma_z),
+\]</p><p>则：</p><p>\[
+\boxed{
+p(0)=\frac{1+\eta r_z}{2},
+}
+\]</p><p>\[
+\boxed{
+p(1)=\frac{1-\eta r_z}{2}.
+}
+\]</p><p>参数 \(\eta\) 控制测量对 Bloch 向量 \(z\) 分量的敏感程度。</p><ul><li>\(\eta=1\)：理想 \(z\) 方向投影测量；</li><li>\(\eta=0\)：两个结果各以 \(1/2\) 的概率出现，与输入态无关。</li></ul><h2 id=56-三结果-qubit-povm>5.6 三结果 qubit POVM<a hidden class=anchor aria-hidden=true href=#56-三结果-qubit-povm>#</a></h2><p>考虑三个单位向量：</p><p>\[
+\vec n_1=(1,0,0),
+\]</p><p>\[
+\vec n_2=
+\left(-\frac12,\frac{\sqrt3}{2},0\right),
+\]</p><p>\[
+\vec n_3=
+\left(-\frac12,-\frac{\sqrt3}{2},0\right).
+\]</p><p>它们满足：</p><p>\[
+|\vec n_i|=1,
+\]</p><p>以及：</p><p>\[
+\sum_{i=1}^3\vec n_i=0.
+\]</p><p>定义：</p><p>\[
+\boxed{
+E_i=
+\frac13(I+\vec n_i\cdot\vec\sigma).
+}
+\]</p><p>验证正定性。</p><p>由于：</p><p>\[
+(\vec n_i\cdot\vec\sigma)^2=I,
+\]</p><p>其本征值为：</p><p>\[
+\pm1.
+\]</p><p>因此：</p><p>\[
+I+\vec n_i\cdot\vec\sigma
+\]</p><p>的本征值为：</p><p>\[
+0,\quad2.
+\]</p><p>所以：</p><p>\[
+E_i\geq0.
+\]</p><p>再验证完备性：</p><h1 id=sum_ie_i>\[
+\sum_iE_i</h1><p>I+\frac13
+\left(
+\sum_i\vec n_i
+\right)\cdot\vec\sigma.
+\]</p><p>由于：</p><p>\[
+\sum_i\vec n_i=0,
+\]</p><p>所以：</p><p>\[
+\boxed{
+\sum_iE_i=I.
+}
+\]</p><p>这是一组合法的三结果 POVM。</p><h2 id=57-povm-的物理意义>5.7 POVM 的物理意义<a hidden class=anchor aria-hidden=true href=#57-povm-的物理意义>#</a></h2><p>为什么需要多个非正交结果？</p><p>一个典型场景是量子态判别。</p><p>假设 Alice 可能制备两个非正交态：</p><p>\[
+|\psi_0\rangle,\qquad
+|\psi_1\rangle.
+\]</p><p>Bob 希望判断 Alice 制备的是哪一个。</p><p>如果两个态不正交，则一般无法通过一次测量以概率 1 完美区分。</p><p>但通过合适的 POVM，可以实现：</p><ul><li>允许某些结果是不确定的；</li><li>在给出确定判断时保证判断正确；</li><li>或者最大化平均判别成功率。</li></ul><p>这类问题称为量子态判别（Quantum State Discrimination）。</p><p>它是 POVM 的重要应用。</p><hr><h1 id=第六章-测量算符与-kraus-表示>第六章 测量算符与 Kraus 表示<a hidden class=anchor aria-hidden=true href=#第六章-测量算符与-kraus-表示>#</a></h1><p>POVM 只描述测量结果的概率，还不足以确定测量后状态。</p><p>为此，引入测量算符。</p><h2 id=61-测量算符>6.1 测量算符<a hidden class=anchor aria-hidden=true href=#61-测量算符>#</a></h2><p><strong>定义 6.1（测量算符）</strong></p><p>一组算符：</p><p>\[
+{M_i}
+\]</p><p>若满足：</p><p>\[
+\boxed{
+\sum_iM_i^\dagger M_i=I,
+}
+\]</p><p>则构成一组完备测量算符。</p><p>测量结果 \(i\) 的概率为：</p><p>\[
+\boxed{
+p(i)=
+\operatorname{Tr}
+(M_i\rho M_i^\dagger).
+}
+\]</p><p>利用迹的循环性质：</p><h1 id=pi>\[
+p(i)</h1><p>\operatorname{Tr}
+(\rho M_i^\dagger M_i).
+\]</p><p>定义：</p><p>\[
+\boxed{
+E_i=M_i^\dagger M_i.
+}
+\]</p><p>则：</p><p>\[
+p(i)=\operatorname{Tr}(\rho E_i).
+\]</p><p>因此，测量算符总能诱导一个 POVM。</p><h2 id=62-测量后的状态>6.2 测量后的状态<a hidden class=anchor aria-hidden=true href=#62-测量后的状态>#</a></h2><p>若测得结果 \(i\)，则：</p><p>\[
+\boxed{
+\rho_i=
+\frac{
+M_i\rho M_i^\dagger
+}{
+\operatorname{Tr}(M_i\rho M_i^\dagger)
+}.
+}
+\]</p><p>如果不记录测量结果：</p><p>\[
+\boxed{
+\rho&rsquo;=
+\sum_iM_i\rho M_i^\dagger.
+}
+\]</p><p>注意：</p><p>\[
+E_i=M_i^\dagger M_i
+\]</p><p>决定测量概率，但不唯一决定 \(M_i\)。</p><p>因此，同一个 POVM 可以对应不同的测量后状态。</p><h2 id=63-同一-povm-的不同测量实现>6.3 同一 POVM 的不同测量实现<a hidden class=anchor aria-hidden=true href=#63-同一-povm-的不同测量实现>#</a></h2><p>设：</p><p>\[
+E_i
+\]</p><p>为给定 POVM 元素。</p><p>利用极分解，可以写成：</p><p>\[
+M_i=U_i\sqrt{E_i},
+\]</p><p>其中 \(U_i\) 是适当的酉算符或部分等距算符。</p><p>于是：</p><h1 id=m_idagger-m_i>\[
+M_i^\dagger M_i</h1><p>\sqrt{E_i}U_i^\dagger U_i\sqrt{E_i}.
+\]</p><p>在相关支撑空间上：</p><p>\[
+M_i^\dagger M_i=E_i.
+\]</p><p>但测量后：</p><h1 id=m_irho-m_idagger>\[
+M_i\rho M_i^\dagger</h1><p>U_i\sqrt{E_i}\rho\sqrt{E_i}U_i^\dagger.
+\]</p><p>不同 \(U_i\) 会导致不同的测量后状态。</p><p>所以：</p><p>\[
+\boxed{
+\text{相同 POVM}
+\not\Rightarrow
+\text{相同测量反作用}.
+}
+\]</p><h2 id=64-lüders-测量>6.4 Lüders 测量<a hidden class=anchor aria-hidden=true href=#64-lüders-测量>#</a></h2><p>对 POVM：</p><p>\[
+{E_i},
+\]</p><p>一种自然的测量实现是：</p><p>\[
+\boxed{
+M_i=\sqrt{E_i}.
+}
+\]</p><p>此时：</p><h1 id=rho_i>\[
+\rho_i</h1><p>\frac{
+\sqrt{E_i}\rho\sqrt{E_i}
+}{
+\operatorname{Tr}(\rho E_i)
+}.
+\]</p><p>对于投影测量：</p><p>\[
+E_i=P_i,
+\]</p><p>由于：</p><p>\[
+\sqrt{P_i}=P_i,
+\]</p><p>所以恢复：</p><p>\[
+\rho_i=
+\frac{P_i\rho P_i}
+{\operatorname{Tr}(\rho P_i)}.
+\]</p><p>这正是 Lüders 更新规则。</p><hr><h1 id=第七章-量子仪器与量子信道>第七章 量子仪器与量子信道<a hidden class=anchor aria-hidden=true href=#第七章-量子仪器与量子信道>#</a></h1><h2 id=71-为什么还需要量子仪器>7.1 为什么还需要量子仪器？<a hidden class=anchor aria-hidden=true href=#71-为什么还需要量子仪器>#</a></h2><p>POVM 描述：</p><p>\[
+\text{测量结果的概率}.
+\]</p><p>测量算符描述：</p><p>\[
+\text{给定测量结果后的状态更新}.
+\]</p><p>但实验中可能存在更复杂的过程：</p><ul><li>一个测量结果对应多个内部测量路径；</li><li>辅助系统被丢弃；</li><li>环境与系统发生相互作用；</li><li>不同 Kraus 算符对应同一个经典结果。</li></ul><p>因此，需要进一步推广。</p><h2 id=72-量子仪器>7.2 量子仪器<a hidden class=anchor aria-hidden=true href=#72-量子仪器>#</a></h2><p><strong>定义 7.1（量子仪器）</strong></p><p>一个量子仪器由一组完全正的线性映射：</p><p>\[
+{\mathcal I_i}
+\]</p><p>组成，使得：</p><p>\[
+\mathcal I=\sum_i\mathcal I_i
+\]</p><p>是一个迹保持量子信道。</p><p>测量结果 \(i\) 的概率：</p><p>\[
+\boxed{
+p(i)=\operatorname{Tr}[\mathcal I_i(\rho)].
+}
+\]</p><p>测量后的条件态：</p><p>\[
+\boxed{
+\rho_i=
+\frac{\mathcal I_i(\rho)}{p(i)}.
+}
+\]</p><p>非选择性输出态：</p><p>\[
+\boxed{
+\rho&rsquo;=\sum_i\mathcal I_i(\rho).
+}
+\]</p><h2 id=73-kraus-表示>7.3 Kraus 表示<a hidden class=anchor aria-hidden=true href=#73-kraus-表示>#</a></h2><p>每个完全正映射都可以写成 Kraus 形式：</p><h1 id=mathcal-i_irho>\[
+\boxed{
+\mathcal I_i(\rho)</h1><p>\sum_\alpha
+K_{i\alpha}\rho K_{i\alpha}^\dagger.
+}
+\]</p><p>其中：</p><p>\[
+E_i=
+\sum_\alpha K_{i\alpha}^\dagger K_{i\alpha}.
+\]</p><p>整体完备性条件：</p><p>\[
+\boxed{
+\sum_{i,\alpha}
+K_{i\alpha}^\dagger K_{i\alpha}=I.
+}
+\]</p><p>这里：</p><ul><li>\(i\)：实际记录的测量结果；</li><li>\(\alpha\)：同一结果下未被区分的内部过程。</li></ul><h2 id=74-povm-与量子仪器的关系>7.4 POVM 与量子仪器的关系<a hidden class=anchor aria-hidden=true href=#74-povm-与量子仪器的关系>#</a></h2><p>给定一个量子仪器：</p><p>\[
+{\mathcal I_i},
+\]</p><p>可以定义：</p><p>\[
+E_i=\mathcal I_i^*(I),
+\]</p><p>其中 \(\mathcal I_i^*\) 是其对偶映射。</p><p>于是：</p><p>\[
+p(i)=\operatorname{Tr}(\rho E_i).
+\]</p><p>因此，每个量子仪器都诱导一个 POVM。</p><p>但是反过来：</p><p>给定一个 POVM，并不能唯一确定对应的量子仪器。</p><p>这再次说明：</p><p>\[
+\boxed{
+\text{POVM 描述统计结果，量子仪器描述完整测量过程}.
+}
+\]</p><h2 id=75-量子信道>7.5 量子信道<a hidden class=anchor aria-hidden=true href=#75-量子信道>#</a></h2><p>忽略测量结果后：</p><h1 id=mathcal-erho>\[
+\mathcal E(\rho)</h1><p>\sum_{i,\alpha}
+K_{i\alpha}\rho K_{i\alpha}^\dagger.
+\]</p><p>这是一个量子信道。</p><p>其满足：</p><ol><li>完全正性；</li><li>迹保持性。</li></ol><p>迹保持性：</p><h1 id=operatornametrmathcal-erho>\[
+\operatorname{Tr}[\mathcal E(\rho)]</h1><p>\operatorname{Tr}(\rho).
+\]</p><p>完全正性要求即使系统与任意辅助系统纠缠，扩展映射仍保持正性。</p><p>量子信道是量子噪声和开放系统动力学的基本数学对象。</p><hr><h1 id=第八章-naimark-扩张定理>第八章 Naimark 扩张定理<a hidden class=anchor aria-hidden=true href=#第八章-naimark-扩张定理>#</a></h1><p>POVM 与投影测量之间存在一个深刻关系。</p><p><strong>定理 8.1（Naimark 扩张定理）</strong></p><p>任意有限维 POVM 都可以通过扩展希尔伯特空间上的投影测量实现。</p><p>换言之：</p><p>在适当引入辅助系统后，一般 POVM 可以看作更大系统上的投影测量。</p><h2 id=81-定理的构造思路>8.1 定理的构造思路<a hidden class=anchor aria-hidden=true href=#81-定理的构造思路>#</a></h2><p>设原系统希尔伯特空间为：</p><p>\[
+\mathcal H.
+\]</p><p>给定 POVM：</p><p>\[
+{E_i}_{i=1}^n.
+\]</p><p>定义辅助空间：</p><p>\[
+\mathcal K=\mathbb C^n.
+\]</p><p>取其标准正交基：</p><p>\[
+{|i\rangle}_{i=1}^n.
+\]</p><p>构造映射：</p><p>\[
+V:\mathcal H\rightarrow\mathcal H\otimes\mathcal K,
+\]</p><p>令：</p><h1 id=vpsirangle>\[
+\boxed{
+V|\psi\rangle</h1><p>\sum_i\sqrt{E_i}|\psi\rangle\otimes|i\rangle.
+}
+\]</p><p>首先验证 \(V\) 是等距映射：</p><h1 id=vdagger-v>\[
+V^\dagger V</h1><h1 id=sum_ie_i-1>\sum_iE_i<a hidden class=anchor aria-hidden=true href=#sum_ie_i-1>#</a></h1><p>I.
+\]</p><p>所以：</p><h1 id=langle-vpsivpsirangle>\[
+\langle V\psi|V\psi\rangle</h1><p>\langle\psi|\psi\rangle.
+\]</p><p>定义扩展空间上的投影：</p><p>\[
+P_i=I\otimes|i\rangle\langle i|.
+\]</p><p>则：</p><h1 id=vdagger-p_iv>\[
+V^\dagger P_iV</h1><p>E_i.
+\]</p><p>因此：</p><h1 id=langlepsie_ipsirangle>\[
+\boxed{
+\langle\psi|E_i|\psi\rangle</h1><p>\langle V\psi|P_i|V\psi\rangle.
+}
+\]</p><p>左边是原系统的 POVM 概率，右边是扩展系统的投影测量概率。</p><p>这证明了 POVM 可以由扩展空间上的投影测量实现。</p><h2 id=82-物理解释>8.2 物理解释<a hidden class=anchor aria-hidden=true href=#82-物理解释>#</a></h2><p>可以将整个过程理解为：</p><ol><li>原系统与辅助系统组合；</li><li>通过适当的相互作用建立系统与辅助系统之间的关联；</li><li>对辅助系统或扩展系统进行投影测量；</li><li>将辅助自由度忽略。</li></ol><p>因此，原系统上的非投影测量可以通过更大的系统上的投影测量实现。</p><p>Naimark 扩张揭示了 POVM 与投影测量在数学上的统一性。</p><hr><h1 id=第九章-测量反作用与量子退相干>第九章 测量反作用与量子退相干<a hidden class=anchor aria-hidden=true href=#第九章-测量反作用与量子退相干>#</a></h1><h2 id=91-一个噪声化-qubit-测量>9.1 一个噪声化 qubit 测量<a hidden class=anchor aria-hidden=true href=#91-一个噪声化-qubit-测量>#</a></h2><p>考虑：</p><p>\[
+E_\pm=
+\frac12(I\pm\eta\sigma_z),
+\]</p><p>其中：</p><p>\[
+0\leq\eta\leq1.
+\]</p><p>采用 Lüders 实现：</p><p>\[
+M_\pm=\sqrt{E_\pm}.
+\]</p><p>因为：</p><p>\[
+\sigma_z=
+\begin{pmatrix}
+1&amp;0\
+0&-1
+\end{pmatrix},
+\]</p><p>所以：</p><h1 id=e_>\[
+E_+</h1><p>\begin{pmatrix}
+\frac{1+\eta}{2}&amp;0\
+0&\frac{1-\eta}{2}
+\end{pmatrix}.
+\]</p><p>于是：</p><h1 id=m_>\[
+M_+</h1><p>\begin{pmatrix}
+\sqrt{\frac{1+\eta}{2}}&amp;0\
+0&\sqrt{\frac{1-\eta}{2}}
+\end{pmatrix}.
+\]</p><p>同理：</p><h1 id=m_->\[
+M_-</h1><p>\begin{pmatrix}
+\sqrt{\frac{1-\eta}{2}}&amp;0\
+0&\sqrt{\frac{1+\eta}{2}}
+\end{pmatrix}.
+\]</p><h2 id=92-非选择性测量信道>9.2 非选择性测量信道<a hidden class=anchor aria-hidden=true href=#92-非选择性测量信道>#</a></h2><p>设输入态：</p><p>\[
+\rho=
+\begin{pmatrix}
+\rho_{00}&\rho_{01}\
+\rho_{10}&\rho_{11}
+\end{pmatrix}.
+\]</p><p>测量后：</p><h1 id=rho-3>\[
+\rho'</h1><p>M_+\rho M_+
++
+M_-\rho M_-.
+\]</p><p>先计算第一项：</p><h1 id=m_rho-m_>\[
+M_+\rho M_+</h1><p>\begin{pmatrix}
+\frac{1+\eta}{2}\rho_{00}
+&
+\frac{\sqrt{1-\eta^2}}2\rho_{01}
+\
+\frac{\sqrt{1-\eta^2}}2\rho_{10}
+&
+\frac{1-\eta}{2}\rho_{11}
+\end{pmatrix}.
+\]</p><p>第二项：</p><h1 id=m_-rho-m_->\[
+M_-\rho M_-</h1><p>\begin{pmatrix}
+\frac{1-\eta}{2}\rho_{00}
+&
+\frac{\sqrt{1-\eta^2}}2\rho_{01}
+\
+\frac{\sqrt{1-\eta^2}}2\rho_{10}
+&
+\frac{1+\eta}{2}\rho_{11}
+\end{pmatrix}.
+\]</p><p>相加：</p><h1 id=rho-4>\[
+\boxed{
+\rho'</h1><p>\begin{pmatrix}
+\rho_{00}&\sqrt{1-\eta^2}\rho_{01}\
+\sqrt{1-\eta^2}\rho_{10}&\rho_{11}
+\end{pmatrix}.
+}
+\]</p><p>因此：</p><ul><li>\(z\) 方向的布居不变；</li><li>\(x,y\) 方向的相干性被削弱。</li></ul><h2 id=93-bloch-球上的测量反作用>9.3 Bloch 球上的测量反作用<a hidden class=anchor aria-hidden=true href=#93-bloch-球上的测量反作用>#</a></h2><p>输入态：</p><p>\[
+\rho=
+\frac12
+(I+r_x\sigma_x+r_y\sigma_y+r_z\sigma_z).
+\]</p><p>输出态：</p><h1 id=rho-5>\[
+\boxed{
+\rho'</h1><p>\frac12
+\left[
+I+
+\sqrt{1-\eta^2}r_x\sigma_x
++
+\sqrt{1-\eta^2}r_y\sigma_y
++
+r_z\sigma_z
+\right].
+}
+\]</p><p>因此 Bloch 向量变为：</p><h1 id=vec-r>\[
+\boxed{
+\vec r'</h1><p>\left(
+\sqrt{1-\eta^2}r_x,
+\sqrt{1-\eta^2}r_y,
+r_z
+\right).
+}
+\]</p><p>这是一个沿 \(z\) 方向保留、横向收缩的变换。</p><p>当：</p><p>\[
+\eta=0
+\]</p><p>时：</p><p>\[
+\vec r&rsquo;=\vec r.
+\]</p><p>测量不提取任何关于 \(z\) 分量的信息，也不扰动系统。</p><p>当：</p><p>\[
+\eta=1
+\]</p><p>时：</p><p>\[
+\vec r&rsquo;=(0,0,r_z).
+\]</p><p>所有横向相干性消失。</p><p>这就是理想 \(z\) 基测量造成的完全退相干。</p><h2 id=94-信息提取与测量扰动>9.4 信息提取与测量扰动<a hidden class=anchor aria-hidden=true href=#94-信息提取与测量扰动>#</a></h2><p>测量锐度 \(\eta\) 越大，测量结果越能反映输入态的 \(z\) 分量。</p><p>但与此同时，横向相干性损失越大。</p><p>因此，信息提取与量子态扰动之间存在权衡。</p><p>这正是后续序贯测量研究的基础：</p><ul><li>第一个观察者希望提取尽可能多的信息；</li><li>后续观察者希望系统保留尽可能多的量子特征。</li></ul><p>两者的目标并不总是一致。</p><hr><h1 id=第十章-本篇总结与核心概念辨析>第十章 本篇总结与核心概念辨析<a hidden class=anchor aria-hidden=true href=#第十章-本篇总结与核心概念辨析>#</a></h1><p>本篇建立了量子测量的完整数学框架。</p><h2 id=101-四个核心层次>10.1 四个核心层次<a hidden class=anchor aria-hidden=true href=#101-四个核心层次>#</a></h2><table><thead><tr><th>数学对象</th><th>描述内容</th></tr></thead><tbody><tr><td>可观测量 \(A\)</td><td>物理量及其可能测量值</td></tr><tr><td>POVM \({E_i}\)</td><td>测量结果的概率统计</td></tr><tr><td>测量算符 \({M_i}\)</td><td>单个测量结果对应的状态更新</td></tr><tr><td>量子仪器 \({\mathcal I_i}\)</td><td>完整的测量结果与条件态演化</td></tr></tbody></table><h2 id=102-重要公式>10.2 重要公式<a hidden class=anchor aria-hidden=true href=#102-重要公式>#</a></h2><p><strong>投影测量概率：</strong></p><p>\[
+p(i)=\operatorname{Tr}(\rho P_i).
+\]</p><p><strong>投影测量后状态：</strong></p><p>\[
+\rho_i=
+\frac{P_i\rho P_i}{p(i)}.
+\]</p><p><strong>非选择性投影测量：</strong></p><p>\[
+\rho&rsquo;=\sum_iP_i\rho P_i.
+\]</p><p><strong>POVM 完备性：</strong></p><p>\[
+E_i\geq0,
+\qquad
+\sum_iE_i=I.
+\]</p><p><strong>POVM 概率：</strong></p><p>\[
+p(i)=\operatorname{Tr}(\rho E_i).
+\]</p><p><strong>测量算符与 POVM：</strong></p><p>\[
+E_i=M_i^\dagger M_i.
+\]</p><p><strong>测量算符完备性：</strong></p><p>\[
+\sum_iM_i^\dagger M_i=I.
+\]</p><p><strong>条件态更新：</strong></p><p>\[
+\rho_i=
+\frac{M_i\rho M_i^\dagger}{p(i)}.
+\]</p><p><strong>非选择性量子信道：</strong></p><h1 id=mathcal-erho-1>\[
+\mathcal E(\rho)</h1><p>\sum_iM_i\rho M_i^\dagger.
+\]</p><hr><h1 id=第十一章-习题>第十一章 习题<a hidden class=anchor aria-hidden=true href=#第十一章-习题>#</a></h1><h2 id=第一组谱分解与-born-规则>第一组：谱分解与 Born 规则<a hidden class=anchor aria-hidden=true href=#第一组谱分解与-born-规则>#</a></h2><p><strong>习题 1.</strong></p><p>求：</p><p>\[
+A=
+\begin{pmatrix}
+1&amp;0\
+0&-1
+\end{pmatrix}
+\]</p><p>的谱分解，并写出对应的两个投影算符。</p><p><strong>习题 2.</strong></p><p>设：</p><h1 id=psirangle-2>\[
+|\psi\rangle</h1><p>\frac{|0\rangle+i|1\rangle}{\sqrt2}.
+\]</p><p>分别计算在 \(\sigma_x,\sigma_y,\sigma_z\) 测量下得到正本征值的概率。</p><p><strong>习题 3.</strong></p><p>证明：</p><p>\[
+\langle A\rangle=\operatorname{Tr}(\rho A).
+\]</p><p><strong>习题 4.</strong></p><p>证明对于任意 POVM：</p><p>\[
+0\leq E_i\leq I.
+\]</p><h2 id=第二组投影测量>第二组：投影测量<a hidden class=anchor aria-hidden=true href=#第二组投影测量>#</a></h2><p><strong>习题 5.</strong></p><p>对：</p><h1 id=psirangle-3>\[
+|\psi\rangle</h1><p>\cos\frac\theta2|0\rangle
++
+e^{i\phi}\sin\frac\theta2|1\rangle,
+\]</p><p>计算计算基测量后的两个条件态。</p><p><strong>习题 6.</strong></p><p>证明非选择性投影测量：</p><p>\[
+\rho&rsquo;=\sum_iP_i\rho P_i
+\]</p><p>保持迹和正半定性。</p><p><strong>习题 7.</strong></p><p>对一个一般 qubit 密度矩阵计算 \(\sigma_z\) 投影测量后的非选择性状态。</p><h2 id=第三组povm>第三组：POVM<a hidden class=anchor aria-hidden=true href=#第三组povm>#</a></h2><p><strong>习题 8.</strong></p><p>验证：</p><p>\[
+E_\pm=
+\frac12(I\pm\eta\sigma_x)
+\]</p><p>在：</p><p>\[
+0\leq\eta\leq1
+\]</p><p>时构成合法 POVM。</p><p><strong>习题 9.</strong></p><p>验证第三章给出的三结果 qubit POVM。</p><p><strong>习题 10.</strong></p><p>设：</p><p>\[
+E_1=
+\begin{pmatrix}
+0.7&amp;0\
+0&amp;0.2
+\end{pmatrix},
+\]</p><p>\[
+E_2=
+\begin{pmatrix}
+0.3&amp;0\
+0&amp;0.8
+\end{pmatrix}.
+\]</p><p>证明它们构成一个二结果 POVM，并计算输入态：</p><p>\[
+|\psi\rangle=
+\frac{|0\rangle+|1\rangle}{\sqrt2}
+\]</p><p>时的两个测量概率。</p><h2 id=第四组测量算符与量子仪器>第四组：测量算符与量子仪器<a hidden class=anchor aria-hidden=true href=#第四组测量算符与量子仪器>#</a></h2><p><strong>习题 11.</strong></p><p>对：</p><p>\[
+E_\pm=\frac12(I\pm\eta\sigma_z)
+\]</p><p>求其 Lüders 测量算符。</p><p><strong>习题 12.</strong></p><p>验证：</p><p>\[
+\sum_iM_i^\dagger M_i=I
+\]</p><p>能够保证非选择性测量保持迹。</p><p><strong>习题 13.</strong></p><p>构造一个 POVM，并给出两种具有相同 POVM 元素、但测量后状态不同的测量实现。</p><h2 id=第五组测量扰动>第五组：测量扰动<a hidden class=anchor aria-hidden=true href=#第五组测量扰动>#</a></h2><p><strong>习题 14.</strong></p><p>从 Kraus 形式出发，推导噪声化 \(z\) 测量对 Bloch 向量的影响。</p><p><strong>习题 15.</strong></p><p>讨论：</p><p>\[
+\eta\rightarrow0,
+\qquad
+\eta\rightarrow1
+\]</p><p>时测量信息提取能力和测量扰动的变化。</p><p><strong>习题 16.</strong></p><p>证明对于任意输入态，非选择性测量满足：</p><p>\[
+\operatorname{Tr}(\rho&rsquo;^2)
+\leq
+\operatorname{Tr}(\rho^2)
+\]</p><p>是否总成立？若不成立，请给出反例或说明适用条件。</p><hr><h1 id=进一步阅读>进一步阅读<a hidden class=anchor aria-hidden=true href=#进一步阅读>#</a></h1><ol><li>Nielsen & Chuang, <em>Quantum Computation and Quantum Information</em>，Quantum Measurements 相关章节。</li><li>Watrous, <em>The Theory of Quantum Information</em>，Positive Operators、Measurements、Quantum Channels。</li><li>Busch, Lahti, Pellonpää & Ylinen, <em>Quantum Measurement</em>。</li><li>Holevo, <em>Probabilistic and Statistical Aspects of Quantum Theory</em>。</li></ol><hr></div><footer class=post-footer><ul class=post-tags></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://linmythos.github.io/>Linmythos</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

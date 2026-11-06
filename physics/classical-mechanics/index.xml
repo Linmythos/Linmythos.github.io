@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>经典力学 on Linmythos</title><link>https://linmythos.github.io/physics/classical-mechanics/</link><description>Recent content in 经典力学 on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sat, 17 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/physics/classical-mechanics/index.xml" rel="self" type="application/rss+xml"/><item><title>Classical Mechanics</title><link>https://linmythos.github.io/physics/classical-mechanics/%E7%90%86%E8%AE%BA%E5%8A%9B%E5%AD%A6%E4%B8%8E%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/</link><pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/%E7%90%86%E8%AE%BA%E5%8A%9B%E5%AD%A6%E4%B8%8E%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/</guid><description>&lt;p&gt;学过 Differential Geometry 之后重新学 Classical Mechanics，有很多新的收获，此为学习笔记，持续更新。&lt;/p&gt;
+&lt;h1 id="lagrangian-mechanics-and-geometry"&gt;Lagrangian Mechanics and Geometry&lt;/h1&gt;
+&lt;h2 id="configuration-space"&gt;Configuration Space&lt;/h2&gt;
+&lt;p&gt;设系统有 $n$ 个 degrees of freedom，写作 $q_1,q_2,\ldots,q_n$，则某一时刻的 configuration 可表示为 $q=(q_1,\ldots,q_n)$，所有可能的 configurations 构成 configuration space $\mathcal C$。
+随时间演化 $q(t)=(q_1(t),\ldots,q_n(t))$，就是 $\mathcal C$ 中的一条 trajectory。&lt;/p&gt;
+&lt;h3 id="两个粒子的例子"&gt;两个粒子的例子&lt;/h3&gt;
+&lt;p&gt;假设有两个粒子 $\mathbf r_1(t),\mathbf r_2(t)\in\mathbb R^3$，整个系统的 configuration 不是一个三维位置，而是 $q(t)=(\mathbf r_1(t),\mathbf r_2(t))$，因此 $Q=\mathbb R^3\times\mathbb R^3=\mathbb R^6$。
+于是 system point 实际上是在 six-dimensional configuration space 中运动，即 $q(t)\in\mathbb R^6$；而物理上我们看到的是两条三维轨迹 $\mathbf r_1(t)$ 与 $\mathbf r_2(t)$。&lt;/p&gt;
+&lt;h3 id="自由-rigid-body"&gt;自由 rigid body&lt;/h3&gt;
+&lt;p&gt;例如一个自由 rigid body，其 configuration 可用 $(x,y,z,\phi,\theta,\psi)$ 描述，故 $Q\simeq\mathbb R^3\times SO(3)$。
+此时一个 configuration-space point $q=(x,y,z,\phi,\theta,\psi)$ 代表的是整个刚体当前的位置加当前的 orientation；随时间 $q(t)=(x(t),y(t),z(t),\phi(t),\theta(t),\psi(t))$，整个刚体的运动就是 $Q$ 中的一条 curve。&lt;/p&gt;</description></item></channel></rss>

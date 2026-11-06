@@ -1,0 +1,1189 @@
+<!doctype html><html lang=en dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>机器学习与神经网络导论 | Linmythos</title><meta name=keywords content><meta name=description content="机器学习——从函数逼近到统计学习理论
+核心问题
+考虑一个简单任务：
+给定大量房屋的历史数据，包括面积、位置、房间数量和成交价格，希望构造一个模型，根据房屋特征预测其价格。
+我们可以将每套房屋表示为一个向量：
+$$
+x=(x_1,x_2,\ldots,x_d)\in\mathbb R^d,
+$$
+将其实际价格记为：
+$$
+y\in\mathbb R.
+$$
+我们希望找到一个函数：
+$$
+f:\mathbb R^d\longrightarrow\mathbb R,
+$$
+使得：
+$$
+f(x)\approx y.
+$$
+机器学习的任务就是在有限的样本中找出普适的规律。
+机器学习的数学形式化
+数据与未知分布
+设输入空间为 $\mathcal X$，输出空间为 $\mathcal Y$。数据由某个未知概率分布生成：
+$$
+(X,Y)\sim P.
+$$
+我们观察到独立同分布的训练样本：
+$$
+S={(x_1,y_1),(x_2,y_2),\ldots,(x_n,y_n)}.
+$$
+即：
+$$
+(x_i,y_i)\overset{\mathrm{i.i.d.}}{\sim}P.
+$$
+机器学习算法根据样本 $S$，从某个函数集合中选择模型：
+$$
+\mathcal H={f_\theta:\theta\in\Theta}.
+$$
+因此，学习过程可以抽象为：
+$$
+A:S\longmapsto \widehat f.
+$$
+其中 $A$ 是学习算法，$\widehat f$ 是训练得到的模型。
+注意：学习算法并不知道真实分布 $P$，它只能利用有限样本间接推断规律。
+损失函数
+为了衡量模型预测的好坏程度，引入损失函数，将预测任务转化为数学上的优化问题：
+$$
+\ell:\mathcal Y\times\mathcal Y\longrightarrow\mathbb R_{\geq 0}.
+$$"><meta name=author content="Linmythos"><link rel=canonical href=https://linmythos.github.io/ai/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/><link crossorigin=anonymous href=/assets/css/stylesheet.5a42af7b68c8b1b7f3d0894c8a74d101cf31f37c1aa9bf8365395ef493e0dea4.css integrity="sha256-WkKve2jIsbfz0IlMinTRAc8x83waqb+DZTle9JPg3qQ=" rel="preload stylesheet" as=style><link rel=icon href=https://linmythos.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://linmythos.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://linmythos.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://linmythos.github.io/apple-touch-icon.png><link rel=mask-icon href=https://linmythos.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://linmythos.github.io/ai/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],packages:{"[+]":["ams"]}}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><meta property="og:url" content="https://linmythos.github.io/ai/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"><meta property="og:site_name" content="Linmythos"><meta property="og:title" content="机器学习与神经网络导论"><meta property="og:description" content="机器学习——从函数逼近到统计学习理论 核心问题 考虑一个简单任务：
+给定大量房屋的历史数据，包括面积、位置、房间数量和成交价格，希望构造一个模型，根据房屋特征预测其价格。
+我们可以将每套房屋表示为一个向量：
+$$ x=(x_1,x_2,\ldots,x_d)\in\mathbb R^d, $$
+将其实际价格记为：
+$$ y\in\mathbb R. $$
+我们希望找到一个函数：
+$$ f:\mathbb R^d\longrightarrow\mathbb R, $$
+使得：
+$$ f(x)\approx y. $$
+机器学习的任务就是在有限的样本中找出普适的规律。
+机器学习的数学形式化 数据与未知分布 设输入空间为 $\mathcal X$，输出空间为 $\mathcal Y$。数据由某个未知概率分布生成：
+$$ (X,Y)\sim P. $$
+我们观察到独立同分布的训练样本：
+$$ S={(x_1,y_1),(x_2,y_2),\ldots,(x_n,y_n)}. $$
+即：
+$$ (x_i,y_i)\overset{\mathrm{i.i.d.}}{\sim}P. $$
+机器学习算法根据样本 $S$，从某个函数集合中选择模型：
+$$ \mathcal H={f_\theta:\theta\in\Theta}. $$
+因此，学习过程可以抽象为：
+$$ A:S\longmapsto \widehat f. $$
+其中 $A$ 是学习算法，$\widehat f$ 是训练得到的模型。
+注意：学习算法并不知道真实分布 $P$，它只能利用有限样本间接推断规律。
+损失函数 为了衡量模型预测的好坏程度，引入损失函数，将预测任务转化为数学上的优化问题：
+$$ \ell:\mathcal Y\times\mathcal Y\longrightarrow\mathbb R_{\geq 0}. $$"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="ai"><meta property="article:published_time" content="2026-11-04T00:00:00+00:00"><meta property="article:modified_time" content="2026-11-04T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="机器学习与神经网络导论"><meta name=twitter:description content="机器学习——从函数逼近到统计学习理论 核心问题 考虑一个简单任务：
+给定大量房屋的历史数据，包括面积、位置、房间数量和成交价格，希望构造一个模型，根据房屋特征预测其价格。
+我们可以将每套房屋表示为一个向量：
+$$ x=(x_1,x_2,\ldots,x_d)\in\mathbb R^d, $$
+将其实际价格记为：
+$$ y\in\mathbb R. $$
+我们希望找到一个函数：
+$$ f:\mathbb R^d\longrightarrow\mathbb R, $$
+使得：
+$$ f(x)\approx y. $$
+机器学习的任务就是在有限的样本中找出普适的规律。
+机器学习的数学形式化 数据与未知分布 设输入空间为 $\mathcal X$，输出空间为 $\mathcal Y$。数据由某个未知概率分布生成：
+$$ (X,Y)\sim P. $$
+我们观察到独立同分布的训练样本：
+$$ S={(x_1,y_1),(x_2,y_2),\ldots,(x_n,y_n)}. $$
+即：
+$$ (x_i,y_i)\overset{\mathrm{i.i.d.}}{\sim}P. $$
+机器学习算法根据样本 $S$，从某个函数集合中选择模型：
+$$ \mathcal H={f_\theta:\theta\in\Theta}. $$
+因此，学习过程可以抽象为：
+$$ A:S\longmapsto \widehat f. $$
+其中 $A$ 是学习算法，$\widehat f$ 是训练得到的模型。
+注意：学习算法并不知道真实分布 $P$，它只能利用有限样本间接推断规律。
+损失函数 为了衡量模型预测的好坏程度，引入损失函数，将预测任务转化为数学上的优化问题：
+$$ \ell:\mathcal Y\times\mathcal Y\longrightarrow\mathbb R_{\geq 0}. $$"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI","item":"https://linmythos.github.io/ai/"},{"@type":"ListItem","position":2,"name":"机器学习与神经网络导论","item":"https://linmythos.github.io/ai/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"机器学习与神经网络导论","name":"机器学习与神经网络导论","description":"机器学习——从函数逼近到统计学习理论 核心问题 考虑一个简单任务：\n给定大量房屋的历史数据，包括面积、位置、房间数量和成交价格，希望构造一个模型，根据房屋特征预测其价格。\n我们可以将每套房屋表示为一个向量：\n$$ x=(x_1,x_2,\\ldots,x_d)\\in\\mathbb R^d, $$\n将其实际价格记为：\n$$ y\\in\\mathbb R. $$\n我们希望找到一个函数：\n$$ f:\\mathbb R^d\\longrightarrow\\mathbb R, $$\n使得：\n$$ f(x)\\approx y. $$\n机器学习的任务就是在有限的样本中找出普适的规律。\n机器学习的数学形式化 数据与未知分布 设输入空间为 $\\mathcal X$，输出空间为 $\\mathcal Y$。数据由某个未知概率分布生成：\n$$ (X,Y)\\sim P. $$\n我们观察到独立同分布的训练样本：\n$$ S={(x_1,y_1),(x_2,y_2),\\ldots,(x_n,y_n)}. $$\n即：\n$$ (x_i,y_i)\\overset{\\mathrm{i.i.d.}}{\\sim}P. $$\n机器学习算法根据样本 $S$，从某个函数集合中选择模型：\n$$ \\mathcal H={f_\\theta:\\theta\\in\\Theta}. $$\n因此，学习过程可以抽象为：\n$$ A:S\\longmapsto \\widehat f. $$\n其中 $A$ 是学习算法，$\\widehat f$ 是训练得到的模型。\n注意：学习算法并不知道真实分布 $P$，它只能利用有限样本间接推断规律。\n损失函数 为了衡量模型预测的好坏程度，引入损失函数，将预测任务转化为数学上的优化问题：\n$$ \\ell:\\mathcal Y\\times\\mathcal Y\\longrightarrow\\mathbb R_{\\geq 0}. $$\n","keywords":[],"articleBody":"机器学习——从函数逼近到统计学习理论 核心问题 考虑一个简单任务：\n给定大量房屋的历史数据，包括面积、位置、房间数量和成交价格，希望构造一个模型，根据房屋特征预测其价格。\n我们可以将每套房屋表示为一个向量：\n$$ x=(x_1,x_2,\\ldots,x_d)\\in\\mathbb R^d, $$\n将其实际价格记为：\n$$ y\\in\\mathbb R. $$\n我们希望找到一个函数：\n$$ f:\\mathbb R^d\\longrightarrow\\mathbb R, $$\n使得：\n$$ f(x)\\approx y. $$\n机器学习的任务就是在有限的样本中找出普适的规律。\n机器学习的数学形式化 数据与未知分布 设输入空间为 $\\mathcal X$，输出空间为 $\\mathcal Y$。数据由某个未知概率分布生成：\n$$ (X,Y)\\sim P. $$\n我们观察到独立同分布的训练样本：\n$$ S={(x_1,y_1),(x_2,y_2),\\ldots,(x_n,y_n)}. $$\n即：\n$$ (x_i,y_i)\\overset{\\mathrm{i.i.d.}}{\\sim}P. $$\n机器学习算法根据样本 $S$，从某个函数集合中选择模型：\n$$ \\mathcal H={f_\\theta:\\theta\\in\\Theta}. $$\n因此，学习过程可以抽象为：\n$$ A:S\\longmapsto \\widehat f. $$\n其中 $A$ 是学习算法，$\\widehat f$ 是训练得到的模型。\n注意：学习算法并不知道真实分布 $P$，它只能利用有限样本间接推断规律。\n损失函数 为了衡量模型预测的好坏程度，引入损失函数，将预测任务转化为数学上的优化问题：\n$$ \\ell:\\mathcal Y\\times\\mathcal Y\\longrightarrow\\mathbb R_{\\geq 0}. $$\n例如，对于回归问题，可以使用平方损失：\n$$ \\ell(\\widehat y,y)=(\\widehat y-y)^2. $$\n对于分类问题，可以使用零一损失：\n$$ \\ell(\\widehat y,y)= \\begin{cases} 0,\u0026\\widehat y=y,\\\\ 1,\u0026\\widehat y\\neq y. \\end{cases} $$\n真实风险与经验风险 我们真正关心的是模型在真实分布上的平均损失：\n$$ R(f)= \\mathbb E_{(X,Y)\\sim P} [\\ell(f(X),Y)]. $$\n称为真实风险（True Risk）。\n但由于 $P$ 未知，我们无法直接计算这个期望。因此，使用训练样本构造：\n$$\\widehat R_S(f)= \\frac1n\\sum_{i=1}^{n} \\ell(f(x_i),y_i). $$\n称为经验风险（Empirical Risk）。\n最基本的学习策略是经验风险最小化（选择在训练数据上平均损失最小的模型）：\n$$\\boxed{ \\widehat f= \\underset{f\\in\\mathcal H}{\\arg\\min} \\widehat R_S(f) } $$\n然而训练误差最小的模型，不一定具有最好的预测能力\n过拟合：记住数据不等于学会规律 举一个简单例子，假设真实数据满足：\n$$ y=x^2+\\varepsilon, $$\n其中：\n$$ \\varepsilon\\sim\\mathcal N(0,\\sigma^2) $$\n表示随机噪声。\n我们观察到有限个样本：\n$$ (x_1,y_1),\\ldots,(x_n,y_n). $$\n考虑两种模型。\n模型 A：\n$$ f_A(x)=ax^2+bx+c. $$\n模型 B：\n$$ f_B(x)= \\sum_{j=0}^{n-1}a_jx^j. $$\n如果样本输入互不相同，那么在一般位置条件下，模型 B 可以通过多项式插值精确通过全部训练样本：\n$$ f_B(x_i)=y_i. $$\n因此：\n$$ \\widehat R_S(f_B)=0. $$\n但这并不意味着：\n$$ R(f_B)=0. $$\n模型 B 可能只是把样本中的随机噪声也拟合进去了。这就是过拟合（Overfitting）。\n训练误差与泛化误差 我们需要区分：\n$$ \\widehat R_S(f) $$\n和：\n$$ R(f). $$\n前者衡量模型对已观察数据的拟合程度，后者衡量模型对真实数据分布的预测能力。\n二者之差的绝对值：\n$$ |R(f)-\\widehat R_S(f)| $$\n称为泛化差距（Generalization Gap）。\n理想情况下，我们希望：\n$$ R(f)\\approx\\widehat R_S(f). $$\n有限样本揭示总体规律 大数定律 先考虑一个固定模型 $f$。\n定义随机变量：\n$$ Z_i=\\ell(f(X_i),Y_i). $$\n假设：\n$$ \\mathbb E[Z_i]=R(f) $$\n且 $Z_1,\\ldots,Z_n$ 独立同分布。\n那么经验风险就是：\n$$ \\widehat R_S(f)=\\frac1n\\sum_{i=1}^{n}Z_i. $$\n由大数定律：\n$$ \\boxed{ \\widehat R_S(f) \\xrightarrow[n\\to\\infty]{a.s.} R(f) } $$\n也就是说，当样本量不断增加时，固定模型的经验风险几乎必然收敛到真实风险。\n但请注意，大数定律首先保证的是固定模型的经验风险收敛。机器学习却要从许多模型中选择一个模型。\nHoeffding 不等式 假设：\n$$ 0\\leq Z_i\\leq 1. $$\n根据 Hoeffding 不等式：\n$$ P\\left( \\left| \\frac1n\\sum_{i=1}^{n}Z_i-\\mathbb E[Z_i] \\right|\\geq\\epsilon \\right) \\leq 2e^{-2n\\epsilon^2}. $$\n应用到损失函数：\n$$ \\boxed{ P\\left( |\\widehat R_S(f)-R(f)|\\geq\\epsilon \\right) \\leq 2e^{-2n\\epsilon^2} } $$\n对于一个固定模型，样本量越大，经验风险偏离真实风险的概率越小。\n如果希望：\n$$ P\\left( |\\widehat R_S(f)-R(f)|\\geq\\epsilon \\right)\\leq\\delta, $$\n只需要：\n$$ 2e^{-2n\\epsilon^2}\\leq\\delta. $$\n解得：\n$$ \\boxed{ n\\geq \\frac{\\ln(2/\\delta)}{2\\epsilon^2} } $$\n这个结果告诉我们：\n希望误差界更小，需要更多样本； 希望置信程度更高，也需要更多样本。 不过，这仍然只针对一个固定模型。\n从固定模型到模型集合 假设模型集合是有限的：\n$$ \\mathcal H={f_1,f_2,\\ldots,f_m}. $$\n对每个模型使用 Hoeffding 不等式：\n$$ P\\left( |\\widehat R_S(f_j)-R(f_j)|\\geq\\epsilon \\right) \\leq 2e^{-2n\\epsilon^2}. $$\n利用联合界：\n$$ P\\left( \\exists f\\in\\mathcal H: |\\widehat R_S(f)-R(f)|\\geq\\epsilon \\right) \\leq 2m e^{-2n\\epsilon^2}. $$\n于是，以至少 $1-\\delta$ 的概率，对所有模型同时成立：\n$$ \\boxed{ \\sup_{f\\in\\mathcal H} |\\widehat R_S(f)-R(f)| \\leq \\sqrt{ \\frac{\\ln(2m/\\delta)}{2n} } } $$\n这是一个简单的统一收敛界。它表明 $ \\boxed{ \\text{泛化能力与模型集合的复杂度有关} } $\n模型集合越大，想要保证所有模型的经验风险都接近真实风险，通常就需要更多样本。这为理解过拟合提供了一个数学解释。\n模型复杂度与正则化 既然模型过于复杂可能导致过拟合，那么我们能否主动限制模型复杂度？这就是正则化（Regularization）的思想。\n带正则项的经验风险最小化 原始优化问题：\n$$ \\min_{\\theta} \\widehat R_S(f_\\theta). $$\n加入正则项：\n$$ \\boxed{ \\min_{\\theta} \\left[ \\widehat R_S(f_\\theta) + \\lambda\\Omega(\\theta) \\right] } $$\n其中：\n$\\Omega(\\theta)$：复杂度惩罚项； $\\lambda\\geq0$：正则化系数。 当 $\\lambda=0$ 时，退化为普通经验风险最小化。当 $\\lambda$ 增大时，模型受到更强的复杂度约束。\nL2 正则化 考虑线性模型：\n$$f_\\theta(x)=\\theta^\\top x. $$\n使用平方损失：\n$$\\widehat R_S(\\theta)= \\frac1n \\sum_{i=1}^{n} (\\theta^\\top x_i-y_i)^2. $$\n加入 L2 正则项：\n$$\\boxed{ J(\\theta)= \\frac1n|X\\theta-y|_2^2+\\lambda|\\theta|_2^2} $$\n其中：\n$$X=\\begin{pmatrix} x_1^\\top\\\\ x_2^\\top\\\\ \\vdots\\\\ x_n^\\top \\end{pmatrix}, \\qquad y= \\begin{pmatrix} y_1\\\\ y_2\\\\ \\vdots\\\\ y_n \\end{pmatrix}. $$\n对 $\\theta$ 求梯度：\n$$\\nabla_\\theta J= \\frac2nX^\\top(X\\theta-y)+2\\lambda\\theta. $$\n令梯度为零：\n$$ X^\\top X\\theta-X^\\top y+n\\lambda\\theta=0. $$\n因此：\n$$ (X^\\top X+n\\lambda I)\\theta=X^\\top y. $$\n当 $\\lambda\u003e0$ 时： $$ X^\\top X+n\\lambda I\\succ0, $$\n因此必定可逆。\n$$\\boxed{ \\theta^*=(X^\\top X+n\\lambda I)^{-1}X^\\top y} $$\n这就是岭回归（Ridge Regression）的闭式解。\n正则化不仅能够限制参数规模，还能够改善病态矩阵的数值条件。\n正则化与贝叶斯观点 L2 正则化还可以从贝叶斯统计中得到解释。\n假设：\n$$ y_i=\\theta^\\top x_i+\\varepsilon_i, $$\n其中：\n$$ \\varepsilon_i\\sim\\mathcal N(0,\\sigma^2). $$\n再假设参数具有先验分布：\n$$ \\theta\\sim\\mathcal N(0,\\tau^2I). $$\n根据贝叶斯公式：\n$$ p(\\theta\\mid X,y) \\propto p(y\\mid X,\\theta)p(\\theta). $$\n最大后验估计（MAP）为：\n$$\\theta_{\\mathrm{MAP}}=\\arg\\max_\\theta p(\\theta\\mid X,y). $$\n取负对数并去掉常数项：\n$$\\theta_{\\mathrm{MAP}}=\\arg\\min_\\theta \\left[\\frac{1}{2\\sigma^2}|X\\theta-y|_2^2+\\frac{1}{2\\tau^2}|\\theta|_2^2\\right]. $$\n这与 L2 正则化具有相同形式。\n因此：正则化既可以理解为对模型复杂度的约束，也可以理解为对参数施加先验知识。\n神经网络——从线性模型到非线性函数空间 现在我们把问题推广到深度学习。\n单层线性模型具有局限性，这是因为线性模型只能表示仿射函数，但现实世界中大量规律具有非线性结构。例如分类问题中的非线性决策边界。因此，我们需要构造更丰富的函数族。\n神经元的数学形式 一个神经元可以写成：\n$$ h=\\sigma(w^\\top x+b), $$\n其中：\n$w$：权重向量； $b$：偏置； $\\sigma$：非线性激活函数。 常见激活函数包括：\nSigmoid：\n$$ \\sigma(x)=\\frac1{1+e^{-x}}. $$\n双曲正切：\n$$ \\tanh(x)=\\frac{e^x-e^{-x}}{e^x+e^{-x}}. $$\nReLU：\n$$ \\operatorname{ReLU}(x)=\\max(0,x). $$\n激活函数的关键作用是引入非线性。如果多个线性层直接复合，那么整体仍然只是一个线性变换。因此，没有非线性激活函数的多层网络，并不会仅仅因为层数增加就获得更强的非线性表达能力。\n多层前馈神经网络 考虑一个 $L$ 层神经网络：\n$$ h^{(0)}=x, $$\n$$h^{(l)}=\\sigma_l\\left(W^{(l)}h^{(l-1)}+b^{(l)}\\right),\\quad l=1,\\ldots,L. $$\n最终输出：\n$$ f_\\theta(x)=h^{(L)}. $$\n所有权重和偏置组成参数集合：\n$$\\theta=\\{W^{(1)},\\ldots,W^{(L)},b^{(1)},\\ldots,b^{(L)}\\}. $$\n于是，神经网络训练可以写成：\n$$\\boxed{ \\theta^*=\\arg\\min_\\theta\\frac1n\\sum_{i=1}^{n}\\ell(f_\\theta(x_i),y_i)} $$\n这就是经验风险最小化在神经网络中的具体形式。\n神经网络强大的表达能力 一个重要的理论结果是通用逼近定理（Universal Approximation Theorem）。其基本思想是：\n在适当条件下，具有足够多隐藏神经元的前馈神经网络，可以在紧集上以任意精度逼近连续函数。\n一种经典表述是：\n设 $K\\subset\\mathbb R^d$ 为紧集，$\\sigma$ 是适当的非多项式连续激活函数。\n对于任意连续函数：\n$$ f\\in C(K), $$\n以及任意：\n$$ \\epsilon\u003e0, $$\n存在有限个参数，使得单隐藏层网络：\n$$ g(x)= \\sum_{j=1}^{N} a_j\\sigma(w_j^\\top x+b_j) $$\n满足：\n$$ \\boxed{ \\sup_{x\\in K}|f(x)-g(x)|\u003c\\epsilon } $$\n这意味着神经网络具有很强的函数逼近能力，但不意味着这个函数一定可以可以被有限样本有效地学习，或者某个学习算法能够高效地找到相应参数。因为一个模型即使具有极强的表达能力，也可能：\n需要大量训练样本； 存在极难优化的损失函数； 需要过多参数； 在训练数据之外表现很差。 因此：\n$$ \\boxed{ \\text{表达能力}\\neq\\text{学习能力} } $$\n机器如何找到合适的参数？ 神经网络训练通常转化为高维非线性优化问题：\n$$ \\min_{\\theta}J(\\theta). $$\n参数维度可能达到数百万、数十亿甚至更多。一般情况下，我们无法直接求出全局最优解。最基本的优化方法是梯度下降。\n梯度下降 给定目标函数：\n$$ J:\\mathbb R^p\\rightarrow\\mathbb R, $$\n在第 $t$ 次迭代中，参数更新为：\n$$\\boxed{\\theta_{t+1}= \\theta_t-\\eta\\nabla J(\\theta_t) } $$\n其中 $\\eta\u003e0$ 为学习率。\n随机梯度下降 完整经验风险的梯度为：\n$$\\nabla J(\\theta)=\\frac1n\\sum_{i=1}^{n} \\nabla_\\theta\\ell(f_\\theta(x_i),y_i). $$\n每次计算完整梯度可能代价很高。\n因此，可以随机抽取一个样本 $i$，使用：\n$$g_i(\\theta)=\\nabla_\\theta\\ell(f_\\theta(x_i),y_i) $$\n作为梯度估计。\n更新：\n$$\\theta_{t+1}=\\theta_t-\\eta g_i(\\theta_t). $$\n如果样本均匀随机抽取，那么：\n$$\\mathbb E_i[g_i(\\theta)]= \\nabla J(\\theta). $$\n因此，随机梯度在期望意义下是无偏的。实践中通常使用小批量随机梯度下降（Mini-batch SGD）。\n反向传播：复合函数的链式法则 神经网络由多个函数复合而成。训练神经网络，本质上是计算损失函数对每一层参数的偏导数，再利用梯度更新参数。\n反向传播（Backpropagation）是 多元复合函数链式法则在计算图上的系统化应用\n1. 神经网络的数学表示 考虑一个具有 $L$ 层的前馈神经网络。记第 $l$ 层的输入为 $h^{(l-1)}$，则：\n$$ z^{(l)}=W^{(l)}h^{(l-1)}+b^{(l)}, $$\n$$ h^{(l)}=\\sigma_l(z^{(l)}). $$\n其中：\n$W^{(l)}\\in\\mathbb R^{d_l\\times d_{l-1}}$ 为权重矩阵； $b^{(l)}\\in\\mathbb R^{d_l}$ 为偏置向量； $z^{(l)}\\in\\mathbb R^{d_l}$ 为线性变换后的结果； $h^{(l)}\\in\\mathbb R^{d_l}$ 为激活后的输出； $\\sigma_l$ 为逐元素作用的激活函数。 给定输入 $x=h^{(0)}$，网络最终输出为：\n$$ \\widehat y=h^{(L)}. $$\n设损失函数为：\n$$ J=J(h^{(L)},y). $$\n我们的目标是计算：\n$$ \\frac{\\partial J}{\\partial W^{(l)}}, \\qquad \\frac{\\partial J}{\\partial b^{(l)}}, $$\n其中 $l=1,\\ldots,L$。\n2. 从一元链式法则到多元链式法则 先回顾一元微积分。若：\n$$ y=f(u),\\qquad u=g(x), $$\n那么：\n$$\\frac{dy}{dx}= \\frac{dy}{du}\\frac{du}{dx}. $$\n对于多元函数，链式法则可以用 Jacobian 矩阵表达。\n设：\n$$ u=g(x),\\qquad y=f(u), $$\n其中 $x\\in\\mathbb R^n$、$u\\in\\mathbb R^m$、$y\\in\\mathbb R^p$。\n定义 Jacobian：\n$$ Dg(x)= \\left( \\frac{\\partial u_i}{\\partial x_j} \\right)_{m\\times n}, $$\n$$ Df(u)= \\left( \\frac{\\partial y_i}{\\partial u_j} \\right)_{p\\times m}. $$\n则：\n$$ \\boxed{ D(f\\circ g)(x)=Df(g(x))Dg(x) } $$\n这是多元链式法则的矩阵形式。\n当最终函数 $J$ 为标量时，若采用列梯度约定，则：\n$$\\boxed{\\nabla_x J= Dg(x)^\\top\\nabla_u J } $$\n这条公式是理解反向传播的关键：梯度沿计算图反方向传播，每经过一个函数，就乘上该函数 Jacobian 的转置。\n3. 定义误差项 定义第 $l$ 层的误差向量：\n$$\\boxed{\\delta^{(l)}= \\nabla_{z^{(l)}}J} $$\n即损失函数对该层线性变换结果的梯度。\n由于：\n$$ h^{(L)}=\\sigma_L(z^{(L)}), $$\n根据链式法则：\n$$\\nabla_{z^{(L)}}J=D\\sigma_L(z^{(L)})^\\top \\nabla_{h^{(L)}}J. $$\n这里激活函数逐元素作用，因此其 Jacobian 是对角矩阵：\n$$D\\sigma_L(z^{(L)})=\\operatorname{diag} \\left(\\sigma_L’(z_1^{(L)}),\\ldots, \\sigma_L’(z_{d_L}^{(L)}) \\right). $$\n对角矩阵等于自身的转置，于是：\n$$\\boxed{\\delta^{(L)}= \\nabla_{h^{(L)}}J \\odot \\sigma_L’(z^{(L)}) } $$\n其中 $\\odot$ 表示逐元素乘法。\n这给出了输出层的误差项。\n4. 隐藏层的误差传播 现在考虑第 $l$ 层，其中 $l","wordCount":"3436","inLanguage":"en","datePublished":"2026-11-04T00:00:00Z","dateModified":"2026-11-04T00:00:00Z","author":{"@type":"Person","name":"Linmythos"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://linmythos.github.io/ai/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"},"publisher":{"@type":"Organization","name":"Linmythos","logo":{"@type":"ImageObject","url":"https://linmythos.github.io/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://linmythos.github.io/ accesskey=h title="Linmythos (Alt + H)">Linmythos</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://linmythos.github.io/math/ title=Mathematics><span>Mathematics</span></a></li><li><a href=https://linmythos.github.io/physics/ title=Physics><span>Physics</span></a></li><li><a href=https://linmythos.github.io/ai/ title=AI><span>AI</span></a></li><li><a href=https://linmythos.github.io/neural-science/ title="Neural Science"><span>Neural Science</span></a></li><li><a href=https://linmythos.github.io/essays/ title=Essays><span>Essays</span></a></li><li><a href=https://linmythos.github.io/about/ title=About><span>About</span></a></li><li><a href=https://linmythos.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://linmythos.github.io/archives/ title=Archives><span>Archives</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">机器学习与神经网络导论</h1><div class=post-meta><span title='2026-11-04 00:00:00 +0000 UTC'>November 4, 2026</span>&nbsp;·&nbsp;<span>17 min</span>&nbsp;·&nbsp;<span>Linmythos</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><li><a href=#%e6%9c%ba%e5%99%a8%e5%ad%a6%e4%b9%a0%e4%bb%8e%e5%87%bd%e6%95%b0%e9%80%bc%e8%bf%91%e5%88%b0%e7%bb%9f%e8%ae%a1%e5%ad%a6%e4%b9%a0%e7%90%86%e8%ae%ba aria-label=机器学习——从函数逼近到统计学习理论>机器学习——从函数逼近到统计学习理论</a><ul><li><a href=#%e6%a0%b8%e5%bf%83%e9%97%ae%e9%a2%98 aria-label=核心问题>核心问题</a></li><li><a href=#%e6%9c%ba%e5%99%a8%e5%ad%a6%e4%b9%a0%e7%9a%84%e6%95%b0%e5%ad%a6%e5%bd%a2%e5%bc%8f%e5%8c%96 aria-label=机器学习的数学形式化>机器学习的数学形式化</a><ul><li><a href=#%e6%95%b0%e6%8d%ae%e4%b8%8e%e6%9c%aa%e7%9f%a5%e5%88%86%e5%b8%83 aria-label=数据与未知分布>数据与未知分布</a></li><li><a href=#%e6%8d%9f%e5%a4%b1%e5%87%bd%e6%95%b0 aria-label=损失函数>损失函数</a></li><li><a href=#%e7%9c%9f%e5%ae%9e%e9%a3%8e%e9%99%a9%e4%b8%8e%e7%bb%8f%e9%aa%8c%e9%a3%8e%e9%99%a9 aria-label=真实风险与经验风险>真实风险与经验风险</a></li></ul></li><li><a href=#%e8%bf%87%e6%8b%9f%e5%90%88%e8%ae%b0%e4%bd%8f%e6%95%b0%e6%8d%ae%e4%b8%8d%e7%ad%89%e4%ba%8e%e5%ad%a6%e4%bc%9a%e8%a7%84%e5%be%8b aria-label=过拟合：记住数据不等于学会规律>过拟合：记住数据不等于学会规律</a><ul><li><a href=#%e8%ae%ad%e7%bb%83%e8%af%af%e5%b7%ae%e4%b8%8e%e6%b3%9b%e5%8c%96%e8%af%af%e5%b7%ae aria-label=训练误差与泛化误差>训练误差与泛化误差</a></li></ul></li><li><a href=#%e6%9c%89%e9%99%90%e6%a0%b7%e6%9c%ac%e6%8f%ad%e7%a4%ba%e6%80%bb%e4%bd%93%e8%a7%84%e5%be%8b aria-label=有限样本揭示总体规律>有限样本揭示总体规律</a><ul><li><a href=#%e5%a4%a7%e6%95%b0%e5%ae%9a%e5%be%8b aria-label=大数定律>大数定律</a></li><li><a href=#hoeffding-%e4%b8%8d%e7%ad%89%e5%bc%8f aria-label="Hoeffding 不等式">Hoeffding 不等式</a></li></ul></li><li><a href=#%e4%bb%8e%e5%9b%ba%e5%ae%9a%e6%a8%a1%e5%9e%8b%e5%88%b0%e6%a8%a1%e5%9e%8b%e9%9b%86%e5%90%88 aria-label=从固定模型到模型集合>从固定模型到模型集合</a></li><li><a href=#%e6%a8%a1%e5%9e%8b%e5%a4%8d%e6%9d%82%e5%ba%a6%e4%b8%8e%e6%ad%a3%e5%88%99%e5%8c%96 aria-label=模型复杂度与正则化>模型复杂度与正则化</a><ul><li><a href=#%e5%b8%a6%e6%ad%a3%e5%88%99%e9%a1%b9%e7%9a%84%e7%bb%8f%e9%aa%8c%e9%a3%8e%e9%99%a9%e6%9c%80%e5%b0%8f%e5%8c%96 aria-label=带正则项的经验风险最小化>带正则项的经验风险最小化</a></li></ul></li><li><a href=#l2-%e6%ad%a3%e5%88%99%e5%8c%96 aria-label="L2 正则化">L2 正则化</a></li><li><a href=#%e6%ad%a3%e5%88%99%e5%8c%96%e4%b8%8e%e8%b4%9d%e5%8f%b6%e6%96%af%e8%a7%82%e7%82%b9 aria-label=正则化与贝叶斯观点>正则化与贝叶斯观点</a></li></ul></li><li><a href=#%e7%a5%9e%e7%bb%8f%e7%bd%91%e7%bb%9c%e4%bb%8e%e7%ba%bf%e6%80%a7%e6%a8%a1%e5%9e%8b%e5%88%b0%e9%9d%9e%e7%ba%bf%e6%80%a7%e5%87%bd%e6%95%b0%e7%a9%ba%e9%97%b4 aria-label=神经网络——从线性模型到非线性函数空间>神经网络——从线性模型到非线性函数空间</a><ul><li><a href=#%e7%a5%9e%e7%bb%8f%e5%85%83%e7%9a%84%e6%95%b0%e5%ad%a6%e5%bd%a2%e5%bc%8f aria-label=神经元的数学形式>神经元的数学形式</a></li><li><a href=#%e5%a4%9a%e5%b1%82%e5%89%8d%e9%a6%88%e7%a5%9e%e7%bb%8f%e7%bd%91%e7%bb%9c aria-label=多层前馈神经网络>多层前馈神经网络</a></li><li><a href=#%e7%a5%9e%e7%bb%8f%e7%bd%91%e7%bb%9c%e5%bc%ba%e5%a4%a7%e7%9a%84%e8%a1%a8%e8%be%be%e8%83%bd%e5%8a%9b aria-label=神经网络强大的表达能力>神经网络强大的表达能力</a></li><li><a href=#%e6%9c%ba%e5%99%a8%e5%a6%82%e4%bd%95%e6%89%be%e5%88%b0%e5%90%88%e9%80%82%e7%9a%84%e5%8f%82%e6%95%b0 aria-label=机器如何找到合适的参数？>机器如何找到合适的参数？</a><ul><li><a href=#%e6%a2%af%e5%ba%a6%e4%b8%8b%e9%99%8d aria-label=梯度下降>梯度下降</a></li><li><a href=#%e9%9a%8f%e6%9c%ba%e6%a2%af%e5%ba%a6%e4%b8%8b%e9%99%8d aria-label=随机梯度下降>随机梯度下降</a></li><li><a href=#%e5%8f%8d%e5%90%91%e4%bc%a0%e6%92%ad%e5%a4%8d%e5%90%88%e5%87%bd%e6%95%b0%e7%9a%84%e9%93%be%e5%bc%8f%e6%b3%95%e5%88%99 aria-label=反向传播：复合函数的链式法则>反向传播：复合函数的链式法则</a><ul><li><a href=#1-%e7%a5%9e%e7%bb%8f%e7%bd%91%e7%bb%9c%e7%9a%84%e6%95%b0%e5%ad%a6%e8%a1%a8%e7%a4%ba aria-label="1. 神经网络的数学表示">1. 神经网络的数学表示</a></li><li><a href=#2-%e4%bb%8e%e4%b8%80%e5%85%83%e9%93%be%e5%bc%8f%e6%b3%95%e5%88%99%e5%88%b0%e5%a4%9a%e5%85%83%e9%93%be%e5%bc%8f%e6%b3%95%e5%88%99 aria-label="2. 从一元链式法则到多元链式法则">2. 从一元链式法则到多元链式法则</a></li><li><a href=#3-%e5%ae%9a%e4%b9%89%e8%af%af%e5%b7%ae%e9%a1%b9 aria-label="3. 定义误差项">3. 定义误差项</a></li><li><a href=#4-%e9%9a%90%e8%97%8f%e5%b1%82%e7%9a%84%e8%af%af%e5%b7%ae%e4%bc%a0%e6%92%ad aria-label="4. 隐藏层的误差传播">4. 隐藏层的误差传播</a></li><li><a href=#5-%e8%ae%a1%e7%ae%97%e6%9d%83%e9%87%8d%e4%b8%8e%e5%81%8f%e7%bd%ae%e7%9a%84%e6%a2%af%e5%ba%a6 aria-label="5. 计算权重与偏置的梯度">5. 计算权重与偏置的梯度</a></li><li><a href=#6-%e4%b8%80%e4%b8%aa%e7%ae%80%e5%8d%95%e7%9a%84%e6%95%b0%e5%80%bc%e4%be%8b%e5%ad%90 aria-label="6. 一个简单的数值例子">6. 一个简单的数值例子</a></li><li><a href=#7-%e5%8f%8d%e5%90%91%e4%bc%a0%e6%92%ad%e4%b8%8e%e8%87%aa%e5%8a%a8%e5%be%ae%e5%88%86 aria-label="7. 反向传播与自动微分">7. 反向传播与自动微分</a></li></ul></li></ul></li></ul></li><li><a href=#%e4%bb%8e%e6%9c%ba%e5%99%a8%e5%ad%a6%e4%b9%a0%e8%b5%b0%e5%90%91%e7%a7%91%e5%ad%a6%e5%8f%91%e7%8e%b0 aria-label=从机器学习走向科学发现>从机器学习走向科学发现</a><ul><li><a href=#1-%e4%bb%8e%e9%a2%84%e6%b5%8b%e9%97%ae%e9%a2%98%e5%88%b0%e6%96%b9%e7%a8%8b%e5%8f%91%e7%8e%b0 aria-label="1. 从预测问题到方程发现">1. 从预测问题到方程发现</a></li><li><a href=#2-%e7%ac%a6%e5%8f%b7%e5%9b%9e%e5%bd%92%e4%bb%8e%e6%95%b0%e6%8d%ae%e4%b8%ad%e5%af%bb%e6%89%be%e6%95%b0%e5%ad%a6%e8%a1%a8%e8%be%be%e5%bc%8f aria-label="2. 符号回归：从数据中寻找数学表达式">2. 符号回归：从数据中寻找数学表达式</a><ul><li><a href=#%e4%be%8b%e4%bb%8e%e8%bf%90%e5%8a%a8%e6%95%b0%e6%8d%ae%e5%8f%91%e7%8e%b0%e7%ae%80%e8%b0%90%e6%8c%af%e5%8a%a8%e6%96%b9%e7%a8%8b aria-label=例：从运动数据发现简谐振动方程>例：从运动数据发现简谐振动方程</a></li></ul></li><li><a href=#3-%e7%a8%80%e7%96%8f%e5%9b%9e%e5%bd%92%e4%b8%8e%e5%8a%a8%e5%8a%9b%e5%ad%a6%e7%b3%bb%e7%bb%9f%e8%af%86%e5%88%ab aria-label="3. 稀疏回归与动力学系统识别">3. 稀疏回归与动力学系统识别</a></li><li><a href=#4-%e9%80%86%e9%97%ae%e9%a2%98%e4%bb%8e%e8%a7%82%e6%b5%8b%e7%bb%93%e6%9e%9c%e5%8f%8d%e6%8e%a8%e6%9c%aa%e7%9f%a5%e6%9c%ba%e5%88%b6 aria-label="4. 逆问题：从观测结果反推未知机制">4. 逆问题：从观测结果反推未知机制</a></li><li><a href=#5-%e7%89%a9%e7%90%86%e7%ba%a6%e6%9d%9f%e4%b8%8e%e7%a5%9e%e7%bb%8f%e7%bd%91%e7%bb%9cphysics-informed-neural-networks aria-label="5. 物理约束与神经网络：Physics-Informed Neural Networks">5. 物理约束与神经网络：Physics-Informed Neural Networks</a></li><li><a href=#fracpartial-u_thetapartial-t aria-label="\frac{\partial u_\theta}{\partial t}">\frac{\partial u_\theta}{\partial t}</a></li><li><a href=#6-%e7%a7%91%e5%ad%a6%e8%a7%84%e5%be%8b%e5%af%b9%e6%9c%ba%e5%99%a8%e5%ad%a6%e4%b9%a0%e7%9a%84%e7%ba%a6%e6%9d%9f aria-label="6. 科学规律对机器学习的约束">6. 科学规律对机器学习的约束</a><ul><li><a href=#%e9%87%8f%e7%ba%b2%e5%88%86%e6%9e%90 aria-label=量纲分析>量纲分析</a></li><li><a href=#%e5%af%b9%e7%a7%b0%e6%80%a7 aria-label=对称性>对称性</a></li><li><a href=#%e5%ae%88%e6%81%92%e5%be%8b aria-label=守恒律>守恒律</a></li></ul></li><li><a href=#7-%e4%bb%8e%e6%95%b0%e6%8d%ae%e6%8b%9f%e5%90%88%e5%88%b0%e7%a7%91%e5%ad%a6%e5%8f%91%e7%8e%b0%e4%b8%80%e4%b8%aa%e5%ae%8c%e6%95%b4%e6%b5%81%e7%a8%8b aria-label="7. 从数据拟合到科学发现：一个完整流程">7. 从数据拟合到科学发现：一个完整流程</a></li><li><a href=#8-%e4%b8%80%e4%b8%aa%e9%87%8d%e8%a6%81%e5%8c%ba%e5%88%ab%e9%a2%84%e6%b5%8b%e6%88%90%e5%8a%9f%e4%b8%8d%e7%ad%89%e4%ba%8e%e5%8f%91%e7%8e%b0%e5%ae%9a%e5%be%8b aria-label="8. 一个重要区别：预测成功不等于发现定律">8. 一个重要区别：预测成功不等于发现定律</a></li></ul></li><li><a href=#%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae aria-label=参考文献>参考文献</a><ul><li><a href=#%e6%b3%9b%e5%8c%96%e8%83%bd%e5%8a%9b%e4%bb%8e%e4%bd%95%e8%80%8c%e6%9d%a5 aria-label=泛化能力从何而来>泛化能力从何而来</a></li></ul></li><li><a href=#%e8%ae%a1%e7%ae%97%e5%a4%8d%e6%9d%82%e6%80%a7%e7%90%86%e8%ae%ba%e4%bb%8e%e5%9b%be%e7%81%b5%e6%9c%ba%e5%8f%af%e8%ae%a1%e7%ae%97%e6%80%a7%e5%88%b0-p-%e4%b8%8e-np aria-label="计算复杂性理论——从图灵机、可计算性到 P 与 NP">计算复杂性理论——从图灵机、可计算性到 P 与 NP</a><ul><li><a href=#%e6%a0%b8%e5%bf%83%e9%97%ae%e9%a2%98-1 aria-label=核心问题>核心问题</a></li><li><a href=#%e7%ae%97%e6%b3%95%e7%9a%84%e6%95%b0%e5%ad%a6%e6%8a%bd%e8%b1%a1 aria-label=算法的数学抽象>算法的数学抽象</a></li><li><a href=#%e5%88%a4%e5%ae%9a%e9%97%ae%e9%a2%98 aria-label=判定问题>判定问题</a></li><li><a href=#%e5%9b%be%e7%81%b5%e6%9c%ba%e7%9a%84%e5%9f%ba%e6%9c%ac%e7%bb%93%e6%9e%84 aria-label=图灵机的基本结构>图灵机的基本结构</a></li><li><a href=#%e7%8a%b6%e6%80%81%e8%bd%ac%e7%a7%bb aria-label=状态转移>状态转移</a></li><li><a href=#%e5%9b%be%e7%81%b5%e6%9c%ba%e4%b8%8e%e7%8e%b0%e4%bb%a3%e8%ae%a1%e7%ae%97%e6%9c%ba aria-label=图灵机与现代计算机>图灵机与现代计算机</a></li></ul></li><li><a href=#%e5%8f%af%e8%ae%a1%e7%ae%97%e6%80%a7%e5%93%aa%e4%ba%9b%e9%97%ae%e9%a2%98%e6%a0%b9%e6%9c%ac%e6%97%a0%e6%b3%95%e8%a2%ab%e7%ae%97%e6%b3%95%e8%a7%a3%e5%86%b3 aria-label=可计算性：哪些问题根本无法被算法解决？>可计算性：哪些问题根本无法被算法解决？</a><ul><li><a href=#%e5%81%9c%e6%9c%ba%e9%97%ae%e9%a2%98 aria-label=停机问题>停机问题</a></li><li><a href=#%e5%af%b9%e8%a7%92%e5%8c%96%e8%af%81%e6%98%8e aria-label=对角化证明>对角化证明</a></li></ul></li><li><a href=#%e8%ae%a1%e7%ae%97%e8%b5%84%e6%ba%90%e6%97%b6%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6%e4%b8%8e%e7%a9%ba%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6 aria-label=计算资源：时间复杂度与空间复杂度>计算资源：时间复杂度与空间复杂度</a><ul><li><a href=#%e8%be%93%e5%85%a5%e8%a7%84%e6%a8%a1 aria-label=输入规模>输入规模</a></li><li><a href=#%e6%97%b6%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6 aria-label=时间复杂度>时间复杂度</a><ul><li><a href=#%e5%a4%a7-o-%e8%ae%b0%e5%8f%b7 aria-label="大 O 记号">大 O 记号</a></li><li><a href=#%e5%a4%a7-omega-%e8%ae%b0%e5%8f%b7 aria-label="大 \(\Omega\) 记号">大 \(\Omega\) 记号</a></li><li><a href=#%e5%a4%a7-theta-%e8%ae%b0%e5%8f%b7 aria-label="大 \(\Theta\) 记号">大 \(\Theta\) 记号</a></li></ul></li><li><a href=#%e7%a9%ba%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6 aria-label=空间复杂度>空间复杂度</a></li></ul></li><li><a href=#p-%e7%b1%bb%e9%97%ae%e9%a2%98%e8%83%bd%e5%a4%9f%e9%ab%98%e6%95%88%e6%b1%82%e8%a7%a3%e7%9a%84%e9%97%ae%e9%a2%98 aria-label="P 类问题：能够高效求解的问题">P 类问题：能够高效求解的问题</a><ul><li><a href=#p-%e7%9a%84%e5%ae%9a%e4%b9%89 aria-label="P 的定义">P 的定义</a></li></ul></li><li><a href=#np-%e7%b1%bb%e9%97%ae%e9%a2%98%e5%ae%b9%e6%98%93%e9%aa%8c%e8%af%81%e4%b8%8d%e4%b8%80%e5%ae%9a%e5%ae%b9%e6%98%93%e6%b1%82%e8%a7%a3 aria-label="NP 类问题：容易验证，不一定容易求解">NP 类问题：容易验证，不一定容易求解</a><ul><li><a href=#%e4%bb%8e%e6%95%b0%e7%8b%ac%e9%97%ae%e9%a2%98%e5%87%ba%e5%8f%91 aria-label=从数独问题出发>从数独问题出发</a></li><li><a href=#np-%e7%9a%84%e5%bd%a2%e5%bc%8f%e5%8c%96%e5%ae%9a%e4%b9%89 aria-label="NP 的形式化定义">NP 的形式化定义</a></li><li><a href=#np-%e4%b8%8d%e7%ad%89%e4%ba%8e%e9%9d%9e%e5%a4%9a%e9%a1%b9%e5%bc%8f%e6%97%b6%e9%97%b4 aria-label="NP 不等于非多项式时间">NP 不等于非多项式时间</a></li></ul></li><li><a href=#%e5%a4%9a%e9%a1%b9%e5%bc%8f%e6%97%b6%e9%97%b4%e5%bd%92%e7%ba%a6%e5%a6%82%e4%bd%95%e6%af%94%e8%be%83%e9%97%ae%e9%a2%98%e7%9a%84%e9%9a%be%e5%ba%a6 aria-label=多项式时间归约：如何比较问题的难度？>多项式时间归约：如何比较问题的难度？</a><ul><li><a href=#%e5%a4%9a%e9%a1%b9%e5%bc%8f%e6%97%b6%e9%97%b4%e5%bd%92%e7%ba%a6 aria-label=多项式时间归约>多项式时间归约</a></li><li><a href=#np-hard-%e4%b8%8e-np-complete aria-label="NP-hard 与 NP-complete">NP-hard 与 NP-complete</a></li><li><a href=#sat-%e9%97%ae%e9%a2%98 aria-label="SAT 问题">SAT 问题</a></li></ul></li><li><a href=#%e5%a4%8d%e6%9d%82%e6%80%a7%e7%90%86%e8%ae%ba%e7%9a%84%e6%9b%b4%e5%a4%a7%e5%9b%be%e6%99%af aria-label=复杂性理论的更大图景>复杂性理论的更大图景</a><ul><li><a href=#pspace aria-label=PSPACE>PSPACE</a></li><li><a href=#exp aria-label=EXP>EXP</a></li></ul></li><li><a href=#%e5%8d%81%e4%b8%89%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae aria-label=十三、参考文献>十三、参考文献</a></li><li><a href=#%e4%bf%a1%e6%81%af%e8%ae%ba%e7%9a%84%e6%95%b0%e5%ad%a6%e5%9f%ba%e7%a1%80%e4%bb%8e-shannon-%e7%86%b5%e4%ba%92%e4%bf%a1%e6%81%af%e5%88%b0%e4%bf%a1%e6%81%af%e7%93%b6%e9%a2%88 aria-label="信息论的数学基础——从 Shannon 熵、互信息到信息瓶颈">信息论的数学基础——从 Shannon 熵、互信息到信息瓶颈</a><ul><li><a href=#%e4%bf%a1%e6%81%af%e8%ae%ba%e8%af%95%e5%9b%be%e5%bb%ba%e7%ab%8b%e4%b8%80%e5%a5%97%e6%95%b0%e5%ad%a6%e7%90%86%e8%ae%ba%e7%94%a8%e6%a6%82%e7%8e%87%e5%88%86%e5%b8%83%e5%ae%9a%e9%87%8f%e6%8f%8f%e8%bf%b0%e4%bf%a1%e6%81%af%e4%b8%8d%e7%a1%ae%e5%ae%9a%e6%80%a7%e9%80%9a%e4%bf%a1%e5%92%8c%e5%8e%8b%e7%bc%a9%e5%ae%83%e6%9c%80%e5%88%9d%e7%94%b1-claude-shannon-%e4%ba%8e-1948-%e5%b9%b4%e7%b3%bb%e7%bb%9f%e5%bb%ba%e7%ab%8b%e5%90%8e%e6%9d%a5%e6%88%90%e4%b8%ba%e9%80%9a%e4%bf%a1%e7%90%86%e8%ae%ba%e7%bb%9f%e8%ae%a1%e5%ad%a6%e6%9c%ba%e5%99%a8%e5%ad%a6%e4%b9%a0%e5%af%86%e7%a0%81%e5%ad%a6%e5%92%8c%e7%a7%91%e5%ad%a6%e6%8e%a8%e6%96%ad%e7%9a%84%e9%87%8d%e8%a6%81%e5%9f%ba%e7%a1%80 aria-label="信息论试图建立一套数学理论，用概率分布定量描述信息、不确定性、通信和压缩。它最初由 Claude Shannon 于 1948 年系统建立，后来成为通信理论、统计学、机器学习、密码学和科学推断的重要基础。">信息论试图建立一套数学理论，用概率分布定量描述信息、不确定性、通信和压缩。它最初由 Claude Shannon 于 1948 年系统建立，后来成为通信理论、统计学、机器学习、密码学和科学推断的重要基础。</a></li></ul></li><li><a href=#%e4%bf%a1%e6%81%af%e9%87%8f%e4%b8%80%e4%b8%aa%e4%ba%8b%e4%bb%b6%e5%8c%85%e5%90%ab%e5%a4%9a%e5%b0%91%e4%bf%a1%e6%81%af aria-label=信息量：一个事件包含多少信息？>信息量：一个事件包含多少信息？</a><ul><li><a href=#%e4%bb%8e%e4%ba%8b%e4%bb%b6%e6%a6%82%e7%8e%87%e5%87%ba%e5%8f%91 aria-label=从事件概率出发>从事件概率出发</a></li></ul></li><li><a href=#shannon-%e7%86%b5%e9%9a%8f%e6%9c%ba%e5%8f%98%e9%87%8f%e7%9a%84%e4%b8%8d%e7%a1%ae%e5%ae%9a%e6%80%a7 aria-label="Shannon 熵：随机变量的不确定性">Shannon 熵：随机变量的不确定性</a><ul><li><a href=#%e7%a6%bb%e6%95%a3%e7%86%b5%e7%9a%84%e5%ae%9a%e4%b9%89 aria-label=离散熵的定义>离散熵的定义</a></li><li><a href=#%e6%9c%89%e5%81%8f%e7%a1%ac%e5%b8%81 aria-label=有偏硬币>有偏硬币</a></li><li><a href=#%e7%86%b5%e7%9a%84%e5%9f%ba%e6%9c%ac%e6%80%a7%e8%b4%a8 aria-label=熵的基本性质>熵的基本性质</a></li></ul></li><li><a href=#%e4%b8%89%e8%81%94%e5%90%88%e7%86%b5%e4%b8%8e%e6%9d%a1%e4%bb%b6%e7%86%b5 aria-label=三、联合熵与条件熵>三、联合熵与条件熵</a><ul><li><a href=#%e8%81%94%e5%90%88%e7%86%b5 aria-label=联合熵>联合熵</a></li><li><a href=#%e6%9d%a1%e4%bb%b6%e7%86%b5 aria-label=条件熵>条件熵</a></li><li><a href=#%e9%93%be%e5%bc%8f%e6%b3%95%e5%88%99 aria-label=链式法则>链式法则</a></li><li><a href=#%e6%9d%a1%e4%bb%b6%e7%86%b5%e4%b8%8d%e4%bc%9a%e5%a2%9e%e5%8a%a0 aria-label=条件熵不会增加>条件熵不会增加</a></li></ul></li><li><a href=#%e4%ba%92%e4%bf%a1%e6%81%af%e4%b8%a4%e4%b8%aa%e9%9a%8f%e6%9c%ba%e5%8f%98%e9%87%8f%e5%85%b1%e4%ba%ab%e5%a4%9a%e5%b0%91%e4%bf%a1%e6%81%af aria-label=互信息：两个随机变量共享多少信息？>互信息：两个随机变量共享多少信息？</a><ul><li><a href=#41-%e5%ae%9a%e4%b9%89 aria-label="4.1 定义">4.1 定义</a></li><li><a href=#42-%e4%be%8b%e4%b8%80%e5%ae%8c%e5%85%a8%e7%8b%ac%e7%ab%8b aria-label="4.2 例一：完全独立">4.2 例一：完全独立</a></li><li><a href=#43-%e4%be%8b%e4%ba%8c%e5%ae%8c%e5%85%a8%e7%a1%ae%e5%ae%9a%e7%9a%84%e5%85%b3%e7%b3%bb aria-label="4.3 例二：完全确定的关系">4.3 例二：完全确定的关系</a></li><li><a href=#44-%e4%be%8b%e4%b8%89%e5%b8%a6%e5%99%aa%e5%a3%b0%e7%9a%84%e4%ba%8c%e5%85%83%e4%bf%a1%e9%81%93 aria-label="4.4 例三：带噪声的二元信道">4.4 例三：带噪声的二元信道</a></li></ul></li><li><a href=#%e4%ba%94%e7%9b%b8%e5%af%b9%e7%86%b5%e5%a6%82%e4%bd%95%e6%af%94%e8%be%83%e4%b8%a4%e4%b8%aa%e6%a6%82%e7%8e%87%e5%88%86%e5%b8%83 aria-label=五、相对熵：如何比较两个概率分布？>五、相对熵：如何比较两个概率分布？</a><ul><li><a href=#51-kullbackleibler-%e6%95%a3%e5%ba%a6 aria-label="5.1 Kullback–Leibler 散度">5.1 Kullback–Leibler 散度</a></li><li><a href=#52-gibbs-%e4%b8%8d%e7%ad%89%e5%bc%8f aria-label="5.2 Gibbs 不等式">5.2 Gibbs 不等式</a></li><li><a href=#53-%e4%ba%92%e4%bf%a1%e6%81%af%e4%b8%8e-kl-%e6%95%a3%e5%ba%a6 aria-label="5.3 互信息与 KL 散度">5.3 互信息与 KL 散度</a></li><li><a href=#54-%e6%9d%a1%e4%bb%b6%e7%86%b5%e4%b8%8d%e4%bc%9a%e5%a2%9e%e5%8a%a0%e7%9a%84%e4%b8%a5%e6%a0%bc%e8%af%81%e6%98%8e aria-label="5.4 条件熵不会增加的严格证明">5.4 条件熵不会增加的严格证明</a></li></ul></li><li><a href=#%e5%85%ad%e4%ba%a4%e5%8f%89%e7%86%b5%e4%bf%a1%e6%81%af%e8%ae%ba%e4%b8%8e%e6%9c%ba%e5%99%a8%e5%ad%a6%e4%b9%a0%e7%9a%84%e8%bf%9e%e6%8e%a5 aria-label=六、交叉熵：信息论与机器学习的连接>六、交叉熵：信息论与机器学习的连接</a><ul><li><a href=#61-%e5%ae%9a%e4%b9%89 aria-label="6.1 定义">6.1 定义</a></li><li><a href=#62-%e4%ba%8c%e5%88%86%e7%b1%bb%e4%ba%a4%e5%8f%89%e7%86%b5 aria-label="6.2 二分类交叉熵">6.2 二分类交叉熵</a></li><li><a href=#63-%e6%9c%80%e5%a4%a7%e4%bc%bc%e7%84%b6%e4%bc%b0%e8%ae%a1%e4%b8%8e%e4%ba%a4%e5%8f%89%e7%86%b5 aria-label="6.3 最大似然估计与交叉熵">6.3 最大似然估计与交叉熵</a></li></ul></li><li><a href=#%e4%b8%83%e6%95%b0%e6%8d%ae%e5%8e%8b%e7%bc%a9%e4%b8%8e-shannon-%e4%bf%a1%e6%ba%90%e7%bc%96%e7%a0%81%e5%ae%9a%e7%90%86 aria-label="七、数据压缩与 Shannon 信源编码定理">七、数据压缩与 Shannon 信源编码定理</a><ul><li><a href=#71-%e5%ae%9a%e9%95%bf%e7%bc%96%e7%a0%81 aria-label="7.1 定长编码">7.1 定长编码</a></li><li><a href=#72-kraft-%e4%b8%8d%e7%ad%89%e5%bc%8f aria-label="7.2 Kraft 不等式">7.2 Kraft 不等式</a></li><li><a href=#73-%e5%b9%b3%e5%9d%87%e7%a0%81%e9%95%bf aria-label="7.3 平均码长">7.3 平均码长</a></li><li><a href=#74-%e4%b8%80%e4%b8%aa%e4%be%8b%e5%ad%90 aria-label="7.4 一个例子">7.4 一个例子</a></li></ul></li><li><a href=#%e5%85%ab%e6%95%b0%e6%8d%ae%e5%a4%84%e7%90%86%e4%b8%8d%e7%ad%89%e5%bc%8f aria-label=八、数据处理不等式>八、数据处理不等式</a><ul><li><a href=#81-%e8%af%81%e6%98%8e%e6%80%9d%e8%b7%af aria-label="8.1 证明思路">8.1 证明思路</a></li><li><a href=#82-%e7%9b%b4%e8%a7%82%e8%a7%a3%e9%87%8a aria-label="8.2 直观解释">8.2 直观解释</a></li></ul></li><li><a href=#%e4%b9%9d%e4%bf%a1%e6%81%af%e7%93%b6%e9%a2%88%e5%ad%a6%e4%b9%a0%e7%a9%b6%e7%ab%9f%e5%ba%94%e8%af%a5%e4%bf%9d%e7%95%99%e4%bb%80%e4%b9%88%e4%bf%a1%e6%81%af aria-label=九、信息瓶颈：学习究竟应该保留什么信息？>九、信息瓶颈：学习究竟应该保留什么信息？</a><ul><li><a href=#91-%e4%bf%a1%e6%81%af%e7%93%b6%e9%a2%88%e7%9b%ae%e6%a0%87%e5%87%bd%e6%95%b0 aria-label="9.1 信息瓶颈目标函数">9.1 信息瓶颈目标函数</a></li><li><a href=#92-%e5%85%85%e5%88%86%e7%bb%9f%e8%ae%a1%e9%87%8f%e7%9a%84%e8%81%94%e7%b3%bb aria-label="9.2 充分统计量的联系">9.2 充分统计量的联系</a></li><li><a href=#93-%e4%b8%8e%e6%b7%b1%e5%ba%a6%e5%ad%a6%e4%b9%a0%e7%9a%84%e8%81%94%e7%b3%bb aria-label="9.3 与深度学习的联系">9.3 与深度学习的联系</a></li></ul></li><li><a href=#%e5%8d%81%e6%9c%ac%e8%ae%b2%e6%80%bb%e7%bb%93 aria-label=十、本讲总结>十、本讲总结</a></li><li><a href=#%e5%8d%81%e4%b8%80%e4%b9%a0%e9%a2%98 aria-label=十一、习题>十一、习题</a><ul><li><a href=#a-%e5%9f%ba%e7%a1%80%e8%ae%a1%e7%ae%97 aria-label="A. 基础计算">A. 基础计算</a></li><li><a href=#b-%e7%90%86%e8%ae%ba%e8%af%81%e6%98%8e aria-label="B. 理论证明">B. 理论证明</a></li><li><a href=#c-%e6%b7%b1%e5%85%a5%e9%97%ae%e9%a2%98 aria-label="C. 深入问题">C. 深入问题</a></li></ul></li><li><a href=#%e5%8d%81%e4%ba%8c%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae aria-label=十二、参考文献>十二、参考文献</a></li></ul></div></details><div class="post-content md-content"><h1 id=机器学习从函数逼近到统计学习理论>机器学习——从函数逼近到统计学习理论<a hidden class=anchor aria-hidden=true href=#机器学习从函数逼近到统计学习理论>#</a></h1><h2 id=核心问题>核心问题<a hidden class=anchor aria-hidden=true href=#核心问题>#</a></h2><p>考虑一个简单任务：</p><p>给定大量房屋的历史数据，包括面积、位置、房间数量和成交价格，希望构造一个模型，根据房屋特征预测其价格。</p><p>我们可以将每套房屋表示为一个向量：</p><p>$$
+x=(x_1,x_2,\ldots,x_d)\in\mathbb R^d,
+$$</p><p>将其实际价格记为：</p><p>$$
+y\in\mathbb R.
+$$</p><p>我们希望找到一个函数：</p><p>$$
+f:\mathbb R^d\longrightarrow\mathbb R,
+$$</p><p>使得：</p><p>$$
+f(x)\approx y.
+$$</p><p>机器学习的任务就是在有限的样本中找出普适的规律。</p><h2 id=机器学习的数学形式化>机器学习的数学形式化<a hidden class=anchor aria-hidden=true href=#机器学习的数学形式化>#</a></h2><h3 id=数据与未知分布>数据与未知分布<a hidden class=anchor aria-hidden=true href=#数据与未知分布>#</a></h3><p>设输入空间为 $\mathcal X$，输出空间为 $\mathcal Y$。数据由某个未知概率分布生成：</p><p>$$
+(X,Y)\sim P.
+$$</p><p>我们观察到独立同分布的训练样本：</p><p>$$
+S={(x_1,y_1),(x_2,y_2),\ldots,(x_n,y_n)}.
+$$</p><p>即：</p><p>$$
+(x_i,y_i)\overset{\mathrm{i.i.d.}}{\sim}P.
+$$</p><p>机器学习算法根据样本 $S$，从某个函数集合中选择模型：</p><p>$$
+\mathcal H={f_\theta:\theta\in\Theta}.
+$$</p><p>因此，学习过程可以抽象为：</p><p>$$
+A:S\longmapsto \widehat f.
+$$</p><p>其中 $A$ 是学习算法，$\widehat f$ 是训练得到的模型。</p><p>注意：学习算法并不知道真实分布 $P$，它只能利用有限样本间接推断规律。</p><h3 id=损失函数>损失函数<a hidden class=anchor aria-hidden=true href=#损失函数>#</a></h3><p>为了衡量模型预测的好坏程度，引入损失函数，将预测任务转化为数学上的优化问题：</p><p>$$
+\ell:\mathcal Y\times\mathcal Y\longrightarrow\mathbb R_{\geq 0}.
+$$</p><p>例如，对于回归问题，可以使用平方损失：</p><p>$$
+\ell(\widehat y,y)=(\widehat y-y)^2.
+$$</p><p>对于分类问题，可以使用零一损失：</p><p>$$
+\ell(\widehat y,y)=
+\begin{cases}
+0,&\widehat y=y,\\
+1,&\widehat y\neq y.
+\end{cases}
+$$</p><h3 id=真实风险与经验风险>真实风险与经验风险<a hidden class=anchor aria-hidden=true href=#真实风险与经验风险>#</a></h3><p>我们真正关心的是模型在真实分布上的平均损失：</p><p>$$
+R(f)=
+\mathbb E_{(X,Y)\sim P}
+[\ell(f(X),Y)].
+$$</p><p>称为<strong>真实风险</strong>（True Risk）。</p><p>但由于 $P$ 未知，我们无法直接计算这个期望。因此，使用训练样本构造：</p><p>$$\widehat R_S(f)=
+\frac1n\sum_{i=1}^{n}
+\ell(f(x_i),y_i).
+$$</p><p>称为<strong>经验风险</strong>（Empirical Risk）。</p><p>最基本的学习策略是经验风险最小化（选择在训练数据上平均损失最小的模型）：</p><p>$$\boxed{
+\widehat f=
+\underset{f\in\mathcal H}{\arg\min}
+\widehat R_S(f)
+}
+$$</p><p>然而训练误差最小的模型，不一定具有最好的预测能力</p><hr><h2 id=过拟合记住数据不等于学会规律>过拟合：记住数据不等于学会规律<a hidden class=anchor aria-hidden=true href=#过拟合记住数据不等于学会规律>#</a></h2><p>举一个简单例子，假设真实数据满足：</p><p>$$
+y=x^2+\varepsilon,
+$$</p><p>其中：</p><p>$$
+\varepsilon\sim\mathcal N(0,\sigma^2)
+$$</p><p>表示随机噪声。</p><p>我们观察到有限个样本：</p><p>$$
+(x_1,y_1),\ldots,(x_n,y_n).
+$$</p><p>考虑两种模型。</p><p>模型 A：</p><p>$$
+f_A(x)=ax^2+bx+c.
+$$</p><p>模型 B：</p><p>$$
+f_B(x)=
+\sum_{j=0}^{n-1}a_jx^j.
+$$</p><p>如果样本输入互不相同，那么在一般位置条件下，模型 B 可以通过多项式插值精确通过全部训练样本：</p><p>$$
+f_B(x_i)=y_i.
+$$</p><p>因此：</p><p>$$
+\widehat R_S(f_B)=0.
+$$</p><p>但这并不意味着：</p><p>$$
+R(f_B)=0.
+$$</p><p>模型 B 可能只是把样本中的随机噪声也拟合进去了。这就是过拟合（Overfitting）。</p><h3 id=训练误差与泛化误差>训练误差与泛化误差<a hidden class=anchor aria-hidden=true href=#训练误差与泛化误差>#</a></h3><p>我们需要区分：</p><p>$$
+\widehat R_S(f)
+$$</p><p>和：</p><p>$$
+R(f).
+$$</p><p>前者衡量模型对已观察数据的拟合程度，后者衡量模型对真实数据分布的预测能力。</p><p>二者之差的绝对值：</p><p>$$
+|R(f)-\widehat R_S(f)|
+$$</p><p>称为泛化差距（Generalization Gap）。</p><p>理想情况下，我们希望：</p><p>$$
+R(f)\approx\widehat R_S(f).
+$$</p><hr><h2 id=有限样本揭示总体规律>有限样本揭示总体规律<a hidden class=anchor aria-hidden=true href=#有限样本揭示总体规律>#</a></h2><h3 id=大数定律>大数定律<a hidden class=anchor aria-hidden=true href=#大数定律>#</a></h3><p>先考虑一个固定模型 $f$。</p><p>定义随机变量：</p><p>$$
+Z_i=\ell(f(X_i),Y_i).
+$$</p><p>假设：</p><p>$$
+\mathbb E[Z_i]=R(f)
+$$</p><p>且 $Z_1,\ldots,Z_n$ 独立同分布。</p><p>那么经验风险就是：</p><p>$$
+\widehat R_S(f)=\frac1n\sum_{i=1}^{n}Z_i.
+$$</p><p>由大数定律：</p><p>$$
+\boxed{
+\widehat R_S(f)
+\xrightarrow[n\to\infty]{a.s.}
+R(f)
+}
+$$</p><p>也就是说，当样本量不断增加时，固定模型的经验风险几乎必然收敛到真实风险。</p><p>但请注意，大数定律首先保证的是<strong>固定模型</strong>的经验风险收敛。机器学习却要从许多模型中选择一个模型。</p><h3 id=hoeffding-不等式>Hoeffding 不等式<a hidden class=anchor aria-hidden=true href=#hoeffding-不等式>#</a></h3><p>假设：</p><p>$$
+0\leq Z_i\leq 1.
+$$</p><p>根据 Hoeffding 不等式：</p><p>$$
+P\left(
+\left|
+\frac1n\sum_{i=1}^{n}Z_i-\mathbb E[Z_i]
+\right|\geq\epsilon
+\right)
+\leq 2e^{-2n\epsilon^2}.
+$$</p><p>应用到损失函数：</p><p>$$
+\boxed{
+P\left(
+|\widehat R_S(f)-R(f)|\geq\epsilon
+\right)
+\leq 2e^{-2n\epsilon^2}
+}
+$$</p><p>对于一个固定模型，样本量越大，经验风险偏离真实风险的概率越小。</p><p>如果希望：</p><p>$$
+P\left(
+|\widehat R_S(f)-R(f)|\geq\epsilon
+\right)\leq\delta,
+$$</p><p>只需要：</p><p>$$
+2e^{-2n\epsilon^2}\leq\delta.
+$$</p><p>解得：</p><p>$$
+\boxed{
+n\geq
+\frac{\ln(2/\delta)}{2\epsilon^2}
+}
+$$</p><p>这个结果告诉我们：</p><ul><li>希望误差界更小，需要更多样本；</li><li>希望置信程度更高，也需要更多样本。</li></ul><p>不过，这仍然只针对一个固定模型。</p><h2 id=从固定模型到模型集合>从固定模型到模型集合<a hidden class=anchor aria-hidden=true href=#从固定模型到模型集合>#</a></h2><p>假设模型集合是有限的：</p><p>$$
+\mathcal H={f_1,f_2,\ldots,f_m}.
+$$</p><p>对每个模型使用 Hoeffding 不等式：</p><p>$$
+P\left(
+|\widehat R_S(f_j)-R(f_j)|\geq\epsilon
+\right)
+\leq 2e^{-2n\epsilon^2}.
+$$</p><p>利用联合界：</p><p>$$
+P\left(
+\exists f\in\mathcal H:
+|\widehat R_S(f)-R(f)|\geq\epsilon
+\right)
+\leq
+2m e^{-2n\epsilon^2}.
+$$</p><p>于是，以至少 $1-\delta$ 的概率，对所有模型同时成立：</p><p>$$
+\boxed{
+\sup_{f\in\mathcal H}
+|\widehat R_S(f)-R(f)|
+\leq
+\sqrt{
+\frac{\ln(2m/\delta)}{2n}
+}
+}
+$$</p><p>这是一个简单的统一收敛界。它表明 $
+\boxed{
+\text{泛化能力与模型集合的复杂度有关}
+}
+$</p><p>模型集合越大，想要保证所有模型的经验风险都接近真实风险，通常就需要更多样本。这为理解过拟合提供了一个数学解释。</p><hr><h2 id=模型复杂度与正则化>模型复杂度与正则化<a hidden class=anchor aria-hidden=true href=#模型复杂度与正则化>#</a></h2><p>既然模型过于复杂可能导致过拟合，那么我们能否主动限制模型复杂度？这就是正则化（Regularization）的思想。</p><h3 id=带正则项的经验风险最小化>带正则项的经验风险最小化<a hidden class=anchor aria-hidden=true href=#带正则项的经验风险最小化>#</a></h3><p>原始优化问题：</p><p>$$
+\min_{\theta}
+\widehat R_S(f_\theta).
+$$</p><p>加入正则项：</p><p>$$
+\boxed{
+\min_{\theta}
+\left[
+\widehat R_S(f_\theta)
++
+\lambda\Omega(\theta)
+\right]
+}
+$$</p><p>其中：</p><ul><li>$\Omega(\theta)$：复杂度惩罚项；</li><li>$\lambda\geq0$：正则化系数。</li></ul><p>当 $\lambda=0$ 时，退化为普通经验风险最小化。当 $\lambda$ 增大时，模型受到更强的复杂度约束。</p><h2 id=l2-正则化>L2 正则化<a hidden class=anchor aria-hidden=true href=#l2-正则化>#</a></h2><p>考虑线性模型：</p><p>$$f_\theta(x)=\theta^\top x.
+$$</p><p>使用平方损失：</p><p>$$\widehat R_S(\theta)=
+\frac1n
+\sum_{i=1}^{n}
+(\theta^\top x_i-y_i)^2.
+$$</p><p>加入 L2 正则项：</p><p>$$\boxed{
+J(\theta)=
+\frac1n|X\theta-y|_2^2+\lambda|\theta|_2^2}
+$$</p><p>其中：</p><p>$$X=\begin{pmatrix}
+x_1^\top\\
+x_2^\top\\
+\vdots\\
+x_n^\top
+\end{pmatrix},
+\qquad
+y=
+\begin{pmatrix}
+y_1\\
+y_2\\
+\vdots\\
+y_n
+\end{pmatrix}.
+$$</p><p>对 $\theta$ 求梯度：</p><p>$$\nabla_\theta J=
+\frac2nX^\top(X\theta-y)+2\lambda\theta.
+$$</p><p>令梯度为零：</p><p>$$
+X^\top X\theta-X^\top y+n\lambda\theta=0.
+$$</p><p>因此：</p><p>$$
+(X^\top X+n\lambda I)\theta=X^\top y.
+$$</p><p>当 $\lambda>0$ 时：
+$$
+X^\top X+n\lambda I\succ0,
+$$</p><p>因此必定可逆。</p><p>$$\boxed{
+\theta^*=(X^\top X+n\lambda I)^{-1}X^\top y}
+$$</p><p>这就是岭回归（Ridge Regression）的闭式解。</p><p>正则化不仅能够限制参数规模，还能够改善病态矩阵的数值条件。</p><h2 id=正则化与贝叶斯观点>正则化与贝叶斯观点<a hidden class=anchor aria-hidden=true href=#正则化与贝叶斯观点>#</a></h2><p>L2 正则化还可以从贝叶斯统计中得到解释。</p><p>假设：</p><p>$$
+y_i=\theta^\top x_i+\varepsilon_i,
+$$</p><p>其中：</p><p>$$
+\varepsilon_i\sim\mathcal N(0,\sigma^2).
+$$</p><p>再假设参数具有先验分布：</p><p>$$
+\theta\sim\mathcal N(0,\tau^2I).
+$$</p><p>根据贝叶斯公式：</p><p>$$
+p(\theta\mid X,y)
+\propto
+p(y\mid X,\theta)p(\theta).
+$$</p><p>最大后验估计（MAP）为：</p><p>$$\theta_{\mathrm{MAP}}=\arg\max_\theta p(\theta\mid X,y).
+$$</p><p>取负对数并去掉常数项：</p><p>$$\theta_{\mathrm{MAP}}=\arg\min_\theta
+\left[\frac{1}{2\sigma^2}|X\theta-y|_2^2+\frac{1}{2\tau^2}|\theta|_2^2\right].
+$$</p><p>这与 L2 正则化具有相同形式。</p><p>因此：<strong>正则化既可以理解为对模型复杂度的约束，也可以理解为对参数施加先验知识。</strong></p><hr><h1 id=神经网络从线性模型到非线性函数空间>神经网络——从线性模型到非线性函数空间<a hidden class=anchor aria-hidden=true href=#神经网络从线性模型到非线性函数空间>#</a></h1><p>现在我们把问题推广到深度学习。</p><p>单层线性模型具有局限性，这是因为线性模型只能表示仿射函数，但现实世界中大量规律具有非线性结构。例如分类问题中的非线性决策边界。因此，我们需要构造更丰富的函数族。</p><h2 id=神经元的数学形式>神经元的数学形式<a hidden class=anchor aria-hidden=true href=#神经元的数学形式>#</a></h2><p>一个神经元可以写成：</p><p>$$
+h=\sigma(w^\top x+b),
+$$</p><p>其中：</p><ul><li>$w$：权重向量；</li><li>$b$：偏置；</li><li>$\sigma$：非线性激活函数。</li></ul><p>常见激活函数包括：</p><p><strong>Sigmoid：</strong></p><p>$$
+\sigma(x)=\frac1{1+e^{-x}}.
+$$</p><p><strong>双曲正切：</strong></p><p>$$
+\tanh(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}.
+$$</p><p><strong>ReLU：</strong></p><p>$$
+\operatorname{ReLU}(x)=\max(0,x).
+$$</p><p>激活函数的关键作用是引入非线性。如果多个线性层直接复合，那么整体仍然只是一个线性变换。因此，没有非线性激活函数的多层网络，并不会仅仅因为层数增加就获得更强的非线性表达能力。</p><h2 id=多层前馈神经网络>多层前馈神经网络<a hidden class=anchor aria-hidden=true href=#多层前馈神经网络>#</a></h2><p>考虑一个 $L$ 层神经网络：</p><p>$$
+h^{(0)}=x,
+$$</p><p>$$h^{(l)}=\sigma_l\left(W^{(l)}h^{(l-1)}+b^{(l)}\right),\quad l=1,\ldots,L.
+$$</p><p>最终输出：</p><p>$$
+f_\theta(x)=h^{(L)}.
+$$</p><p>所有权重和偏置组成参数集合：</p><p>$$\theta=\{W^{(1)},\ldots,W^{(L)},b^{(1)},\ldots,b^{(L)}\}.
+$$</p><p>于是，神经网络训练可以写成：</p><p>$$\boxed{
+\theta^*=\arg\min_\theta\frac1n\sum_{i=1}^{n}\ell(f_\theta(x_i),y_i)}
+$$</p><p>这就是经验风险最小化在神经网络中的具体形式。</p><hr><h2 id=神经网络强大的表达能力>神经网络强大的表达能力<a hidden class=anchor aria-hidden=true href=#神经网络强大的表达能力>#</a></h2><p>一个重要的理论结果是通用逼近定理（Universal Approximation Theorem）。其基本思想是：</p><p><strong>在适当条件下，具有足够多隐藏神经元的前馈神经网络，可以在紧集上以任意精度逼近连续函数。</strong></p><p>一种经典表述是：</p><p>设 $K\subset\mathbb R^d$ 为紧集，$\sigma$ 是适当的非多项式连续激活函数。</p><p>对于任意连续函数：</p><p>$$
+f\in C(K),
+$$</p><p>以及任意：</p><p>$$
+\epsilon>0,
+$$</p><p>存在有限个参数，使得单隐藏层网络：</p><p>$$
+g(x)=
+\sum_{j=1}^{N}
+a_j\sigma(w_j^\top x+b_j)
+$$</p><p>满足：</p><p>$$
+\boxed{
+\sup_{x\in K}|f(x)-g(x)|&lt;\epsilon
+}
+$$</p><p>这意味着神经网络具有很强的函数逼近能力，但不意味着这个函数一定可以可以被有限样本有效地学习，或者某个学习算法能够高效地找到相应参数。因为一个模型即使具有极强的表达能力，也可能：</p><ul><li>需要大量训练样本；</li><li>存在极难优化的损失函数；</li><li>需要过多参数；</li><li>在训练数据之外表现很差。</li></ul><p>因此：</p><p>$$
+\boxed{
+\text{表达能力}\neq\text{学习能力}
+}
+$$</p><hr><h2 id=机器如何找到合适的参数>机器如何找到合适的参数？<a hidden class=anchor aria-hidden=true href=#机器如何找到合适的参数>#</a></h2><p>神经网络训练通常转化为高维非线性优化问题：</p><p>$$
+\min_{\theta}J(\theta).
+$$</p><p>参数维度可能达到数百万、数十亿甚至更多。一般情况下，我们无法直接求出全局最优解。最基本的优化方法是梯度下降。</p><h3 id=梯度下降>梯度下降<a hidden class=anchor aria-hidden=true href=#梯度下降>#</a></h3><p>给定目标函数：</p><p>$$
+J:\mathbb R^p\rightarrow\mathbb R,
+$$</p><p>在第 $t$ 次迭代中，参数更新为：</p><p>$$\boxed{\theta_{t+1}=
+\theta_t-\eta\nabla J(\theta_t)
+}
+$$</p><p>其中 $\eta>0$ 为学习率。</p><h3 id=随机梯度下降>随机梯度下降<a hidden class=anchor aria-hidden=true href=#随机梯度下降>#</a></h3><p>完整经验风险的梯度为：</p><p>$$\nabla J(\theta)=\frac1n\sum_{i=1}^{n}
+\nabla_\theta\ell(f_\theta(x_i),y_i).
+$$</p><p>每次计算完整梯度可能代价很高。</p><p>因此，可以随机抽取一个样本 $i$，使用：</p><p>$$g_i(\theta)=\nabla_\theta\ell(f_\theta(x_i),y_i)
+$$</p><p>作为梯度估计。</p><p>更新：</p><p>$$\theta_{t+1}=\theta_t-\eta g_i(\theta_t).
+$$</p><p>如果样本均匀随机抽取，那么：</p><p>$$\mathbb E_i[g_i(\theta)]=
+\nabla J(\theta).
+$$</p><p>因此，随机梯度在期望意义下是无偏的。实践中通常使用小批量随机梯度下降（Mini-batch SGD）。</p><h3 id=反向传播复合函数的链式法则>反向传播：复合函数的链式法则<a hidden class=anchor aria-hidden=true href=#反向传播复合函数的链式法则>#</a></h3><p>神经网络由多个函数复合而成。训练神经网络，本质上是计算损失函数对每一层参数的偏导数，再利用梯度更新参数。</p><p>反向传播（Backpropagation）是 <strong>多元复合函数链式法则在计算图上的系统化应用</strong></p><h4 id=1-神经网络的数学表示>1. 神经网络的数学表示<a hidden class=anchor aria-hidden=true href=#1-神经网络的数学表示>#</a></h4><p>考虑一个具有 $L$ 层的前馈神经网络。记第 $l$ 层的输入为 $h^{(l-1)}$，则：</p><p>$$
+z^{(l)}=W^{(l)}h^{(l-1)}+b^{(l)},
+$$</p><p>$$
+h^{(l)}=\sigma_l(z^{(l)}).
+$$</p><p>其中：</p><ul><li>$W^{(l)}\in\mathbb R^{d_l\times d_{l-1}}$ 为权重矩阵；</li><li>$b^{(l)}\in\mathbb R^{d_l}$ 为偏置向量；</li><li>$z^{(l)}\in\mathbb R^{d_l}$ 为线性变换后的结果；</li><li>$h^{(l)}\in\mathbb R^{d_l}$ 为激活后的输出；</li><li>$\sigma_l$ 为逐元素作用的激活函数。</li></ul><p>给定输入 $x=h^{(0)}$，网络最终输出为：</p><p>$$
+\widehat y=h^{(L)}.
+$$</p><p>设损失函数为：</p><p>$$
+J=J(h^{(L)},y).
+$$</p><p>我们的目标是计算：</p><p>$$
+\frac{\partial J}{\partial W^{(l)}},
+\qquad
+\frac{\partial J}{\partial b^{(l)}},
+$$</p><p>其中 $l=1,\ldots,L$。</p><h4 id=2-从一元链式法则到多元链式法则>2. 从一元链式法则到多元链式法则<a hidden class=anchor aria-hidden=true href=#2-从一元链式法则到多元链式法则>#</a></h4><p>先回顾一元微积分。若：</p><p>$$
+y=f(u),\qquad u=g(x),
+$$</p><p>那么：</p><p>$$\frac{dy}{dx}=
+\frac{dy}{du}\frac{du}{dx}.
+$$</p><p>对于多元函数，链式法则可以用 Jacobian 矩阵表达。</p><p>设：</p><p>$$
+u=g(x),\qquad y=f(u),
+$$</p><p>其中 $x\in\mathbb R^n$、$u\in\mathbb R^m$、$y\in\mathbb R^p$。</p><p>定义 Jacobian：</p><p>$$
+Dg(x)=
+\left(
+\frac{\partial u_i}{\partial x_j}
+\right)_{m\times n},
+$$</p><p>$$
+Df(u)=
+\left(
+\frac{\partial y_i}{\partial u_j}
+\right)_{p\times m}.
+$$</p><p>则：</p><p>$$
+\boxed{
+D(f\circ g)(x)=Df(g(x))Dg(x)
+}
+$$</p><p>这是多元链式法则的矩阵形式。</p><p>当最终函数 $J$ 为标量时，若采用列梯度约定，则：</p><p>$$\boxed{\nabla_x J=
+Dg(x)^\top\nabla_u J
+}
+$$</p><p>这条公式是理解反向传播的关键：<strong>梯度沿计算图反方向传播，每经过一个函数，就乘上该函数 Jacobian 的转置。</strong></p><h4 id=3-定义误差项>3. 定义误差项<a hidden class=anchor aria-hidden=true href=#3-定义误差项>#</a></h4><p>定义第 $l$ 层的误差向量：</p><p>$$\boxed{\delta^{(l)}=
+\nabla_{z^{(l)}}J}
+$$</p><p>即损失函数对该层线性变换结果的梯度。</p><p>由于：</p><p>$$
+h^{(L)}=\sigma_L(z^{(L)}),
+$$</p><p>根据链式法则：</p><p>$$\nabla_{z^{(L)}}J=D\sigma_L(z^{(L)})^\top
+\nabla_{h^{(L)}}J.
+$$</p><p>这里激活函数逐元素作用，因此其 Jacobian 是对角矩阵：</p><p>$$D\sigma_L(z^{(L)})=\operatorname{diag}
+\left(\sigma_L&rsquo;(z_1^{(L)}),\ldots,
+\sigma_L&rsquo;(z_{d_L}^{(L)})
+\right).
+$$</p><p>对角矩阵等于自身的转置，于是：</p><p>$$\boxed{\delta^{(L)}=
+\nabla_{h^{(L)}}J
+\odot
+\sigma_L&rsquo;(z^{(L)})
+}
+$$</p><p>其中 $\odot$ 表示逐元素乘法。</p><p>这给出了输出层的误差项。</p><h4 id=4-隐藏层的误差传播>4. 隐藏层的误差传播<a hidden class=anchor aria-hidden=true href=#4-隐藏层的误差传播>#</a></h4><p>现在考虑第 $l$ 层，其中 $l&lt;L$。</p><p>由于：</p><p>$$z^{(l+1)}=
+W^{(l+1)}h^{(l)}+b^{(l+1)},
+$$</p><p>并且：</p><p>$$
+h^{(l)}=\sigma_l(z^{(l)}),
+$$</p><p>所以：</p><p>$$z^{(l+1)}=
+W^{(l+1)}\sigma_l(z^{(l)})
++b^{(l+1)}.
+$$</p><p>由链式法则：</p><p>$$\nabla_{z^{(l)}}J=
+D\sigma_l(z^{(l)})^\top
+(W^{(l+1)})^\top
+\nabla_{z^{(l+1)}}J.
+$$</p><p>注意到：</p><p>$$
+\nabla_{z^{(l)}}J=\delta^{(l)},
+\qquad
+\nabla_{z^{(l+1)}}J=\delta^{(l+1)},
+$$</p><p>且 $D\sigma_l$ 是对角矩阵，因此：</p><p>$$\boxed{
+\delta^{(l)}=
+(W^{(l+1)})^\top\delta^{(l+1)}
+\odot
+\sigma_l&rsquo;(z^{(l)})
+}
+$$</p><p>这就是反向传播的核心递推公式。</p><p>它告诉我们：第 $l$ 层的误差可以由下一层的误差计算得到。因此，只要先计算输出层误差，再从后向前逐层递推，就能得到整个网络各层的误差项。</p><h4 id=5-计算权重与偏置的梯度>5. 计算权重与偏置的梯度<a hidden class=anchor aria-hidden=true href=#5-计算权重与偏置的梯度>#</a></h4><p>有了误差项，便可以计算参数梯度。</p><p>考虑第 $l$ 层：</p><p>$$
+z^{(l)}=W^{(l)}h^{(l-1)}+b^{(l)}.
+$$</p><p>按照矩阵元素展开：</p><p>$$z_i^{(l)}=
+\sum_j W_{ij}^{(l)}h_j^{(l-1)}
++b_i^{(l)}.
+$$</p><p>由链式法则：</p><p>$$\frac{\partial J}{\partial W_{ij}^{(l)}}
+=\frac{\partial J}{\partial z_i^{(l)}}
+\frac{\partial z_i^{(l)}}{\partial W_{ij}^{(l)}}.
+$$</p><p>而：</p><p>$$\frac{\partial J}{\partial z_i^{(l)}}=\delta_i^{(l)},\qquad
+\frac{\partial z_i^{(l)}}{\partial W_{ij}^{(l)}}
+=h_j^{(l-1)}.
+$$</p><p>因此：</p><p>$$\frac{\partial J}{\partial W_{ij}^{(l)}}=
+\delta_i^{(l)}h_j^{(l-1)}.
+$$</p><p>将所有元素组合起来：</p><p>$$\boxed{
+\nabla_{W^{(l)}}J=
+\delta^{(l)}(h^{(l-1)})^\top
+}
+$$</p><p>注意，这里是两个列向量的外积。其维度为：</p><p>$$(d_l\times1)(1\times d_{l-1})=
+d_l\times d_{l-1},
+$$</p><p>恰好与权重矩阵 $W^{(l)}$ 的维度一致。</p><p>同理：</p><p>$$
+\boxed{
+\nabla_{b^{(l)}}J=\delta^{(l)}
+}
+$$</p><p>至此，我们得到了反向传播的全部基本公式：</p><p>$$\boxed{
+\begin{aligned}
+\delta^{(L)}&=
+\nabla_{h^{(L)}}J
+\odot\sigma_L&rsquo;(z^{(L)}),$$4pt]
+\delta^{(l)}&=
+(W^{(l+1)})^\top\delta^{(l+1)}
+\odot\sigma_l&rsquo;(z^{(l)}),$$4pt]
+\nabla_{W^{(l)}}J&=\delta^{(l)}(h^{(l-1)})^\top,$$4pt]
+\nabla_{b^{(l)}}J&=
+\delta^{(l)}.
+\end{aligned}
+}
+$$</p><h4 id=6-一个简单的数值例子>6. 一个简单的数值例子<a hidden class=anchor aria-hidden=true href=#6-一个简单的数值例子>#</a></h4><p>考虑一个 $2\to2\to1$ 的神经网络：</p><p>$$
+z^{(1)}=W^{(1)}x+b^{(1)},
+\qquad
+h^{(1)}=\operatorname{ReLU}(z^{(1)}),
+$$</p><p>$$
+z^{(2)}=W^{(2)}h^{(1)}+b^{(2)},
+\qquad
+\widehat y=z^{(2)}.
+$$</p><p>取：</p><p>$$
+x=\begin{pmatrix}1\2\end{pmatrix},
+\quad
+W^{(1)}=
+\begin{pmatrix}
+1&-1\\2&amp;1
+\end{pmatrix},
+\quadb^{(1)}=\begin{pmatrix}1\-1\end{pmatrix},
+$$</p><p>$$
+W^{(2)}=
+\begin{pmatrix}1&-1\end{pmatrix},
+\qquad b^{(2)}=0.
+$$</p><p>前向传播：</p><p>$$z^{(1)}=
+\begin{pmatrix}1&-1\2&amp;1\end{pmatrix}
+\begin{pmatrix}1\2\end{pmatrix}+
+\begin{pmatrix}1\-1\end{pmatrix}=
+\begin{pmatrix}0\3\end{pmatrix}.
+$$</p><p>于是：</p><p>$$
+h^{(1)}=
+\begin{pmatrix}0\3\end{pmatrix},
+\qquad
+\widehat y=-3.
+$$</p><p>取目标值 $y=1$，损失函数为：</p><p>$$
+J=\frac12(\widehat y-y)^2.
+$$</p><p>输出层误差：</p><p>$$\delta^{(2)}=
+\frac{\partial J}{\partial z^{(2)}}=
+\widehat y-y=-4.
+$$</p><p>由于第一层的预激活值为 $(0,3)^\top$，在 ReLU 的零点处选取次梯度 $0$，有：</p><p>$$
+\sigma&rsquo;(z^{(1)})=
+\begin{pmatrix}0\1\end{pmatrix}.
+$$</p><p>因此：</p><p>$$\delta^{(1)}=
+(W^{(2)})^\top\delta^{(2)}
+\odot\sigma&rsquo;(z^{(1)})=
+\begin{pmatrix}-4\4\end{pmatrix}
+\odot
+\begin{pmatrix}0\1\end{pmatrix}=
+\begin{pmatrix}0\4\end{pmatrix}.
+$$</p><p>于是：</p><p>$$\nabla_{W^{(2)}}J=
+\delta^{(2)}(h^{(1)})^\top=
+\begin{pmatrix}0&-12\end{pmatrix},
+$$</p><p>$$\nabla_{W^{(1)}}J=
+\delta^{(1)}x^\top=
+\begin{pmatrix}
+0&amp;0\
+4&amp;8
+\end{pmatrix}.
+$$</p><p>偏置梯度则为：</p><p>$$
+\nabla_{b^{(2)}}J=-4,
+\qquad
+\nabla_{b^{(1)}}J=
+\begin{pmatrix}0\4\end{pmatrix}.
+$$</p><p>可以看到，反向传播并不需要对每一个参数重新计算整个复合函数的导数。它利用中间层已经计算出的误差项，逐层复用梯度信息。</p><h4 id=7-反向传播与自动微分>7. 反向传播与自动微分<a hidden class=anchor aria-hidden=true href=#7-反向传播与自动微分>#</a></h4><p>反向传播可以理解为针对神经网络计算图的反向模式自动微分（Reverse-mode Automatic Differentiation）。</p><p>对于一个具有大量输入参数、但只有一个标量输出的函数：</p><p>$$
+J:\mathbb R^p\longrightarrow\mathbb R,
+$$</p><p>反向模式自动微分能够在与一次前向计算同阶的计算量下，求出全部参数的梯度。</p><p>这也是它特别适合神经网络训练的原因：网络参数可能有数百万甚至更多，但损失函数通常是一个标量。</p><p>需要区分三个概念：</p><ul><li><strong>链式法则</strong>：提供数学原理；</li><li><strong>反向传播</strong>：利用链式法则计算神经网络梯度的算法；</li><li><strong>自动微分</strong>：将复合函数的导数计算系统化、程序化的技术。</li></ul><p>反向传播的数学基础是微分学，而它的计算效率来自对计算图结构的利用。</p><hr><h1 id=从机器学习走向科学发现>从机器学习走向科学发现<a hidden class=anchor aria-hidden=true href=#从机器学习走向科学发现>#</a></h1><p>机器学习最常见的任务是预测：给定输入，估计输出。</p><p>然而，科学研究的目标往往不止于预测。我们更希望回答：</p><ul><li>一个物理系统遵循什么动力学方程？</li><li>哪些变量决定了系统的演化？</li><li>某种宏观规律能否从微观数据中涌现？</li><li>实验数据是否支持某个理论模型？</li><li>能否从观测结果反推出系统内部不可直接测量的参数？</li></ul><p>这意味着机器学习可以从数据拟合工具进一步发展为<strong>科学模型发现与理论检验的工具</strong>。</p><h2 id=1-从预测问题到方程发现>1. 从预测问题到方程发现<a hidden class=anchor aria-hidden=true href=#1-从预测问题到方程发现>#</a></h2><p>考虑一个动力学系统。设系统状态为：</p><p>$$
+y(t)\in\mathbb R^d.
+$$</p><p>假设它满足某个未知的微分方程：</p><p>$$
+\boxed{
+\frac{dy}{dt}=F(y(t),t;\theta)
+}
+$$</p><p>其中 $F$ 是未知的动力学函数，$\theta$ 是待确定的参数。</p><p>我们通过实验获得离散观测数据：</p><p>$$
+\mathcal D=
+{(t_i,y_i)}_{i=1}^n.
+$$</p><p>传统机器学习可以直接学习一个预测函数：</p><p>$$
+\widehat y(t)=f_\phi(t),
+$$</p><p>使它尽可能接近观测数据。</p><p>但这并没有回答系统究竟遵循什么规律。我们真正希望找到的是：</p><p>$$
+\widehat F(y,t),
+$$</p><p>使得：</p><p>$$
+\frac{dy}{dt}\approx\widehat F(y,t).
+$$</p><p>二者的区别在于：</p><ul><li>预测模型试图回答“给定输入，输出是什么”；</li><li>方程发现试图回答“系统为什么按照这种方式演化”。</li></ul><p>前者关注输入与输出之间的映射，后者关注生成数据的数学结构。</p><h2 id=2-符号回归从数据中寻找数学表达式>2. 符号回归：从数据中寻找数学表达式<a hidden class=anchor aria-hidden=true href=#2-符号回归从数据中寻找数学表达式>#</a></h2><p>符号回归（Symbolic Regression）是一种尝试直接发现数学表达式的方法。</p><p>传统回归通常预先指定模型形式，例如：</p><p>$$
+y=a_0+a_1x+a_2x^2.
+$$</p><p>算法只需要估计参数 $a_0,a_1,a_2$。</p><p>而符号回归不仅寻找参数，还试图确定表达式本身。例如，它可以从候选函数空间中搜索：</p><h1 id=fxvt>$$
+F(x,v,t)</h1><p>a_1x+a_2v+a_3xv+a_4\sin t+\cdots.
+$$</p><p>搜索空间可以由以下基本运算构成：</p><p>$$
++,\quad -,\quad \times,\quad \div,\quad
+\sin,\quad\cos,\quad\exp,\quad\log.
+$$</p><p>算法试图找到一个既能解释观测数据、又具有较低复杂度的表达式。</p><p>通常可以写成：</p><p>$$
+\boxed{
+\min_{F\in\mathcal F}
+\left[
+\frac1n\sum_{i=1}^n
+\left|
+\dot y_i-F(y_i,t_i)
+\right|^2
++
+\lambda\Omega(F)
+\right]
+}
+$$</p><p>其中：</p><ul><li>$\mathcal F$ 是候选函数空间；</li><li>$\dot y_i$ 是对动力学导数的估计；</li><li>第一项衡量模型与数据的拟合误差；</li><li>$\Omega(F)$ 衡量表达式的复杂度；</li><li>$\lambda$ 控制拟合精度与模型简洁性之间的权衡。</li></ul><p>这里的复杂度惩罚十分重要。否则，算法可能找到一个包含大量无意义项、仅仅记住训练数据的复杂表达式。</p><h3 id=例从运动数据发现简谐振动方程>例：从运动数据发现简谐振动方程<a hidden class=anchor aria-hidden=true href=#例从运动数据发现简谐振动方程>#</a></h3><p>考虑一个一维振动系统。我们观测到位置 $x(t)$ 和速度 $v(t)$，希望发现其动力学方程：</p><p>$$
+\dot x=v,
+$$</p><p>$$
+\dot v=F(x,v).
+$$</p><p>假设我们从实验数据中发现：</p><p>$$
+\dot v\approx -\omega^2x.
+$$</p><p>那么就得到：</p><p>$$
+\boxed{
+\ddot x+\omega^2x=0
+}
+$$</p><p>这正是简谐振动方程。</p><p>如果进一步研究系统的能量：</p><p>$$
+E=\frac12m v^2+\frac12m\omega^2x^2,
+$$</p><p>对时间求导：</p><h1 id=fracdedt>$$
+\frac{dE}{dt}</h1><p>mv\dot v+m\omega^2x\dot x.
+$$</p><p>代入：</p><p>$$
+\dot x=v,\qquad
+\dot v=-\omega^2x,
+$$</p><p>得到：</p><h1 id=fracdedt-1>$$
+\frac{dE}{dt}</h1><p>-m\omega^2xv+m\omega^2xv=0.
+$$</p><p>因此：</p><p>$$
+\boxed{E=\text{constant}}
+$$</p><p>从观测数据发现动力学方程之后，我们还可以进一步检验它是否蕴含能量守恒。</p><p>这说明科学发现并不止于找到一个拟合公式，还需要研究公式背后的结构与理论含义。</p><h2 id=3-稀疏回归与动力学系统识别>3. 稀疏回归与动力学系统识别<a hidden class=anchor aria-hidden=true href=#3-稀疏回归与动力学系统识别>#</a></h2><p>符号回归的一种重要思路是稀疏回归（Sparse Regression）。</p><p>考虑一个动力学系统：</p><p>$$
+\dot y=F(y).
+$$</p><p>我们先构造一组候选函数：</p><p>$$
+\Theta(y)=
+\begin{pmatrix}
+1&amp;y_1&amp;y_2&amp;y_1^2&amp;y_1y_2&amp;y_2^2&\cdots
+\end{pmatrix}.
+$$</p><p>假设真实动力学可以由这些候选函数的线性组合表示：</p><p>$$
+\dot y=\Theta(y)\xi.
+$$</p><p>这里 $\xi$ 是待求的系数向量。</p><p>如果真实方程只包含少数几个项，那么 $\xi$ 应当是稀疏的，即只有少数分量非零。</p><p>因此可以求解：</p><p>$$
+\boxed{
+\min_\xi
+\left|
+\dot Y-\Theta(Y)\xi
+\right|_2^2
++
+\lambda|\xi|_1
+}
+$$</p><p>其中：</p><ul><li>$\dot Y$ 是观测数据对应的导数矩阵；</li><li>$\Theta(Y)$ 是候选函数组成的设计矩阵；</li><li>$\xi$ 是待识别的系数；</li><li>$L^1$ 正则项倾向于产生稀疏解。</li></ul><p>这种思想是稀疏识别非线性动力学系统（Sparse Identification of Nonlinear Dynamics，SINDy）的核心。</p><p>它的基本假设是：许多科学系统虽然具有复杂的动力学行为，但其控制方程可能只包含少数几个数学项。</p><p>例如：</p><p>$$
+\dot x=v,
+\qquad
+\dot v=-\omega^2x-\gamma v.
+$$</p><p>在候选函数库中，算法可能识别出：</p><p>$$
+\dot x=1\cdot v,
+$$</p><p>$$
+\dot v=-\omega^2x-\gamma v,
+$$</p><p>而将其他无关项的系数压缩为零。</p><p>这使我们能够从数据中识别系统的稀疏动力学结构。</p><h2 id=4-逆问题从观测结果反推未知机制>4. 逆问题：从观测结果反推未知机制<a hidden class=anchor aria-hidden=true href=#4-逆问题从观测结果反推未知机制>#</a></h2><p>科学研究中还有一类重要问题：逆问题（Inverse Problems）。</p><p>正问题通常是：</p><p>$$
+\text{已知模型和参数}
+\quad\Longrightarrow\quad
+\text{计算观测结果}.
+$$</p><p>逆问题则反过来：</p><p>$$
+\text{已知观测结果}
+\quad\Longrightarrow\quad
+\text{推断模型或参数}.
+$$</p><p>例如，考虑一个由参数 $\theta$ 决定的物理系统：</p><p>$$
+\mathcal M(\theta)=y.
+$$</p><p>这里 $\mathcal M$ 表示正向模型，$y$ 是理论预测的观测量。</p><p>实验给出数据：</p><p>$$
+y_{\mathrm{obs}}.
+$$</p><p>我们希望寻找参数：</p><h1 id=theta>$$
+\boxed{
+\theta^*</h1><p>\arg\min_\theta
+\left|
+\mathcal M(\theta)-y_{\mathrm{obs}}
+\right|_2^2
+}
+$$</p><p>这就是一个参数反演问题。</p><p>然而，逆问题往往具有病态性（Ill-posedness）。例如：</p><ol><li>解可能不存在；</li><li>解可能不唯一；</li><li>解可能对观测噪声极其敏感。</li></ol><p>因此，单纯最小化拟合误差通常不够，还需要加入先验信息或正则化：</p><h1 id=theta-1>$$
+\boxed{
+\theta^*</h1><p>\arg\min_\theta
+\left[
+\left|
+\mathcal M(\theta)-y_{\mathrm{obs}}
+\right|_2^2
++
+\lambda\Omega(\theta)
+\right]
+}
+$$</p><p>这与前面讨论的 Ridge Regression 有相同的数学结构。</p><p>从贝叶斯观点看，也可以写成：</p><p>$$
+p(\theta\mid y_{\mathrm{obs}})
+\propto
+p(y_{\mathrm{obs}}\mid\theta)p(\theta).
+$$</p><p>其中：</p><ul><li>$p(y_{\mathrm{obs}}\mid\theta)$ 是似然函数；</li><li>$p(\theta)$ 是先验分布；</li><li>$p(\theta\mid y_{\mathrm{obs}})$ 是后验分布。</li></ul><p>通过最大化后验概率，可以得到最大后验估计（MAP）。</p><p>因此，机器学习中的正则化、贝叶斯推断与科学中的参数反演，在数学上具有紧密联系。</p><h2 id=5-物理约束与神经网络physics-informed-neural-networks>5. 物理约束与神经网络：Physics-Informed Neural Networks<a hidden class=anchor aria-hidden=true href=#5-物理约束与神经网络physics-informed-neural-networks>#</a></h2><p>如果我们已经知道一个系统必须满足某些物理方程，那么能否在训练神经网络时直接加入这些约束？</p><p>答案是可以。这引出了物理信息神经网络（Physics-Informed Neural Networks，PINNs）。</p><p>考虑一个偏微分方程：</p><p>$$
+\frac{\partial u}{\partial t}
++
+\mathcal N[u]=0,
+$$</p><p>其中 $\mathcal N$ 是某个微分算子。</p><p>例如，一维热方程：</p><h2 id=fracpartial-upartial-t>$$
+\frac{\partial u}{\partial t}</h2><p>\alpha\frac{\partial^2u}{\partial x^2}
+=0.
+$$</p><p>我们使用神经网络近似未知函数：</p><p>$$
+u(x,t)\approx u_\theta(x,t).
+$$</p><p>通过自动微分，可以计算：</p><p>$$
+\frac{\partial u_\theta}{\partial t},
+\qquad
+\frac{\partial^2u_\theta}{\partial x^2}.
+$$</p><p>定义方程残差：</p><h1 id=r_thetaxt>$$
+r_\theta(x,t)</h1><h2 id=fracpartial-u_thetapartial-t>\frac{\partial u_\theta}{\partial t}<a hidden class=anchor aria-hidden=true href=#fracpartial-u_thetapartial-t>#</a></h2><p>\alpha\frac{\partial^2u_\theta}{\partial x^2}.
+$$</p><p>如果网络输出严格满足热方程，那么：</p><p>$$
+r_\theta(x,t)=0.
+$$</p><p>实际训练中，可以构造损失函数：</p><h1 id=jtheta>$$
+\boxed{
+J(\theta)</h1><p>J_{\mathrm{data}}(\theta)
++
+\lambda_{\mathrm{PDE}}J_{\mathrm{PDE}}(\theta)
++
+\lambda_{\mathrm{BC}}J_{\mathrm{BC}}(\theta)
+}
+$$</p><p>其中：</p><h1 id=j_mathrmdata>$$
+J_{\mathrm{data}}</h1><p>\frac1{N_d}
+\sum_{i=1}^{N_d}
+\left|
+u_\theta(x_i,t_i)-u_i
+\right|^2,
+$$</p><h1 id=j_mathrmpde>$$
+J_{\mathrm{PDE}}</h1><p>\frac1{N_r}
+\sum_{j=1}^{N_r}
+\left|
+r_\theta(\widetilde x_j,\widetilde t_j)
+\right|^2.
+$$</p><p>$J_{\mathrm{BC}}$ 则用于约束边界条件或初始条件。</p><p>因此，网络不仅需要拟合实验数据，还需要尽可能满足已知的物理方程。</p><p>PINNs 将神经网络的函数逼近能力与微分方程的结构结合起来，为求解正问题、参数反演和部分模型识别问题提供了新的方法。</p><p>但必须注意：加入物理约束并不自动保证模型准确。损失函数的权重、采样策略、方程条件数和优化难度都可能影响结果。</p><h2 id=6-科学规律对机器学习的约束>6. 科学规律对机器学习的约束<a hidden class=anchor aria-hidden=true href=#6-科学规律对机器学习的约束>#</a></h2><p>如果仅仅依赖数据拟合，机器学习模型可能学到一些在训练数据上有效、但不符合科学规律的关系。</p><p>科学理论可以为学习过程提供额外约束。</p><h3 id=量纲分析>量纲分析<a hidden class=anchor aria-hidden=true href=#量纲分析>#</a></h3><p>一个物理方程必须满足量纲一致性。</p><p>例如：</p><p>$$
+F=ma.
+$$</p><p>力的量纲为：</p><p>$$
+[F]=MLT^{-2},
+$$</p><p>而：</p><p>$$
+[ma]=M\cdot LT^{-2}=MLT^{-2}.
+$$</p><p>因此该方程满足量纲一致性。</p><p>如果一个数据驱动模型给出：</p><p>$$
+F=ma+v^2,
+$$</p><p>那么第二项的量纲为：</p><p>$$
+[v^2]=L^2T^{-2},
+$$</p><p>与力的量纲不同，因此这个表达式不能直接作为物理方程成立。</p><p>量纲分析能够排除大量不合理的候选表达式。</p><h3 id=对称性>对称性<a hidden class=anchor aria-hidden=true href=#对称性>#</a></h3><p>物理定律通常具有某些对称性。</p><p>例如，空间平移不变性意味着物理规律不应依赖坐标原点的任意选择。</p><p>如果系统的动力学满足：</p><p>$$
+\dot y=F(y),
+$$</p><p>那么在某种变换 $g$ 下，模型可能需要满足相应的等变性关系：</p><p>$$
+F(g\cdot y)=g\cdot F(y).
+$$</p><p>这种结构可以通过模型架构或训练约束显式加入。</p><h3 id=守恒律>守恒律<a hidden class=anchor aria-hidden=true href=#守恒律>#</a></h3><p>许多物理系统存在守恒量。</p><p>例如，哈密顿系统满足：</p><p>$$
+\dot q_i=\frac{\partial H}{\partial p_i},
+\qquad
+\dot p_i=-\frac{\partial H}{\partial q_i}.
+$$</p><p>在哈密顿量 $H$ 不显含时间时：</p><h1 id=fracdhdt>$$
+\frac{dH}{dt}</h1><p>\sum_i
+\left(
+\frac{\partial H}{\partial q_i}\dot q_i
++
+\frac{\partial H}{\partial p_i}\dot p_i
+\right)
+=0.
+$$</p><p>因此：</p><p>$$
+\boxed{H=\text{constant}}
+$$</p><p>如果机器学习模型试图识别一个哈密顿系统，那么除了拟合轨迹，还可以检查其是否保留相应的几何结构和守恒性质。</p><p>这些信息能够帮助我们区分单纯的数值拟合与具有科学意义的模型。</p><h2 id=7-从数据拟合到科学发现一个完整流程>7. 从数据拟合到科学发现：一个完整流程<a hidden class=anchor aria-hidden=true href=#7-从数据拟合到科学发现一个完整流程>#</a></h2><p>综合以上方法，一个典型的 AI for Science 研究流程可以概括为：</p><ol><li><strong>实验观测</strong>：获取系统的输入、输出及相关测量数据；</li><li><strong>数据处理</strong>：处理噪声、缺失值和采样误差；</li><li><strong>候选模型构造</strong>：根据领域知识确定函数空间、方程结构或神经网络架构；</li><li><strong>参数识别</strong>：利用优化、统计推断或贝叶斯方法估计未知参数；</li><li><strong>结构发现</strong>：利用符号回归、稀疏回归等方法寻找潜在数学关系；</li><li><strong>理论约束</strong>：检验量纲、对称性、守恒律及其他已知结构；</li><li><strong>独立验证</strong>：使用未参与训练的数据、不同实验条件或新的数值模拟检验模型；</li><li><strong>实验反馈</strong>：根据模型提出新的实验问题，并用实验结果进一步修正理论。</li></ol><p>这一过程并不是简单地把神经网络应用于科学数据，而是让机器学习、数学建模、物理理论与实验科学形成闭环。</p><h2 id=8-一个重要区别预测成功不等于发现定律>8. 一个重要区别：预测成功不等于发现定律<a hidden class=anchor aria-hidden=true href=#8-一个重要区别预测成功不等于发现定律>#</a></h2><p>最后需要强调一个关键问题：</p><p>$$
+\boxed{
+\text{预测准确性}\neq\text{科学解释性}
+}
+$$</p><p>一个神经网络可能非常准确地预测某个物理系统的演化，却无法给出人类能够理解的动力学方程。</p><p>反过来，一个简洁的数学模型即使不能完美拟合所有实验数据，也可能揭示系统最重要的结构。</p><p>科学发现通常还需要回答：</p><ul><li>模型是否具有可识别性（Identifiability）？</li><li>参数是否能够从现有观测数据中唯一确定？</li><li>模型能否在新的实验条件下成立？</li><li>是否存在其他数学结构同样能够解释数据？</li><li>模型是否与已有理论兼容？</li><li>是否能够提出可被实验检验的新预测？</li></ul><p>因此，AI for Science 的目标不应局限于提高预测精度，而应进一步探索如何利用计算方法发现、检验和发展科学理论。</p><p>从这个角度看，机器学习与数学、物理学之间并不是简单的工具关系。机器学习提供从复杂数据中提取结构的能力，而数学与物理理论则提供组织、约束和解释这些结构的语言。</p><p>二者的结合，可能使人工智能从一个强大的预测工具，进一步发展为科学研究中的模型发现与理论探索工具。</p><h1 id=参考文献>参考文献<a hidden class=anchor aria-hidden=true href=#参考文献>#</a></h1><ol><li>Shai Shalev-Shwartz, Shai Ben-David, <em>Understanding Machine Learning: From Theory to Algorithms</em>.</li><li>Mehryar Mohri, Afshin Rostamizadeh, Ameet Talwalkar, <em>Foundations of Machine Learning</em>.</li><li>Christopher M. Bishop, <em>Pattern Recognition and Machine Learning</em>.</li><li>Ian Goodfellow, Yoshua Bengio, Aaron Courville, <em>Deep Learning</em>.</li><li>Martin Anthony, Peter L. Bartlett, <em>Neural Network Learning: Theoretical Foundations</em>.</li><li>George Cybenko, “Approximation by Superpositions of a Sigmoidal Function,” <em>Mathematics of Control, Signals, and Systems</em>, 1989.</li></ol><h2 id=泛化能力从何而来>泛化能力从何而来<a hidden class=anchor aria-hidden=true href=#泛化能力从何而来>#</a></h2><p><strong>为什么训练好的神经网络能够在未见过的数据上表现良好？</strong></p><p>这就引出了偏差—方差分解。</p><p>考虑回归模型：</p><p>\[
+Y=f^*(X)+\varepsilon,
+\]</p><p>其中：</p><p>\[
+\mathbb E[\varepsilon\mid X]=0,
+\qquad
+\operatorname{Var}(\varepsilon\mid X)=\sigma^2.
+\]</p><p>设训练样本具有随机性，学习算法得到：</p><p>\[
+\widehat f_S.
+\]</p><p>对于给定输入 \(x\)，平方预测误差的期望可以分解为：</p><p>\[\begin{aligned}
+\mathbb E_S[(\widehat f_S(x)-Y)^2]
+={}&\left(
+\mathbb E_S[\widehat f_S(x)]-f^*(x)
+\right)^2\+\operatorname{Var}_S(\widehat f_S(x))+\sigma^2.
+\end{aligned}
+\]</p><p>模型复杂度通常会影响偏差与方差之间的权衡，并不是越低越好，也不是越高越好。太简单的模型可能无法表达规律。太复杂的模型可能拟合噪声。因此机器学习需要在表达能力与统计可靠性之间寻找平衡。</p><h1 id=计算复杂性理论从图灵机可计算性到-p-与-np>计算复杂性理论——从图灵机、可计算性到 P 与 NP<a hidden class=anchor aria-hidden=true href=#计算复杂性理论从图灵机可计算性到-p-与-np>#</a></h1><h2 id=核心问题-1>核心问题<a hidden class=anchor aria-hidden=true href=#核心问题-1>#</a></h2><p>某些问题都有明确的数学定义，也都可以被描述为有限的计算过程，但它们的计算难度可能截然不同。例如，某些问题虽然理论上可以求解，但随着输入规模增长，所需计算资源可能迅速超过现实条件。</p><p>因此，我们引入两个概念：</p><ul><li><strong>可计算性（Computability）</strong>：一个问题能否被某种算法解决？</li><li><strong>计算复杂性（Computational Complexity）</strong>：解决问题需要多少计算资源？</li></ul><hr><h2 id=算法的数学抽象>算法的数学抽象<a hidden class=anchor aria-hidden=true href=#算法的数学抽象>#</a></h2><p>在数学中，我们通常将一个计算问题表示为：</p><p>\[
+f:X\rightarrow Y.
+\]</p><p>给定输入 \(x\in X\)，要求计算输出：</p><p>\[
+y=f(x).
+\]</p><p>但并不是所有数学对象都能直接作为计算机输入。我们通常需要将输入编码为有限字符串：</p><p>\[
+x\in\Sigma^*,
+\]</p><p>其中 \(\Sigma\) 是有限字母表，\(\Sigma^*\) 表示所有有限字符串构成的集合。于是，计算问题可以被统一描述为对有限字符串的处理。</p><h2 id=判定问题>判定问题<a hidden class=anchor aria-hidden=true href=#判定问题>#</a></h2><p>计算复杂性理论经常研究判定问题（Decision Problem）。一个判定问题的答案只有两种：</p><p>\[
+{\text{YES},\text{NO}}.
+\]</p><p>数学上，可以将其表示为一个语言：</p><p>\[
+L\subseteq\Sigma^*.
+\]</p><p>对于输入 \(x\)，问题就是判断：</p><p>\[
+x\in L?
+\]</p><hr><h2 id=图灵机的基本结构>图灵机的基本结构<a hidden class=anchor aria-hidden=true href=#图灵机的基本结构>#</a></h2><p>1936 年，Alan Turing 提出了图灵机（Turing Machine）模型。它是现代计算理论的基础之一。一台确定性图灵机可以描述为：</p><p>\[
+M=(Q,\Sigma,\Gamma,\delta,q_0,q_{\mathrm{accept}},q_{\mathrm{reject}}),
+\]</p><p>其中：</p><ul><li>\(Q\)：有限状态集合；</li><li>\(\Sigma\)：输入字母表；</li><li>\(\Gamma\)：纸带字母表；</li><li>\(\delta\)：状态转移函数；</li><li>\(q_0\)：初始状态；</li><li>\(q_{\mathrm{accept}}\)：接受状态；</li><li>\(q_{\mathrm{reject}}\)：拒绝状态。</li></ul><p>图灵机包含：</p><ol><li>一条理论上无限长的纸带；</li><li>一个能够读写纸带符号的读写头；</li><li>一个有限状态控制器。</li></ol><p>纸带用于保存计算数据，读写头用于访问和修改数据，状态控制器决定下一步动作。</p><p>图灵机的每一步操作由当前状态和当前读取的符号决定。</p><h2 id=状态转移>状态转移<a hidden class=anchor aria-hidden=true href=#状态转移>#</a></h2><p>设当前状态为 \(q\)，读写头读取的符号为 \(a\)。</p><p>转移函数给出：</p><p>\[
+\delta(q,a)=(q&rsquo;,b,D),
+\]</p><p>其中：</p><ul><li>\(q&rsquo;\)：下一状态；</li><li>\(b\)：写入纸带的符号；</li><li>\(D\)：读写头移动方向，通常为 L 或 R。</li></ul><p>因此，一次计算就是一系列状态转移：</p><p>\[
+C_0\rightarrow C_1\rightarrow C_2
+\rightarrow\cdots.
+\]</p><p>这里 \(C_i\) 表示图灵机在第 \(i\) 步的完整配置，包括状态、纸带内容和读写头位置。</p><p>如果最终进入接受状态，则输入被接受；如果进入拒绝状态，则输入被拒绝。</p><h2 id=图灵机与现代计算机>图灵机与现代计算机<a hidden class=anchor aria-hidden=true href=#图灵机与现代计算机>#</a></h2><p>图灵机并不是一种实际计算机的设计方案。它的价值在于提供一个足够简单、足够严格的计算模型。</p><p>现代计算机拥有CPU、内存、磁盘、输入输出设备、多级存储结构。但对于可计算性理论而言，我们关心的是：这些计算设备是否能够实现某个数学意义上的算法。在适当的抽象条件下，图灵机能够模拟通常意义上的算法计算。这与 Church–Turing 论题有关：</p><blockquote><p>任何直观意义上可有效计算的函数，都可以由图灵机计算。</p></blockquote><hr><h1 id=可计算性哪些问题根本无法被算法解决>可计算性：哪些问题根本无法被算法解决？<a hidden class=anchor aria-hidden=true href=#可计算性哪些问题根本无法被算法解决>#</a></h1><p>图灵机模型不仅能够描述算法，还能证明某些问题不存在通用算法。</p><h2 id=停机问题>停机问题<a hidden class=anchor aria-hidden=true href=#停机问题>#</a></h2><p>考虑一个程序 \(P\) 和输入 \(x\)。</p><p>我们希望判断：</p><p>\[
+P(x)\text{ 是否会最终停止？}
+\]</p><p>这就是停机问题（Halting Problem）。</p><p>假设存在一个算法 \(H(P,x)\)，能够正确判断任意程序 \(P\) 在输入 \(x\) 时是否停止：</p><p>\[
+H(P,x)=
+\begin{cases}
+1,&amp;P(x)\text{ 停止},\\
+0,&amp;P(x)\text{ 不停止}.
+\end{cases}
+\]</p><p>我们将证明这样的算法不存在。</p><h2 id=对角化证明>对角化证明<a hidden class=anchor aria-hidden=true href=#对角化证明>#</a></h2><p>假设 \(H\) 存在。</p><p>构造一个新程序 \(D(P)\)：</p><ol><li>运行 \(H(P,P)\)；</li><li>如果 \(H(P,P)=1\)，则 \(D(P)\) 无限运行；</li><li>如果 \(H(P,P)=0\)，则 \(D(P)\) 立即停止。</li></ol><p>现在考虑：</p><p>\[
+D(D).
+\]</p><p>只有两种可能。</p><p><strong>情况一：\(H(D,D)=1\)。</strong></p><p>这意味着 \(D(D)\) 应当停止。但根据 \(D\) 的定义，如果 \(H(D,D)=1\)，它就会无限运行。矛盾。</p><p><strong>情况二：\(H(D,D)=0\)。</strong></p><p>这意味着 \(D(D)\) 不会停止。但根据 \(D\) 的定义，如果 \(H(D,D)=0\)，它就会立即停止。仍然矛盾。因此，最初的假设不成立：</p><p>\[
+\boxed{
+\text{不存在能够判断任意程序是否停止的通用算法。}
+}
+\]</p><h1 id=计算资源时间复杂度与空间复杂度>计算资源：时间复杂度与空间复杂度<a hidden class=anchor aria-hidden=true href=#计算资源时间复杂度与空间复杂度>#</a></h1><h2 id=输入规模>输入规模<a hidden class=anchor aria-hidden=true href=#输入规模>#</a></h2><p>考虑一个算法 \(A\)。我们希望衡量其运行时间与输入规模之间的关系。设输入为 \(x\)，其长度为：</p><p>\[
+n=|x|.
+\]</p><p>对于二进制编码的整数，输入长度通常与整数的数值大小不同。因此，复杂度分析必须以编码长度为基础，而不是直接使用整数数值。</p><h2 id=时间复杂度>时间复杂度<a hidden class=anchor aria-hidden=true href=#时间复杂度>#</a></h2><p>设算法在输入 \(x\) 上执行的步骤数为：</p><p>\[
+T_A(x).
+\]</p><p>最坏情况时间复杂度定义为：</p><p>\[
+T_A(n)=
+\max_{|x|=n}T_A(x).
+\]</p><p>我们通常使用渐近符号描述增长速度。</p><h3 id=大-o-记号>大 O 记号<a hidden class=anchor aria-hidden=true href=#大-o-记号>#</a></h3><p>若存在常数 \(c>0\) 和 \(n_0\)，使得对所有 \(n\geq n_0\)：</p><p>\[
+f(n)\leq cg(n),
+\]</p><p>则称：</p><p>\[
+f(n)=O(g(n)).
+\]</p><h3 id=大-omega-记号>大 \(\Omega\) 记号<a hidden class=anchor aria-hidden=true href=#大-omega-记号>#</a></h3><p>若存在常数 \(c>0\) 和 \(n_0\)，使得：</p><p>\[
+f(n)\geq cg(n),
+\]</p><p>则称：</p><p>\[
+f(n)=\Omega(g(n)).
+\]</p><h3 id=大-theta-记号>大 \(\Theta\) 记号<a hidden class=anchor aria-hidden=true href=#大-theta-记号>#</a></h3><p>若同时有：</p><p>\[
+f(n)=O(g(n))
+\]</p><p>和：</p><p>\[
+f(n)=\Omega(g(n)),
+\]</p><p>则：</p><p>\[
+f(n)=\Theta(g(n)).
+\]</p><h2 id=空间复杂度>空间复杂度<a hidden class=anchor aria-hidden=true href=#空间复杂度>#</a></h2><p>空间复杂度衡量计算过程中使用的存储资源。</p><p>设：</p><p>\[
+S_A(x)
+\]</p><p>表示算法使用的工作空间。</p><p>则最坏情况空间复杂度为：</p><p>\[
+S_A(n)=
+\max_{|x|=n}S_A(x).
+\]</p><p>在复杂性理论中，通常会明确是否计入输入存储空间。</p><hr><h1 id=p-类问题能够高效求解的问题>P 类问题：能够高效求解的问题<a hidden class=anchor aria-hidden=true href=#p-类问题能够高效求解的问题>#</a></h1><h2 id=p-的定义>P 的定义<a hidden class=anchor aria-hidden=true href=#p-的定义>#</a></h2><p>P 类（Polynomial Time）是所有能够由确定性图灵机在多项式时间内判定的语言集合。</p><p>形式化地：</p><p>\[
+\boxed{
+P=
+\bigcup_{k\geq1}TIME(n^k)
+}
+\]</p><p>其中 \(TIME(n^k)\) 表示能够在 \(O(n^k)\) 时间内完成判定的语言集合。</p><p>直观上，P 包含了能够在多项式时间内求解的判定问题。需要注意，P 是关于渐近复杂度的数学类别。比如一个 \(O(n^{100})\) 的算法仍然属于多项式时间，但现实中可能完全不可行。</p><p>因此：</p><h2 id=heading>\[
+\boxed{
+\text{多项式时间}\neq\text{实际运行足够快}
+}
+\]</h2><h1 id=np-类问题容易验证不一定容易求解>NP 类问题：容易验证，不一定容易求解<a hidden class=anchor aria-hidden=true href=#np-类问题容易验证不一定容易求解>#</a></h1><h2 id=从数独问题出发>从数独问题出发<a hidden class=anchor aria-hidden=true href=#从数独问题出发>#</a></h2><p>考虑一个数独问题。给定一个未完成的数独，我们希望判断是否存在合法填法。寻找一个解可能需要大量尝试。但如果有人已经给出一个完整填法，我们可以快速检查：</p><ul><li>每一行是否满足规则；</li><li>每一列是否满足规则；</li><li>每个宫格是否满足规则。</li></ul><p>也就是说：</p><p><strong>找到解可能困难，但验证一个候选解可能容易。</strong></p><p>这就是 NP 类问题的基本思想。</p><h2 id=np-的形式化定义>NP 的形式化定义<a hidden class=anchor aria-hidden=true href=#np-的形式化定义>#</a></h2><p>NP 表示 Non-deterministic Polynomial Time。它可以通过非确定性图灵机在多项式时间内判定来定义。</p><p>另一种等价定义是：</p><p>一个语言 \(L\) 属于 NP，当且仅当存在一个多项式时间验证器 \(V(x,w)\)，使得：</p><p>\[
+\boxed{
+x\in L
+\iff
+\exists w,\quad V(x,w)=1
+}
+\]</p><p>其中：</p><ul><li>\(x\)：原始输入；</li><li>\(w\)：证书（Certificate）；</li><li>\(V\)：多项式时间验证器。</li></ul><p>证书的长度也要求关于输入长度多项式有界。</p><h2 id=np-不等于非多项式时间>NP 不等于非多项式时间<a hidden class=anchor aria-hidden=true href=#np-不等于非多项式时间>#</a></h2><p>这是一个非常常见的误解。NP 不是“Non-Polynomial”的缩写。它表示非确定性多项式时间。</p><p>实际上：</p><p>\[
+\boxed{P\subseteq NP}
+\]</p><p>因为如果一个问题能够在多项式时间内直接求解，那么当然也能够在多项式时间内验证其答案。</p><p>但是否有：</p><p>\[
+P=NP\quad ?
+\]</p><p><strong>所有能够在多项式时间内验证解的问题，是否也都能够在多项式时间内求解？</strong></p><p>目前仍然未知。这是理论计算机科学中最著名的开放问题之一。</p><hr><h1 id=多项式时间归约如何比较问题的难度>多项式时间归约：如何比较问题的难度？<a hidden class=anchor aria-hidden=true href=#多项式时间归约如何比较问题的难度>#</a></h1><p>假设我们已经知道问题 A 很难。能否利用问题 A 的求解算法来解决问题 B？这就是归约（Reduction）的基本思想。</p><h2 id=多项式时间归约>多项式时间归约<a hidden class=anchor aria-hidden=true href=#多项式时间归约>#</a></h2><p>设两个判定问题分别对应语言：</p><p>\[
+A,B\subseteq\Sigma^*.
+\]</p><p>如果存在一个多项式时间可计算函数：</p><p>\[f:\Sigma^* \rightarrow \Sigma^*
+\]</p><p>满足：</p><p>\[
+\boxed{
+x\in A\iff f(x)\in B,
+}
+\]</p><p>则称：</p><p>\[
+A\leq_p B.
+\]</p><p>这表示 A 可以在多项式时间内归约到 B。</p><p>如果我们能够高效求解 B，就能够高效求解 A。</p><p>因此：</p><p>\[
+A\leq_p B
+\]</p><p>意味着 B 至少不比 A 更容易（相对于这种归约）。</p><h2 id=np-hard-与-np-complete>NP-hard 与 NP-complete<a hidden class=anchor aria-hidden=true href=#np-hard-与-np-complete>#</a></h2><p>一个问题 \(B\) 称为 NP-hard，如果：</p><p>\[
+\forall A\in NP,\quad A\leq_p B.
+\]</p><p>即所有 NP 问题都可以多项式时间归约到 B。</p><p>如果同时满足：</p><p>\[
+B\in NP
+\]</p><p>和：</p><p>\[
+B\text{ 是 NP-hard},
+\]</p><p>则称 B 为 NP-complete。</p><h2 id=sat-问题>SAT 问题<a hidden class=anchor aria-hidden=true href=#sat-问题>#</a></h2><p>SAT（Boolean Satisfiability Problem）是经典的 NP-complete 问题。</p><p>给定一个布尔公式：</p><p>\[
+\varphi(x_1,\ldots,x_n),
+\]</p><p>判断是否存在变量赋值使：</p><p>\[
+\varphi(x_1,\ldots,x_n)=1.
+\]</p><p>Cook–Levin 定理：**SAT 是 NP-complete 的。**这意味着所有 NP 问题都能够多项式时间归约到 SAT。如果有人找到 SAT 的多项式时间算法，那么：
+\[
+P=NP.
+\]</p><p>这就是 SAT 在计算复杂性理论中的特殊地位。</p><hr><h1 id=复杂性理论的更大图景>复杂性理论的更大图景<a hidden class=anchor aria-hidden=true href=#复杂性理论的更大图景>#</a></h1><p>P 与 NP 只是复杂性理论的一部分。
+我们还需要认识一些重要的复杂性类别。</p><h2 id=pspace>PSPACE<a hidden class=anchor aria-hidden=true href=#pspace>#</a></h2><p>PSPACE 是能够使用多项式空间完成判定的问题集合。</p><p>\[
+PSPACE=
+\bigcup_{k\geq1}SPACE(n^k).
+\]</p><h2 id=exp>EXP<a hidden class=anchor aria-hidden=true href=#exp>#</a></h2><p>EXP 是能够在指数时间内求解的问题集合：</p><p>\[
+EXP=
+\bigcup_{k\geq1}TIME(2^{n^k}).
+\]</p><p>显然：</p><p>\[
+P\subseteq EXP.
+\]</p><p>而且可以证明：</p><p>\[
+P\subsetneq EXP.
+\]</p><h1 id=十三参考文献>十三、参考文献<a hidden class=anchor aria-hidden=true href=#十三参考文献>#</a></h1><ol><li>Michael Sipser, <em>Introduction to the Theory of Computation</em>.</li><li>Christos H. Papadimitriou, <em>Computational Complexity</em>.</li><li>Sanjeev Arora, Boaz Barak, <em>Computational Complexity: A Modern Approach</em>.</li><li>Juris Hartmanis, Richard E. Stearns, “On the Computational Complexity of Algorithms,” <em>Transactions of the American Mathematical Society</em>, 1965.</li><li>Stephen A. Cook, “The Complexity of Theorem-Proving Procedures,” <em>Proceedings of the Third Annual ACM Symposium on Theory of Computing</em>, 1971.</li><li>Richard M. Karp, “Reducibility Among Combinatorial Problems,” 1972.</li></ol><h1 id=信息论的数学基础从-shannon-熵互信息到信息瓶颈>信息论的数学基础——从 Shannon 熵、互信息到信息瓶颈<a hidden class=anchor aria-hidden=true href=#信息论的数学基础从-shannon-熵互信息到信息瓶颈>#</a></h1><h2 id=信息论试图建立一套数学理论用概率分布定量描述信息不确定性通信和压缩它最初由-claude-shannon-于-1948-年系统建立后来成为通信理论统计学机器学习密码学和科学推断的重要基础>信息论试图建立一套数学理论，用概率分布定量描述信息、不确定性、通信和压缩。它最初由 Claude Shannon 于 1948 年系统建立，后来成为通信理论、统计学、机器学习、密码学和科学推断的重要基础。<a hidden class=anchor aria-hidden=true href=#信息论试图建立一套数学理论用概率分布定量描述信息不确定性通信和压缩它最初由-claude-shannon-于-1948-年系统建立后来成为通信理论统计学机器学习密码学和科学推断的重要基础>#</a></h2><h1 id=信息量一个事件包含多少信息>信息量：一个事件包含多少信息？<a hidden class=anchor aria-hidden=true href=#信息量一个事件包含多少信息>#</a></h1><h2 id=从事件概率出发>从事件概率出发<a hidden class=anchor aria-hidden=true href=#从事件概率出发>#</a></h2><p>设某个随机事件 \(A\) 的发生概率为：</p><p>\[
+P(A)=p.
+\]</p><p>直觉上：</p><ul><li>越容易发生的事件，发生时带来的惊讶程度越低；</li><li>越罕见的事件，发生时带来的惊讶程度越高。</li></ul><p>因此，我们希望定义一个函数：</p><p>\[
+I(A)=I(p),
+\]</p><p>满足：</p><p>\[
+p_1&lt;p_2
+\quad\Longrightarrow\quad
+I(p_1)>I(p_2).
+\]</p><p>即事件概率越小，信息量越大。</p><p>进一步考虑两个独立事件 \(A,B\)。</p><p>如果它们同时发生，那么联合事件的概率为：</p><p>\[
+P(A\cap B)=P(A)P(B).
+\]</p><p>我们希望独立事件的信息量具有可加性：</p><p>\[
+I(A\cap B)=I(A)+I(B).
+\]</p><p>于是需要满足函数方程：</p><p>\[
+I(pq)=I(p)+I(q).
+\]</p><p>在适当的连续性条件下，这类函数具有对数形式：</p><p>\[
+I(p)=-k\log p.
+\]</p><p>通常取 \(k=1\)，并使用以 2 为底的对数：</p><p>\[
+\boxed{
+I(x)=-\log_2P(x)
+}
+\]</p><p>称为自信息（Self-information）。</p><p>信息单位为 bit。</p><h1 id=shannon-熵随机变量的不确定性>Shannon 熵：随机变量的不确定性<a hidden class=anchor aria-hidden=true href=#shannon-熵随机变量的不确定性>#</a></h1><p>自信息描述单个事件发生时带来的信息量。但随机变量可能取多个值，我们需要描述整个随机变量的不确定性。</p><h2 id=离散熵的定义>离散熵的定义<a hidden class=anchor aria-hidden=true href=#离散熵的定义>#</a></h2><p>设离散随机变量 \(X\) 的取值空间为：</p><p>\[
+\mathcal X={x_1,x_2,\ldots,x_n}.
+\]</p><p>其概率分布为：</p><p>\[
+P(X=x_i)=p_i.
+\]</p><p>其中：</p><p>\[
+\sum_{i=1}^{n}p_i=1.
+\]</p><p>定义 Shannon 熵：</p><p>\[\boxed{H(X)=-\sum_{i=1}^{n}p_i\log_2p_i
+}
+\]</p><p>约定：</p><p>\[
+0\log_20=0.
+\]</p><p>熵也可以理解为自信息的期望：</p><p>\[
+H(X)=\mathbb E[I(X)].
+\]</p><p>因此：</p><p>\[
+\boxed{H(X)=1\text{ bit}}
+\]</p><h2 id=有偏硬币>有偏硬币<a hidden class=anchor aria-hidden=true href=#有偏硬币>#</a></h2><p>设：</p><p>\[P(X=1)=p,\qquadP(X=0)=1-p.
+\]</p><p>则：</p><p>\[\boxed{H(X)=-p\log_2p-(1-p)\log_2(1-p)
+}
+\]</p><p>这称为二元熵函数：</p><p>\[H_2(p)=-p\log_2p-(1-p)\log_2(1-p).
+\]</p><p>对其求导：</p><p>\[H_2&rsquo;(p)=
+\log_2\frac{1-p}{p}.
+\]</p><p>令导数为零：</p><p>\[\frac{1-p}{p}=1.
+\]</p><p>得到：</p><p>\[
+p=\frac12.
+\]</p><p>二阶导数：</p><p>\[H_2&rsquo;&rsquo;(p)=-\frac1{\ln2}\left(
+\frac1p+\frac1{1-p}\right)&lt;0.
+\]</p><p>因此：</p><p>\[\boxed{H_2(p)\leq1
+}
+\]</p><p>且等号当且仅当：</p><p>\[
+p=\frac12.
+\]</p><p>公平硬币具有最大熵。</p><h2 id=熵的基本性质>熵的基本性质<a hidden class=anchor aria-hidden=true href=#熵的基本性质>#</a></h2><p>利用 Jensen 不等式不难证明：对于具有 \(n\) 个可能取值的离散随机变量：</p><p>\[
+\boxed{
+0\leq H(X)\leq\log_2n
+}
+\]</p><p>其中：</p><ul><li>\(H(X)=0\)：随机变量完全确定；</li><li>\(H(X)=\log_2n\)：随机变量服从均匀分布。</li></ul><hr><h1 id=三联合熵与条件熵>三、联合熵与条件熵<a hidden class=anchor aria-hidden=true href=#三联合熵与条件熵>#</a></h1><p>如果有两个随机变量 \(X,Y\)，我们还需要描述它们的联合不确定性。</p><h2 id=联合熵>联合熵<a hidden class=anchor aria-hidden=true href=#联合熵>#</a></h2><p>定义：</p><p>\[\boxed{H(X,Y)=-\sum_{x,y}P(x,y)\log_2P(x,y)
+}
+\]</p><p>它描述随机变量对 \((X,Y)\) 的联合不确定性。</p><h2 id=条件熵>条件熵<a hidden class=anchor aria-hidden=true href=#条件熵>#</a></h2><p>假设我们已经知道 \(Y\) 的取值。此时，\(X\) 还剩下多少不确定性？</p><p>定义条件熵：</p><p>\[H(X\mid Y)=-\sum_{x,y}P(x,y)\log_2P(x\mid y)=\sum_yP(y)H(X\mid Y=y).
+\]</p><p>它表示在观察到 \(Y\) 之后，\(X\) 的平均剩余不确定性。</p><h2 id=链式法则>链式法则<a hidden class=anchor aria-hidden=true href=#链式法则>#</a></h2><p>\[
+\begin{aligned}
+H(X,Y)
+&=-\sum_{x,y}P(x,y)\log P(x,y)\\
+&=-\sum_{x,y}P(x,y)
+\log[P(y)P(x\mid y)]\\
+&=-\sum_{x,y}P(x,y)\log P(y)\\
+&\quad-\sum_{x,y}P(x,y)\log P(x\mid y).
+\end{aligned}
+\]</p><p>分别整理两项：</p><p>\[
+-\sum_{x,y}P(x,y)\log P(y)=H(Y),
+\]</p><p>\[
+-\sum_{x,y}P(x,y)\log P(x\mid y)=H(X\mid Y).
+\]</p><p>于是：</p><p>\[
+\boxed{
+H(X,Y)=H(Y)+H(X\mid Y)
+}
+\]</p><p>同理：</p><p>\[
+\boxed{
+H(X,Y)=H(X)+H(Y\mid X)
+}
+\]</p><p>这就是熵的链式法则。</p><h2 id=条件熵不会增加>条件熵不会增加<a hidden class=anchor aria-hidden=true href=#条件熵不会增加>#</a></h2><p>一个重要性质是：</p><p>\[
+\boxed{
+H(X\mid Y)\leq H(X)
+}
+\]</p><p>直觉上，知道额外信息不会增加对 \(X\) 的平均不确定性。</p><p>注意，这里讨论的是平均条件熵，而不是每一个具体观测值都必须降低不确定性。</p><hr><h1 id=互信息两个随机变量共享多少信息>互信息：两个随机变量共享多少信息？<a hidden class=anchor aria-hidden=true href=#互信息两个随机变量共享多少信息>#</a></h1><p>这是本讲最重要的概念之一。</p><h2 id=41-定义>4.1 定义<a hidden class=anchor aria-hidden=true href=#41-定义>#</a></h2><p>如果 \(X,Y\) 具有统计关联，那么观察 \(Y\) 可能帮助我们推断 \(X\)。</p><p>我们希望定量描述这种关联。</p><p>定义互信息（Mutual Information）：</p><h1 id=ixy>\[
+\boxed{
+I(X;Y)</h1><p>H(X)-H(X\mid Y)
+}
+\]</p><p>利用链式法则：</p><h1 id=ixy-1>\[
+I(X;Y)</h1><p>H(X)+H(Y)-H(X,Y).
+\]</p><p>也可以写成：</p><p>\[
+\boxed{
+I(X;Y)=H(Y)-H(Y\mid X)
+}
+\]</p><p>互信息衡量的是：观察一个随机变量之后，另一个随机变量的不确定性平均减少了多少。</p><h2 id=42-例一完全独立>4.2 例一：完全独立<a hidden class=anchor aria-hidden=true href=#42-例一完全独立>#</a></h2><p>如果：</p><p>\[
+P(x,y)=P(x)P(y),
+\]</p><p>那么：</p><p>\[
+P(x\mid y)=P(x).
+\]</p><p>因此：</p><p>\[
+H(X\mid Y)=H(X).
+\]</p><p>于是：</p><p>\[
+\boxed{I(X;Y)=0}
+\]</p><p>对于离散随机变量，互信息为零当且仅当二者独立。</p><h2 id=43-例二完全确定的关系>4.3 例二：完全确定的关系<a hidden class=anchor aria-hidden=true href=#43-例二完全确定的关系>#</a></h2><p>假设：</p><p>\[
+Y=X.
+\]</p><p>那么知道 \(Y\) 就完全知道 \(X\)。</p><p>因此：</p><p>\[
+H(X\mid Y)=0.
+\]</p><p>于是：</p><p>\[
+\boxed{I(X;Y)=H(X)}
+\]</p><p>也就是说，\(Y\) 包含了关于 \(X\) 的全部信息。</p><h2 id=44-例三带噪声的二元信道>4.4 例三：带噪声的二元信道<a hidden class=anchor aria-hidden=true href=#44-例三带噪声的二元信道>#</a></h2><p>设输入：</p><p>\[
+X\sim\operatorname{Bernoulli}\left(\frac12\right).
+\]</p><p>通过一个二元对称信道传输：</p><p>\[
+Y=X\oplus N,
+\]</p><p>其中：</p><p>\[
+N\sim\operatorname{Bernoulli}(p),
+\]</p><p>且 \(N\) 与 \(X\) 独立。</p><p>这里 \(\oplus\) 表示异或运算。</p><p>当 \(N=0\) 时，输出正确；当 \(N=1\) 时，输出翻转。</p><p>因为 \(X\) 均匀分布，所以 \(Y\) 也均匀分布：</p><p>\[
+H(Y)=1.
+\]</p><p>给定 \(X\)，\(Y\) 的不确定性只来自噪声：</p><p>\[
+H(Y\mid X)=H_2(p).
+\]</p><p>因此：</p><p>\[
+\boxed{
+I(X;Y)=1-H_2(p)
+}
+\]</p><p>当：</p><p>\[
+p=0
+\]</p><p>时，信道没有噪声：</p><p>\[
+I(X;Y)=1.
+\]</p><p>当：</p><p>\[
+p=\frac12
+\]</p><p>时，输出完全随机：</p><p>\[
+I(X;Y)=0.
+\]</p><p>这给出了一个非常直观的结论：</p><p>噪声越大，输入与输出之间能够保留的互信息通常越少。</p><hr><h1 id=五相对熵如何比较两个概率分布>五、相对熵：如何比较两个概率分布？<a hidden class=anchor aria-hidden=true href=#五相对熵如何比较两个概率分布>#</a></h1><p>互信息可以进一步表示为相对熵。</p><h2 id=51-kullbackleibler-散度>5.1 Kullback–Leibler 散度<a hidden class=anchor aria-hidden=true href=#51-kullbackleibler-散度>#</a></h2><p>设 \(P,Q\) 是定义在同一离散空间上的概率分布。</p><p>定义：</p><h1 id=d_mathrmklpq>\[
+\boxed{
+D_{\mathrm{KL}}(P|Q)</h1><p>\sum_xP(x)\log
+\frac{P(x)}{Q(x)}
+}
+\]</p><p>其中，如果存在某个 \(x\) 满足：</p><p>\[
+P(x)>0,\qquad Q(x)=0,
+\]</p><p>则：</p><p>\[
+D_{\mathrm{KL}}(P|Q)=+\infty.
+\]</p><p>KL 散度衡量使用分布 \(Q\) 代替真实分布 \(P\) 所造成的信息损失。</p><p>它具有以下性质：</p><p>\[
+D_{\mathrm{KL}}(P|Q)\geq0.
+\]</p><p>且：</p><p>\[
+D_{\mathrm{KL}}(P|Q)=0
+\iff P=Q.
+\]</p><p>KL 散度通常不对称：</p><p>\[
+D_{\mathrm{KL}}(P|Q)
+\neq
+D_{\mathrm{KL}}(Q|P).
+\]</p><p>因此，它严格来说不是通常意义下的距离。</p><h2 id=52-gibbs-不等式>5.2 Gibbs 不等式<a hidden class=anchor aria-hidden=true href=#52-gibbs-不等式>#</a></h2><p>下面证明 KL 散度非负。</p><p>由不等式：</p><p>\[
+\ln t\leq t-1,\qquad t>0,
+\]</p><p>令：</p><p>\[
+t=\frac{Q(x)}{P(x)}.
+\]</p><p>则：</p><p>\[
+-\ln\frac{Q(x)}{P(x)}
+\geq
+1-\frac{Q(x)}{P(x)}.
+\]</p><p>两边乘以 \(P(x)\) 并求和：</p><p>\[
+\sum_xP(x)\ln\frac{P(x)}{Q(x)}
+\geq
+\sum_x[P(x)-Q(x)].
+\]</p><p>由于：</p><p>\[
+\sum_xP(x)=\sum_xQ(x)=1,
+\]</p><p>得到：</p><p>\[
+D_{\mathrm{KL}}(P|Q)\geq0.
+\]</p><p>等号成立当且仅当：</p><p>\[
+P=Q.
+\]</p><p>这就是 Gibbs 不等式。</p><h2 id=53-互信息与-kl-散度>5.3 互信息与 KL 散度<a hidden class=anchor aria-hidden=true href=#53-互信息与-kl-散度>#</a></h2><p>互信息可以写成：</p><h1 id=ixy-2>\[
+\boxed{
+I(X;Y)</h1><p>D_{\mathrm{KL}}
+\left(
+P_{XY}\middle|P_XP_Y
+\right)
+}
+\]</p><p>其中：</p><ul><li>\(P_{XY}\)：联合分布；</li><li>\(P_XP_Y\)：边缘分布的乘积分布。</li></ul><p>因此：</p><p>\[
+I(X;Y)\geq0.
+\]</p><p>而且：</p><p>\[
+I(X;Y)=0
+\iff
+P_{XY}=P_XP_Y.
+\]</p><p>即：</p><p>\[
+\boxed{
+\text{互信息为零}\iff\text{统计独立}
+}
+\]</p><p>这把随机变量之间的统计关联转化成了两个概率分布之间的差异。</p><h2 id=54-条件熵不会增加的严格证明>5.4 条件熵不会增加的严格证明<a hidden class=anchor aria-hidden=true href=#54-条件熵不会增加的严格证明>#</a></h2><p>由互信息定义：</p><p>\[
+I(X;Y)=H(X)-H(X\mid Y).
+\]</p><p>又因为：</p><p>\[
+I(X;Y)\geq0,
+\]</p><p>所以：</p><p>\[
+\boxed{
+H(X\mid Y)\leq H(X)
+}
+\]</p><p>这就证明了条件熵不会增加。</p><hr><h1 id=六交叉熵信息论与机器学习的连接>六、交叉熵：信息论与机器学习的连接<a hidden class=anchor aria-hidden=true href=#六交叉熵信息论与机器学习的连接>#</a></h1><p>交叉熵是深度学习中非常常见的损失函数。</p><h2 id=61-定义>6.1 定义<a hidden class=anchor aria-hidden=true href=#61-定义>#</a></h2><p>设真实分布为 \(P\)，模型预测分布为 \(Q\)。</p><p>交叉熵定义为：</p><h1 id=hpq>\[
+\boxed{
+H(P,Q)</h1><p>-\sum_xP(x)\log Q(x)
+}
+\]</p><p>它表示：真实数据服从 \(P\)，但我们使用 \(Q\) 进行编码或预测时，平均需要多少信息量。</p><p>根据定义：</p><p>\[
+\begin{aligned}
+D_{\mathrm{KL}}(P|Q)
+&=\sum_xP(x)\log\frac{P(x)}{Q(x)}\
+&=\sum_xP(x)\log P(x)
+-\sum_xP(x)\log Q(x).
+\end{aligned}
+\]</p><p>因此：</p><p>\[
+\boxed{
+H(P,Q)=H(P)+D_{\mathrm{KL}}(P|Q)
+}
+\]</p><p>因为：</p><p>\[
+H(P)
+\]</p><p>与模型 \(Q\) 无关，所以最小化交叉熵等价于最小化：</p><p>\[
+D_{\mathrm{KL}}(P|Q).
+\]</p><p>这就是为什么机器学习经常使用交叉熵作为分类损失函数。</p><h2 id=62-二分类交叉熵>6.2 二分类交叉熵<a hidden class=anchor aria-hidden=true href=#62-二分类交叉熵>#</a></h2><p>设真实标签：</p><p>\[
+y\in{0,1},
+\]</p><p>模型预测正类概率：</p><p>\[
+q=P_\theta(Y=1\mid x).
+\]</p><p>那么交叉熵损失为：</p><h1 id=ellyq>\[
+\boxed{
+\ell(y,q)</h1><p>-y\log q-(1-y)\log(1-q)
+}
+\]</p><p>如果：</p><p>\[
+y=1,
+\]</p><p>则：</p><p>\[
+\ell=-\log q.
+\]</p><p>如果：</p><p>\[
+y=0,
+\]</p><p>则：</p><p>\[
+\ell=-\log(1-q).
+\]</p><p>当模型给真实类别分配的概率越高，损失越小。</p><p>当模型对真实类别极度缺乏信心时，损失会显著增大。</p><h2 id=63-最大似然估计与交叉熵>6.3 最大似然估计与交叉熵<a hidden class=anchor aria-hidden=true href=#63-最大似然估计与交叉熵>#</a></h2><p>设训练样本独立同分布：</p><p>\[
+x_1,\ldots,x_n\sim P.
+\]</p><p>模型给出的概率分布为：</p><p>\[
+Q_\theta.
+\]</p><p>似然函数：</p><h1 id=ltheta>\[
+L(\theta)</h1><p>\prod_{i=1}^{n}Q_\theta(x_i).
+\]</p><p>取负对数：</p><h1 id=-log-ltheta>\[
+-\log L(\theta)</h1><p>-\sum_{i=1}^{n}\log Q_\theta(x_i).
+\]</p><p>最小化平均负对数似然：</p><h1 id=theta-2>\[
+\boxed{
+\theta^*</h1><p>\arg\min_\theta
+-\frac1n\sum_{i=1}^{n}
+\log Q_\theta(x_i)
+}
+\]</p><p>这正是经验交叉熵最小化。</p><p>因此，最大似然估计与交叉熵损失具有直接联系。</p><hr><h1 id=七数据压缩与-shannon-信源编码定理>七、数据压缩与 Shannon 信源编码定理<a hidden class=anchor aria-hidden=true href=#七数据压缩与-shannon-信源编码定理>#</a></h1><p>信息论最初的重要应用之一是通信和数据压缩。</p><h2 id=71-定长编码>7.1 定长编码<a hidden class=anchor aria-hidden=true href=#71-定长编码>#</a></h2><p>假设一个随机变量有 \(n\) 个可能取值。</p><p>如果使用定长二进制编码，至少需要：</p><p>\[
+\lceil\log_2n\rceil
+\]</p><p>个比特来表示每个取值。</p><p>但如果各个取值的概率不同，就可以考虑变长编码。</p><p>让常见符号使用较短编码，罕见符号使用较长编码。</p><h2 id=72-kraft-不等式>7.2 Kraft 不等式<a hidden class=anchor aria-hidden=true href=#72-kraft-不等式>#</a></h2><p>对于二进制前缀码，若各码字长度为：</p><p>\[
+l_1,l_2,\ldots,l_n,
+\]</p><p>则必须满足：</p><p>\[
+\boxed{
+\sum_{i=1}^{n}2^{-l_i}\leq1
+}
+\]</p><p>这就是 Kraft 不等式。</p><p>前缀码要求任一码字都不是另一码字的前缀，从而能够无歧义地解码。</p><h2 id=73-平均码长>7.3 平均码长<a hidden class=anchor aria-hidden=true href=#73-平均码长>#</a></h2><p>设符号 \(x_i\) 的概率为 \(p_i\)，对应码字长度为 \(l_i\)。</p><p>平均码长：</p><p>\[
+L=\sum_i p_i l_i.
+\]</p><p>Shannon 信源编码定理指出，对于独立同分布离散无记忆信源：</p><p>\[
+\boxed{
+H(X)\leq L
+}
+\]</p><p>即无失真编码的平均码长不能低于信源熵。</p><p>另一方面，存在适当编码，使：</p><p>\[
+\boxed{
+L&lt;H(X)+1
+}
+\]</p><p>因此：</p><p>\[
+H(X)\leq L&lt;H(X)+1.
+\]</p><p>对于长数据序列，通过分块编码，单位符号平均码长可以渐近逼近熵。</p><p>这意味着：</p><p>\[
+\boxed{
+\text{熵刻画了无失真压缩的理论极限}
+}
+\]</p><h2 id=74-一个例子>7.4 一个例子<a hidden class=anchor aria-hidden=true href=#74-一个例子>#</a></h2><p>假设：</p><p>\[
+P(A)=\frac12,\quad
+P(B)=\frac14,\quad
+P(C)=\frac18,\quad
+P(D)=\frac18.
+\]</p><p>熵为：</p><p>\[
+\begin{aligned}
+H(X)
+={}&-\frac12\log_2\frac12
+-\frac14\log_2\frac14\
+&-2\cdot\frac18\log_2\frac18\
+={}&\frac12+\frac12+\frac34\
+={}&amp;1.75\text{ bits}.
+\end{aligned}
+\]</p><p>可以使用以下前缀码：</p><table><thead><tr><th>符号</th><th style=text-align:right>概率</th><th>编码</th><th style=text-align:right>长度</th></tr></thead><tbody><tr><td>A</td><td style=text-align:right>1/2</td><td>0</td><td style=text-align:right>1</td></tr><tr><td>B</td><td style=text-align:right>1/4</td><td>10</td><td style=text-align:right>2</td></tr><tr><td>C</td><td style=text-align:right>1/8</td><td>110</td><td style=text-align:right>3</td></tr><tr><td>D</td><td style=text-align:right>1/8</td><td>111</td><td style=text-align:right>3</td></tr></tbody></table><p>平均码长：</p><p>\[
+L=
+\frac12\cdot1+
+\frac14\cdot2+
+\frac18\cdot3+
+\frac18\cdot3.
+\]</p><p>所以：</p><p>\[
+L=1.75\text{ bits}.
+\]</p><p>恰好达到熵下界。</p><hr><h1 id=八数据处理不等式>八、数据处理不等式<a hidden class=anchor aria-hidden=true href=#八数据处理不等式>#</a></h1><p>这是信息论中一个非常重要的定理。</p><p>设随机变量构成 Markov 链：</p><p>\[
+X\rightarrow Y\rightarrow Z.
+\]</p><p>其含义是：</p><p>\[
+P(z\mid x,y)=P(z\mid y).
+\]</p><p>即在已经知道 \(Y\) 的条件下，\(Z\) 不再直接依赖 \(X\)。</p><p>数据处理不等式指出：</p><p>\[
+\boxed{
+I(X;Z)\leq I(X;Y)
+}
+\]</p><h2 id=81-证明思路>8.1 证明思路<a hidden class=anchor aria-hidden=true href=#81-证明思路>#</a></h2><p>由互信息链式法则：</p><h1 id=ixyz>\[
+I(X;Y,Z)</h1><p>I(X;Y)+I(X;Z\mid Y).
+\]</p><p>由于 \(X\rightarrow Y\rightarrow Z\) 构成 Markov 链：</p><p>\[
+I(X;Z\mid Y)=0.
+\]</p><p>因此：</p><p>\[
+I(X;Y,Z)=I(X;Y).
+\]</p><p>另一方面：</p><h1 id=ixyz-1>\[
+I(X;Y,Z)</h1><p>I(X;Z)+I(X;Y\mid Z).
+\]</p><p>于是：</p><h1 id=ixy-3>\[
+I(X;Y)</h1><p>I(X;Z)+I(X;Y\mid Z).
+\]</p><p>由于条件互信息非负：</p><p>\[
+I(X;Y\mid Z)\geq0,
+\]</p><p>得到：</p><p>\[
+\boxed{
+I(X;Z)\leq I(X;Y)
+}
+\]</p><h2 id=82-直观解释>8.2 直观解释<a hidden class=anchor aria-hidden=true href=#82-直观解释>#</a></h2><p>如果数据经过连续处理：</p><p>\[
+X\rightarrow Y\rightarrow Z,
+\]</p><p>那么后续处理不能凭空创造关于原始变量 \(X\) 的新信息。</p><p>它可以保留信息，也可以丢失信息。</p><p>但不能在没有额外信息来源的情况下增加关于 \(X\) 的互信息。</p><p>这对机器学习具有重要意义。</p><p>例如：</p><p>\[
+X\rightarrow H_1\rightarrow H_2\rightarrow Y.
+\]</p><p>如果神经网络各层构成这样的随机处理链，那么：</p><p>\[
+I(X;Y)\leq I(X;H_2)\leq I(X;H_1).
+\]</p><p>需要注意：这里讨论的是由随机变量之间的 Markov 关系导出的互信息不等式，不代表所有训练过程中各层互信息一定随时间单调变化。</p><hr><h1 id=九信息瓶颈学习究竟应该保留什么信息>九、信息瓶颈：学习究竟应该保留什么信息？<a hidden class=anchor aria-hidden=true href=#九信息瓶颈学习究竟应该保留什么信息>#</a></h1><p>现在进入信息论与现代机器学习的交汇处。</p><p>假设：</p><ul><li>\(X\)：原始输入；</li><li>\(Y\)：希望预测的目标；</li><li>\(Z\)：模型学习得到的中间表示。</li></ul><p>我们希望 \(Z\) 能够用于预测 \(Y\)，但不必保留 \(X\) 的全部细节。</p><p>例如，图像分类任务中：</p><ul><li>\(X\)：原始图像；</li><li>\(Y\)：图像所属类别；</li><li>\(Z\)：神经网络提取的特征表示。</li></ul><p>对于分类而言，背景中的某些细节可能并不重要。</p><p>因此，我们希望表示 \(Z\)：</p><ol><li>尽可能保留关于 \(Y\) 的信息；</li><li>尽可能压缩关于 \(X\) 的无关信息。</li></ol><h2 id=91-信息瓶颈目标函数>9.1 信息瓶颈目标函数<a hidden class=anchor aria-hidden=true href=#91-信息瓶颈目标函数>#</a></h2><p>定义信息瓶颈（Information Bottleneck）目标：</p><p>\[
+\boxed{
+\min_{P(Z\mid X)}
+I(X;Z)-\beta I(Z;Y)
+}
+\]</p><p>其中：</p><ul><li>\(I(X;Z)\)：表示 \(Z\) 保留了多少输入信息；</li><li>\(I(Z;Y)\)：表示 \(Z\) 保留了多少目标信息；</li><li>\(\beta>0\)：权衡系数。</li></ul><p>当 \(\beta\) 较大时，优化更加重视保留关于目标 \(Y\) 的信息。</p><p>当压缩项权重较大时，模型更倾向于构造简洁表示。</p><p>这体现了一种非常重要的思想：</p><p>\[
+\boxed{
+\text{好的表示不必保留全部输入信息}
+}
+\]</p><p>它只需要保留对任务有用的信息。</p><h2 id=92-充分统计量的联系>9.2 充分统计量的联系<a hidden class=anchor aria-hidden=true href=#92-充分统计量的联系>#</a></h2><p>统计学中，如果：</p><p>\[
+P(Y\mid X)=P(Y\mid Z),
+\]</p><p>那么 \(Z\) 对于预测 \(Y\) 而言保留了 \(X\) 的全部相关信息。</p><p>此时称 \(Z\) 是关于参数或目标的充分表示，具体含义取决于统计模型设定。</p><p>如果满足：</p><p>\[
+I(X;Y\mid Z)=0,
+\]</p><p>则：</p><p>\[
+X\rightarrow Z\rightarrow Y
+\]</p><p>构成 Markov 链。</p><p>利用互信息链式法则：</p><h1 id=ixy-4>\[
+I(X;Y)</h1><p>I(Z;Y)+I(X;Y\mid Z).
+\]</p><p>因此：</p><p>\[
+I(Z;Y)=I(X;Y).
+\]</p><p>这说明 \(Z\) 保留了 \(X\) 关于 \(Y\) 的全部信息。</p><p>信息瓶颈的目标可以理解为：</p><p><strong>寻找一个尽可能压缩的表示，同时不丢失对目标预测有用的信息。</strong></p><h2 id=93-与深度学习的联系>9.3 与深度学习的联系<a hidden class=anchor aria-hidden=true href=#93-与深度学习的联系>#</a></h2><p>深度神经网络通常通过多层映射构造表示：</p><p>\[
+X\rightarrow H_1\rightarrow H_2
+\rightarrow\cdots\rightarrow H_L.
+\]</p><p>每一层都将输入转换为新的表示。</p><p>从表示学习的角度，我们希望这些表示能够逐渐提取任务相关的结构。</p><p>例如，在图像分类中：</p><ul><li>初始层可能编码局部边缘；</li><li>中间层可能编码纹理和局部形状；</li><li>深层可能编码更复杂的对象特征。</li></ul><p>这是一种直观的层次表示图景，并不意味着所有网络都严格按照这一固定语义顺序工作。</p><p>信息瓶颈为理解表示压缩提供了理论框架。</p><p>不过，它并不是所有深度学习现象的完整解释。尤其对于确定性网络、连续变量和微分熵，直接计算 \(I(X;Z)\) 需要谨慎处理。</p><hr><h1 id=十本讲总结>十、本讲总结<a hidden class=anchor aria-hidden=true href=#十本讲总结>#</a></h1><p>本讲建立了信息论的基本数学框架。</p><table><thead><tr><th>概念</th><th>数学定义或含义</th></tr></thead><tbody><tr><td>自信息</td><td>\(I(x)=-\log P(x)\)</td></tr><tr><td>Shannon 熵</td><td>\(H(X)=-\sum_xP(x)\log P(x)\)</td></tr><tr><td>联合熵</td><td>\(H(X,Y)\)</td></tr><tr><td>条件熵</td><td>\(H(X\mid Y)\)</td></tr><tr><td>互信息</td><td>\(I(X;Y)=H(X)-H(X\mid Y)\)</td></tr><tr><td>KL 散度</td><td>\(D_{\mathrm{KL}}(P|Q)\)</td></tr><tr><td>交叉熵</td><td>\(H(P,Q)=H(P)+D_{\mathrm{KL}}(P|Q)\)</td></tr><tr><td>信源编码</td><td>平均无失真码长不低于熵</td></tr><tr><td>数据处理不等式</td><td>\(I(X;Z)\leq I(X;Y)\)</td></tr><tr><td>信息瓶颈</td><td>压缩输入，同时保留目标信息</td></tr></tbody></table><p>本讲最重要的思想：</p><p>\[
+\boxed{
+\text{信息可以通过概率分布进行定量描述}
+}
+\]</p><p>而信息论与机器学习的深层联系在于：</p><p>\[
+\boxed{
+\text{学习不仅是拟合数据，也是寻找有用的信息表示}
+}
+\]</p><hr><h1 id=十一习题>十一、习题<a hidden class=anchor aria-hidden=true href=#十一习题>#</a></h1><h2 id=a-基础计算>A. 基础计算<a hidden class=anchor aria-hidden=true href=#a-基础计算>#</a></h2><p><strong>1.</strong> 随机变量 \(X\) 的分布为：</p><p>\[
+P(X=0)=\frac18,\quad
+P(X=1)=\frac38,\quad
+P(X=2)=\frac12.
+\]</p><p>计算：</p><p>\[
+H(X).
+\]</p><p><strong>2.</strong> 设 \(X,Y\) 独立，证明：</p><p>\[
+H(X,Y)=H(X)+H(Y).
+\]</p><p><strong>3.</strong> 设 \(Y=X\)，证明：</p><p>\[
+I(X;Y)=H(X).
+\]</p><p><strong>4.</strong> 设 \(X\) 与 \(Y\) 具有联合分布：</p><p>\[
+P(0,0)=\frac12,\quad
+P(0,1)=0,
+\]</p><p>\[
+P(1,0)=0,\quad
+P(1,1)=\frac12.
+\]</p><p>计算：</p><p>\[
+H(X),\quad H(Y),\quad H(X,Y),\quad I(X;Y).
+\]</p><h2 id=b-理论证明>B. 理论证明<a hidden class=anchor aria-hidden=true href=#b-理论证明>#</a></h2><p><strong>5.</strong> 使用 Jensen 不等式证明：</p><p>\[
+H(X)\leq\log_2|\mathcal X|.
+\]</p><p><strong>6.</strong> 证明互信息的对称性：</p><p>\[
+I(X;Y)=I(Y;X).
+\]</p><p><strong>7.</strong> 证明条件互信息非负：</p><p>\[
+I(X;Y\mid Z)\geq0.
+\]</p><p>提示：将其写成条件 KL 散度的期望。</p><p><strong>8.</strong> 根据数据处理不等式，解释为什么对数据进行确定性处理不能增加关于原始输入的信息。</p><h2 id=c-深入问题>C. 深入问题<a hidden class=anchor aria-hidden=true href=#c-深入问题>#</a></h2><p><strong>9.</strong> KL 散度不对称。请构造一组简单的概率分布，说明：</p><p>\[
+D_{\mathrm{KL}}(P|Q)
+\neq D_{\mathrm{KL}}(Q|P).
+\]</p><p><strong>10.</strong> 为什么交叉熵最小化与最大似然估计具有相同的优化形式？</p><p><strong>11.</strong> 解释信息瓶颈目标：</p><p>\[
+I(X;Z)-\beta I(Z;Y).
+\]</p><p>讨论 \(\beta\) 改变时，压缩与预测能力之间的权衡。</p><p><strong>12.</strong> 假设一个表示 \(Z\) 完全丢弃了输入中的某些信息，但仍能准确预测目标 \(Y\)。这是否说明 \(Z\) 是一个有效表示？请从充分统计量的角度讨论。</p><hr><h1 id=十二参考文献>十二、参考文献<a hidden class=anchor aria-hidden=true href=#十二参考文献>#</a></h1><ol><li>Claude E. Shannon, “A Mathematical Theory of Communication,” <em>Bell System Technical Journal</em>, 1948.</li><li>Thomas M. Cover, Joy A. Thomas, <em>Elements of Information Theory</em>.</li><li>David J. C. MacKay, <em>Information Theory, Inference, and Learning Algorithms</em>.</li><li>Tishby, Pereira, Bialek, “The Information Bottleneck Method,” 1999.</li><li>David MacKay, <em>Information Theory, Inference, and Learning Algorithms</em>, Cambridge University Press, 2003.</li><li>Ziv, Lempel, “A Universal Algorithm for Sequential Data Compression,” <em>IEEE Transactions on Information Theory</em>, 1977.</li></ol></div><footer class=post-footer><ul class=post-tags></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://linmythos.github.io/>Linmythos</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

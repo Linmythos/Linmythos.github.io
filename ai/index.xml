@@ -1,65 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>AI on Linmythos</title><link>https://linmythos.github.io/ai/</link><description>Recent content in AI on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 04 Nov 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/ai/index.xml" rel="self" type="application/rss+xml"/><item><title>智能计算的数学基础与科学前沿</title><link>https://linmythos.github.io/ai/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E5%92%8C%E7%A7%91%E5%AD%A6%E5%89%8D%E6%B2%BF/</link><pubDate>Wed, 04 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/ai/%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80%E5%92%8C%E7%A7%91%E5%AD%A6%E5%89%8D%E6%B2%BF/</guid><description>&lt;h1 id="第一讲机器为什么能够学习"&gt;第一讲：机器为什么能够学习？&lt;/h1&gt;
-&lt;h2 id="从函数逼近到统计学习理论"&gt;——从函数逼近到统计学习理论&lt;/h2&gt;
-&lt;h2 id="0-核心问题"&gt;0. 核心问题&lt;/h2&gt;
-&lt;p&gt;考虑一个简单任务：&lt;/p&gt;
-&lt;p&gt;给定大量房屋的历史数据，包括面积、位置、房间数量和成交价格，希望构造一个模型，根据房屋特征预测其价格。&lt;/p&gt;
-&lt;p&gt;我们可以将每套房屋表示为一个向量：&lt;/p&gt;
-&lt;p&gt;[
-x=(x_1,x_2,\ldots,x_d)\in\mathbb R^d,
-]&lt;/p&gt;
-&lt;p&gt;将其实际价格记为：&lt;/p&gt;
-&lt;p&gt;[
-y\in\mathbb R.
-]&lt;/p&gt;
-&lt;p&gt;我们希望找到一个函数：&lt;/p&gt;
-&lt;p&gt;[
-f:\mathbb R^d\longrightarrow\mathbb R,
-]&lt;/p&gt;
-&lt;p&gt;使得：&lt;/p&gt;
-&lt;p&gt;[
-f(x)\approx y.
-]&lt;/p&gt;
-&lt;p&gt;问题在于：我们只知道有限数量的样本，却希望模型能够预测尚未出现的数据。&lt;/p&gt;
-&lt;p&gt;这就是机器学习的基本矛盾：&lt;/p&gt;
-&lt;p&gt;[
-\boxed{
-\text{有限样本}\longrightarrow\text{未知规律}
-}
-]&lt;/p&gt;
-&lt;p&gt;机器学习的核心并不是简单地记忆数据，而是从有限观测中提取能够推广到新样本的规律。&lt;/p&gt;
-&lt;p&gt;本讲将从数学角度解释这一过程。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h1 id="一机器学习的数学形式化"&gt;一、机器学习的数学形式化&lt;/h1&gt;
-&lt;h2 id="11-数据与未知分布"&gt;1.1 数据与未知分布&lt;/h2&gt;
-&lt;p&gt;设输入空间为 (\mathcal X)，输出空间为 (\mathcal Y)。&lt;/p&gt;
-&lt;p&gt;数据由某个未知概率分布生成：&lt;/p&gt;
-&lt;p&gt;[
-(X,Y)\sim P.
-]&lt;/p&gt;
-&lt;p&gt;我们观察到独立同分布的训练样本：&lt;/p&gt;
-&lt;p&gt;[
-S={(x_1,y_1),(x_2,y_2),\ldots,(x_n,y_n)}.
-]&lt;/p&gt;
-&lt;p&gt;即：&lt;/p&gt;
-&lt;p&gt;[
-(x_i,y_i)\overset{\mathrm{i.i.d.}}{\sim}P.
-]&lt;/p&gt;
-&lt;p&gt;这里有三个重要对象：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;(P)：真实的数据生成分布；&lt;/li&gt;
-&lt;li&gt;(S)：有限的训练样本；&lt;/li&gt;
-&lt;li&gt;(f)：我们希望学习的预测函数。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;机器学习算法根据样本 (S)，从某个函数集合中选择模型：&lt;/p&gt;
-&lt;p&gt;[
-\mathcal H={f_\theta:\theta\in\Theta}.
-]&lt;/p&gt;
-&lt;p&gt;因此，学习过程可以抽象为：&lt;/p&gt;
-&lt;p&gt;[
-A:S\longmapsto \widehat f.
-]&lt;/p&gt;
-&lt;p&gt;其中 (A) 是学习算法，(\widehat f) 是训练得到的模型。&lt;/p&gt;
-&lt;p&gt;注意：学习算法并不知道真实分布 (P)，它只能利用有限样本间接推断规律。&lt;/p&gt;</description></item><item><title>智能计算系统：从数学原理到芯片设计</title><link>https://linmythos.github.io/ai/%E8%8A%AF%E7%89%87%E8%AE%BE%E8%AE%A1/</link><pubDate>Wed, 04 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/ai/%E8%8A%AF%E7%89%87%E8%AE%BE%E8%AE%A1/</guid><description>&lt;h2 id="第一册计算系统与性能基础"&gt;第一册：计算系统与性能基础&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>AI on Linmythos</title><link>https://linmythos.github.io/ai/</link><description>Recent content in AI on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 04 Nov 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/ai/index.xml" rel="self" type="application/rss+xml"/><item><title>智能计算系统：从数学原理到芯片设计</title><link>https://linmythos.github.io/ai/%E8%8A%AF%E7%89%87%E8%AE%BE%E8%AE%A1/</link><pubDate>Wed, 04 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/ai/%E8%8A%AF%E7%89%87%E8%AE%BE%E8%AE%A1/</guid><description>&lt;h2 id="第一册计算系统与性能基础"&gt;第一册：计算系统与性能基础&lt;/h2&gt;
 &lt;h1 id="第一讲从算法到芯片计算系统的全栈视角"&gt;第一讲　从算法到芯片：计算系统的全栈视角&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;Lecture 1 — From Algorithms to Silicon: A Full-Stack View of Computing Systems&lt;/strong&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -142,4 +81,53 @@ A:S\longmapsto \widehat f.
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;这些层次之间存在严格的依赖关系，但并非只能单向设计。&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;这些层次之间存在严格的依赖关系，但并非只能单向设计。&lt;/p&gt;</description></item><item><title>机器学习与神经网络导论</title><link>https://linmythos.github.io/ai/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</link><pubDate>Wed, 04 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/ai/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</guid><description>&lt;h1 id="机器学习从函数逼近到统计学习理论"&gt;机器学习——从函数逼近到统计学习理论&lt;/h1&gt;
+&lt;h2 id="核心问题"&gt;核心问题&lt;/h2&gt;
+&lt;p&gt;考虑一个简单任务：&lt;/p&gt;
+&lt;p&gt;给定大量房屋的历史数据，包括面积、位置、房间数量和成交价格，希望构造一个模型，根据房屋特征预测其价格。&lt;/p&gt;
+&lt;p&gt;我们可以将每套房屋表示为一个向量：&lt;/p&gt;
+&lt;p&gt;$$
+x=(x_1,x_2,\ldots,x_d)\in\mathbb R^d,
+$$&lt;/p&gt;
+&lt;p&gt;将其实际价格记为：&lt;/p&gt;
+&lt;p&gt;$$
+y\in\mathbb R.
+$$&lt;/p&gt;
+&lt;p&gt;我们希望找到一个函数：&lt;/p&gt;
+&lt;p&gt;$$
+f:\mathbb R^d\longrightarrow\mathbb R,
+$$&lt;/p&gt;
+&lt;p&gt;使得：&lt;/p&gt;
+&lt;p&gt;$$
+f(x)\approx y.
+$$&lt;/p&gt;
+&lt;p&gt;机器学习的任务就是在有限的样本中找出普适的规律。&lt;/p&gt;
+&lt;h2 id="机器学习的数学形式化"&gt;机器学习的数学形式化&lt;/h2&gt;
+&lt;h3 id="数据与未知分布"&gt;数据与未知分布&lt;/h3&gt;
+&lt;p&gt;设输入空间为 $\mathcal X$，输出空间为 $\mathcal Y$。数据由某个未知概率分布生成：&lt;/p&gt;
+&lt;p&gt;$$
+(X,Y)\sim P.
+$$&lt;/p&gt;
+&lt;p&gt;我们观察到独立同分布的训练样本：&lt;/p&gt;
+&lt;p&gt;$$
+S={(x_1,y_1),(x_2,y_2),\ldots,(x_n,y_n)}.
+$$&lt;/p&gt;
+&lt;p&gt;即：&lt;/p&gt;
+&lt;p&gt;$$
+(x_i,y_i)\overset{\mathrm{i.i.d.}}{\sim}P.
+$$&lt;/p&gt;
+&lt;p&gt;机器学习算法根据样本 $S$，从某个函数集合中选择模型：&lt;/p&gt;
+&lt;p&gt;$$
+\mathcal H={f_\theta:\theta\in\Theta}.
+$$&lt;/p&gt;
+&lt;p&gt;因此，学习过程可以抽象为：&lt;/p&gt;
+&lt;p&gt;$$
+A:S\longmapsto \widehat f.
+$$&lt;/p&gt;
+&lt;p&gt;其中 $A$ 是学习算法，$\widehat f$ 是训练得到的模型。&lt;/p&gt;
+&lt;p&gt;注意：学习算法并不知道真实分布 $P$，它只能利用有限样本间接推断规律。&lt;/p&gt;
+&lt;h3 id="损失函数"&gt;损失函数&lt;/h3&gt;
+&lt;p&gt;为了衡量模型预测的好坏程度，引入损失函数，将预测任务转化为数学上的优化问题：&lt;/p&gt;
+&lt;p&gt;$$
+\ell:\mathcal Y\times\mathcal Y\longrightarrow\mathbb R_{\geq 0}.
+$$&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,910 @@
+<!doctype html><html lang=en dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>量子纠缠与量子关联 | Linmythos</title><meta name=keywords content><meta name=description content="量子信息与量子计算基础讲义（三）
+Quantum Entanglement and Quantum Correlations
+
+本篇目标
+本篇系统研究量子纠缠及其统计关联结构。
+完成本篇后，应当能够：
+
+理解纠缠的数学定义及物理意义；
+熟练使用 Schmidt 分解；
+掌握纯态纠缠的判定；
+理解混态可分性；
+掌握部分转置与 PPT 判据；
+理解纠缠见证；
+掌握 Bell 态的关联性质；
+区分纠缠、量子关联与 Bell 非局域性；
+理解量子 steering；
+为 QRAC、Bell 不等式和测量不相容性建立理论基础。
+
+
+第一章 纠缠的基本概念
+1.1 从复合系统出发
+设两个量子系统分别具有希尔伯特空间：
+\[
+\mathcal H_A,\qquad \mathcal H_B.
+\]
+复合系统的希尔伯特空间为：
+\[
+\mathcal H_{AB}
+\mathcal H_A\otimes\mathcal H_B.
+\]
+若两个系统分别处于：
+\[
+|\psi\rangle_A,
+\qquad
+|\phi\rangle_B,
+\]
+则整体状态为：
+\[
+|\Psi\rangle_{AB}
+|\psi\rangle_A\otimes|\phi\rangle_B.
+\]
+例如：
+\[
+|\Psi\rangle
+\frac{|0\rangle+|1\rangle}{\sqrt2}
+\otimes|0\rangle.
+\]
+展开：
+\[
+|\Psi\rangle
+\frac{|00\rangle+|10\rangle}{\sqrt2}.
+\]"><meta name=author content="Linmythos"><link rel=canonical href=https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E7%BA%A0%E7%BC%A0%E4%B8%8E%E9%87%8F%E5%AD%90%E5%85%B3%E8%81%94/><link crossorigin=anonymous href=/assets/css/stylesheet.5a42af7b68c8b1b7f3d0894c8a74d101cf31f37c1aa9bf8365395ef493e0dea4.css integrity="sha256-WkKve2jIsbfz0IlMinTRAc8x83waqb+DZTle9JPg3qQ=" rel="preload stylesheet" as=style><link rel=icon href=https://linmythos.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://linmythos.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://linmythos.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://linmythos.github.io/apple-touch-icon.png><link rel=mask-icon href=https://linmythos.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E7%BA%A0%E7%BC%A0%E4%B8%8E%E9%87%8F%E5%AD%90%E5%85%B3%E8%81%94/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],packages:{"[+]":["ams"]}}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><meta property="og:url" content="https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E7%BA%A0%E7%BC%A0%E4%B8%8E%E9%87%8F%E5%AD%90%E5%85%B3%E8%81%94/"><meta property="og:site_name" content="Linmythos"><meta property="og:title" content="量子纠缠与量子关联"><meta property="og:description" content="量子信息与量子计算基础讲义（三） Quantum Entanglement and Quantum Correlations
+本篇目标 本篇系统研究量子纠缠及其统计关联结构。
+完成本篇后，应当能够：
+理解纠缠的数学定义及物理意义； 熟练使用 Schmidt 分解； 掌握纯态纠缠的判定； 理解混态可分性； 掌握部分转置与 PPT 判据； 理解纠缠见证； 掌握 Bell 态的关联性质； 区分纠缠、量子关联与 Bell 非局域性； 理解量子 steering； 为 QRAC、Bell 不等式和测量不相容性建立理论基础。 第一章 纠缠的基本概念 1.1 从复合系统出发 设两个量子系统分别具有希尔伯特空间：
+\[ \mathcal H_A,\qquad \mathcal H_B. \]
+复合系统的希尔伯特空间为：
+\[ \mathcal H_{AB} \mathcal H_A\otimes\mathcal H_B. \]
+若两个系统分别处于：
+\[ |\psi\rangle_A, \qquad |\phi\rangle_B, \]
+则整体状态为：
+\[ |\Psi\rangle_{AB} |\psi\rangle_A\otimes|\phi\rangle_B. \]
+例如：
+\[ |\Psi\rangle \frac{|0\rangle+|1\rangle}{\sqrt2} \otimes|0\rangle. \]
+展开：
+\[ |\Psi\rangle \frac{|00\rangle+|10\rangle}{\sqrt2}. \]"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="physics"><meta property="article:published_time" content="2026-11-05T00:00:00+00:00"><meta property="article:modified_time" content="2026-11-05T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="量子纠缠与量子关联"><meta name=twitter:description content="量子信息与量子计算基础讲义（三） Quantum Entanglement and Quantum Correlations
+本篇目标 本篇系统研究量子纠缠及其统计关联结构。
+完成本篇后，应当能够：
+理解纠缠的数学定义及物理意义； 熟练使用 Schmidt 分解； 掌握纯态纠缠的判定； 理解混态可分性； 掌握部分转置与 PPT 判据； 理解纠缠见证； 掌握 Bell 态的关联性质； 区分纠缠、量子关联与 Bell 非局域性； 理解量子 steering； 为 QRAC、Bell 不等式和测量不相容性建立理论基础。 第一章 纠缠的基本概念 1.1 从复合系统出发 设两个量子系统分别具有希尔伯特空间：
+\[ \mathcal H_A,\qquad \mathcal H_B. \]
+复合系统的希尔伯特空间为：
+\[ \mathcal H_{AB} \mathcal H_A\otimes\mathcal H_B. \]
+若两个系统分别处于：
+\[ |\psi\rangle_A, \qquad |\phi\rangle_B, \]
+则整体状态为：
+\[ |\Psi\rangle_{AB} |\psi\rangle_A\otimes|\phi\rangle_B. \]
+例如：
+\[ |\Psi\rangle \frac{|0\rangle+|1\rangle}{\sqrt2} \otimes|0\rangle. \]
+展开：
+\[ |\Psi\rangle \frac{|00\rangle+|10\rangle}{\sqrt2}. \]"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Physics","item":"https://linmythos.github.io/physics/"},{"@type":"ListItem","position":4,"name":"量子纠缠与量子关联","item":"https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E7%BA%A0%E7%BC%A0%E4%B8%8E%E9%87%8F%E5%AD%90%E5%85%B3%E8%81%94/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"量子纠缠与量子关联","name":"量子纠缠与量子关联","description":"量子信息与量子计算基础讲义（三） Quantum Entanglement and Quantum Correlations\n本篇目标 本篇系统研究量子纠缠及其统计关联结构。\n完成本篇后，应当能够：\n理解纠缠的数学定义及物理意义； 熟练使用 Schmidt 分解； 掌握纯态纠缠的判定； 理解混态可分性； 掌握部分转置与 PPT 判据； 理解纠缠见证； 掌握 Bell 态的关联性质； 区分纠缠、量子关联与 Bell 非局域性； 理解量子 steering； 为 QRAC、Bell 不等式和测量不相容性建立理论基础。 第一章 纠缠的基本概念 1.1 从复合系统出发 设两个量子系统分别具有希尔伯特空间：\n\\[ \\mathcal H_A,\\qquad \\mathcal H_B. \\]\n复合系统的希尔伯特空间为：\n\\[ \\mathcal H_{AB} \\mathcal H_A\\otimes\\mathcal H_B. \\]\n若两个系统分别处于：\n\\[ |\\psi\\rangle_A, \\qquad |\\phi\\rangle_B, \\]\n则整体状态为：\n\\[ |\\Psi\\rangle_{AB} |\\psi\\rangle_A\\otimes|\\phi\\rangle_B. \\]\n例如：\n\\[ |\\Psi\\rangle \\frac{|0\\rangle+|1\\rangle}{\\sqrt2} \\otimes|0\\rangle. \\]\n展开：\n\\[ |\\Psi\\rangle \\frac{|00\\rangle+|10\\rangle}{\\sqrt2}. \\]\n","keywords":[],"articleBody":"量子信息与量子计算基础讲义（三） Quantum Entanglement and Quantum Correlations\n本篇目标 本篇系统研究量子纠缠及其统计关联结构。\n完成本篇后，应当能够：\n理解纠缠的数学定义及物理意义； 熟练使用 Schmidt 分解； 掌握纯态纠缠的判定； 理解混态可分性； 掌握部分转置与 PPT 判据； 理解纠缠见证； 掌握 Bell 态的关联性质； 区分纠缠、量子关联与 Bell 非局域性； 理解量子 steering； 为 QRAC、Bell 不等式和测量不相容性建立理论基础。 第一章 纠缠的基本概念 1.1 从复合系统出发 设两个量子系统分别具有希尔伯特空间：\n\\[ \\mathcal H_A,\\qquad \\mathcal H_B. \\]\n复合系统的希尔伯特空间为：\n\\[ \\mathcal H_{AB} \\mathcal H_A\\otimes\\mathcal H_B. \\]\n若两个系统分别处于：\n\\[ |\\psi\\rangle_A, \\qquad |\\phi\\rangle_B, \\]\n则整体状态为：\n\\[ |\\Psi\\rangle_{AB} |\\psi\\rangle_A\\otimes|\\phi\\rangle_B. \\]\n例如：\n\\[ |\\Psi\\rangle \\frac{|0\\rangle+|1\\rangle}{\\sqrt2} \\otimes|0\\rangle. \\]\n展开：\n\\[ |\\Psi\\rangle \\frac{|00\\rangle+|10\\rangle}{\\sqrt2}. \\]\n这是一个乘积态。\n然而，并不是所有双系统纯态都能写成这种形式。\n例如：\n\\[ |\\Phi^+\\rangle \\frac{|00\\rangle+|11\\rangle}{\\sqrt2}. \\]\n它不能分解为两个单体态的张量积。\n这种不可分解性就是纯态纠缠的数学基础。\n1.2 纯态纠缠的定义 定义 1.1（乘积纯态）\n双系统纯态 \\(|\\psi\\rangle_{AB}\\) 若存在：\n\\[ |\\phi\\rangle_A\\in\\mathcal H_A, \\qquad |\\chi\\rangle_B\\in\\mathcal H_B \\]\n使得：\n\\[ |\\psi\\rangle_{AB} |\\phi\\rangle_A\\otimes|\\chi\\rangle_B, \\]\n则称其为乘积态。\n定义 1.2（纠缠纯态）\n如果不存在上述分解，则称 \\(|\\psi\\rangle_{AB}\\) 为纠缠态。\n这是针对纯态的定义。\n对于混态，纠缠的定义需要推广，后面将专门讨论。\n1.3 纠缠不等于叠加 考虑：\n\\[ |\\psi\\rangle \\frac{|00\\rangle+|10\\rangle}{\\sqrt2}. \\]\n将其提取公因子：\n\\[ |\\psi\\rangle \\frac{|0\\rangle+|1\\rangle}{\\sqrt2} \\otimes|0\\rangle. \\]\n因此它是乘积态。\n而：\n\\[ |\\Phi^+\\rangle \\frac{|00\\rangle+|11\\rangle}{\\sqrt2} \\]\n是纠缠态。\n两者都有叠加形式，但只有后者不可分解。\n所以：\n\\[ \\boxed{ \\text{叠加}\\not\\Rightarrow\\text{纠缠}. } \\]\n纠缠描述的是复合系统整体状态无法分解为各子系统状态的张量积，而不是简单地描述某个态是否包含多个基矢量。\n第二章 Schmidt 分解 Schmidt 分解是研究双系统纯态纠缠最重要的数学工具。\n2.1 定理陈述 定理 2.1（Schmidt 分解定理）\n任意双系统纯态：\n\\[ |\\psi\\rangle_{AB} \\in\\mathcal H_A\\otimes\\mathcal H_B \\]\n都存在两组正交归一基：\n\\[ {|u_i\\rangle_A}, \\qquad {|v_i\\rangle_B}, \\]\n使得：\n\\[ \\boxed{ |\\psi\\rangle_{AB} \\sum_{i=1}^{r} \\sqrt{\\lambda_i} |u_i\\rangle_A\\otimes|v_i\\rangle_B. } \\]\n其中：\n\\[ \\lambda_i\u003e0, \\qquad \\sum_{i=1}^{r}\\lambda_i=1. \\]\n这里的 \\(r\\) 称为 Schmidt 秩。\n并且：\n\\[ r\\leq\\min(d_A,d_B). \\]\n2.2 Schmidt 分解的矩阵推导 设：\n\\[ \\dim\\mathcal H_A=d_A, \\qquad \\dim\\mathcal H_B=d_B. \\]\n选取两侧的正交基：\n\\[ {|i\\rangle_A}, \\qquad {|j\\rangle_B}. \\]\n任意双系统纯态可以写成：\n\\[ |\\psi\\rangle \\sum_{i=1}^{d_A} \\sum_{j=1}^{d_B} c_{ij}|i\\rangle_A|j\\rangle_B. \\]\n将系数写成矩阵：\n\\[ C=(c_{ij}). \\]\n对 \\(C\\) 作奇异值分解：\n\\[ C=U\\Sigma V^\\dagger. \\]\n其中：\n\\(U,V\\) 是酉矩阵； \\(\\Sigma\\) 是非负对角矩阵； \\(\\Sigma\\) 的非零对角元为奇异值。 记这些奇异值为：\n\\[ s_1,\\ldots,s_r. \\]\n定义新基：\n\\[ |u_k\\rangle \\sum_iU_{ik}|i\\rangle, \\]\n\\[ |v_k\\rangle \\sum_jV_{jk}^*|j\\rangle. \\]\n则：\n\\[ |\\psi\\rangle \\sum_{k=1}^{r}s_k |u_k\\rangle|v_k\\rangle. \\]\n由于原态归一化：\n\\[ \\langle\\psi|\\psi\\rangle \\sum_ks_k^2=1. \\]\n令：\n\\[ \\lambda_k=s_k^2, \\]\n即得：\n\\[ \\boxed{ |\\psi\\rangle \\sum_{k=1}^{r} \\sqrt{\\lambda_k} |u_k\\rangle|v_k\\rangle. } \\]\n证毕。\n2.3 Schmidt 分解的唯一性 Schmidt 系数的集合：\n\\[ {\\lambda_i} \\]\n在忽略排列顺序后是唯一的。\n但当存在简并 Schmidt 系数时，对应子空间中的 Schmidt 基不一定唯一。\n因此，纠缠程度由 Schmidt 系数决定，而不依赖某个具体的 Schmidt 基选择。\n2.4 约化密度矩阵 考虑：\n\\[ |\\psi\\rangle \\sum_i\\sqrt{\\lambda_i} |u_i\\rangle|v_i\\rangle. \\]\n整体密度矩阵：\n\\[ \\rho_{AB} |\\psi\\rangle\\langle\\psi|. \\]\n展开：\n\\[ \\rho_{AB} \\sum_{i,j} \\sqrt{\\lambda_i\\lambda_j} |u_i\\rangle\\langle u_j| \\otimes |v_i\\rangle\\langle v_j|. \\]\n对系统 \\(B\\) 取偏迹：\n\\[ \\rho_A \\operatorname{Tr}B(\\rho{AB}). \\]\n利用：\n\\[ \\operatorname{Tr} (|v_i\\rangle\\langle v_j|) \\langle v_j|v_i\\rangle \\delta_{ij}, \\]\n得到：\n\\[ \\boxed{ \\rho_A \\sum_i\\lambda_i |u_i\\rangle\\langle u_i|. } \\]\n同理：\n\\[ \\boxed{ \\rho_B \\sum_i\\lambda_i |v_i\\rangle\\langle v_i|. } \\]\n因此，两个约化态拥有相同的非零本征值。\n这意味着：\n\\[ \\boxed{ \\operatorname{spec}_{\\neq0}(\\rho_A) \\operatorname{spec}_{\\neq0}(\\rho_B). } \\]\n2.5 纯态纠缠判据 由 Schmidt 分解直接得到：\n定理 2.2\n对于双系统纯态，以下命题等价：\n\\(|\\psi\\rangle_{AB}\\) 是乘积态； Schmidt 秩为 1； \\(\\rho_A\\) 是纯态； \\(\\rho_B\\) 是纯态； \\(\\operatorname{Tr}(\\rho_A^2)=1\\)； \\(\\operatorname{Tr}(\\rho_B^2)=1\\)。 因此：\n\\[ \\boxed{ |\\psi\\rangle_{AB}\\text{ 纠缠} \\iff \\operatorname{Tr}(\\rho_A^2)\u003c1. } \\]\n这条结论只适用于整体纯态，不能直接推广到混态。\n2.6 Schmidt 秩的例子 考虑：\n\\[ |\\psi\\rangle \\sqrt{\\frac23}|00\\rangle + \\sqrt{\\frac13}|11\\rangle. \\]\n它已经处于 Schmidt 形式。\nSchmidt 系数平方为：\n\\[ \\lambda_1=\\frac23, \\qquad \\lambda_2=\\frac13. \\]\n所以：\n\\[ \\rho_A \\frac23|0\\rangle\\langle0| + \\frac13|1\\rangle\\langle1|. \\]\n其纯度：\n\\[ \\operatorname{Tr}(\\rho_A^2) \\frac49+\\frac19 \\frac59. \\]\n由于：\n\\[ \\frac59\u003c1, \\]\n所以该态是纠缠态。\n第三章 Bell 态与最大纠缠态 3.1 四个 Bell 态 定义：\n\\[ |\\Phi^+\\rangle \\frac{|00\\rangle+|11\\rangle}{\\sqrt2}, \\]\n\\[ |\\Phi^-\\rangle \\frac{|00\\rangle-|11\\rangle}{\\sqrt2}, \\]\n\\[ |\\Psi^+\\rangle \\frac{|01\\rangle+|10\\rangle}{\\sqrt2}, \\]\n\\[ |\\Psi^-\\rangle \\frac{|01\\rangle-|10\\rangle}{\\sqrt2}. \\]\n它们满足：\n\\[ \\langle\\Phi^+|\\Phi^-\\rangle=0, \\]\n其余两两内积也为零。\n因此：\n\\[ \\boxed{ { |\\Phi^+\\rangle, |\\Phi^-\\rangle, |\\Psi^+\\rangle, |\\Psi^-\\rangle } } \\]\n构成双量子比特空间的一组正交归一基，称为 Bell 基。\n3.2 Bell 态的约化密度矩阵 以：\n\\[ |\\Phi^+\\rangle \\frac{|00\\rangle+|11\\rangle}{\\sqrt2} \\]\n为例。\n其整体密度矩阵：\n\\[ \\rho_{\\Phi^+} \\frac12 \\left( |00\\rangle\\langle00| + |00\\rangle\\langle11| + |11\\rangle\\langle00| + |11\\rangle\\langle11| \\right). \\]\n取偏迹：\n\\[ \\rho_A \\frac I2, \\qquad \\rho_B=\\frac I2. \\]\n同理，四个 Bell 态都满足：\n\\[ \\boxed{ \\rho_A=\\rho_B=\\frac I2. } \\]\n所以：\n\\[ \\operatorname{Tr}(\\rho_A^2)=\\frac12. \\]\n它们都是最大纠缠态。\n3.3 最大纠缠态 定义 3.1（最大纠缠纯态）\n对一个 \\(d\\times d\\) 双系统纯态，若其约化态为：\n\\[ \\boxed{ \\rho_A=\\rho_B=\\frac I d, } \\]\n则称其为最大纠缠态。\n等价地，其 Schmidt 系数满足：\n\\[ \\lambda_i=\\frac1d. \\]\n因此：\n\\[ |\\psi\\rangle \\frac1{\\sqrt d} \\sum_{i=1}^{d} |u_i\\rangle|v_i\\rangle. \\]\n对两个量子比特：\n\\[ d=2, \\]\n于是最大纠缠态的约化态为：\n\\[ I/2. \\]\n3.4 Bell 态的 Pauli 关联 对：\n\\[ |\\Phi^+\\rangle \\frac{|00\\rangle+|11\\rangle}{\\sqrt2}, \\]\n可以计算：\n\\[ \\boxed{ \\langle\\sigma_x\\otimes\\sigma_x\\rangle=1, } \\]\n\\[ \\boxed{ \\langle\\sigma_y\\otimes\\sigma_y\\rangle=-1, } \\]\n\\[ \\boxed{ \\langle\\sigma_z\\otimes\\sigma_z\\rangle=1. } \\]\n而单体期望值均为零：\n\\[ \\langle\\sigma_i\\otimes I\\rangle=0, \\]\n\\[ \\langle I\\otimes\\sigma_i\\rangle=0. \\]\n因此，两个局部系统各自呈现完全随机的统计结果，但它们之间存在强关联。\n这正是量子纠缠的重要表现。\n3.5 Bell 态的关联矩阵 定义：\n\\[ T_{ij} \\operatorname{Tr} [ \\rho(\\sigma_i\\otimes\\sigma_j) ]. \\]\n对 \\(|\\Phi^+\\rangle\\)：\n\\[ \\boxed{ T= \\begin{pmatrix} 1\u00260\u00260\\ 0\u0026-1\u00260\\ 0\u00260\u00261 \\end{pmatrix}. } \\]\n对于任意单位向量 \\(\\vec a,\\vec b\\)，定义：\n\\[ A=\\vec a\\cdot\\vec\\sigma, \\qquad B=\\vec b\\cdot\\vec\\sigma. \\]\n则：\n\\[ E(\\vec a,\\vec b) \\langle A\\otimes B\\rangle. \\]\n利用关联矩阵：\n\\[ \\boxed{ E(\\vec a,\\vec b) \\vec a^{,T}T\\vec b. } \\]\n对 \\(|\\Phi^+\\rangle\\)：\n\\[ \\boxed{ E(\\vec a,\\vec b) a_xb_x-a_yb_y+a_zb_z. } \\]\n这条公式将 Bell 态的纠缠性质转化为实验可测的关联函数。\n第四章 混态纠缠与可分性 纯态纠缠由 Schmidt 分解完全刻画，但混态的情况复杂得多。\n4.1 可分混态 定义 4.1（可分态）\n双系统密度矩阵 \\(\\rho_{AB}\\) 若存在概率分布 \\(p_i\\) 和局域密度矩阵 \\(\\rho_A^{(i)},\\rho_B^{(i)}\\)，使得：\n\\[ \\boxed{ \\rho_{AB} \\sum_i p_i \\rho_A^{(i)}\\otimes\\rho_B^{(i)}, } \\]\n则称其为可分态。\n若不存在这样的分解，则称为纠缠态。\n注意：\n\\[ \\rho_{AB} \\]\n即使不能写成单个乘积：\n\\[ \\rho_A\\otimes\\rho_B, \\]\n也可能是可分混态。\n4.2 经典相关但不纠缠的状态 考虑：\n\\[ \\rho_{AB} \\frac12|00\\rangle\\langle00| + \\frac12|11\\rangle\\langle11|. \\]\n它显然具有可分分解：\n\\[ \\rho_{AB} \\frac12 (|0\\rangle\\langle0|) \\otimes (|0\\rangle\\langle0|) + \\frac12 (|1\\rangle\\langle1|) \\otimes (|1\\rangle\\langle1|). \\]\n因此：\n\\[ \\boxed{\\rho_{AB}\\text{ 可分}.} \\]\n但它并不是两个独立系统的乘积态。\n因为：\n\\[ \\rho_A=\\rho_B=\\frac I2, \\]\n而：\n\\[ \\rho_A\\otimes\\rho_B \\frac I4. \\]\n显然：\n\\[ \\rho_{AB}\\neq\\rho_A\\otimes\\rho_B. \\]\n所以它具有相关性，但没有纠缠。\n这说明：\n\\[ \\boxed{ \\text{相关性}\\not\\Rightarrow\\text{纠缠}. } \\]\n4.3 经典相关与量子相干的区别 比较两个状态：\n\\[ \\rho_1 \\frac12 (|00\\rangle\\langle00| + |11\\rangle\\langle11|), \\]\n\\[ \\rho_2 |\\Phi^+\\rangle\\langle\\Phi^+|. \\]\n第二个状态展开为：\n\\[ \\rho_2 \\frac12 \\left( |00\\rangle\\langle00| + |00\\rangle\\langle11| + |11\\rangle\\langle00| + |11\\rangle\\langle11| \\right). \\]\n两者的区别在于：\n\\[ \\rho_2 \\]\n包含非零的非对角相干项，而：\n\\[ \\rho_1 \\]\n不包含这些项。\n两者具有相同的计算基联合概率：\n\\[ p(00)=p(11)=\\frac12. \\]\n但在其他测量基下，它们会表现出不同的统计关联。\n第五章 部分转置与 PPT 判据 5.1 部分转置的定义 设：\n\\[ \\rho_{AB} \\sum_{i,j,k,l} \\rho_{ij,kl} |i\\rangle\\langle k| \\otimes |j\\rangle\\langle l|. \\]\n定义对系统 \\(B\\) 的部分转置：\n\\[ \\boxed{ \\rho_{AB}^{T_B} \\sum_{i,j,k,l} \\rho_{ij,kl} |i\\rangle\\langle k| \\otimes |l\\rangle\\langle j|. } \\]\n直观上：\n只对第二个系统的矩阵指标进行转置，第一系统保持不变。\n5.2 PPT 判据 定理 5.1（Peres 必要条件）\n若双系统态 \\(\\rho_{AB}\\) 可分，则：\n\\[ \\boxed{ \\rho_{AB}^{T_B}\\geq0. } \\]\n证明\n假设：\n\\[ \\rho_{AB} \\sum_i p_i\\rho_A^{(i)}\\otimes\\rho_B^{(i)}. \\]\n则：\n\\[ \\rho_{AB}^{T_B} \\sum_i p_i \\rho_A^{(i)} \\otimes (\\rho_B^{(i)})^T. \\]\n因为密度矩阵的转置仍然是正半定矩阵：\n\\[ (\\rho_B^{(i)})^T\\geq0. \\]\n张量积保持正半定性，因此：\n\\[ \\rho_A^{(i)} \\otimes (\\rho_B^{(i)})^T \\geq0. \\]\n又由于 \\(p_i\\geq0\\)，正半定矩阵的非负线性组合仍然正半定。\n所以：\n\\[ \\rho_{AB}^{T_B}\\geq0. \\]\n证毕。\n因此：\n\\[ \\boxed{ \\rho_{AB}^{T_B}\\not\\geq0 \\quad\\Longrightarrow\\quad \\rho_{AB}\\text{ 必为纠缠态}. } \\]\n这称为 PPT 判据的必要方向。\n5.3 Bell 态的部分转置 考虑：\n\\[ \\rho_{\\Phi^+} \\frac12 \\left( |00\\rangle\\langle00| + |00\\rangle\\langle11| + |11\\rangle\\langle00| + |11\\rangle\\langle11| \\right). \\]\n对第二个系统部分转置：\n\\[ (|00\\rangle\\langle11|)^{T_B} |01\\rangle\\langle10|, \\]\n\\[ (|11\\rangle\\langle00|)^{T_B} |10\\rangle\\langle01|. \\]\n所以：\n\\[ \\rho_{\\Phi^+}^{T_B} \\frac12 \\left( |00\\rangle\\langle00| + |01\\rangle\\langle10| + |10\\rangle\\langle01| + |11\\rangle\\langle11| \\right). \\]\n在基：\n\\[ {|00\\rangle,|01\\rangle,|10\\rangle,|11\\rangle} \\]\n下：\n\\[ \\boxed{ \\rho_{\\Phi^+}^{T_B} \\frac12 \\begin{pmatrix} 1\u00260\u00260\u00260\\ 0\u00260\u00261\u00260\\ 0\u00261\u00260\u00260\\ 0\u00260\u00260\u00261 \\end{pmatrix}. } \\]\n其本征值：\n\\[ \\frac12,\\quad \\frac12,\\quad \\frac12,\\quad -\\frac12. \\]\n存在负本征值。\n因此：\n\\[ \\rho_{\\Phi^+}^{T_B}\\not\\geq0. \\]\n所以 Bell 态是纠缠态。\n5.4 PPT 充要条件的适用范围 对于：\n\\[ 2\\times2 \\]\n和：\n\\[ 2\\times3 \\]\n维双系统，PPT 条件不仅必要，而且充分。\n即：\n\\[ \\boxed{ \\rho_{AB}\\text{ 可分} \\iff \\rho_{AB}^{T_B}\\geq0. } \\]\n但对于更高维系统，PPT 只保证必要性，不保证充分性。\n存在：\n\\[ \\rho_{AB}^{T_B}\\geq0 \\]\n但 \\(\\rho_{AB}\\) 仍然纠缠的状态，称为 PPT 纠缠态或束缚纠缠态。\n因此：\nNPT：一定纠缠； PPT：在 \\(2\\times2\\)、\\(2\\times3\\) 中可分； 更高维中，PPT 不一定可分。 第六章 纠缠见证 6.1 为什么需要纠缠见证？ PPT 判据并不能在所有维度中完全识别纠缠。\n此外，实验上直接重建完整密度矩阵可能成本较高。\n因此，需要一种能够通过少量测量验证纠缠的方法。\n这就是纠缠见证。\n定义 6.1（纠缠见证）\n厄米算符 \\(W\\) 若满足：\n\\[ \\operatorname{Tr}(W\\sigma)\\geq0 \\]\n对所有可分态 \\(\\sigma\\) 成立，并且存在某个纠缠态 \\(\\rho\\) 使得：\n\\[ \\operatorname{Tr}(W\\rho)\u003c0, \\]\n则称 \\(W\\) 为一个纠缠见证。\n因此：\n\\[ \\boxed{ \\operatorname{Tr}(W\\rho)\u003c0 \\Longrightarrow \\rho\\text{ 纠缠}. } \\]\n6.2 Bell 态的纠缠见证 考虑：\n\\[ W= \\frac12I\\otimes I |\\Phi^+\\rangle\\langle\\Phi^+|. \\]\n我们证明它对任意可分态的期望值非负。\n先考虑纯乘积态：\n\\[ |a\\rangle\\otimes|b\\rangle. \\]\n有：\n\\[ \\langle\\Phi^+|a,b\\rangle \\frac1{\\sqrt2} (a_0b_0+a_1b_1). \\]\n由 Cauchy–Schwarz 不等式：\n\\[ |a_0b_0+a_1b_1|^2 \\leq (|a_0|^2+|a_1|^2) (|b_0|^2+|b_1|^2). \\]\n归一化后：\n\\[ |\\langle\\Phi^+|a,b\\rangle|^2 \\leq\\frac12. \\]\n所以：\n\\[ \\langle a,b|W|a,b\\rangle \\frac12- |\\langle\\Phi^+|a,b\\rangle|^2 \\geq0. \\]\n对所有可分混态，由凸性仍有：\n\\[ \\operatorname{Tr}(W\\sigma)\\geq0. \\]\n而对 Bell 态：\n\\[ \\operatorname{Tr} (W|\\Phi^+\\rangle\\langle\\Phi^+|) \\frac12-1 -\\frac12. \\]\n因此 \\(W\\) 是一个纠缠见证。\n6.3 实验意义 若实验能够测量：\n\\[ \\langle W\\rangle \\operatorname{Tr}(W\\rho_{\\mathrm{exp}}), \\]\n并得到：\n\\[ \\langle W\\rangle\u003c0, \\]\n则可以证明实验制备的态是纠缠态。\n这通常比完整量子态层析需要更少的测量设置。\n第七章 量子关联的数学描述 7.1 联合概率分布 考虑 Alice 与 Bob 分别选择测量设置：\n\\[ x,\\qquad y. \\]\n测量结果：\n\\[ a,\\qquad b. \\]\n定义：\n\\[ p(a,b|x,y). \\]\n这是一个条件联合概率分布。\n它必须满足：\n\\[ p(a,b|x,y)\\geq0, \\]\n以及：\n\\[ \\sum_{a,b}p(a,b|x,y)=1. \\]\n在量子理论中：\n\\[ \\boxed{ p(a,b|x,y) \\operatorname{Tr} [ \\rho_{AB} (E_{a|x}\\otimes F_{b|y}) ]. } \\]\n其中：\n\\[ \\sum_aE_{a|x}=I_A, \\]\n\\[ \\sum_bF_{b|y}=I_B. \\]\n7.2 边缘概率 Alice 的边缘概率：\n\\[ p(a|x,y) \\sum_bp(a,b|x,y). \\]\n代入量子表达式：\n\\[ p(a|x,y) \\sum_b \\operatorname{Tr} [ \\rho_{AB} (E_{a|x}\\otimes F_{b|y}) ]. \\]\n利用迹的线性性：\n\\[ \\operatorname{Tr} \\left[ \\rho_{AB} \\left( E_{a|x}\\otimes\\sum_bF_{b|y} \\right) \\right]. \\]\n由于：\n\\[ \\sum_bF_{b|y}=I_B, \\]\n所以：\n\\[ \\boxed{ p(a|x,y) \\operatorname{Tr} [ \\rho_{AB}(E_{a|x}\\otimes I_B) ]. } \\]\n因此：\n\\[ \\boxed{ p(a|x,y)=p(a|x). } \\]\nAlice 的局域概率与 Bob 的测量选择无关。\n同理：\n\\[ p(b|x,y)=p(b|y). \\]\n这称为无信号条件。\n7.3 关联函数 当测量结果为：\n\\[ a,b\\in{-1,+1} \\]\n时，定义：\n\\[ \\boxed{ E_{xy} \\sum_{a,b}ab,p(a,b|x,y). } \\]\n在量子理论中：\n\\[ E_{xy} \\operatorname{Tr} [ \\rho_{AB}(A_x\\otimes B_y) ], \\]\n其中：\n\\[ A_x=E_{+|x}-E_{-|x}, \\]\n\\[ B_y=F_{+|y}-F_{-|y}. \\]\n关联函数是实验中最常见的量子关联指标。\n7.4 Bell 态的关联计算 对：\n\\[ |\\Phi^+\\rangle, \\]\n有：\n\\[ \\langle\\sigma_x\\otimes\\sigma_x\\rangle=1, \\]\n\\[ \\langle\\sigma_y\\otimes\\sigma_y\\rangle=-1, \\]\n\\[ \\langle\\sigma_z\\otimes\\sigma_z\\rangle=1. \\]\n因此，如果 Alice 与 Bob 都沿 \\(z\\) 方向测量，结果总是相同。\n如果两人都沿 \\(x\\) 方向测量，结果也总是相同。\n如果两人都沿 \\(y\\) 方向测量，结果则总是相反。\n但单独看任意一方的结果：\n\\[ p(+)=p(-)=\\frac12. \\]\n这说明联合关联中包含局部边缘概率所没有的信息。\n第八章 量子关联的三种重要层次 纠缠、量子 steering 和 Bell 非局域性是三个紧密联系但不等价的概念。\n8.1 可分关联 可分态：\n\\[ \\rho_{AB} \\sum_i p_i\\rho_A^{(i)}\\otimes\\rho_B^{(i)}. \\]\n其测量统计为：\n\\[ p(a,b|x,y) \\sum_i p_i \\operatorname{Tr}(\\rho_A^{(i)}E_{a|x}) \\operatorname{Tr}(\\rho_B^{(i)}F_{b|y}). \\]\n这具有局域隐变量形式。\n因此，可分态不能产生 Bell 非局域关联。\n8.2 局域隐变量模型 更一般地，若：\n\\[ \\boxed{ p(a,b|x,y) \\int d\\lambda, q(\\lambda) p(a|x,\\lambda)p(b|y,\\lambda), } \\]\n则称该关联具有局域隐变量模型。\n这里的 \\(\\lambda\\) 可以是经典共享随机变量。\nBell 非局域性意味着不存在这种分解。\n注意：\n有些纠缠态虽然不能写成可分态，但其特定测量产生的关联仍然可能具有局域隐变量模型。\n因此：\n\\[ \\text{纠缠} \\not\\Rightarrow \\text{给定测量下的 Bell 非局域性}. \\]\n8.3 Quantum Steering Quantum steering 是位于纠缠与 Bell 非局域性之间的一类关联概念。\n考虑 Alice 和 Bob 共享：\n\\[ \\rho_{AB}. \\]\nAlice 对系统 \\(A\\) 进行测量：\n\\[ {E_{a|x}}. \\]\nBob 的未归一化条件态为：\n\\[ \\boxed{ \\sigma_{a|x} \\operatorname{Tr}A [ (E{a|x}\\otimes I_B)\\rho_{AB} ]. } \\]\n这组条件态称为 assemblage。\n若存在经典隐状态模型：\n\\[ \\boxed{ \\sigma_{a|x} \\int d\\lambda, q(\\lambda) p(a|x,\\lambda) \\rho_\\lambda, } \\]\n则称该 assemblage 具有局域隐状态模型。\n若不存在，则称其具有 steering。\n直观上，Alice 可以通过选择测量设置和公布结果，改变 Bob 对自己系统所持有的条件态描述。\n但 Alice 无法通过这种方式向 Bob 超光速传递信息，因为 Bob 不知道 Alice 的结果时，无法从其局部统计中识别 Alice 的选择。\n8.4 三种关联的关系 在标准二体量子关联框架下：\n\\[ \\boxed{ \\text{Bell 非局域} \\subset \\text{Steerable} \\subset \\text{Entangled}. } \\]\n这里的包含关系是指：\nBell 非局域关联必然是可 steering 的； 可 steering 的状态必然是纠缠态； 反过来一般不成立。 因此，纠缠是最宽泛的量子关联概念，而 Bell 非局域性具有更强的操作性要求。\n第九章 Werner 态与关联阈值 9.1 Werner 态 定义双量子比特 Werner 态：\n\\[ \\boxed{ \\rho_W v|\\Psi^-\\rangle\\langle\\Psi^-| + (1-v)\\frac{I_4}{4}, } \\]\n其中：\n\\[ 0\\leq v\\leq1. \\]\n这里：\n\\[ |\\Psi^-\\rangle \\frac{|01\\rangle-|10\\rangle}{\\sqrt2}. \\]\n参数 \\(v\\) 描述纯纠缠成分的权重。\n当：\n\\[ v=1 \\]\n时，为纯 Bell 单态。\n当：\n\\[ v=0 \\]\n时，为最大混态。\n9.2 Werner 态的约化态 由于 Bell 态的约化态为：\n\\[ \\frac I2, \\]\n且：\n\\[ \\operatorname{Tr}_B(I_4/4)=I_2/2, \\]\n所以：\n\\[ \\boxed{ \\rho_A=\\rho_B=\\frac I2. } \\]\n因此，任何单体测量都无法仅凭局域统计判断 Werner 态中的 \\(v\\)。\n必须研究联合关联。\n9.3 Werner 态的关联函数 对单态：\n\\[ \\langle\\Psi^-| \\sigma_i\\otimes\\sigma_j |\\Psi^-\\rangle -\\delta_{ij}. \\]\n而最大混态部分的非平凡关联为零。\n所以：\n\\[ \\boxed{ \\operatorname{Tr} [ \\rho_W(\\sigma_i\\otimes\\sigma_j) ] -v\\delta_{ij}. } \\]\n对于任意方向：\n\\[ A=\\vec a\\cdot\\vec\\sigma, \\]\n\\[ B=\\vec b\\cdot\\vec\\sigma, \\]\n有：\n\\[ \\boxed{ E(\\vec a,\\vec b) -v\\vec a\\cdot\\vec b. } \\]\n9.4 Werner 态的 PPT 判据 由于：\n\\[ |\\Psi^-\\rangle \\frac{|01\\rangle-|10\\rangle}{\\sqrt2}, \\]\n其密度矩阵为：\n\\[ \\rho_{\\Psi^-} \\frac12 \\begin{pmatrix} 0\u00260\u00260\u00260\\ 0\u00261\u0026-1\u00260\\ 0\u0026-1\u00261\u00260\\ 0\u00260\u00260\u00260 \\end{pmatrix}. \\]\n于是：\n\\[ \\rho_W \\begin{pmatrix} \\frac{1-v}{4}\u00260\u00260\u00260\\ 0\u0026\\frac{1+v}{4}\u0026-\\frac v2\u00260\\ 0\u0026-\\frac v2\u0026\\frac{1+v}{4}\u00260\\ 0\u00260\u00260\u0026\\frac{1-v}{4} \\end{pmatrix}. \\]\n对第二个量子比特进行部分转置：\n\\[ \\rho_W^{T_B} \\begin{pmatrix} \\frac{1-v}{4}\u00260\u00260\u0026-\\frac v2\\ 0\u0026\\frac{1+v}{4}\u00260\u00260\\ 0\u00260\u0026\\frac{1+v}{4}\u00260\\ -\\frac v2\u00260\u00260\u0026\\frac{1-v}{4} \\end{pmatrix}. \\]\n其中左上与右下构成的子块为：\n\\[ \\begin{pmatrix} \\frac{1-v}{4}\u0026-\\frac v2\\ -\\frac v2\u0026\\frac{1-v}{4} \\end{pmatrix}. \\]\n其本征值：\n\\[ \\frac{1-v}{4}+\\frac v2 \\frac{1+v}{4}, \\]\n以及：\n\\[ \\frac{1-v}{4}-\\frac v2 \\frac{1-3v}{4}. \\]\n其余两个本征值均为：\n\\[ \\frac{1+v}{4}. \\]\n因此：\n\\[ \\operatorname{spec}(\\rho_W^{T_B}) \\left{ \\frac{1+v}{4}, \\frac{1+v}{4}, \\frac{1+v}{4}, \\frac{1-3v}{4} \\right}. \\]\nPPT 条件：\n\\[ \\frac{1-3v}{4}\\geq0. \\]\n即：\n\\[ \\boxed{ v\\leq\\frac13. } \\]\n由于该系统是 \\(2\\times2\\)，PPT 条件也是充分条件。\n因此：\n\\[ \\boxed{ \\rho_W\\text{ 可分} \\iff v\\leq\\frac13. } \\]\n相应地：\n\\[ \\boxed{ \\rho_W\\text{ 纠缠} \\iff v\u003e\\frac13. } \\]\n9.5 Werner 态的 CHSH 违反阈值 对理想单态，最优 CHSH 值为：\n\\[ 2\\sqrt2. \\]\n混入白噪声后：\n\\[ \\boxed{ S_{\\max}=2\\sqrt2v. } \\]\nBell 违反条件：\n\\[ 2\\sqrt2v\u003e2. \\]\n因此：\n\\[ \\boxed{ v\u003e\\frac1{\\sqrt2}. } \\]\n于是出现三个区域：\n\\[ 0\\leq v\\leq\\frac13: \\quad \\text{可分}; \\]\n\\[ \\frac13","wordCount":"2149","inLanguage":"en","datePublished":"2026-11-05T00:00:00Z","dateModified":"2026-11-05T00:00:00Z","author":{"@type":"Person","name":"Linmythos"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF%E4%B8%8E%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E5%9F%BA%E7%A1%80/%E9%87%8F%E5%AD%90%E7%BA%A0%E7%BC%A0%E4%B8%8E%E9%87%8F%E5%AD%90%E5%85%B3%E8%81%94/"},"publisher":{"@type":"Organization","name":"Linmythos","logo":{"@type":"ImageObject","url":"https://linmythos.github.io/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://linmythos.github.io/ accesskey=h title="Linmythos (Alt + H)">Linmythos</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://linmythos.github.io/math/ title=Mathematics><span>Mathematics</span></a></li><li><a href=https://linmythos.github.io/physics/ title=Physics><span>Physics</span></a></li><li><a href=https://linmythos.github.io/ai/ title=AI><span>AI</span></a></li><li><a href=https://linmythos.github.io/neural-science/ title="Neural Science"><span>Neural Science</span></a></li><li><a href=https://linmythos.github.io/essays/ title=Essays><span>Essays</span></a></li><li><a href=https://linmythos.github.io/about/ title=About><span>About</span></a></li><li><a href=https://linmythos.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://linmythos.github.io/archives/ title=Archives><span>Archives</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">量子纠缠与量子关联</h1><div class=post-meta><span title='2026-11-05 00:00:00 +0000 UTC'>November 5, 2026</span>&nbsp;·&nbsp;<span>11 min</span>&nbsp;·&nbsp;<span>Linmythos</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><li><a href=#%e9%87%8f%e5%ad%90%e4%bf%a1%e6%81%af%e4%b8%8e%e9%87%8f%e5%ad%90%e8%ae%a1%e7%ae%97%e5%9f%ba%e7%a1%80%e8%ae%b2%e4%b9%89%e4%b8%89 aria-label=量子信息与量子计算基础讲义（三）>量子信息与量子计算基础讲义（三）</a><ul><li><a href=#%e6%9c%ac%e7%af%87%e7%9b%ae%e6%a0%87 aria-label=本篇目标>本篇目标</a></li></ul></li><li><a href=#%e7%ac%ac%e4%b8%80%e7%ab%a0-%e7%ba%a0%e7%bc%a0%e7%9a%84%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5 aria-label="第一章 纠缠的基本概念">第一章 纠缠的基本概念</a><ul><li><a href=#11-%e4%bb%8e%e5%a4%8d%e5%90%88%e7%b3%bb%e7%bb%9f%e5%87%ba%e5%8f%91 aria-label="1.1 从复合系统出发">1.1 从复合系统出发</a></li><li><a href=#12-%e7%ba%af%e6%80%81%e7%ba%a0%e7%bc%a0%e7%9a%84%e5%ae%9a%e4%b9%89 aria-label="1.2 纯态纠缠的定义">1.2 纯态纠缠的定义</a></li><li><a href=#13-%e7%ba%a0%e7%bc%a0%e4%b8%8d%e7%ad%89%e4%ba%8e%e5%8f%a0%e5%8a%a0 aria-label="1.3 纠缠不等于叠加">1.3 纠缠不等于叠加</a></li></ul></li><li><a href=#%e7%ac%ac%e4%ba%8c%e7%ab%a0-schmidt-%e5%88%86%e8%a7%a3 aria-label="第二章 Schmidt 分解">第二章 Schmidt 分解</a><ul><li><a href=#21-%e5%ae%9a%e7%90%86%e9%99%88%e8%bf%b0 aria-label="2.1 定理陈述">2.1 定理陈述</a></li><li><a href=#22-schmidt-%e5%88%86%e8%a7%a3%e7%9a%84%e7%9f%a9%e9%98%b5%e6%8e%a8%e5%af%bc aria-label="2.2 Schmidt 分解的矩阵推导">2.2 Schmidt 分解的矩阵推导</a></li><li><a href=#23-schmidt-%e5%88%86%e8%a7%a3%e7%9a%84%e5%94%af%e4%b8%80%e6%80%a7 aria-label="2.3 Schmidt 分解的唯一性">2.3 Schmidt 分解的唯一性</a></li><li><a href=#24-%e7%ba%a6%e5%8c%96%e5%af%86%e5%ba%a6%e7%9f%a9%e9%98%b5 aria-label="2.4 约化密度矩阵">2.4 约化密度矩阵</a></li></ul></li><li><a href=#langle-v_jv_irangle aria-label="\langle v_j|v_i\rangle">\langle v_j|v_i\rangle</a><ul><li><a href=#25-%e7%ba%af%e6%80%81%e7%ba%a0%e7%bc%a0%e5%88%a4%e6%8d%ae aria-label="2.5 纯态纠缠判据">2.5 纯态纠缠判据</a></li><li><a href=#26-schmidt-%e7%a7%a9%e7%9a%84%e4%be%8b%e5%ad%90 aria-label="2.6 Schmidt 秩的例子">2.6 Schmidt 秩的例子</a></li></ul></li><li><a href=#frac49frac19 aria-label=\frac49+\frac19>\frac49+\frac19</a></li><li><a href=#%e7%ac%ac%e4%b8%89%e7%ab%a0-bell-%e6%80%81%e4%b8%8e%e6%9c%80%e5%a4%a7%e7%ba%a0%e7%bc%a0%e6%80%81 aria-label="第三章 Bell 态与最大纠缠态">第三章 Bell 态与最大纠缠态</a><ul><li><a href=#31-%e5%9b%9b%e4%b8%aa-bell-%e6%80%81 aria-label="3.1 四个 Bell 态">3.1 四个 Bell 态</a></li><li><a href=#32-bell-%e6%80%81%e7%9a%84%e7%ba%a6%e5%8c%96%e5%af%86%e5%ba%a6%e7%9f%a9%e9%98%b5 aria-label="3.2 Bell 态的约化密度矩阵">3.2 Bell 态的约化密度矩阵</a></li><li><a href=#33-%e6%9c%80%e5%a4%a7%e7%ba%a0%e7%bc%a0%e6%80%81 aria-label="3.3 最大纠缠态">3.3 最大纠缠态</a></li><li><a href=#34-bell-%e6%80%81%e7%9a%84-pauli-%e5%85%b3%e8%81%94 aria-label="3.4 Bell 态的 Pauli 关联">3.4 Bell 态的 Pauli 关联</a></li><li><a href=#35-bell-%e6%80%81%e7%9a%84%e5%85%b3%e8%81%94%e7%9f%a9%e9%98%b5 aria-label="3.5 Bell 态的关联矩阵">3.5 Bell 态的关联矩阵</a></li></ul></li><li><a href=#%e7%ac%ac%e5%9b%9b%e7%ab%a0-%e6%b7%b7%e6%80%81%e7%ba%a0%e7%bc%a0%e4%b8%8e%e5%8f%af%e5%88%86%e6%80%a7 aria-label="第四章 混态纠缠与可分性">第四章 混态纠缠与可分性</a><ul><li><a href=#41-%e5%8f%af%e5%88%86%e6%b7%b7%e6%80%81 aria-label="4.1 可分混态">4.1 可分混态</a></li><li><a href=#42-%e7%bb%8f%e5%85%b8%e7%9b%b8%e5%85%b3%e4%bd%86%e4%b8%8d%e7%ba%a0%e7%bc%a0%e7%9a%84%e7%8a%b6%e6%80%81 aria-label="4.2 经典相关但不纠缠的状态">4.2 经典相关但不纠缠的状态</a></li><li><a href=#43-%e7%bb%8f%e5%85%b8%e7%9b%b8%e5%85%b3%e4%b8%8e%e9%87%8f%e5%ad%90%e7%9b%b8%e5%b9%b2%e7%9a%84%e5%8c%ba%e5%88%ab aria-label="4.3 经典相关与量子相干的区别">4.3 经典相关与量子相干的区别</a></li></ul></li><li><a href=#%e7%ac%ac%e4%ba%94%e7%ab%a0-%e9%83%a8%e5%88%86%e8%bd%ac%e7%bd%ae%e4%b8%8e-ppt-%e5%88%a4%e6%8d%ae aria-label="第五章 部分转置与 PPT 判据">第五章 部分转置与 PPT 判据</a><ul><li><a href=#51-%e9%83%a8%e5%88%86%e8%bd%ac%e7%bd%ae%e7%9a%84%e5%ae%9a%e4%b9%89 aria-label="5.1 部分转置的定义">5.1 部分转置的定义</a></li><li><a href=#52-ppt-%e5%88%a4%e6%8d%ae aria-label="5.2 PPT 判据">5.2 PPT 判据</a></li><li><a href=#53-bell-%e6%80%81%e7%9a%84%e9%83%a8%e5%88%86%e8%bd%ac%e7%bd%ae aria-label="5.3 Bell 态的部分转置">5.3 Bell 态的部分转置</a></li><li><a href=#54-ppt-%e5%85%85%e8%a6%81%e6%9d%a1%e4%bb%b6%e7%9a%84%e9%80%82%e7%94%a8%e8%8c%83%e5%9b%b4 aria-label="5.4 PPT 充要条件的适用范围">5.4 PPT 充要条件的适用范围</a></li></ul></li><li><a href=#%e7%ac%ac%e5%85%ad%e7%ab%a0-%e7%ba%a0%e7%bc%a0%e8%a7%81%e8%af%81 aria-label="第六章 纠缠见证">第六章 纠缠见证</a><ul><li><a href=#61-%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e7%ba%a0%e7%bc%a0%e8%a7%81%e8%af%81 aria-label="6.1 为什么需要纠缠见证？">6.1 为什么需要纠缠见证？</a></li><li><a href=#62-bell-%e6%80%81%e7%9a%84%e7%ba%a0%e7%bc%a0%e8%a7%81%e8%af%81 aria-label="6.2 Bell 态的纠缠见证">6.2 Bell 态的纠缠见证</a></li></ul></li><li><a href=#frac12-1 aria-label=\frac12-1>\frac12-1</a><ul><li><a href=#63-%e5%ae%9e%e9%aa%8c%e6%84%8f%e4%b9%89 aria-label="6.3 实验意义">6.3 实验意义</a></li></ul></li><li><a href=#%e7%ac%ac%e4%b8%83%e7%ab%a0-%e9%87%8f%e5%ad%90%e5%85%b3%e8%81%94%e7%9a%84%e6%95%b0%e5%ad%a6%e6%8f%8f%e8%bf%b0 aria-label="第七章 量子关联的数学描述">第七章 量子关联的数学描述</a><ul><li><a href=#71-%e8%81%94%e5%90%88%e6%a6%82%e7%8e%87%e5%88%86%e5%b8%83 aria-label="7.1 联合概率分布">7.1 联合概率分布</a></li><li><a href=#72-%e8%be%b9%e7%bc%98%e6%a6%82%e7%8e%87 aria-label="7.2 边缘概率">7.2 边缘概率</a></li></ul></li><li><a href=#heading aria-label=\[>\[</a><ul><li><a href=#73-%e5%85%b3%e8%81%94%e5%87%bd%e6%95%b0 aria-label="7.3 关联函数">7.3 关联函数</a></li><li><a href=#74-bell-%e6%80%81%e7%9a%84%e5%85%b3%e8%81%94%e8%ae%a1%e7%ae%97 aria-label="7.4 Bell 态的关联计算">7.4 Bell 态的关联计算</a></li></ul></li><li><a href=#%e7%ac%ac%e5%85%ab%e7%ab%a0-%e9%87%8f%e5%ad%90%e5%85%b3%e8%81%94%e7%9a%84%e4%b8%89%e7%a7%8d%e9%87%8d%e8%a6%81%e5%b1%82%e6%ac%a1 aria-label="第八章 量子关联的三种重要层次">第八章 量子关联的三种重要层次</a><ul><li><a href=#81-%e5%8f%af%e5%88%86%e5%85%b3%e8%81%94 aria-label="8.1 可分关联">8.1 可分关联</a></li><li><a href=#82-%e5%b1%80%e5%9f%9f%e9%9a%90%e5%8f%98%e9%87%8f%e6%a8%a1%e5%9e%8b aria-label="8.2 局域隐变量模型">8.2 局域隐变量模型</a></li><li><a href=#83-quantum-steering aria-label="8.3 Quantum Steering">8.3 Quantum Steering</a></li><li><a href=#84-%e4%b8%89%e7%a7%8d%e5%85%b3%e8%81%94%e7%9a%84%e5%85%b3%e7%b3%bb aria-label="8.4 三种关联的关系">8.4 三种关联的关系</a></li></ul></li><li><a href=#%e7%ac%ac%e4%b9%9d%e7%ab%a0-werner-%e6%80%81%e4%b8%8e%e5%85%b3%e8%81%94%e9%98%88%e5%80%bc aria-label="第九章 Werner 态与关联阈值">第九章 Werner 态与关联阈值</a><ul><li><a href=#91-werner-%e6%80%81 aria-label="9.1 Werner 态">9.1 Werner 态</a></li><li><a href=#92-werner-%e6%80%81%e7%9a%84%e7%ba%a6%e5%8c%96%e6%80%81 aria-label="9.2 Werner 态的约化态">9.2 Werner 态的约化态</a></li><li><a href=#93-werner-%e6%80%81%e7%9a%84%e5%85%b3%e8%81%94%e5%87%bd%e6%95%b0 aria-label="9.3 Werner 态的关联函数">9.3 Werner 态的关联函数</a></li><li><a href=#94-werner-%e6%80%81%e7%9a%84-ppt-%e5%88%a4%e6%8d%ae aria-label="9.4 Werner 态的 PPT 判据">9.4 Werner 态的 PPT 判据</a></li><li><a href=#95-werner-%e6%80%81%e7%9a%84-chsh-%e8%bf%9d%e5%8f%8d%e9%98%88%e5%80%bc aria-label="9.5 Werner 态的 CHSH 违反阈值">9.5 Werner 态的 CHSH 违反阈值</a></li></ul></li><li><a href=#%e7%ac%ac%e5%8d%81%e7%ab%a0-%e5%ae%9e%e9%aa%8c%e4%b8%ad%e7%9a%84%e7%ba%a0%e7%bc%a0%e9%aa%8c%e8%af%81 aria-label="第十章 实验中的纠缠验证">第十章 实验中的纠缠验证</a><ul><li><a href=#101-%e5%ae%9e%e9%aa%8c%e4%bb%bb%e5%8a%a1 aria-label="10.1 实验任务">10.1 实验任务</a></li><li><a href=#102-%e5%85%b3%e8%81%94%e6%b5%8b%e9%87%8f aria-label="10.2 关联测量">10.2 关联测量</a></li><li><a href=#103-bell-%e6%80%81%e4%bf%9d%e7%9c%9f%e5%ba%a6 aria-label="10.3 Bell 态保真度">10.3 Bell 态保真度</a></li><li><a href=#104-%e7%94%b1%e5%ae%9e%e9%aa%8c%e6%95%b0%e6%8d%ae%e6%9e%84%e9%80%a0%e7%ba%a0%e7%bc%a0%e8%a7%81%e8%af%81 aria-label="10.4 由实验数据构造纠缠见证">10.4 由实验数据构造纠缠见证</a></li><li><a href=#105-%e7%bb%9f%e8%ae%a1%e8%af%af%e5%b7%ae aria-label="10.5 统计误差">10.5 统计误差</a></li></ul></li><li><a href=#%e7%ac%ac%e5%8d%81%e4%b8%80%e7%ab%a0-%e6%9c%ac%e7%af%87%e6%80%bb%e7%bb%93 aria-label="第十一章 本篇总结">第十一章 本篇总结</a></li><li><a href=#%e7%ac%ac%e5%8d%81%e4%ba%8c%e7%ab%a0-%e4%b9%a0%e9%a2%98 aria-label="第十二章 习题">第十二章 习题</a><ul><li><a href=#%e7%ac%ac%e4%b8%80%e7%bb%84schmidt-%e5%88%86%e8%a7%a3 aria-label="第一组：Schmidt 分解">第一组：Schmidt 分解</a></li><li><a href=#%e7%ac%ac%e4%ba%8c%e7%bb%84%e6%b7%b7%e6%80%81%e7%ba%a0%e7%bc%a0 aria-label=第二组：混态纠缠>第二组：混态纠缠</a></li><li><a href=#%e7%ac%ac%e4%b8%89%e7%bb%84%e9%87%8f%e5%ad%90%e5%85%b3%e8%81%94 aria-label=第三组：量子关联>第三组：量子关联</a></li><li><a href=#%e7%ac%ac%e5%9b%9b%e7%bb%84%e5%ae%9e%e9%aa%8c%e5%88%86%e6%9e%90 aria-label=第四组：实验分析>第四组：实验分析</a></li></ul></li><li><a href=#%e8%bf%9b%e4%b8%80%e6%ad%a5%e9%98%85%e8%af%bb aria-label=进一步阅读>进一步阅读</a></li><li><a href=#%e4%b8%8b%e4%b8%80%e7%af%87%e9%a2%84%e5%91%8a aria-label=下一篇预告>下一篇预告</a></li></ul></div></details><div class="post-content md-content"><h1 id=量子信息与量子计算基础讲义三>量子信息与量子计算基础讲义（三）<a hidden class=anchor aria-hidden=true href=#量子信息与量子计算基础讲义三>#</a></h1><p><strong>Quantum Entanglement and Quantum Correlations</strong></p><hr><h2 id=本篇目标>本篇目标<a hidden class=anchor aria-hidden=true href=#本篇目标>#</a></h2><p>本篇系统研究量子纠缠及其统计关联结构。</p><p>完成本篇后，应当能够：</p><ol><li>理解纠缠的数学定义及物理意义；</li><li>熟练使用 Schmidt 分解；</li><li>掌握纯态纠缠的判定；</li><li>理解混态可分性；</li><li>掌握部分转置与 PPT 判据；</li><li>理解纠缠见证；</li><li>掌握 Bell 态的关联性质；</li><li>区分纠缠、量子关联与 Bell 非局域性；</li><li>理解量子 steering；</li><li>为 QRAC、Bell 不等式和测量不相容性建立理论基础。</li></ol><hr><h1 id=第一章-纠缠的基本概念>第一章 纠缠的基本概念<a hidden class=anchor aria-hidden=true href=#第一章-纠缠的基本概念>#</a></h1><h2 id=11-从复合系统出发>1.1 从复合系统出发<a hidden class=anchor aria-hidden=true href=#11-从复合系统出发>#</a></h2><p>设两个量子系统分别具有希尔伯特空间：</p><p>\[
+\mathcal H_A,\qquad \mathcal H_B.
+\]</p><p>复合系统的希尔伯特空间为：</p><h1 id=mathcal-h_ab>\[
+\mathcal H_{AB}</h1><p>\mathcal H_A\otimes\mathcal H_B.
+\]</p><p>若两个系统分别处于：</p><p>\[
+|\psi\rangle_A,
+\qquad
+|\phi\rangle_B,
+\]</p><p>则整体状态为：</p><h1 id=psirangle_ab>\[
+|\Psi\rangle_{AB}</h1><p>|\psi\rangle_A\otimes|\phi\rangle_B.
+\]</p><p>例如：</p><h1 id=psirangle>\[
+|\Psi\rangle</h1><p>\frac{|0\rangle+|1\rangle}{\sqrt2}
+\otimes|0\rangle.
+\]</p><p>展开：</p><h1 id=psirangle-1>\[
+|\Psi\rangle</h1><p>\frac{|00\rangle+|10\rangle}{\sqrt2}.
+\]</p><p>这是一个乘积态。</p><p>然而，并不是所有双系统纯态都能写成这种形式。</p><p>例如：</p><h1 id=phirangle>\[
+|\Phi^+\rangle</h1><p>\frac{|00\rangle+|11\rangle}{\sqrt2}.
+\]</p><p>它不能分解为两个单体态的张量积。</p><p>这种不可分解性就是纯态纠缠的数学基础。</p><h2 id=12-纯态纠缠的定义>1.2 纯态纠缠的定义<a hidden class=anchor aria-hidden=true href=#12-纯态纠缠的定义>#</a></h2><p><strong>定义 1.1（乘积纯态）</strong></p><p>双系统纯态 \(|\psi\rangle_{AB}\) 若存在：</p><p>\[
+|\phi\rangle_A\in\mathcal H_A,
+\qquad
+|\chi\rangle_B\in\mathcal H_B
+\]</p><p>使得：</p><h1 id=psirangle_ab-1>\[
+|\psi\rangle_{AB}</h1><p>|\phi\rangle_A\otimes|\chi\rangle_B,
+\]</p><p>则称其为乘积态。</p><p><strong>定义 1.2（纠缠纯态）</strong></p><p>如果不存在上述分解，则称 \(|\psi\rangle_{AB}\) 为纠缠态。</p><p>这是针对纯态的定义。</p><p>对于混态，纠缠的定义需要推广，后面将专门讨论。</p><h2 id=13-纠缠不等于叠加>1.3 纠缠不等于叠加<a hidden class=anchor aria-hidden=true href=#13-纠缠不等于叠加>#</a></h2><p>考虑：</p><h1 id=psirangle-2>\[
+|\psi\rangle</h1><p>\frac{|00\rangle+|10\rangle}{\sqrt2}.
+\]</p><p>将其提取公因子：</p><h1 id=psirangle-3>\[
+|\psi\rangle</h1><p>\frac{|0\rangle+|1\rangle}{\sqrt2}
+\otimes|0\rangle.
+\]</p><p>因此它是乘积态。</p><p>而：</p><h1 id=phirangle-1>\[
+|\Phi^+\rangle</h1><p>\frac{|00\rangle+|11\rangle}{\sqrt2}
+\]</p><p>是纠缠态。</p><p>两者都有叠加形式，但只有后者不可分解。</p><p>所以：</p><p>\[
+\boxed{
+\text{叠加}\not\Rightarrow\text{纠缠}.
+}
+\]</p><p>纠缠描述的是复合系统整体状态无法分解为各子系统状态的张量积，而不是简单地描述某个态是否包含多个基矢量。</p><hr><h1 id=第二章-schmidt-分解>第二章 Schmidt 分解<a hidden class=anchor aria-hidden=true href=#第二章-schmidt-分解>#</a></h1><p>Schmidt 分解是研究双系统纯态纠缠最重要的数学工具。</p><h2 id=21-定理陈述>2.1 定理陈述<a hidden class=anchor aria-hidden=true href=#21-定理陈述>#</a></h2><p><strong>定理 2.1（Schmidt 分解定理）</strong></p><p>任意双系统纯态：</p><p>\[
+|\psi\rangle_{AB}
+\in\mathcal H_A\otimes\mathcal H_B
+\]</p><p>都存在两组正交归一基：</p><p>\[
+{|u_i\rangle_A},
+\qquad
+{|v_i\rangle_B},
+\]</p><p>使得：</p><h1 id=psirangle_ab-2>\[
+\boxed{
+|\psi\rangle_{AB}</h1><p>\sum_{i=1}^{r}
+\sqrt{\lambda_i}
+|u_i\rangle_A\otimes|v_i\rangle_B.
+}
+\]</p><p>其中：</p><p>\[
+\lambda_i>0,
+\qquad
+\sum_{i=1}^{r}\lambda_i=1.
+\]</p><p>这里的 \(r\) 称为 Schmidt 秩。</p><p>并且：</p><p>\[
+r\leq\min(d_A,d_B).
+\]</p><h2 id=22-schmidt-分解的矩阵推导>2.2 Schmidt 分解的矩阵推导<a hidden class=anchor aria-hidden=true href=#22-schmidt-分解的矩阵推导>#</a></h2><p>设：</p><p>\[
+\dim\mathcal H_A=d_A,
+\qquad
+\dim\mathcal H_B=d_B.
+\]</p><p>选取两侧的正交基：</p><p>\[
+{|i\rangle_A},
+\qquad
+{|j\rangle_B}.
+\]</p><p>任意双系统纯态可以写成：</p><h1 id=psirangle-4>\[
+|\psi\rangle</h1><p>\sum_{i=1}^{d_A}
+\sum_{j=1}^{d_B}
+c_{ij}|i\rangle_A|j\rangle_B.
+\]</p><p>将系数写成矩阵：</p><p>\[
+C=(c_{ij}).
+\]</p><p>对 \(C\) 作奇异值分解：</p><p>\[
+C=U\Sigma V^\dagger.
+\]</p><p>其中：</p><ul><li>\(U,V\) 是酉矩阵；</li><li>\(\Sigma\) 是非负对角矩阵；</li><li>\(\Sigma\) 的非零对角元为奇异值。</li></ul><p>记这些奇异值为：</p><p>\[
+s_1,\ldots,s_r.
+\]</p><p>定义新基：</p><h1 id=u_krangle>\[
+|u_k\rangle</h1><p>\sum_iU_{ik}|i\rangle,
+\]</p><h1 id=v_krangle>\[
+|v_k\rangle</h1><p>\sum_jV_{jk}^*|j\rangle.
+\]</p><p>则：</p><h1 id=psirangle-5>\[
+|\psi\rangle</h1><p>\sum_{k=1}^{r}s_k
+|u_k\rangle|v_k\rangle.
+\]</p><p>由于原态归一化：</p><h1 id=langlepsipsirangle>\[
+\langle\psi|\psi\rangle</h1><p>\sum_ks_k^2=1.
+\]</p><p>令：</p><p>\[
+\lambda_k=s_k^2,
+\]</p><p>即得：</p><h1 id=psirangle-6>\[
+\boxed{
+|\psi\rangle</h1><p>\sum_{k=1}^{r}
+\sqrt{\lambda_k}
+|u_k\rangle|v_k\rangle.
+}
+\]</p><p>证毕。</p><h2 id=23-schmidt-分解的唯一性>2.3 Schmidt 分解的唯一性<a hidden class=anchor aria-hidden=true href=#23-schmidt-分解的唯一性>#</a></h2><p>Schmidt 系数的集合：</p><p>\[
+{\lambda_i}
+\]</p><p>在忽略排列顺序后是唯一的。</p><p>但当存在简并 Schmidt 系数时，对应子空间中的 Schmidt 基不一定唯一。</p><p>因此，纠缠程度由 Schmidt 系数决定，而不依赖某个具体的 Schmidt 基选择。</p><h2 id=24-约化密度矩阵>2.4 约化密度矩阵<a hidden class=anchor aria-hidden=true href=#24-约化密度矩阵>#</a></h2><p>考虑：</p><h1 id=psirangle-7>\[
+|\psi\rangle</h1><p>\sum_i\sqrt{\lambda_i}
+|u_i\rangle|v_i\rangle.
+\]</p><p>整体密度矩阵：</p><h1 id=rho_ab>\[
+\rho_{AB}</h1><p>|\psi\rangle\langle\psi|.
+\]</p><p>展开：</p><h1 id=rho_ab-1>\[
+\rho_{AB}</h1><p>\sum_{i,j}
+\sqrt{\lambda_i\lambda_j}
+|u_i\rangle\langle u_j|
+\otimes
+|v_i\rangle\langle v_j|.
+\]</p><p>对系统 \(B\) 取偏迹：</p><h1 id=rho_a>\[
+\rho_A</h1><p>\operatorname{Tr}<em>B(\rho</em>{AB}).
+\]</p><p>利用：</p><h1 id=v_iranglelangle-v_j>\[
+\operatorname{Tr}
+(|v_i\rangle\langle v_j|)</h1><h1 id=langle-v_jv_irangle>\langle v_j|v_i\rangle<a hidden class=anchor aria-hidden=true href=#langle-v_jv_irangle>#</a></h1><p>\delta_{ij},
+\]</p><p>得到：</p><h1 id=rho_a-1>\[
+\boxed{
+\rho_A</h1><p>\sum_i\lambda_i
+|u_i\rangle\langle u_i|.
+}
+\]</p><p>同理：</p><h1 id=rho_b>\[
+\boxed{
+\rho_B</h1><p>\sum_i\lambda_i
+|v_i\rangle\langle v_i|.
+}
+\]</p><p>因此，两个约化态拥有相同的非零本征值。</p><p>这意味着：</p><h1 id=operatornamespec_neq0rho_a>\[
+\boxed{
+\operatorname{spec}_{\neq0}(\rho_A)</h1><p>\operatorname{spec}_{\neq0}(\rho_B).
+}
+\]</p><h2 id=25-纯态纠缠判据>2.5 纯态纠缠判据<a hidden class=anchor aria-hidden=true href=#25-纯态纠缠判据>#</a></h2><p>由 Schmidt 分解直接得到：</p><p><strong>定理 2.2</strong></p><p>对于双系统纯态，以下命题等价：</p><ol><li>\(|\psi\rangle_{AB}\) 是乘积态；</li><li>Schmidt 秩为 1；</li><li>\(\rho_A\) 是纯态；</li><li>\(\rho_B\) 是纯态；</li><li>\(\operatorname{Tr}(\rho_A^2)=1\)；</li><li>\(\operatorname{Tr}(\rho_B^2)=1\)。</li></ol><p>因此：</p><p>\[
+\boxed{
+|\psi\rangle_{AB}\text{ 纠缠}
+\iff
+\operatorname{Tr}(\rho_A^2)&lt;1.
+}
+\]</p><p>这条结论只适用于整体纯态，不能直接推广到混态。</p><h2 id=26-schmidt-秩的例子>2.6 Schmidt 秩的例子<a hidden class=anchor aria-hidden=true href=#26-schmidt-秩的例子>#</a></h2><p>考虑：</p><h1 id=psirangle-8>\[
+|\psi\rangle</h1><p>\sqrt{\frac23}|00\rangle
++
+\sqrt{\frac13}|11\rangle.
+\]</p><p>它已经处于 Schmidt 形式。</p><p>Schmidt 系数平方为：</p><p>\[
+\lambda_1=\frac23,
+\qquad
+\lambda_2=\frac13.
+\]</p><p>所以：</p><h1 id=rho_a-2>\[
+\rho_A</h1><p>\frac23|0\rangle\langle0|
++
+\frac13|1\rangle\langle1|.
+\]</p><p>其纯度：</p><h1 id=operatornametrrho_a2>\[
+\operatorname{Tr}(\rho_A^2)</h1><h1 id=frac49frac19>\frac49+\frac19<a hidden class=anchor aria-hidden=true href=#frac49frac19>#</a></h1><p>\frac59.
+\]</p><p>由于：</p><p>\[
+\frac59&lt;1,
+\]</p><p>所以该态是纠缠态。</p><hr><h1 id=第三章-bell-态与最大纠缠态>第三章 Bell 态与最大纠缠态<a hidden class=anchor aria-hidden=true href=#第三章-bell-态与最大纠缠态>#</a></h1><h2 id=31-四个-bell-态>3.1 四个 Bell 态<a hidden class=anchor aria-hidden=true href=#31-四个-bell-态>#</a></h2><p>定义：</p><h1 id=phirangle-2>\[
+|\Phi^+\rangle</h1><p>\frac{|00\rangle+|11\rangle}{\sqrt2},
+\]</p><h1 id=phi-rangle>\[
+|\Phi^-\rangle</h1><p>\frac{|00\rangle-|11\rangle}{\sqrt2},
+\]</p><h1 id=psirangle-9>\[
+|\Psi^+\rangle</h1><p>\frac{|01\rangle+|10\rangle}{\sqrt2},
+\]</p><h1 id=psi-rangle>\[
+|\Psi^-\rangle</h1><p>\frac{|01\rangle-|10\rangle}{\sqrt2}.
+\]</p><p>它们满足：</p><p>\[
+\langle\Phi^+|\Phi^-\rangle=0,
+\]</p><p>其余两两内积也为零。</p><p>因此：</p><p>\[
+\boxed{
+{
+|\Phi^+\rangle,
+|\Phi^-\rangle,
+|\Psi^+\rangle,
+|\Psi^-\rangle
+}
+}
+\]</p><p>构成双量子比特空间的一组正交归一基，称为 Bell 基。</p><h2 id=32-bell-态的约化密度矩阵>3.2 Bell 态的约化密度矩阵<a hidden class=anchor aria-hidden=true href=#32-bell-态的约化密度矩阵>#</a></h2><p>以：</p><h1 id=phirangle-3>\[
+|\Phi^+\rangle</h1><p>\frac{|00\rangle+|11\rangle}{\sqrt2}
+\]</p><p>为例。</p><p>其整体密度矩阵：</p><h1 id=rho_phi>\[
+\rho_{\Phi^+}</h1><p>\frac12
+\left(
+|00\rangle\langle00|
++
+|00\rangle\langle11|
++
+|11\rangle\langle00|
++
+|11\rangle\langle11|
+\right).
+\]</p><p>取偏迹：</p><h1 id=rho_a-3>\[
+\rho_A</h1><p>\frac I2,
+\qquad
+\rho_B=\frac I2.
+\]</p><p>同理，四个 Bell 态都满足：</p><p>\[
+\boxed{
+\rho_A=\rho_B=\frac I2.
+}
+\]</p><p>所以：</p><p>\[
+\operatorname{Tr}(\rho_A^2)=\frac12.
+\]</p><p>它们都是最大纠缠态。</p><h2 id=33-最大纠缠态>3.3 最大纠缠态<a hidden class=anchor aria-hidden=true href=#33-最大纠缠态>#</a></h2><p><strong>定义 3.1（最大纠缠纯态）</strong></p><p>对一个 \(d\times d\) 双系统纯态，若其约化态为：</p><p>\[
+\boxed{
+\rho_A=\rho_B=\frac I d,
+}
+\]</p><p>则称其为最大纠缠态。</p><p>等价地，其 Schmidt 系数满足：</p><p>\[
+\lambda_i=\frac1d.
+\]</p><p>因此：</p><h1 id=psirangle-10>\[
+|\psi\rangle</h1><p>\frac1{\sqrt d}
+\sum_{i=1}^{d}
+|u_i\rangle|v_i\rangle.
+\]</p><p>对两个量子比特：</p><p>\[
+d=2,
+\]</p><p>于是最大纠缠态的约化态为：</p><p>\[
+I/2.
+\]</p><h2 id=34-bell-态的-pauli-关联>3.4 Bell 态的 Pauli 关联<a hidden class=anchor aria-hidden=true href=#34-bell-态的-pauli-关联>#</a></h2><p>对：</p><h1 id=phirangle-4>\[
+|\Phi^+\rangle</h1><p>\frac{|00\rangle+|11\rangle}{\sqrt2},
+\]</p><p>可以计算：</p><p>\[
+\boxed{
+\langle\sigma_x\otimes\sigma_x\rangle=1,
+}
+\]</p><p>\[
+\boxed{
+\langle\sigma_y\otimes\sigma_y\rangle=-1,
+}
+\]</p><p>\[
+\boxed{
+\langle\sigma_z\otimes\sigma_z\rangle=1.
+}
+\]</p><p>而单体期望值均为零：</p><p>\[
+\langle\sigma_i\otimes I\rangle=0,
+\]</p><p>\[
+\langle I\otimes\sigma_i\rangle=0.
+\]</p><p>因此，两个局部系统各自呈现完全随机的统计结果，但它们之间存在强关联。</p><p>这正是量子纠缠的重要表现。</p><h2 id=35-bell-态的关联矩阵>3.5 Bell 态的关联矩阵<a hidden class=anchor aria-hidden=true href=#35-bell-态的关联矩阵>#</a></h2><p>定义：</p><h1 id=t_ij>\[
+T_{ij}</h1><p>\operatorname{Tr}
+[
+\rho(\sigma_i\otimes\sigma_j)
+].
+\]</p><p>对 \(|\Phi^+\rangle\)：</p><p>\[
+\boxed{
+T=
+\begin{pmatrix}
+1&amp;0&amp;0\
+0&-1&amp;0\
+0&amp;0&amp;1
+\end{pmatrix}.
+}
+\]</p><p>对于任意单位向量 \(\vec a,\vec b\)，定义：</p><p>\[
+A=\vec a\cdot\vec\sigma,
+\qquad
+B=\vec b\cdot\vec\sigma.
+\]</p><p>则：</p><h1 id=evec-avec-b>\[
+E(\vec a,\vec b)</h1><p>\langle A\otimes B\rangle.
+\]</p><p>利用关联矩阵：</p><h1 id=evec-avec-b-1>\[
+\boxed{
+E(\vec a,\vec b)</h1><p>\vec a^{,T}T\vec b.
+}
+\]</p><p>对 \(|\Phi^+\rangle\)：</p><h1 id=evec-avec-b-2>\[
+\boxed{
+E(\vec a,\vec b)</h1><p>a_xb_x-a_yb_y+a_zb_z.
+}
+\]</p><p>这条公式将 Bell 态的纠缠性质转化为实验可测的关联函数。</p><hr><h1 id=第四章-混态纠缠与可分性>第四章 混态纠缠与可分性<a hidden class=anchor aria-hidden=true href=#第四章-混态纠缠与可分性>#</a></h1><p>纯态纠缠由 Schmidt 分解完全刻画，但混态的情况复杂得多。</p><h2 id=41-可分混态>4.1 可分混态<a hidden class=anchor aria-hidden=true href=#41-可分混态>#</a></h2><p><strong>定义 4.1（可分态）</strong></p><p>双系统密度矩阵 \(\rho_{AB}\) 若存在概率分布 \(p_i\) 和局域密度矩阵 \(\rho_A^{(i)},\rho_B^{(i)}\)，使得：</p><h1 id=rho_ab-2>\[
+\boxed{
+\rho_{AB}</h1><p>\sum_i p_i
+\rho_A^{(i)}\otimes\rho_B^{(i)},
+}
+\]</p><p>则称其为可分态。</p><p>若不存在这样的分解，则称为纠缠态。</p><p>注意：</p><p>\[
+\rho_{AB}
+\]</p><p>即使不能写成单个乘积：</p><p>\[
+\rho_A\otimes\rho_B,
+\]</p><p>也可能是可分混态。</p><h2 id=42-经典相关但不纠缠的状态>4.2 经典相关但不纠缠的状态<a hidden class=anchor aria-hidden=true href=#42-经典相关但不纠缠的状态>#</a></h2><p>考虑：</p><h1 id=rho_ab-3>\[
+\rho_{AB}</h1><p>\frac12|00\rangle\langle00|
++
+\frac12|11\rangle\langle11|.
+\]</p><p>它显然具有可分分解：</p><h1 id=rho_ab-4>\[
+\rho_{AB}</h1><p>\frac12
+(|0\rangle\langle0|)
+\otimes
+(|0\rangle\langle0|)
++
+\frac12
+(|1\rangle\langle1|)
+\otimes
+(|1\rangle\langle1|).
+\]</p><p>因此：</p><p>\[
+\boxed{\rho_{AB}\text{ 可分}.}
+\]</p><p>但它并不是两个独立系统的乘积态。</p><p>因为：</p><p>\[
+\rho_A=\rho_B=\frac I2,
+\]</p><p>而：</p><h1 id=rho_aotimesrho_b>\[
+\rho_A\otimes\rho_B</h1><p>\frac I4.
+\]</p><p>显然：</p><p>\[
+\rho_{AB}\neq\rho_A\otimes\rho_B.
+\]</p><p>所以它具有相关性，但没有纠缠。</p><p>这说明：</p><p>\[
+\boxed{
+\text{相关性}\not\Rightarrow\text{纠缠}.
+}
+\]</p><h2 id=43-经典相关与量子相干的区别>4.3 经典相关与量子相干的区别<a hidden class=anchor aria-hidden=true href=#43-经典相关与量子相干的区别>#</a></h2><p>比较两个状态：</p><h1 id=rho_1>\[
+\rho_1</h1><p>\frac12
+(|00\rangle\langle00|
++
+|11\rangle\langle11|),
+\]</p><h1 id=rho_2>\[
+\rho_2</h1><p>|\Phi^+\rangle\langle\Phi^+|.
+\]</p><p>第二个状态展开为：</p><h1 id=rho_2-1>\[
+\rho_2</h1><p>\frac12
+\left(
+|00\rangle\langle00|
++
+|00\rangle\langle11|
++
+|11\rangle\langle00|
++
+|11\rangle\langle11|
+\right).
+\]</p><p>两者的区别在于：</p><p>\[
+\rho_2
+\]</p><p>包含非零的非对角相干项，而：</p><p>\[
+\rho_1
+\]</p><p>不包含这些项。</p><p>两者具有相同的计算基联合概率：</p><p>\[
+p(00)=p(11)=\frac12.
+\]</p><p>但在其他测量基下，它们会表现出不同的统计关联。</p><hr><h1 id=第五章-部分转置与-ppt-判据>第五章 部分转置与 PPT 判据<a hidden class=anchor aria-hidden=true href=#第五章-部分转置与-ppt-判据>#</a></h1><h2 id=51-部分转置的定义>5.1 部分转置的定义<a hidden class=anchor aria-hidden=true href=#51-部分转置的定义>#</a></h2><p>设：</p><h1 id=rho_ab-5>\[
+\rho_{AB}</h1><p>\sum_{i,j,k,l}
+\rho_{ij,kl}
+|i\rangle\langle k|
+\otimes
+|j\rangle\langle l|.
+\]</p><p>定义对系统 \(B\) 的部分转置：</p><h1 id=rho_abt_b>\[
+\boxed{
+\rho_{AB}^{T_B}</h1><p>\sum_{i,j,k,l}
+\rho_{ij,kl}
+|i\rangle\langle k|
+\otimes
+|l\rangle\langle j|.
+}
+\]</p><p>直观上：</p><p>只对第二个系统的矩阵指标进行转置，第一系统保持不变。</p><h2 id=52-ppt-判据>5.2 PPT 判据<a hidden class=anchor aria-hidden=true href=#52-ppt-判据>#</a></h2><p><strong>定理 5.1（Peres 必要条件）</strong></p><p>若双系统态 \(\rho_{AB}\) 可分，则：</p><p>\[
+\boxed{
+\rho_{AB}^{T_B}\geq0.
+}
+\]</p><p><strong>证明</strong></p><p>假设：</p><h1 id=rho_ab-6>\[
+\rho_{AB}</h1><p>\sum_i p_i\rho_A^{(i)}\otimes\rho_B^{(i)}.
+\]</p><p>则：</p><h1 id=rho_abt_b-1>\[
+\rho_{AB}^{T_B}</h1><p>\sum_i p_i
+\rho_A^{(i)}
+\otimes
+(\rho_B^{(i)})^T.
+\]</p><p>因为密度矩阵的转置仍然是正半定矩阵：</p><p>\[
+(\rho_B^{(i)})^T\geq0.
+\]</p><p>张量积保持正半定性，因此：</p><p>\[
+\rho_A^{(i)}
+\otimes
+(\rho_B^{(i)})^T
+\geq0.
+\]</p><p>又由于 \(p_i\geq0\)，正半定矩阵的非负线性组合仍然正半定。</p><p>所以：</p><p>\[
+\rho_{AB}^{T_B}\geq0.
+\]</p><p>证毕。</p><p>因此：</p><p>\[
+\boxed{
+\rho_{AB}^{T_B}\not\geq0
+\quad\Longrightarrow\quad
+\rho_{AB}\text{ 必为纠缠态}.
+}
+\]</p><p>这称为 PPT 判据的必要方向。</p><h2 id=53-bell-态的部分转置>5.3 Bell 态的部分转置<a hidden class=anchor aria-hidden=true href=#53-bell-态的部分转置>#</a></h2><p>考虑：</p><h1 id=rho_phi-1>\[
+\rho_{\Phi^+}</h1><p>\frac12
+\left(
+|00\rangle\langle00|
++
+|00\rangle\langle11|
++
+|11\rangle\langle00|
++
+|11\rangle\langle11|
+\right).
+\]</p><p>对第二个系统部分转置：</p><h1 id=00ranglelangle11t_b>\[
+(|00\rangle\langle11|)^{T_B}</h1><p>|01\rangle\langle10|,
+\]</p><h1 id=11ranglelangle00t_b>\[
+(|11\rangle\langle00|)^{T_B}</h1><p>|10\rangle\langle01|.
+\]</p><p>所以：</p><h1 id=rho_phit_b>\[
+\rho_{\Phi^+}^{T_B}</h1><p>\frac12
+\left(
+|00\rangle\langle00|
++
+|01\rangle\langle10|
++
+|10\rangle\langle01|
++
+|11\rangle\langle11|
+\right).
+\]</p><p>在基：</p><p>\[
+{|00\rangle,|01\rangle,|10\rangle,|11\rangle}
+\]</p><p>下：</p><h1 id=rho_phit_b-1>\[
+\boxed{
+\rho_{\Phi^+}^{T_B}</h1><p>\frac12
+\begin{pmatrix}
+1&amp;0&amp;0&amp;0\
+0&amp;0&amp;1&amp;0\
+0&amp;1&amp;0&amp;0\
+0&amp;0&amp;0&amp;1
+\end{pmatrix}.
+}
+\]</p><p>其本征值：</p><p>\[
+\frac12,\quad
+\frac12,\quad
+\frac12,\quad
+-\frac12.
+\]</p><p>存在负本征值。</p><p>因此：</p><p>\[
+\rho_{\Phi^+}^{T_B}\not\geq0.
+\]</p><p>所以 Bell 态是纠缠态。</p><h2 id=54-ppt-充要条件的适用范围>5.4 PPT 充要条件的适用范围<a hidden class=anchor aria-hidden=true href=#54-ppt-充要条件的适用范围>#</a></h2><p>对于：</p><p>\[
+2\times2
+\]</p><p>和：</p><p>\[
+2\times3
+\]</p><p>维双系统，PPT 条件不仅必要，而且充分。</p><p>即：</p><p>\[
+\boxed{
+\rho_{AB}\text{ 可分}
+\iff
+\rho_{AB}^{T_B}\geq0.
+}
+\]</p><p>但对于更高维系统，PPT 只保证必要性，不保证充分性。</p><p>存在：</p><p>\[
+\rho_{AB}^{T_B}\geq0
+\]</p><p>但 \(\rho_{AB}\) 仍然纠缠的状态，称为 PPT 纠缠态或束缚纠缠态。</p><p>因此：</p><ul><li>NPT：一定纠缠；</li><li>PPT：在 \(2\times2\)、\(2\times3\) 中可分；</li><li>更高维中，PPT 不一定可分。</li></ul><hr><h1 id=第六章-纠缠见证>第六章 纠缠见证<a hidden class=anchor aria-hidden=true href=#第六章-纠缠见证>#</a></h1><h2 id=61-为什么需要纠缠见证>6.1 为什么需要纠缠见证？<a hidden class=anchor aria-hidden=true href=#61-为什么需要纠缠见证>#</a></h2><p>PPT 判据并不能在所有维度中完全识别纠缠。</p><p>此外，实验上直接重建完整密度矩阵可能成本较高。</p><p>因此，需要一种能够通过少量测量验证纠缠的方法。</p><p>这就是纠缠见证。</p><p><strong>定义 6.1（纠缠见证）</strong></p><p>厄米算符 \(W\) 若满足：</p><p>\[
+\operatorname{Tr}(W\sigma)\geq0
+\]</p><p>对所有可分态 \(\sigma\) 成立，并且存在某个纠缠态 \(\rho\) 使得：</p><p>\[
+\operatorname{Tr}(W\rho)&lt;0,
+\]</p><p>则称 \(W\) 为一个纠缠见证。</p><p>因此：</p><p>\[
+\boxed{
+\operatorname{Tr}(W\rho)&lt;0
+\Longrightarrow
+\rho\text{ 纠缠}.
+}
+\]</p><h2 id=62-bell-态的纠缠见证>6.2 Bell 态的纠缠见证<a hidden class=anchor aria-hidden=true href=#62-bell-态的纠缠见证>#</a></h2><p>考虑：</p><h2 id=frac12iotimes-i>\[
+W=
+\frac12I\otimes I</h2><p>|\Phi^+\rangle\langle\Phi^+|.
+\]</p><p>我们证明它对任意可分态的期望值非负。</p><p>先考虑纯乘积态：</p><p>\[
+|a\rangle\otimes|b\rangle.
+\]</p><p>有：</p><h1 id=langlephiabrangle>\[
+\langle\Phi^+|a,b\rangle</h1><p>\frac1{\sqrt2}
+(a_0b_0+a_1b_1).
+\]</p><p>由 Cauchy–Schwarz 不等式：</p><p>\[
+|a_0b_0+a_1b_1|^2
+\leq
+(|a_0|^2+|a_1|^2)
+(|b_0|^2+|b_1|^2).
+\]</p><p>归一化后：</p><p>\[
+|\langle\Phi^+|a,b\rangle|^2
+\leq\frac12.
+\]</p><p>所以：</p><h1 id=langle-abwabrangle>\[
+\langle a,b|W|a,b\rangle</h1><p>\frac12-
+|\langle\Phi^+|a,b\rangle|^2
+\geq0.
+\]</p><p>对所有可分混态，由凸性仍有：</p><p>\[
+\operatorname{Tr}(W\sigma)\geq0.
+\]</p><p>而对 Bell 态：</p><h1 id=wphiranglelanglephi>\[
+\operatorname{Tr}
+(W|\Phi^+\rangle\langle\Phi^+|)</h1><h1 id=frac12-1>\frac12-1<a hidden class=anchor aria-hidden=true href=#frac12-1>#</a></h1><p>-\frac12.
+\]</p><p>因此 \(W\) 是一个纠缠见证。</p><h2 id=63-实验意义>6.3 实验意义<a hidden class=anchor aria-hidden=true href=#63-实验意义>#</a></h2><p>若实验能够测量：</p><h1 id=langle-wrangle>\[
+\langle W\rangle</h1><p>\operatorname{Tr}(W\rho_{\mathrm{exp}}),
+\]</p><p>并得到：</p><p>\[
+\langle W\rangle&lt;0,
+\]</p><p>则可以证明实验制备的态是纠缠态。</p><p>这通常比完整量子态层析需要更少的测量设置。</p><hr><h1 id=第七章-量子关联的数学描述>第七章 量子关联的数学描述<a hidden class=anchor aria-hidden=true href=#第七章-量子关联的数学描述>#</a></h1><h2 id=71-联合概率分布>7.1 联合概率分布<a hidden class=anchor aria-hidden=true href=#71-联合概率分布>#</a></h2><p>考虑 Alice 与 Bob 分别选择测量设置：</p><p>\[
+x,\qquad y.
+\]</p><p>测量结果：</p><p>\[
+a,\qquad b.
+\]</p><p>定义：</p><p>\[
+p(a,b|x,y).
+\]</p><p>这是一个条件联合概率分布。</p><p>它必须满足：</p><p>\[
+p(a,b|x,y)\geq0,
+\]</p><p>以及：</p><p>\[
+\sum_{a,b}p(a,b|x,y)=1.
+\]</p><p>在量子理论中：</p><h1 id=pabxy>\[
+\boxed{
+p(a,b|x,y)</h1><p>\operatorname{Tr}
+[
+\rho_{AB}
+(E_{a|x}\otimes F_{b|y})
+].
+}
+\]</p><p>其中：</p><p>\[
+\sum_aE_{a|x}=I_A,
+\]</p><p>\[
+\sum_bF_{b|y}=I_B.
+\]</p><h2 id=72-边缘概率>7.2 边缘概率<a hidden class=anchor aria-hidden=true href=#72-边缘概率>#</a></h2><p>Alice 的边缘概率：</p><h1 id=paxy>\[
+p(a|x,y)</h1><p>\sum_bp(a,b|x,y).
+\]</p><p>代入量子表达式：</p><h1 id=paxy-1>\[
+p(a|x,y)</h1><p>\sum_b
+\operatorname{Tr}
+[
+\rho_{AB}
+(E_{a|x}\otimes F_{b|y})
+].
+\]</p><p>利用迹的线性性：</p><h1 id=heading>\[<a hidden class=anchor aria-hidden=true href=#heading>#</a></h1><p>\operatorname{Tr}
+\left[
+\rho_{AB}
+\left(
+E_{a|x}\otimes\sum_bF_{b|y}
+\right)
+\right].
+\]</p><p>由于：</p><p>\[
+\sum_bF_{b|y}=I_B,
+\]</p><p>所以：</p><h1 id=paxy-2>\[
+\boxed{
+p(a|x,y)</h1><p>\operatorname{Tr}
+[
+\rho_{AB}(E_{a|x}\otimes I_B)
+].
+}
+\]</p><p>因此：</p><p>\[
+\boxed{
+p(a|x,y)=p(a|x).
+}
+\]</p><p>Alice 的局域概率与 Bob 的测量选择无关。</p><p>同理：</p><p>\[
+p(b|x,y)=p(b|y).
+\]</p><p>这称为无信号条件。</p><h2 id=73-关联函数>7.3 关联函数<a hidden class=anchor aria-hidden=true href=#73-关联函数>#</a></h2><p>当测量结果为：</p><p>\[
+a,b\in{-1,+1}
+\]</p><p>时，定义：</p><h1 id=e_xy>\[
+\boxed{
+E_{xy}</h1><p>\sum_{a,b}ab,p(a,b|x,y).
+}
+\]</p><p>在量子理论中：</p><h1 id=e_xy-1>\[
+E_{xy}</h1><p>\operatorname{Tr}
+[
+\rho_{AB}(A_x\otimes B_y)
+],
+\]</p><p>其中：</p><p>\[
+A_x=E_{+|x}-E_{-|x},
+\]</p><p>\[
+B_y=F_{+|y}-F_{-|y}.
+\]</p><p>关联函数是实验中最常见的量子关联指标。</p><h2 id=74-bell-态的关联计算>7.4 Bell 态的关联计算<a hidden class=anchor aria-hidden=true href=#74-bell-态的关联计算>#</a></h2><p>对：</p><p>\[
+|\Phi^+\rangle,
+\]</p><p>有：</p><p>\[
+\langle\sigma_x\otimes\sigma_x\rangle=1,
+\]</p><p>\[
+\langle\sigma_y\otimes\sigma_y\rangle=-1,
+\]</p><p>\[
+\langle\sigma_z\otimes\sigma_z\rangle=1.
+\]</p><p>因此，如果 Alice 与 Bob 都沿 \(z\) 方向测量，结果总是相同。</p><p>如果两人都沿 \(x\) 方向测量，结果也总是相同。</p><p>如果两人都沿 \(y\) 方向测量，结果则总是相反。</p><p>但单独看任意一方的结果：</p><p>\[
+p(+)=p(-)=\frac12.
+\]</p><p>这说明联合关联中包含局部边缘概率所没有的信息。</p><hr><h1 id=第八章-量子关联的三种重要层次>第八章 量子关联的三种重要层次<a hidden class=anchor aria-hidden=true href=#第八章-量子关联的三种重要层次>#</a></h1><p>纠缠、量子 steering 和 Bell 非局域性是三个紧密联系但不等价的概念。</p><h2 id=81-可分关联>8.1 可分关联<a hidden class=anchor aria-hidden=true href=#81-可分关联>#</a></h2><p>可分态：</p><h1 id=rho_ab-7>\[
+\rho_{AB}</h1><p>\sum_i p_i\rho_A^{(i)}\otimes\rho_B^{(i)}.
+\]</p><p>其测量统计为：</p><h1 id=pabxy-1>\[
+p(a,b|x,y)</h1><p>\sum_i p_i
+\operatorname{Tr}(\rho_A^{(i)}E_{a|x})
+\operatorname{Tr}(\rho_B^{(i)}F_{b|y}).
+\]</p><p>这具有局域隐变量形式。</p><p>因此，可分态不能产生 Bell 非局域关联。</p><h2 id=82-局域隐变量模型>8.2 局域隐变量模型<a hidden class=anchor aria-hidden=true href=#82-局域隐变量模型>#</a></h2><p>更一般地，若：</p><h1 id=pabxy-2>\[
+\boxed{
+p(a,b|x,y)</h1><p>\int d\lambda,
+q(\lambda)
+p(a|x,\lambda)p(b|y,\lambda),
+}
+\]</p><p>则称该关联具有局域隐变量模型。</p><p>这里的 \(\lambda\) 可以是经典共享随机变量。</p><p>Bell 非局域性意味着不存在这种分解。</p><p>注意：</p><p>有些纠缠态虽然不能写成可分态，但其特定测量产生的关联仍然可能具有局域隐变量模型。</p><p>因此：</p><p>\[
+\text{纠缠}
+\not\Rightarrow
+\text{给定测量下的 Bell 非局域性}.
+\]</p><h2 id=83-quantum-steering>8.3 Quantum Steering<a hidden class=anchor aria-hidden=true href=#83-quantum-steering>#</a></h2><p>Quantum steering 是位于纠缠与 Bell 非局域性之间的一类关联概念。</p><p>考虑 Alice 和 Bob 共享：</p><p>\[
+\rho_{AB}.
+\]</p><p>Alice 对系统 \(A\) 进行测量：</p><p>\[
+{E_{a|x}}.
+\]</p><p>Bob 的未归一化条件态为：</p><h1 id=sigma_ax>\[
+\boxed{
+\sigma_{a|x}</h1><p>\operatorname{Tr}<em>A
+[
+(E</em>{a|x}\otimes I_B)\rho_{AB}
+].
+}
+\]</p><p>这组条件态称为 assemblage。</p><p>若存在经典隐状态模型：</p><h1 id=sigma_ax-1>\[
+\boxed{
+\sigma_{a|x}</h1><p>\int d\lambda,
+q(\lambda)
+p(a|x,\lambda)
+\rho_\lambda,
+}
+\]</p><p>则称该 assemblage 具有局域隐状态模型。</p><p>若不存在，则称其具有 steering。</p><p>直观上，Alice 可以通过选择测量设置和公布结果，改变 Bob 对自己系统所持有的条件态描述。</p><p>但 Alice 无法通过这种方式向 Bob 超光速传递信息，因为 Bob 不知道 Alice 的结果时，无法从其局部统计中识别 Alice 的选择。</p><h2 id=84-三种关联的关系>8.4 三种关联的关系<a hidden class=anchor aria-hidden=true href=#84-三种关联的关系>#</a></h2><p>在标准二体量子关联框架下：</p><p>\[
+\boxed{
+\text{Bell 非局域}
+\subset
+\text{Steerable}
+\subset
+\text{Entangled}.
+}
+\]</p><p>这里的包含关系是指：</p><ul><li>Bell 非局域关联必然是可 steering 的；</li><li>可 steering 的状态必然是纠缠态；</li><li>反过来一般不成立。</li></ul><p>因此，纠缠是最宽泛的量子关联概念，而 Bell 非局域性具有更强的操作性要求。</p><hr><h1 id=第九章-werner-态与关联阈值>第九章 Werner 态与关联阈值<a hidden class=anchor aria-hidden=true href=#第九章-werner-态与关联阈值>#</a></h1><h2 id=91-werner-态>9.1 Werner 态<a hidden class=anchor aria-hidden=true href=#91-werner-态>#</a></h2><p>定义双量子比特 Werner 态：</p><h1 id=rho_w>\[
+\boxed{
+\rho_W</h1><p>v|\Psi^-\rangle\langle\Psi^-|
++
+(1-v)\frac{I_4}{4},
+}
+\]</p><p>其中：</p><p>\[
+0\leq v\leq1.
+\]</p><p>这里：</p><h1 id=psi-rangle-1>\[
+|\Psi^-\rangle</h1><p>\frac{|01\rangle-|10\rangle}{\sqrt2}.
+\]</p><p>参数 \(v\) 描述纯纠缠成分的权重。</p><p>当：</p><p>\[
+v=1
+\]</p><p>时，为纯 Bell 单态。</p><p>当：</p><p>\[
+v=0
+\]</p><p>时，为最大混态。</p><h2 id=92-werner-态的约化态>9.2 Werner 态的约化态<a hidden class=anchor aria-hidden=true href=#92-werner-态的约化态>#</a></h2><p>由于 Bell 态的约化态为：</p><p>\[
+\frac I2,
+\]</p><p>且：</p><p>\[
+\operatorname{Tr}_B(I_4/4)=I_2/2,
+\]</p><p>所以：</p><p>\[
+\boxed{
+\rho_A=\rho_B=\frac I2.
+}
+\]</p><p>因此，任何单体测量都无法仅凭局域统计判断 Werner 态中的 \(v\)。</p><p>必须研究联合关联。</p><h2 id=93-werner-态的关联函数>9.3 Werner 态的关联函数<a hidden class=anchor aria-hidden=true href=#93-werner-态的关联函数>#</a></h2><p>对单态：</p><h1 id=psi-rangle-2>\[
+\langle\Psi^-|
+\sigma_i\otimes\sigma_j
+|\Psi^-\rangle</h1><p>-\delta_{ij}.
+\]</p><p>而最大混态部分的非平凡关联为零。</p><p>所以：</p><h1 id=heading-1>\[
+\boxed{
+\operatorname{Tr}
+[
+\rho_W(\sigma_i\otimes\sigma_j)
+]</h1><p>-v\delta_{ij}.
+}
+\]</p><p>对于任意方向：</p><p>\[
+A=\vec a\cdot\vec\sigma,
+\]</p><p>\[
+B=\vec b\cdot\vec\sigma,
+\]</p><p>有：</p><h1 id=evec-avec-b-3>\[
+\boxed{
+E(\vec a,\vec b)</h1><p>-v\vec a\cdot\vec b.
+}
+\]</p><h2 id=94-werner-态的-ppt-判据>9.4 Werner 态的 PPT 判据<a hidden class=anchor aria-hidden=true href=#94-werner-态的-ppt-判据>#</a></h2><p>由于：</p><h1 id=psi-rangle-3>\[
+|\Psi^-\rangle</h1><p>\frac{|01\rangle-|10\rangle}{\sqrt2},
+\]</p><p>其密度矩阵为：</p><h1 id=rho_psi->\[
+\rho_{\Psi^-}</h1><p>\frac12
+\begin{pmatrix}
+0&amp;0&amp;0&amp;0\
+0&amp;1&-1&amp;0\
+0&-1&amp;1&amp;0\
+0&amp;0&amp;0&amp;0
+\end{pmatrix}.
+\]</p><p>于是：</p><h1 id=rho_w-1>\[
+\rho_W</h1><p>\begin{pmatrix}
+\frac{1-v}{4}&amp;0&amp;0&amp;0\
+0&\frac{1+v}{4}&-\frac v2&amp;0\
+0&-\frac v2&\frac{1+v}{4}&amp;0\
+0&amp;0&amp;0&\frac{1-v}{4}
+\end{pmatrix}.
+\]</p><p>对第二个量子比特进行部分转置：</p><h1 id=rho_wt_b>\[
+\rho_W^{T_B}</h1><p>\begin{pmatrix}
+\frac{1-v}{4}&amp;0&amp;0&-\frac v2\
+0&\frac{1+v}{4}&amp;0&amp;0\
+0&amp;0&\frac{1+v}{4}&amp;0\
+-\frac v2&amp;0&amp;0&\frac{1-v}{4}
+\end{pmatrix}.
+\]</p><p>其中左上与右下构成的子块为：</p><p>\[
+\begin{pmatrix}
+\frac{1-v}{4}&-\frac v2\
+-\frac v2&\frac{1-v}{4}
+\end{pmatrix}.
+\]</p><p>其本征值：</p><h1 id=frac1-v4frac-v2>\[
+\frac{1-v}{4}+\frac v2</h1><p>\frac{1+v}{4},
+\]</p><p>以及：</p><h1 id=frac1-v4-frac-v2>\[
+\frac{1-v}{4}-\frac v2</h1><p>\frac{1-3v}{4}.
+\]</p><p>其余两个本征值均为：</p><p>\[
+\frac{1+v}{4}.
+\]</p><p>因此：</p><h1 id=operatornamespecrho_wt_b>\[
+\operatorname{spec}(\rho_W^{T_B})</h1><p>\left{
+\frac{1+v}{4},
+\frac{1+v}{4},
+\frac{1+v}{4},
+\frac{1-3v}{4}
+\right}.
+\]</p><p>PPT 条件：</p><p>\[
+\frac{1-3v}{4}\geq0.
+\]</p><p>即：</p><p>\[
+\boxed{
+v\leq\frac13.
+}
+\]</p><p>由于该系统是 \(2\times2\)，PPT 条件也是充分条件。</p><p>因此：</p><p>\[
+\boxed{
+\rho_W\text{ 可分}
+\iff
+v\leq\frac13.
+}
+\]</p><p>相应地：</p><p>\[
+\boxed{
+\rho_W\text{ 纠缠}
+\iff
+v>\frac13.
+}
+\]</p><h2 id=95-werner-态的-chsh-违反阈值>9.5 Werner 态的 CHSH 违反阈值<a hidden class=anchor aria-hidden=true href=#95-werner-态的-chsh-违反阈值>#</a></h2><p>对理想单态，最优 CHSH 值为：</p><p>\[
+2\sqrt2.
+\]</p><p>混入白噪声后：</p><p>\[
+\boxed{
+S_{\max}=2\sqrt2v.
+}
+\]</p><p>Bell 违反条件：</p><p>\[
+2\sqrt2v>2.
+\]</p><p>因此：</p><p>\[
+\boxed{
+v>\frac1{\sqrt2}.
+}
+\]</p><p>于是出现三个区域：</p><p>\[
+0\leq v\leq\frac13:
+\quad
+\text{可分};
+\]</p><p>\[
+\frac13&lt;v\leq\frac1{\sqrt2}:
+\quad
+\text{纠缠，但不违反 CHSH};
+\]</p><p>\[
+\frac1{\sqrt2}&lt;v\leq1:
+\quad
+\text{违反 CHSH}.
+\]</p><p>这里的中间区域表明：</p><p><strong>纠缠并不等同于 CHSH 非局域性。</strong></p><p>需要注意，满足 CHSH 不等式只说明没有观察到 CHSH 违反，不足以证明该态对所有可能测量都具有局域隐变量模型。</p><hr><h1 id=第十章-实验中的纠缠验证>第十章 实验中的纠缠验证<a hidden class=anchor aria-hidden=true href=#第十章-实验中的纠缠验证>#</a></h1><h2 id=101-实验任务>10.1 实验任务<a hidden class=anchor aria-hidden=true href=#101-实验任务>#</a></h2><p>假设实验者希望制备：</p><h1 id=phirangle-5>\[
+|\Phi^+\rangle</h1><p>\frac{|HH\rangle+|VV\rangle}{\sqrt2}.
+\]</p><p>需要通过实验验证其是否具有纠缠。</p><p>常见方法包括：</p><ol><li>量子态层析；</li><li>部分转置判据；</li><li>纠缠见证；</li><li>Bell 不等式检验。</li></ol><p>本章先介绍前三种方法的实验联系。</p><h2 id=102-关联测量>10.2 关联测量<a hidden class=anchor aria-hidden=true href=#102-关联测量>#</a></h2><p>对：</p><p>\[
+|\Phi^+\rangle,
+\]</p><p>理论上：</p><p>\[
+\langle\sigma_x\otimes\sigma_x\rangle=1,
+\]</p><p>\[
+\langle\sigma_y\otimes\sigma_y\rangle=-1,
+\]</p><p>\[
+\langle\sigma_z\otimes\sigma_z\rangle=1.
+\]</p><p>实验中分别进行：</p><ul><li>\(H/V\) 测量；</li><li>\(D/A\) 测量；</li><li>\(R/L\) 测量。</li></ul><p>每组测量得到四类符合计数：</p><p>\[
+N_{++},N_{+-},N_{-+},N_{&ndash;}.
+\]</p><p>关联函数：</p><h1 id=hat-e>\[
+\boxed{
+\hat E</h1><p>\frac{
+N_{++}+N_{&ndash;}-N_{+-}-N_{-+}
+}{
+N_{++}+N_{+-}+N_{-+}+N_{&ndash;}
+}.
+}
+\]</p><p>若测量设置正确、噪声足够低，则实验关联应接近理论值。</p><h2 id=103-bell-态保真度>10.3 Bell 态保真度<a hidden class=anchor aria-hidden=true href=#103-bell-态保真度>#</a></h2><p>若已重建实验态：</p><p>\[
+\rho_{\mathrm{exp}},
+\]</p><p>则计算：</p><p>\[
+\boxed{
+F=
+\langle\Phi^+|
+\rho_{\mathrm{exp}}
+|\Phi^+\rangle.
+}
+\]</p><p>对任意两量子比特可分态：</p><p>\[
+F\leq\frac12.
+\]</p><p>证明思路与纠缠见证相同。</p><p>因此：</p><p>\[
+\boxed{
+F>\frac12
+\Longrightarrow
+\rho_{\mathrm{exp}}\text{ 纠缠}.
+}
+\]</p><p>这是一种常见的纠缠验证方法。</p><h2 id=104-由实验数据构造纠缠见证>10.4 由实验数据构造纠缠见证<a hidden class=anchor aria-hidden=true href=#104-由实验数据构造纠缠见证>#</a></h2><p>前面得到：</p><p>\[
+W=
+\frac12I-|\Phi^+\rangle\langle\Phi^+|.
+\]</p><p>利用 Pauli 展开：</p><h1 id=phiranglelanglephi>\[
+|\Phi^+\rangle\langle\Phi^+|</h1><p>\frac14
+(
+I\otimes I
++\sigma_x\otimes\sigma_x
+-\sigma_y\otimes\sigma_y
++\sigma_z\otimes\sigma_z
+).
+\]</p><p>所以：</p><p>\[
+W=
+\frac14
+\left(
+I\otimes I
+-\sigma_x\otimes\sigma_x
++\sigma_y\otimes\sigma_y
+-\sigma_z\otimes\sigma_z
+\right).
+\]</p><p>因此：</p><h1 id=langle-wrangle-1>\[
+\boxed{
+\langle W\rangle</h1><p>\frac14
+\left(
+1-E_{xx}+E_{yy}-E_{zz}
+\right).
+}
+\]</p><p>如果实验测得：</p><p>\[
+\langle W\rangle&lt;0,
+\]</p><p>就证明实验态是纠缠态。</p><p>这一方法只需要三组双体 Pauli 关联测量。</p><h2 id=105-统计误差>10.5 统计误差<a hidden class=anchor aria-hidden=true href=#105-统计误差>#</a></h2><p>假设某组测量得到：</p><p>\[
+N=N_{++}+N_{+-}+N_{-+}+N_{&ndash;}
+\]</p><p>次符合事件。</p><p>每次测量定义随机变量：</p><p>\[
+X=ab\in{-1,+1}.
+\]</p><p>则：</p><p>\[
+\mathbb E[X]=E.
+\]</p><p>方差：</p><p>\[
+\operatorname{Var}(X)=1-E^2.
+\]</p><p>因此：</p><p>\[
+\boxed{
+\Delta E
+\approx
+\sqrt{\frac{1-\hat E^2}{N}}.
+}
+\]</p><p>如果三组关联测量近似独立，则纠缠见证的统计误差可以通过误差传播估计：</p><p>\[
+\Delta W
+\approx
+\frac14
+\sqrt{
+(\Delta E_{xx})^2+
+(\Delta E_{yy})^2+
+(\Delta E_{zz})^2
+}.
+\]</p><p>最终应报告：</p><p>\[
+\langle W\rangle\pm\Delta W.
+\]</p><p>仅当结果在统计意义上显著小于零时，才能声称实验数据支持纠缠。</p><hr><h1 id=第十一章-本篇总结>第十一章 本篇总结<a hidden class=anchor aria-hidden=true href=#第十一章-本篇总结>#</a></h1><p>本篇建立了从纯态纠缠到混态纠缠、从纠缠判据到量子关联的完整理论框架。</p><p>核心结构：</p><p>\[
+\boxed{
+\begin{aligned}
+&\text{双系统纯态}\
+&\quad\downarrow\
+&\text{Schmidt 分解}\
+&\quad\downarrow\
+&\text{约化密度矩阵}\
+&\quad\downarrow\
+&\text{纯态纠缠判据}\
+&\quad\downarrow\
+&\text{混态可分性}\
+&\quad\downarrow\
+&\text{PPT 与纠缠见证}\
+&\quad\downarrow\
+&\text{量子关联与实验验证}.
+\end{aligned}
+}
+\]</p><p>需要特别区分：</p><table><thead><tr><th>概念</th><th>数学对象</th><th>核心判据</th></tr></thead><tbody><tr><td>纯态纠缠</td><td>双系统纯态</td><td>Schmidt 秩大于 1</td></tr><tr><td>混态纠缠</td><td>双系统密度矩阵</td><td>不存在可分分解</td></tr><tr><td>PPT</td><td>部分转置</td><td>存在负本征值则纠缠</td></tr><tr><td>纠缠见证</td><td>厄米算符</td><td>\(\operatorname{Tr}(W\rho)&lt;0\)</td></tr><tr><td>Steering</td><td>Assemblage</td><td>不存在局域隐状态模型</td></tr><tr><td>Bell 非局域性</td><td>联合概率分布</td><td>不存在局域隐变量分解</td></tr></tbody></table><hr><h1 id=第十二章-习题>第十二章 习题<a hidden class=anchor aria-hidden=true href=#第十二章-习题>#</a></h1><h2 id=第一组schmidt-分解>第一组：Schmidt 分解<a hidden class=anchor aria-hidden=true href=#第一组schmidt-分解>#</a></h2><p><strong>习题 1.</strong></p><p>对状态：</p><h1 id=psirangle-11>\[
+|\psi\rangle</h1><p>\frac1{\sqrt3}
+(|00\rangle+|01\rangle+|10\rangle),
+\]</p><p>求其 Schmidt 分解和 Schmidt 秩。</p><p><strong>习题 2.</strong></p><p>证明任意双系统纯态的两个约化密度矩阵具有相同的非零本征值。</p><p><strong>习题 3.</strong></p><p>证明双系统纯态可分，当且仅当其约化密度矩阵为纯态。</p><p><strong>习题 4.</strong></p><p>对：</p><h1 id=psirangle-12>\[
+|\psi\rangle</h1><p>\sqrt{\lambda}|00\rangle
++
+\sqrt{1-\lambda}|11\rangle,
+\]</p><p>计算：</p><p>\[
+\rho_A,\quad
+\operatorname{Tr}(\rho_A^2),
+\quad
+S(\rho_A).
+\]</p><p>讨论 \(\lambda\) 的变化如何影响纠缠程度。</p><h2 id=第二组混态纠缠>第二组：混态纠缠<a hidden class=anchor aria-hidden=true href=#第二组混态纠缠>#</a></h2><p><strong>习题 5.</strong></p><p>证明：</p><p>\[
+\rho=
+\frac12|00\rangle\langle00|
++
+\frac12|11\rangle\langle11|
+\]</p><p>是可分态，但不是乘积态。</p><p><strong>习题 6.</strong></p><p>对 Bell 态进行部分转置，求全部本征值。</p><p><strong>习题 7.</strong></p><p>对 Werner 态推导 PPT 阈值：</p><p>\[
+v=\frac13.
+\]</p><p><strong>习题 8.</strong></p><p>证明任意两量子比特可分态满足：</p><p>\[
+\langle\Phi^+|\rho|\Phi^+\rangle\leq\frac12.
+\]</p><h2 id=第三组量子关联>第三组：量子关联<a hidden class=anchor aria-hidden=true href=#第三组量子关联>#</a></h2><p><strong>习题 9.</strong></p><p>计算四个 Bell 态的 Pauli 关联矩阵。</p><p><strong>习题 10.</strong></p><p>证明可分态产生的联合概率分布具有局域隐变量分解。</p><p><strong>习题 11.</strong></p><p>证明量子理论满足无信号条件。</p><p><strong>习题 12.</strong></p><p>比较：</p><ul><li>可分关联；</li><li>纠缠关联；</li><li>Steering；</li><li>Bell 非局域关联。</li></ul><p>说明它们之间的逻辑关系。</p><h2 id=第四组实验分析>第四组：实验分析<a hidden class=anchor aria-hidden=true href=#第四组实验分析>#</a></h2><p><strong>习题 13.</strong></p><p>从偏振符合计数计算：</p><p>\[
+E_{xx},E_{yy},E_{zz}.
+\]</p><p>进一步计算 Bell 态纠缠见证。</p><p><strong>习题 14.</strong></p><p>给定：</p><p>\[
+E_{xx}=0.91,
+\qquad
+E_{yy}=-0.88,
+\qquad
+E_{zz}=0.93,
+\]</p><p>计算：</p><p>\[
+\langle W\rangle.
+\]</p><p>并说明在缺少计数误差的情况下，能够得出什么结论、不能得出什么结论。</p><p><strong>习题 15.</strong></p><p>给定 Werner 态参数 \(v\)，分别讨论：</p><ol><li>是否可分；</li><li>是否纠缠；</li><li>是否违反 CHSH。</li></ol><hr><h1 id=进一步阅读>进一步阅读<a hidden class=anchor aria-hidden=true href=#进一步阅读>#</a></h1><ol><li>Nielsen & Chuang, <em>Quantum Computation and Quantum Information</em>：Entanglement 与 Quantum Protocols。</li><li>Watrous, <em>The Theory of Quantum Information</em>：Separable States、PPT、Entanglement。</li><li>Horodecki et al., <em>Quantum entanglement</em>, Reviews of Modern Physics 81, 865 (2009)。</li><li>Wiseman, Jones & Doherty, <em>Steering, entanglement, nonlocality, and the Einstein-Podolsky-Rosen paradox</em>, Physical Review Letters 98, 140402 (2007)。</li><li>Brunner et al., <em>Bell nonlocality</em>, Reviews of Modern Physics 86, 419 (2014)。</li></ol><hr><h1 id=下一篇预告>下一篇预告<a hidden class=anchor aria-hidden=true href=#下一篇预告>#</a></h1><p><strong>第四篇：Bell 不等式与量子非局域性</strong></p><p>将从局域隐变量模型出发，严格推导：</p><ul><li>CHSH 不等式；</li><li>局域多面体与经典关联；</li><li>Tsirelson 界；</li><li>Bell 态的最优测量设置；</li><li>Werner 态的 Bell 违反；</li><li>Bell 实验的统计分析；</li><li>Detection loophole 与 Locality loophole；</li><li>Device-independent Quantum Information。</li></ul><p>本篇将把纠缠的抽象数学结构转化为可检验的实验不等式。</p></div><footer class=post-footer><ul class=post-tags></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://linmythos.github.io/>Linmythos</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

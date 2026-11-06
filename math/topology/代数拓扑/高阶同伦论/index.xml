@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>同伦论深化 on Linmythos</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E9%AB%98%E9%98%B6%E5%90%8C%E4%BC%A6%E8%AE%BA/</link><description>Recent content in 同伦论深化 on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Fri, 06 Nov 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E9%AB%98%E9%98%B6%E5%90%8C%E4%BC%A6%E8%AE%BA/index.xml" rel="self" type="application/rss+xml"/><item><title>第 15 章　高阶同伦群与 Hurewicz 定理</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E9%AB%98%E9%98%B6%E5%90%8C%E4%BC%A6%E8%AE%BA/%E9%AB%98%E9%98%B6%E5%90%8C%E4%BC%A6%E7%BE%A4%E4%B8%8E-hurewicz-%E5%AE%9A%E7%90%86/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E9%AB%98%E9%98%B6%E5%90%8C%E4%BC%A6%E8%AE%BA/%E9%AB%98%E9%98%B6%E5%90%8C%E4%BC%A6%E7%BE%A4%E4%B8%8E-hurewicz-%E5%AE%9A%E7%90%86/</guid><description>&lt;h1 id="第-15-章高阶同伦群与-hurewicz-定理higher-homotopy-groups-and-the-hurewicz-theorem"&gt;第 15 章　高阶同伦群与 Hurewicz 定理（Higher Homotopy Groups and the Hurewicz Theorem）&lt;/h1&gt;
+&lt;p&gt;第四编：同伦论的深化&lt;/p&gt;
+&lt;p&gt;基本群 \(\pi_1(X)\) 研究空间中闭道路在同伦意义下的分类，它能够检测空间的一维同伦结构。然而，基本群无法完整描述高维空间的拓扑性质。例如，对于 \(n\geq2\)，球面 \(S^n\) 是单连通的，但显然并不是可缩空间。这意味着，仅仅研究基本群远远不够，我们需要进一步引入高阶同伦群。&lt;/p&gt;
+&lt;p&gt;本章将建立高阶同伦群 \(\pi_n(X)\)，研究其基本性质，并介绍 Hurewicz 定理与 Whitehead 定理。这两条定理分别揭示同伦群与同调群之间的联系，以及何时同调信息足以决定同伦等价。&lt;/p&gt;
+&lt;h2 id="151-高阶同伦群"&gt;15.1 高阶同伦群&lt;/h2&gt;
+&lt;p&gt;设 \((X,x_0)\) 是带基点拓扑空间。对于 \(n\geq1\)，考虑保持基点的连续映射&lt;/p&gt;
+&lt;p&gt;\[ f:(S^n,s_0)\longrightarrow(X,x_0). \]&lt;/p&gt;
+&lt;p&gt;如果两个映射可以通过保持基点的同伦相互变形，则称它们基点同伦。所有这类映射的基点同伦类构成集合 \(\pi_n(X,x_0)\)。&lt;/p&gt;
+&lt;p&gt;对于 \(n=1\)，这正是此前定义的基本群。对于 \(n\geq2\)，通过将 \(S^n\) 沿赤道等方式分解，可以定义同伦类之间的乘法，并证明其满足群公理。于是得到第 \(n\) 阶同伦群：&lt;/p&gt;
+&lt;p&gt;\[ \pi_n(X,x_0)=[(S^n,s_0),(X,x_0)]_*. \]&lt;/p&gt;
+&lt;p&gt;这里右侧表示保持基点的同伦类集合。&lt;/p&gt;
+&lt;p&gt;定理 15.1 对于任意带基点拓扑空间 \((X,x_0)\)，当 \(n\geq2\) 时，\(\pi_n(X,x_0)\) 是 Abel 群。&lt;/p&gt;
+&lt;p&gt;这与基本群形成鲜明对比：\(\pi_1(X,x_0)\) 一般非交换，而所有高阶同伦群都是交换群。这一性质使高阶同伦群能够直接使用 Abel 群理论研究。&lt;/p&gt;
+&lt;h2 id="152-同伦群的函子性与基点问题"&gt;15.2 同伦群的函子性与基点问题&lt;/h2&gt;
+&lt;p&gt;设 \(f:(X,x_0)\to(Y,y_0)\) 是保持基点的连续映射。复合映射诱导群同态&lt;/p&gt;
+&lt;p&gt;\[ f_*:\pi_n(X,x_0)\longrightarrow\pi_n(Y,y_0), \qquad [f]\longmapsto[f\circ f]. \]&lt;/p&gt;</description></item><item><title>第 16 章　纤维化与谱序列</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E9%AB%98%E9%98%B6%E5%90%8C%E4%BC%A6%E8%AE%BA/%E7%BA%A4%E7%BB%B4%E5%8C%96%E4%B8%8E%E8%B0%B1%E5%BA%8F%E5%88%97/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E9%AB%98%E9%98%B6%E5%90%8C%E4%BC%A6%E8%AE%BA/%E7%BA%A4%E7%BB%B4%E5%8C%96%E4%B8%8E%E8%B0%B1%E5%BA%8F%E5%88%97/</guid><description>&lt;h1 id="第-16-章纤维化与谱序列fibrations-and-spectral-sequences"&gt;第 16 章　纤维化与谱序列（Fibrations and Spectral Sequences）&lt;/h1&gt;
+&lt;p&gt;第四编：同伦论的深化&lt;/p&gt;
+&lt;p&gt;前面我们建立了同调群、上同调环与高阶同伦群，并通过 Hurewicz 定理和 Whitehead 定理揭示了它们之间的联系。但对于复杂空间，直接计算同调群或同伦群仍然十分困难。一个自然的思路是：如果一个空间能够通过映射分解为底空间与纤维，是否可以利用二者的信息研究整体空间？&lt;/p&gt;
+&lt;p&gt;这引出了纤维化（fibration）。纤维化将空间的整体结构组织成一族相互联系的纤维，并通过长正合列联系底空间、总空间与纤维的同伦群。进一步地，谱序列（spectral sequence）提供了一种逐步逼近目标同调群或上同调群的代数计算机制。它是现代代数拓扑中最重要的计算工具之一。&lt;/p&gt;
+&lt;h2 id="161-纤维化的基本概念"&gt;16.1 纤维化的基本概念&lt;/h2&gt;
+&lt;p&gt;设 \(p:E\to B\) 是连续映射。直观而言，如果底空间 \(B\) 中的道路或同伦可以适当地提升到总空间 \(E\)，那么 \(p\) 就具有类似局部乘积结构的性质。&lt;/p&gt;
+&lt;p&gt;最基本的例子是投影映射 \(p:B\times F\to B\)，其纤维均同胚于 \(F\)。但一般纤维化不必是乘积空间，它允许纤维在整体上以非平凡方式变化。&lt;/p&gt;
+&lt;p&gt;称连续映射 \(p:E\to B\) 为一个 Hurewicz 纤维化，如果对于任意拓扑空间 \(X\)，任意映射 \(f:X\to E\)，以及任意同伦 \(H:X\times I\to B\) 满足 \(H(x,0)=p(f(x))\)，都存在提升同伦 \(\widetilde H:X\times I\to E\)，使得 \(\widetilde H(x,0)=f(x)\) 且 \(p\circ\widetilde H=H\)。&lt;/p&gt;
+&lt;p&gt;这称为同伦提升性质（homotopy lifting property）。如果这一性质只要求对 CW 复形或其他指定类别的空间成立，则会得到相应的较弱纤维化概念。&lt;/p&gt;
+&lt;p&gt;对于一个点 \(b_0\in B\)，其纤维定义为 \(F=p^{-1}(b_0)\)。在适当的连通性条件下，纤维化的所有纤维具有相同的同伦类型。&lt;/p&gt;
+&lt;h2 id="162-纤维化的基本例子"&gt;16.2 纤维化的基本例子&lt;/h2&gt;
+&lt;p&gt;例 1：乘积纤维化。 对任意拓扑空间 \(B,F\)，投影 \(p:B\times F\to B\) 是纤维化，其纤维同胚于 \(F\)。&lt;/p&gt;</description></item></channel></rss>
