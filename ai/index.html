@@ -1,19 +1,52 @@
 <!doctype html><html lang=en dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI | Linmythos</title><meta name=keywords content><meta name=description content="Notes on AI"><meta name=author content="Linmythos"><link rel=canonical href=https://linmythos.github.io/ai/><link crossorigin=anonymous href=/assets/css/stylesheet.5a42af7b68c8b1b7f3d0894c8a74d101cf31f37c1aa9bf8365395ef493e0dea4.css integrity="sha256-WkKve2jIsbfz0IlMinTRAc8x83waqb+DZTle9JPg3qQ=" rel="preload stylesheet" as=style><link rel=icon href=https://linmythos.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://linmythos.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://linmythos.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://linmythos.github.io/apple-touch-icon.png><link rel=mask-icon href=https://linmythos.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://linmythos.github.io/ai/index.xml title=rss><link rel=alternate hreflang=en href=https://linmythos.github.io/ai/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="https://linmythos.github.io/ai/"><meta property="og:site_name" content="Linmythos"><meta property="og:title" content="AI"><meta property="og:description" content="Notes on AI"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI"><meta name=twitter:description content="Notes on AI"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI","item":"https://linmythos.github.io/ai/"}]}</script></head><body class=list id=top><header class=header><nav class=header-nav><div class=logo><a href=https://linmythos.github.io/ accesskey=h title="Linmythos (Alt + H)">Linmythos</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
 <svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://linmythos.github.io/math/ title=Mathematics><span>Mathematics</span></a></li><li><a href=https://linmythos.github.io/physics/ title=Physics><span>Physics</span></a></li><li><a href=https://linmythos.github.io/ai/ title=AI><span class=active>AI</span></a></li><li><a href=https://linmythos.github.io/neural-science/ title="Neural Science"><span>Neural Science</span></a></li><li><a href=https://linmythos.github.io/essays/ title=Essays><span>Essays</span></a></li><li><a href=https://linmythos.github.io/about/ title=About><span>About</span></a></li><li><a href=https://linmythos.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://linmythos.github.io/archives/ title=Archives><span>Archives</span></a></li></ul></nav></header><main class=main><header class=page-header><h1>AI</h1></header><div class="post-content md-content"><p>Notes on AI</p></div><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>智能计算系统：从数学原理到芯片设计</h2></header><div class=entry-content><p>第一册：计算系统与性能基础 第一讲　从算法到芯片：计算系统的全栈视角 Lecture 1 — From Algorithms to Silicon: A Full-Stack View of Computing Systems
-1.1　引言：计算究竟是什么？ 计算机科学经常被简单地理解为研究算法与程序的学科，计算机工程则被理解为研究处理器和电路的学科。
-但现代计算系统远比这种划分复杂。
-一个算法最终需要在具体硬件上执行，而硬件所能提供的计算能力，又受到指令集、微体系结构、存储系统、制造工艺和功耗预算等因素的共同制约。
-因此，现代计算系统设计的核心问题并不只是：
-如何设计一个更快的算法？
-而是：
-如何使算法、编程模型、编译器、指令集、处理器架构和物理电路协同工作，从而在给定资源约束下实现最优的计算性能？
-这就是**软硬件协同设计（Hardware–Software Co-design）**的基本思想。
-1.1.1　计算系统的抽象层次 一个典型的计算系统可以分解为以下层次：
-[ \boxed{ \text{Algorithm} \longrightarrow \text{Program} \longrightarrow \text{Compiler} \longrightarrow \text{ISA} \longrightarrow \text{Microarchitecture} \longrightarrow \text{Logic Circuit} \longrightarrow \text{Transistor} } ]
-各层承担不同职责。
-层次 核心对象 主要问题 算法层 数学算法、数据结构 如何完成计算任务？ 程序层 源代码、算子 如何描述计算过程？ 编译层 中间表示、优化 Pass 如何将程序转化为高效代码？ 指令集层 ISA 软件可以使用哪些机器操作？ 微体系结构层 CPU、GPU、缓存、流水线 如何组织和执行指令？ 电路层 逻辑门、组合与时序电路 如何实现逻辑功能？ 器件层 CMOS 晶体管 如何通过物理器件实现电路？ 这些层次之间存在严格的依赖关系，但并非只能单向设计。
-...</p></div><footer class=entry-footer><span title='2026-11-04 00:00:00 +0000 UTC'>November 4, 2026</span>&nbsp;·&nbsp;<span>71 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 智能计算系统：从数学原理到芯片设计" href=https://linmythos.github.io/ai/%E8%8A%AF%E7%89%87%E8%AE%BE%E8%AE%A1/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>机器学习与神经网络导论</h2></header><div class=entry-content><p>机器学习——从函数逼近到统计学习理论 核心问题 考虑一个简单任务：
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://linmythos.github.io/math/ title=Mathematics><span>Mathematics</span></a></li><li><a href=https://linmythos.github.io/physics/ title=Physics><span>Physics</span></a></li><li><a href=https://linmythos.github.io/ai/ title=AI><span class=active>AI</span></a></li><li><a href=https://linmythos.github.io/neural-science/ title="Neural Science"><span>Neural Science</span></a></li><li><a href=https://linmythos.github.io/essays/ title=Essays><span>Essays</span></a></li><li><a href=https://linmythos.github.io/about/ title=About><span>About</span></a></li><li><a href=https://linmythos.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://linmythos.github.io/archives/ title=Archives><span>Archives</span></a></li></ul></nav></header><main class=main><header class=page-header><h1>AI</h1></header><div class="post-content md-content"><p>Notes on AI</p></div><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>信息论的数学基础——从 Shannon 熵、互信息到信息瓶颈</h2></header><div class=entry-content><p>信息论试图建立一套数学理论，用概率分布定量描述信息、不确定性、通信和压缩。它最初由 Claude Shannon 于 1948 年系统建立，后来成为通信理论、统计学、机器学习、密码学和科学推断的重要基础。
+信息量：一个事件包含多少信息？ 从事件概率出发 设某个随机事件 \(A\) 的发生概率为：
+\[ P(A)=p. \]
+直觉上：
+越容易发生的事件，发生时带来的惊讶程度越低； 越罕见的事件，发生时带来的惊讶程度越高。 因此，我们希望定义一个函数：
+\[ I(A)=I(p), \]
+满足：
+\[ p_1&lt;p_2 \quad\Longrightarrow\quad I(p_1)>I(p_2). \]
+即事件概率越小，信息量越大。
+进一步考虑两个独立事件 \(A,B\)。
+如果它们同时发生，那么联合事件的概率为：
+\[ P(A\cap B)=P(A)P(B). \]
+我们希望独立事件的信息量具有可加性：
+\[ I(A\cap B)=I(A)+I(B). \]
+于是需要满足函数方程：
+\[ I(pq)=I(p)+I(q). \]
+在适当的连续性条件下，这类函数具有对数形式：
+\[ I(p)=-k\log p. \]
+通常取 \(k=1\)，并使用以 2 为底的对数：
+\[ \boxed{ I(x)=-\log_2P(x) } \]
+称为自信息（Self-information）。
+信息单位为 bit。
+Shannon 熵：随机变量的不确定性 自信息描述单个事件发生时带来的信息量。但随机变量可能取多个值，我们需要描述整个随机变量的不确定性。
+离散熵的定义 设离散随机变量 \(X\) 的取值空间为：
+\[ \mathcal X={x_1,x_2,\ldots,x_n}. \]
+...</p></div><footer class=entry-footer><span title='2026-11-08 00:00:00 +0000 UTC'>November 8, 2026</span>&nbsp;·&nbsp;<span>6 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 信息论的数学基础——从 Shannon 熵、互信息到信息瓶颈" href=https://linmythos.github.io/ai/%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>计算复杂性理论——从图灵机、可计算性到 P 与 NP</h2></header><div class=entry-content><p>核心问题 某些问题都有明确的数学定义，也都可以被描述为有限的计算过程，但它们的计算难度可能截然不同。例如，某些问题虽然理论上可以求解，但随着输入规模增长，所需计算资源可能迅速超过现实条件。
+因此，我们引入两个概念：
+可计算性（Computability）：一个问题能否被某种算法解决？ 计算复杂性（Computational Complexity）：解决问题需要多少计算资源？ 算法的数学抽象 在数学中，我们通常将一个计算问题表示为：
+\[ f:X\rightarrow Y. \]
+给定输入 \(x\in X\)，要求计算输出：
+\[ y=f(x). \]
+但并不是所有数学对象都能直接作为计算机输入。我们通常需要将输入编码为有限字符串：
+\[ x\in\Sigma^*, \]
+其中 \(\Sigma\) 是有限字母表，\(\Sigma^*\) 表示所有有限字符串构成的集合。于是，计算问题可以被统一描述为对有限字符串的处理。
+判定问题 计算复杂性理论经常研究判定问题（Decision Problem）。一个判定问题的答案只有两种：
+\[ {\text{YES},\text{NO}}. \]
+数学上，可以将其表示为一个语言：
+\[ L\subseteq\Sigma^*. \]
+对于输入 \(x\)，问题就是判断：
+\[ x\in L? \]
+图灵机的基本结构 1936 年，Alan Turing 提出了图灵机（Turing Machine）模型。它是现代计算理论的基础之一。一台确定性图灵机可以描述为：
+\[ M=(Q,\Sigma,\Gamma,\delta,q_0,q_{\mathrm{accept}},q_{\mathrm{reject}}), \]
+其中：
+\(Q\)：有限状态集合； \(\Sigma\)：输入字母表； \(\Gamma\)：纸带字母表； \(\delta\)：状态转移函数； \(q_0\)：初始状态； \(q_{\mathrm{accept}}\)：接受状态； \(q_{\mathrm{reject}}\)：拒绝状态。 图灵机包含：
+一条理论上无限长的纸带； 一个能够读写纸带符号的读写头； 一个有限状态控制器。 纸带用于保存计算数据，读写头用于访问和修改数据，状态控制器决定下一步动作。
+图灵机的每一步操作由当前状态和当前读取的符号决定。
+...</p></div><footer class=entry-footer><span title='2026-11-08 00:00:00 +0000 UTC'>November 8, 2026</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 计算复杂性理论——从图灵机、可计算性到 P 与 NP" href=https://linmythos.github.io/ai/%E8%AE%A1%E7%AE%97%E5%A4%8D%E6%9D%82%E6%80%A7%E7%90%86%E8%AE%BA/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>机器学习与神经网络导论</h2></header><div class=entry-content><p>机器学习——从函数逼近到统计学习理论 核心问题 考虑一个简单任务：
 给定大量房屋的历史数据，包括面积、位置、房间数量和成交价格，希望构造一个模型，根据房屋特征预测其价格。
 我们可以将每套房屋表示为一个向量：
 $$ x=(x_1,x_2,\ldots,x_d)\in\mathbb R^d, $$
@@ -38,7 +71,7 @@ $$ A:S\longmapsto \widehat f. $$
 注意：学习算法并不知道真实分布 $P$，它只能利用有限样本间接推断规律。
 损失函数 为了衡量模型预测的好坏程度，引入损失函数，将预测任务转化为数学上的优化问题：
 $$ \ell:\mathcal Y\times\mathcal Y\longrightarrow\mathbb R_{\geq 0}. $$
-...</p></div><footer class=entry-footer><span title='2026-11-04 00:00:00 +0000 UTC'>November 4, 2026</span>&nbsp;·&nbsp;<span>17 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 机器学习与神经网络导论" href=https://linmythos.github.io/ai/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/></a></article></main><footer class=footer><span>&copy; 2026 <a href=https://linmythos.github.io/>Linmythos</a></span> ·
+...</p></div><footer class=entry-footer><span title='2026-11-04 00:00:00 +0000 UTC'>November 4, 2026</span>&nbsp;·&nbsp;<span>8 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 机器学习与神经网络导论" href=https://linmythos.github.io/ai/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/></a></article></main><footer class=footer><span>&copy; 2026 <a href=https://linmythos.github.io/>Linmythos</a></span> ·
 <span>Powered by
 <a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
 <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>

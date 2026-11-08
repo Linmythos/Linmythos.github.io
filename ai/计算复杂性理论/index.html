@@ -1,0 +1,218 @@
+<!doctype html><html lang=en dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>计算复杂性理论——从图灵机、可计算性到 P 与 NP | Linmythos</title><meta name=keywords content><meta name=description content="核心问题
+某些问题都有明确的数学定义，也都可以被描述为有限的计算过程，但它们的计算难度可能截然不同。例如，某些问题虽然理论上可以求解，但随着输入规模增长，所需计算资源可能迅速超过现实条件。
+因此，我们引入两个概念：
+
+可计算性（Computability）：一个问题能否被某种算法解决？
+计算复杂性（Computational Complexity）：解决问题需要多少计算资源？
+
+
+算法的数学抽象
+在数学中，我们通常将一个计算问题表示为：
+\[
+f:X\rightarrow Y.
+\]
+给定输入 \(x\in X\)，要求计算输出：
+\[
+y=f(x).
+\]
+但并不是所有数学对象都能直接作为计算机输入。我们通常需要将输入编码为有限字符串：
+\[
+x\in\Sigma^*,
+\]
+其中 \(\Sigma\) 是有限字母表，\(\Sigma^*\) 表示所有有限字符串构成的集合。于是，计算问题可以被统一描述为对有限字符串的处理。
+判定问题
+计算复杂性理论经常研究判定问题（Decision Problem）。一个判定问题的答案只有两种：
+\[
+{\text{YES},\text{NO}}.
+\]
+数学上，可以将其表示为一个语言：
+\[
+L\subseteq\Sigma^*.
+\]
+对于输入 \(x\)，问题就是判断：
+\[
+x\in L?
+\]
+
+图灵机的基本结构
+1936 年，Alan Turing 提出了图灵机（Turing Machine）模型。它是现代计算理论的基础之一。一台确定性图灵机可以描述为：
+\[
+M=(Q,\Sigma,\Gamma,\delta,q_0,q_{\mathrm{accept}},q_{\mathrm{reject}}),
+\]
+其中：
+
+\(Q\)：有限状态集合；
+\(\Sigma\)：输入字母表；
+\(\Gamma\)：纸带字母表；
+\(\delta\)：状态转移函数；
+\(q_0\)：初始状态；
+\(q_{\mathrm{accept}}\)：接受状态；
+\(q_{\mathrm{reject}}\)：拒绝状态。
+
+图灵机包含：
+
+一条理论上无限长的纸带；
+一个能够读写纸带符号的读写头；
+一个有限状态控制器。
+
+纸带用于保存计算数据，读写头用于访问和修改数据，状态控制器决定下一步动作。
+图灵机的每一步操作由当前状态和当前读取的符号决定。"><meta name=author content="Linmythos"><link rel=canonical href=https://linmythos.github.io/ai/%E8%AE%A1%E7%AE%97%E5%A4%8D%E6%9D%82%E6%80%A7%E7%90%86%E8%AE%BA/><link crossorigin=anonymous href=/assets/css/stylesheet.5a42af7b68c8b1b7f3d0894c8a74d101cf31f37c1aa9bf8365395ef493e0dea4.css integrity="sha256-WkKve2jIsbfz0IlMinTRAc8x83waqb+DZTle9JPg3qQ=" rel="preload stylesheet" as=style><link rel=icon href=https://linmythos.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://linmythos.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://linmythos.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://linmythos.github.io/apple-touch-icon.png><link rel=mask-icon href=https://linmythos.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://linmythos.github.io/ai/%E8%AE%A1%E7%AE%97%E5%A4%8D%E6%9D%82%E6%80%A7%E7%90%86%E8%AE%BA/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],packages:{"[+]":["ams"]}}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><meta property="og:url" content="https://linmythos.github.io/ai/%E8%AE%A1%E7%AE%97%E5%A4%8D%E6%9D%82%E6%80%A7%E7%90%86%E8%AE%BA/"><meta property="og:site_name" content="Linmythos"><meta property="og:title" content="计算复杂性理论——从图灵机、可计算性到 P 与 NP"><meta property="og:description" content="核心问题 某些问题都有明确的数学定义，也都可以被描述为有限的计算过程，但它们的计算难度可能截然不同。例如，某些问题虽然理论上可以求解，但随着输入规模增长，所需计算资源可能迅速超过现实条件。
+因此，我们引入两个概念：
+可计算性（Computability）：一个问题能否被某种算法解决？ 计算复杂性（Computational Complexity）：解决问题需要多少计算资源？ 算法的数学抽象 在数学中，我们通常将一个计算问题表示为：
+\[ f:X\rightarrow Y. \]
+给定输入 \(x\in X\)，要求计算输出：
+\[ y=f(x). \]
+但并不是所有数学对象都能直接作为计算机输入。我们通常需要将输入编码为有限字符串：
+\[ x\in\Sigma^*, \]
+其中 \(\Sigma\) 是有限字母表，\(\Sigma^*\) 表示所有有限字符串构成的集合。于是，计算问题可以被统一描述为对有限字符串的处理。
+判定问题 计算复杂性理论经常研究判定问题（Decision Problem）。一个判定问题的答案只有两种：
+\[ {\text{YES},\text{NO}}. \]
+数学上，可以将其表示为一个语言：
+\[ L\subseteq\Sigma^*. \]
+对于输入 \(x\)，问题就是判断：
+\[ x\in L? \]
+图灵机的基本结构 1936 年，Alan Turing 提出了图灵机（Turing Machine）模型。它是现代计算理论的基础之一。一台确定性图灵机可以描述为：
+\[ M=(Q,\Sigma,\Gamma,\delta,q_0,q_{\mathrm{accept}},q_{\mathrm{reject}}), \]
+其中：
+\(Q\)：有限状态集合； \(\Sigma\)：输入字母表； \(\Gamma\)：纸带字母表； \(\delta\)：状态转移函数； \(q_0\)：初始状态； \(q_{\mathrm{accept}}\)：接受状态； \(q_{\mathrm{reject}}\)：拒绝状态。 图灵机包含：
+一条理论上无限长的纸带； 一个能够读写纸带符号的读写头； 一个有限状态控制器。 纸带用于保存计算数据，读写头用于访问和修改数据，状态控制器决定下一步动作。
+图灵机的每一步操作由当前状态和当前读取的符号决定。"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="ai"><meta property="article:published_time" content="2026-11-08T00:00:00+00:00"><meta property="article:modified_time" content="2026-11-08T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="计算复杂性理论——从图灵机、可计算性到 P 与 NP"><meta name=twitter:description content="核心问题 某些问题都有明确的数学定义，也都可以被描述为有限的计算过程，但它们的计算难度可能截然不同。例如，某些问题虽然理论上可以求解，但随着输入规模增长，所需计算资源可能迅速超过现实条件。
+因此，我们引入两个概念：
+可计算性（Computability）：一个问题能否被某种算法解决？ 计算复杂性（Computational Complexity）：解决问题需要多少计算资源？ 算法的数学抽象 在数学中，我们通常将一个计算问题表示为：
+\[ f:X\rightarrow Y. \]
+给定输入 \(x\in X\)，要求计算输出：
+\[ y=f(x). \]
+但并不是所有数学对象都能直接作为计算机输入。我们通常需要将输入编码为有限字符串：
+\[ x\in\Sigma^*, \]
+其中 \(\Sigma\) 是有限字母表，\(\Sigma^*\) 表示所有有限字符串构成的集合。于是，计算问题可以被统一描述为对有限字符串的处理。
+判定问题 计算复杂性理论经常研究判定问题（Decision Problem）。一个判定问题的答案只有两种：
+\[ {\text{YES},\text{NO}}. \]
+数学上，可以将其表示为一个语言：
+\[ L\subseteq\Sigma^*. \]
+对于输入 \(x\)，问题就是判断：
+\[ x\in L? \]
+图灵机的基本结构 1936 年，Alan Turing 提出了图灵机（Turing Machine）模型。它是现代计算理论的基础之一。一台确定性图灵机可以描述为：
+\[ M=(Q,\Sigma,\Gamma,\delta,q_0,q_{\mathrm{accept}},q_{\mathrm{reject}}), \]
+其中：
+\(Q\)：有限状态集合； \(\Sigma\)：输入字母表； \(\Gamma\)：纸带字母表； \(\delta\)：状态转移函数； \(q_0\)：初始状态； \(q_{\mathrm{accept}}\)：接受状态； \(q_{\mathrm{reject}}\)：拒绝状态。 图灵机包含：
+一条理论上无限长的纸带； 一个能够读写纸带符号的读写头； 一个有限状态控制器。 纸带用于保存计算数据，读写头用于访问和修改数据，状态控制器决定下一步动作。
+图灵机的每一步操作由当前状态和当前读取的符号决定。"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI","item":"https://linmythos.github.io/ai/"},{"@type":"ListItem","position":2,"name":"计算复杂性理论——从图灵机、可计算性到 P 与 NP","item":"https://linmythos.github.io/ai/%E8%AE%A1%E7%AE%97%E5%A4%8D%E6%9D%82%E6%80%A7%E7%90%86%E8%AE%BA/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"计算复杂性理论——从图灵机、可计算性到 P 与 NP","name":"计算复杂性理论——从图灵机、可计算性到 P 与 NP","description":"核心问题 某些问题都有明确的数学定义，也都可以被描述为有限的计算过程，但它们的计算难度可能截然不同。例如，某些问题虽然理论上可以求解，但随着输入规模增长，所需计算资源可能迅速超过现实条件。\n因此，我们引入两个概念：\n可计算性（Computability）：一个问题能否被某种算法解决？ 计算复杂性（Computational Complexity）：解决问题需要多少计算资源？ 算法的数学抽象 在数学中，我们通常将一个计算问题表示为：\n\\[ f:X\\rightarrow Y. \\]\n给定输入 \\(x\\in X\\)，要求计算输出：\n\\[ y=f(x). \\]\n但并不是所有数学对象都能直接作为计算机输入。我们通常需要将输入编码为有限字符串：\n\\[ x\\in\\Sigma^*, \\]\n其中 \\(\\Sigma\\) 是有限字母表，\\(\\Sigma^*\\) 表示所有有限字符串构成的集合。于是，计算问题可以被统一描述为对有限字符串的处理。\n判定问题 计算复杂性理论经常研究判定问题（Decision Problem）。一个判定问题的答案只有两种：\n\\[ {\\text{YES},\\text{NO}}. \\]\n数学上，可以将其表示为一个语言：\n\\[ L\\subseteq\\Sigma^*. \\]\n对于输入 \\(x\\)，问题就是判断：\n\\[ x\\in L? \\]\n图灵机的基本结构 1936 年，Alan Turing 提出了图灵机（Turing Machine）模型。它是现代计算理论的基础之一。一台确定性图灵机可以描述为：\n\\[ M=(Q,\\Sigma,\\Gamma,\\delta,q_0,q_{\\mathrm{accept}},q_{\\mathrm{reject}}), \\]\n其中：\n\\(Q\\)：有限状态集合； \\(\\Sigma\\)：输入字母表； \\(\\Gamma\\)：纸带字母表； \\(\\delta\\)：状态转移函数； \\(q_0\\)：初始状态； \\(q_{\\mathrm{accept}}\\)：接受状态； \\(q_{\\mathrm{reject}}\\)：拒绝状态。 图灵机包含：\n一条理论上无限长的纸带； 一个能够读写纸带符号的读写头； 一个有限状态控制器。 纸带用于保存计算数据，读写头用于访问和修改数据，状态控制器决定下一步动作。\n图灵机的每一步操作由当前状态和当前读取的符号决定。\n","keywords":[],"articleBody":"核心问题 某些问题都有明确的数学定义，也都可以被描述为有限的计算过程，但它们的计算难度可能截然不同。例如，某些问题虽然理论上可以求解，但随着输入规模增长，所需计算资源可能迅速超过现实条件。\n因此，我们引入两个概念：\n可计算性（Computability）：一个问题能否被某种算法解决？ 计算复杂性（Computational Complexity）：解决问题需要多少计算资源？ 算法的数学抽象 在数学中，我们通常将一个计算问题表示为：\n\\[ f:X\\rightarrow Y. \\]\n给定输入 \\(x\\in X\\)，要求计算输出：\n\\[ y=f(x). \\]\n但并不是所有数学对象都能直接作为计算机输入。我们通常需要将输入编码为有限字符串：\n\\[ x\\in\\Sigma^*, \\]\n其中 \\(\\Sigma\\) 是有限字母表，\\(\\Sigma^*\\) 表示所有有限字符串构成的集合。于是，计算问题可以被统一描述为对有限字符串的处理。\n判定问题 计算复杂性理论经常研究判定问题（Decision Problem）。一个判定问题的答案只有两种：\n\\[ {\\text{YES},\\text{NO}}. \\]\n数学上，可以将其表示为一个语言：\n\\[ L\\subseteq\\Sigma^*. \\]\n对于输入 \\(x\\)，问题就是判断：\n\\[ x\\in L? \\]\n图灵机的基本结构 1936 年，Alan Turing 提出了图灵机（Turing Machine）模型。它是现代计算理论的基础之一。一台确定性图灵机可以描述为：\n\\[ M=(Q,\\Sigma,\\Gamma,\\delta,q_0,q_{\\mathrm{accept}},q_{\\mathrm{reject}}), \\]\n其中：\n\\(Q\\)：有限状态集合； \\(\\Sigma\\)：输入字母表； \\(\\Gamma\\)：纸带字母表； \\(\\delta\\)：状态转移函数； \\(q_0\\)：初始状态； \\(q_{\\mathrm{accept}}\\)：接受状态； \\(q_{\\mathrm{reject}}\\)：拒绝状态。 图灵机包含：\n一条理论上无限长的纸带； 一个能够读写纸带符号的读写头； 一个有限状态控制器。 纸带用于保存计算数据，读写头用于访问和修改数据，状态控制器决定下一步动作。\n图灵机的每一步操作由当前状态和当前读取的符号决定。\n状态转移 设当前状态为 \\(q\\)，读写头读取的符号为 \\(a\\)。\n转移函数给出：\n\\[ \\delta(q,a)=(q’,b,D), \\]\n其中：\n\\(q’\\)：下一状态； \\(b\\)：写入纸带的符号； \\(D\\)：读写头移动方向，通常为 L 或 R。 因此，一次计算就是一系列状态转移：\n\\[ C_0\\rightarrow C_1\\rightarrow C_2 \\rightarrow\\cdots. \\]\n这里 \\(C_i\\) 表示图灵机在第 \\(i\\) 步的完整配置，包括状态、纸带内容和读写头位置。\n如果最终进入接受状态，则输入被接受；如果进入拒绝状态，则输入被拒绝。\n图灵机与现代计算机 图灵机并不是一种实际计算机的设计方案。它的价值在于提供一个足够简单、足够严格的计算模型。\n现代计算机拥有CPU、内存、磁盘、输入输出设备、多级存储结构。但对于可计算性理论而言，我们关心的是：这些计算设备是否能够实现某个数学意义上的算法。在适当的抽象条件下，图灵机能够模拟通常意义上的算法计算。这与 Church–Turing 论题有关：\n任何直观意义上可有效计算的函数，都可以由图灵机计算。\n可计算性：哪些问题根本无法被算法解决？ 图灵机模型不仅能够描述算法，还能证明某些问题不存在通用算法。\n停机问题 考虑一个程序 \\(P\\) 和输入 \\(x\\)。\n我们希望判断：\n\\[ P(x)\\text{ 是否会最终停止？} \\]\n这就是停机问题（Halting Problem）。\n假设存在一个算法 \\(H(P,x)\\)，能够正确判断任意程序 \\(P\\) 在输入 \\(x\\) 时是否停止：\n\\[ H(P,x)= \\begin{cases} 1,\u0026P(x)\\text{ 停止},\\\\ 0,\u0026P(x)\\text{ 不停止}. \\end{cases} \\]\n我们将证明这样的算法不存在。\n对角化证明 假设 \\(H\\) 存在。\n构造一个新程序 \\(D(P)\\)：\n运行 \\(H(P,P)\\)； 如果 \\(H(P,P)=1\\)，则 \\(D(P)\\) 无限运行； 如果 \\(H(P,P)=0\\)，则 \\(D(P)\\) 立即停止。 现在考虑：\n\\[ D(D). \\]\n只有两种可能。\n情况一：\\(H(D,D)=1\\)。\n这意味着 \\(D(D)\\) 应当停止。但根据 \\(D\\) 的定义，如果 \\(H(D,D)=1\\)，它就会无限运行。矛盾。\n情况二：\\(H(D,D)=0\\)。\n这意味着 \\(D(D)\\) 不会停止。但根据 \\(D\\) 的定义，如果 \\(H(D,D)=0\\)，它就会立即停止。仍然矛盾。因此，最初的假设不成立：\n\\[ \\boxed{ \\text{不存在能够判断任意程序是否停止的通用算法。} } \\]\n计算资源：时间复杂度与空间复杂度 输入规模 考虑一个算法 \\(A\\)。我们希望衡量其运行时间与输入规模之间的关系。设输入为 \\(x\\)，其长度为：\n\\[ n=|x|. \\]\n对于二进制编码的整数，输入长度通常与整数的数值大小不同。因此，复杂度分析必须以编码长度为基础，而不是直接使用整数数值。\n时间复杂度 设算法在输入 \\(x\\) 上执行的步骤数为：\n\\[ T_A(x). \\]\n最坏情况时间复杂度定义为：\n\\[ T_A(n)= \\max_{|x|=n}T_A(x). \\]\n我们通常使用渐近符号描述增长速度。\n大 O 记号 若存在常数 \\(c\u003e0\\) 和 \\(n_0\\)，使得对所有 \\(n\\geq n_0\\)：\n\\[ f(n)\\leq cg(n), \\]\n则称：\n\\[ f(n)=O(g(n)). \\]\n大 \\(\\Omega\\) 记号 若存在常数 \\(c\u003e0\\) 和 \\(n_0\\)，使得：\n\\[ f(n)\\geq cg(n), \\]\n则称：\n\\[ f(n)=\\Omega(g(n)). \\]\n大 \\(\\Theta\\) 记号 若同时有：\n\\[ f(n)=O(g(n)) \\]\n和：\n\\[ f(n)=\\Omega(g(n)), \\]\n则：\n\\[ f(n)=\\Theta(g(n)). \\]\n空间复杂度 空间复杂度衡量计算过程中使用的存储资源。\n设：\n\\[ S_A(x) \\]\n表示算法使用的工作空间。\n则最坏情况空间复杂度为：\n\\[ S_A(n)= \\max_{|x|=n}S_A(x). \\]\n在复杂性理论中，通常会明确是否计入输入存储空间。\nP 类问题：能够高效求解的问题 P 的定义 P 类（Polynomial Time）是所有能够由确定性图灵机在多项式时间内判定的语言集合。\n形式化地：\n\\[ \\boxed{ P= \\bigcup_{k\\geq1}TIME(n^k) } \\]\n其中 \\(TIME(n^k)\\) 表示能够在 \\(O(n^k)\\) 时间内完成判定的语言集合。\n直观上，P 包含了能够在多项式时间内求解的判定问题。需要注意，P 是关于渐近复杂度的数学类别。比如一个 \\(O(n^{100})\\) 的算法仍然属于多项式时间，但现实中可能完全不可行。\n因此：\n\\[ \\boxed{ \\text{多项式时间}\\neq\\text{实际运行足够快} } \\] NP 类问题：容易验证，不一定容易求解 从数独问题出发 考虑一个数独问题。给定一个未完成的数独，我们希望判断是否存在合法填法。寻找一个解可能需要大量尝试。但如果有人已经给出一个完整填法，我们可以快速检查：\n每一行是否满足规则； 每一列是否满足规则； 每个宫格是否满足规则。 也就是说：\n找到解可能困难，但验证一个候选解可能容易。\n这就是 NP 类问题的基本思想。\nNP 的形式化定义 NP 表示 Non-deterministic Polynomial Time。它可以通过非确定性图灵机在多项式时间内判定来定义。\n另一种等价定义是：\n一个语言 \\(L\\) 属于 NP，当且仅当存在一个多项式时间验证器 \\(V(x,w)\\)，使得：\n\\[ \\boxed{ x\\in L \\iff \\exists w,\\quad V(x,w)=1 } \\]\n其中：\n\\(x\\)：原始输入； \\(w\\)：证书（Certificate）； \\(V\\)：多项式时间验证器。 证书的长度也要求关于输入长度多项式有界。\nNP 不等于非多项式时间 这是一个非常常见的误解。NP 不是“Non-Polynomial”的缩写。它表示非确定性多项式时间。\n实际上：\n\\[ \\boxed{P\\subseteq NP} \\]\n因为如果一个问题能够在多项式时间内直接求解，那么当然也能够在多项式时间内验证其答案。\n但是否有：\n\\[ P=NP\\quad ? \\]\n所有能够在多项式时间内验证解的问题，是否也都能够在多项式时间内求解？\n目前仍然未知。这是理论计算机科学中最著名的开放问题之一。\n多项式时间归约：如何比较问题的难度？ 假设我们已经知道问题 A 很难。能否利用问题 A 的求解算法来解决问题 B？这就是归约（Reduction）的基本思想。\n多项式时间归约 设两个判定问题分别对应语言：\n\\[ A,B\\subseteq\\Sigma^*. \\]\n如果存在一个多项式时间可计算函数：\n\\[f:\\Sigma^* \\rightarrow \\Sigma^* \\]\n满足：\n\\[ \\boxed{ x\\in A\\iff f(x)\\in B, } \\]\n则称：\n\\[ A\\leq_p B. \\]\n这表示 A 可以在多项式时间内归约到 B。\n如果我们能够高效求解 B，就能够高效求解 A。\n因此：\n\\[ A\\leq_p B \\]\n意味着 B 至少不比 A 更容易（相对于这种归约）。\nNP-hard 与 NP-complete 一个问题 \\(B\\) 称为 NP-hard，如果：\n\\[ \\forall A\\in NP,\\quad A\\leq_p B. \\]\n即所有 NP 问题都可以多项式时间归约到 B。\n如果同时满足：\n\\[ B\\in NP \\]\n和：\n\\[ B\\text{ 是 NP-hard}, \\]\n则称 B 为 NP-complete。\nSAT 问题 SAT（Boolean Satisfiability Problem）是经典的 NP-complete 问题。\n给定一个布尔公式：\n\\[ \\varphi(x_1,\\ldots,x_n), \\]\n判断是否存在变量赋值使：\n\\[ \\varphi(x_1,\\ldots,x_n)=1. \\]\nCook–Levin 定理：**SAT 是 NP-complete 的。**这意味着所有 NP 问题都能够多项式时间归约到 SAT。如果有人找到 SAT 的多项式时间算法，那么： \\[ P=NP. \\]\n这就是 SAT 在计算复杂性理论中的特殊地位。\n复杂性理论的更大图景 P 与 NP 只是复杂性理论的一部分。 我们还需要认识一些重要的复杂性类别。\nPSPACE PSPACE 是能够使用多项式空间完成判定的问题集合。\n\\[ PSPACE= \\bigcup_{k\\geq1}SPACE(n^k). \\]\nEXP EXP 是能够在指数时间内求解的问题集合：\n\\[ EXP= \\bigcup_{k\\geq1}TIME(2^{n^k}). \\]\n显然：\n\\[ P\\subseteq EXP. \\]\n而且可以证明：\n\\[ P\\subsetneq EXP. \\]\n十三、参考文献 Michael Sipser, Introduction to the Theory of Computation. Christos H. Papadimitriou, Computational Complexity. Sanjeev Arora, Boaz Barak, Computational Complexity: A Modern Approach. Juris Hartmanis, Richard E. Stearns, “On the Computational Complexity of Algorithms,” Transactions of the American Mathematical Society, 1965. Stephen A. Cook, “The Complexity of Theorem-Proving Procedures,” Proceedings of the Third Annual ACM Symposium on Theory of Computing, 1971. Richard M. Karp, “Reducibility Among Combinatorial Problems,” 1972. ","wordCount":"549","inLanguage":"en","datePublished":"2026-11-08T00:00:00Z","dateModified":"2026-11-08T00:00:00Z","author":{"@type":"Person","name":"Linmythos"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://linmythos.github.io/ai/%E8%AE%A1%E7%AE%97%E5%A4%8D%E6%9D%82%E6%80%A7%E7%90%86%E8%AE%BA/"},"publisher":{"@type":"Organization","name":"Linmythos","logo":{"@type":"ImageObject","url":"https://linmythos.github.io/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://linmythos.github.io/ accesskey=h title="Linmythos (Alt + H)">Linmythos</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://linmythos.github.io/math/ title=Mathematics><span>Mathematics</span></a></li><li><a href=https://linmythos.github.io/physics/ title=Physics><span>Physics</span></a></li><li><a href=https://linmythos.github.io/ai/ title=AI><span>AI</span></a></li><li><a href=https://linmythos.github.io/neural-science/ title="Neural Science"><span>Neural Science</span></a></li><li><a href=https://linmythos.github.io/essays/ title=Essays><span>Essays</span></a></li><li><a href=https://linmythos.github.io/about/ title=About><span>About</span></a></li><li><a href=https://linmythos.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://linmythos.github.io/archives/ title=Archives><span>Archives</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">计算复杂性理论——从图灵机、可计算性到 P 与 NP</h1><div class=post-meta><span title='2026-11-08 00:00:00 +0000 UTC'>November 8, 2026</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>Linmythos</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><ul><li><a href=#%e6%a0%b8%e5%bf%83%e9%97%ae%e9%a2%98 aria-label=核心问题>核心问题</a></li><li><a href=#%e7%ae%97%e6%b3%95%e7%9a%84%e6%95%b0%e5%ad%a6%e6%8a%bd%e8%b1%a1 aria-label=算法的数学抽象>算法的数学抽象</a></li><li><a href=#%e5%88%a4%e5%ae%9a%e9%97%ae%e9%a2%98 aria-label=判定问题>判定问题</a></li><li><a href=#%e5%9b%be%e7%81%b5%e6%9c%ba%e7%9a%84%e5%9f%ba%e6%9c%ac%e7%bb%93%e6%9e%84 aria-label=图灵机的基本结构>图灵机的基本结构</a></li><li><a href=#%e7%8a%b6%e6%80%81%e8%bd%ac%e7%a7%bb aria-label=状态转移>状态转移</a></li><li><a href=#%e5%9b%be%e7%81%b5%e6%9c%ba%e4%b8%8e%e7%8e%b0%e4%bb%a3%e8%ae%a1%e7%ae%97%e6%9c%ba aria-label=图灵机与现代计算机>图灵机与现代计算机</a></li></ul><li><a href=#%e5%8f%af%e8%ae%a1%e7%ae%97%e6%80%a7%e5%93%aa%e4%ba%9b%e9%97%ae%e9%a2%98%e6%a0%b9%e6%9c%ac%e6%97%a0%e6%b3%95%e8%a2%ab%e7%ae%97%e6%b3%95%e8%a7%a3%e5%86%b3 aria-label=可计算性：哪些问题根本无法被算法解决？>可计算性：哪些问题根本无法被算法解决？</a><ul><li><a href=#%e5%81%9c%e6%9c%ba%e9%97%ae%e9%a2%98 aria-label=停机问题>停机问题</a></li><li><a href=#%e5%af%b9%e8%a7%92%e5%8c%96%e8%af%81%e6%98%8e aria-label=对角化证明>对角化证明</a></li></ul></li><li><a href=#%e8%ae%a1%e7%ae%97%e8%b5%84%e6%ba%90%e6%97%b6%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6%e4%b8%8e%e7%a9%ba%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6 aria-label=计算资源：时间复杂度与空间复杂度>计算资源：时间复杂度与空间复杂度</a><ul><li><a href=#%e8%be%93%e5%85%a5%e8%a7%84%e6%a8%a1 aria-label=输入规模>输入规模</a></li><li><a href=#%e6%97%b6%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6 aria-label=时间复杂度>时间复杂度</a><ul><li><a href=#%e5%a4%a7-o-%e8%ae%b0%e5%8f%b7 aria-label="大 O 记号">大 O 记号</a></li><li><a href=#%e5%a4%a7-omega-%e8%ae%b0%e5%8f%b7 aria-label="大 \(\Omega\) 记号">大 \(\Omega\) 记号</a></li><li><a href=#%e5%a4%a7-theta-%e8%ae%b0%e5%8f%b7 aria-label="大 \(\Theta\) 记号">大 \(\Theta\) 记号</a></li></ul></li><li><a href=#%e7%a9%ba%e9%97%b4%e5%a4%8d%e6%9d%82%e5%ba%a6 aria-label=空间复杂度>空间复杂度</a></li></ul></li><li><a href=#p-%e7%b1%bb%e9%97%ae%e9%a2%98%e8%83%bd%e5%a4%9f%e9%ab%98%e6%95%88%e6%b1%82%e8%a7%a3%e7%9a%84%e9%97%ae%e9%a2%98 aria-label="P 类问题：能够高效求解的问题">P 类问题：能够高效求解的问题</a><ul><li><a href=#p-%e7%9a%84%e5%ae%9a%e4%b9%89 aria-label="P 的定义">P 的定义</a></li></ul></li><li><a href=#np-%e7%b1%bb%e9%97%ae%e9%a2%98%e5%ae%b9%e6%98%93%e9%aa%8c%e8%af%81%e4%b8%8d%e4%b8%80%e5%ae%9a%e5%ae%b9%e6%98%93%e6%b1%82%e8%a7%a3 aria-label="NP 类问题：容易验证，不一定容易求解">NP 类问题：容易验证，不一定容易求解</a><ul><li><a href=#%e4%bb%8e%e6%95%b0%e7%8b%ac%e9%97%ae%e9%a2%98%e5%87%ba%e5%8f%91 aria-label=从数独问题出发>从数独问题出发</a></li><li><a href=#np-%e7%9a%84%e5%bd%a2%e5%bc%8f%e5%8c%96%e5%ae%9a%e4%b9%89 aria-label="NP 的形式化定义">NP 的形式化定义</a></li><li><a href=#np-%e4%b8%8d%e7%ad%89%e4%ba%8e%e9%9d%9e%e5%a4%9a%e9%a1%b9%e5%bc%8f%e6%97%b6%e9%97%b4 aria-label="NP 不等于非多项式时间">NP 不等于非多项式时间</a></li></ul></li><li><a href=#%e5%a4%9a%e9%a1%b9%e5%bc%8f%e6%97%b6%e9%97%b4%e5%bd%92%e7%ba%a6%e5%a6%82%e4%bd%95%e6%af%94%e8%be%83%e9%97%ae%e9%a2%98%e7%9a%84%e9%9a%be%e5%ba%a6 aria-label=多项式时间归约：如何比较问题的难度？>多项式时间归约：如何比较问题的难度？</a><ul><li><a href=#%e5%a4%9a%e9%a1%b9%e5%bc%8f%e6%97%b6%e9%97%b4%e5%bd%92%e7%ba%a6 aria-label=多项式时间归约>多项式时间归约</a></li><li><a href=#np-hard-%e4%b8%8e-np-complete aria-label="NP-hard 与 NP-complete">NP-hard 与 NP-complete</a></li><li><a href=#sat-%e9%97%ae%e9%a2%98 aria-label="SAT 问题">SAT 问题</a></li></ul></li><li><a href=#%e5%a4%8d%e6%9d%82%e6%80%a7%e7%90%86%e8%ae%ba%e7%9a%84%e6%9b%b4%e5%a4%a7%e5%9b%be%e6%99%af aria-label=复杂性理论的更大图景>复杂性理论的更大图景</a><ul><li><a href=#pspace aria-label=PSPACE>PSPACE</a></li><li><a href=#exp aria-label=EXP>EXP</a></li></ul></li><li><a href=#%e5%8d%81%e4%b8%89%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae aria-label=十三、参考文献>十三、参考文献</a></li></ul></div></details><div class="post-content md-content"><h2 id=核心问题>核心问题<a hidden class=anchor aria-hidden=true href=#核心问题>#</a></h2><p>某些问题都有明确的数学定义，也都可以被描述为有限的计算过程，但它们的计算难度可能截然不同。例如，某些问题虽然理论上可以求解，但随着输入规模增长，所需计算资源可能迅速超过现实条件。</p><p>因此，我们引入两个概念：</p><ul><li><strong>可计算性（Computability）</strong>：一个问题能否被某种算法解决？</li><li><strong>计算复杂性（Computational Complexity）</strong>：解决问题需要多少计算资源？</li></ul><hr><h2 id=算法的数学抽象>算法的数学抽象<a hidden class=anchor aria-hidden=true href=#算法的数学抽象>#</a></h2><p>在数学中，我们通常将一个计算问题表示为：</p><p>\[
+f:X\rightarrow Y.
+\]</p><p>给定输入 \(x\in X\)，要求计算输出：</p><p>\[
+y=f(x).
+\]</p><p>但并不是所有数学对象都能直接作为计算机输入。我们通常需要将输入编码为有限字符串：</p><p>\[
+x\in\Sigma^*,
+\]</p><p>其中 \(\Sigma\) 是有限字母表，\(\Sigma^*\) 表示所有有限字符串构成的集合。于是，计算问题可以被统一描述为对有限字符串的处理。</p><h2 id=判定问题>判定问题<a hidden class=anchor aria-hidden=true href=#判定问题>#</a></h2><p>计算复杂性理论经常研究判定问题（Decision Problem）。一个判定问题的答案只有两种：</p><p>\[
+{\text{YES},\text{NO}}.
+\]</p><p>数学上，可以将其表示为一个语言：</p><p>\[
+L\subseteq\Sigma^*.
+\]</p><p>对于输入 \(x\)，问题就是判断：</p><p>\[
+x\in L?
+\]</p><hr><h2 id=图灵机的基本结构>图灵机的基本结构<a hidden class=anchor aria-hidden=true href=#图灵机的基本结构>#</a></h2><p>1936 年，Alan Turing 提出了图灵机（Turing Machine）模型。它是现代计算理论的基础之一。一台确定性图灵机可以描述为：</p><p>\[
+M=(Q,\Sigma,\Gamma,\delta,q_0,q_{\mathrm{accept}},q_{\mathrm{reject}}),
+\]</p><p>其中：</p><ul><li>\(Q\)：有限状态集合；</li><li>\(\Sigma\)：输入字母表；</li><li>\(\Gamma\)：纸带字母表；</li><li>\(\delta\)：状态转移函数；</li><li>\(q_0\)：初始状态；</li><li>\(q_{\mathrm{accept}}\)：接受状态；</li><li>\(q_{\mathrm{reject}}\)：拒绝状态。</li></ul><p>图灵机包含：</p><ol><li>一条理论上无限长的纸带；</li><li>一个能够读写纸带符号的读写头；</li><li>一个有限状态控制器。</li></ol><p>纸带用于保存计算数据，读写头用于访问和修改数据，状态控制器决定下一步动作。</p><p>图灵机的每一步操作由当前状态和当前读取的符号决定。</p><h2 id=状态转移>状态转移<a hidden class=anchor aria-hidden=true href=#状态转移>#</a></h2><p>设当前状态为 \(q\)，读写头读取的符号为 \(a\)。</p><p>转移函数给出：</p><p>\[
+\delta(q,a)=(q&rsquo;,b,D),
+\]</p><p>其中：</p><ul><li>\(q&rsquo;\)：下一状态；</li><li>\(b\)：写入纸带的符号；</li><li>\(D\)：读写头移动方向，通常为 L 或 R。</li></ul><p>因此，一次计算就是一系列状态转移：</p><p>\[
+C_0\rightarrow C_1\rightarrow C_2
+\rightarrow\cdots.
+\]</p><p>这里 \(C_i\) 表示图灵机在第 \(i\) 步的完整配置，包括状态、纸带内容和读写头位置。</p><p>如果最终进入接受状态，则输入被接受；如果进入拒绝状态，则输入被拒绝。</p><h2 id=图灵机与现代计算机>图灵机与现代计算机<a hidden class=anchor aria-hidden=true href=#图灵机与现代计算机>#</a></h2><p>图灵机并不是一种实际计算机的设计方案。它的价值在于提供一个足够简单、足够严格的计算模型。</p><p>现代计算机拥有CPU、内存、磁盘、输入输出设备、多级存储结构。但对于可计算性理论而言，我们关心的是：这些计算设备是否能够实现某个数学意义上的算法。在适当的抽象条件下，图灵机能够模拟通常意义上的算法计算。这与 Church–Turing 论题有关：</p><blockquote><p>任何直观意义上可有效计算的函数，都可以由图灵机计算。</p></blockquote><hr><h1 id=可计算性哪些问题根本无法被算法解决>可计算性：哪些问题根本无法被算法解决？<a hidden class=anchor aria-hidden=true href=#可计算性哪些问题根本无法被算法解决>#</a></h1><p>图灵机模型不仅能够描述算法，还能证明某些问题不存在通用算法。</p><h2 id=停机问题>停机问题<a hidden class=anchor aria-hidden=true href=#停机问题>#</a></h2><p>考虑一个程序 \(P\) 和输入 \(x\)。</p><p>我们希望判断：</p><p>\[
+P(x)\text{ 是否会最终停止？}
+\]</p><p>这就是停机问题（Halting Problem）。</p><p>假设存在一个算法 \(H(P,x)\)，能够正确判断任意程序 \(P\) 在输入 \(x\) 时是否停止：</p><p>\[
+H(P,x)=
+\begin{cases}
+1,&amp;P(x)\text{ 停止},\\
+0,&amp;P(x)\text{ 不停止}.
+\end{cases}
+\]</p><p>我们将证明这样的算法不存在。</p><h2 id=对角化证明>对角化证明<a hidden class=anchor aria-hidden=true href=#对角化证明>#</a></h2><p>假设 \(H\) 存在。</p><p>构造一个新程序 \(D(P)\)：</p><ol><li>运行 \(H(P,P)\)；</li><li>如果 \(H(P,P)=1\)，则 \(D(P)\) 无限运行；</li><li>如果 \(H(P,P)=0\)，则 \(D(P)\) 立即停止。</li></ol><p>现在考虑：</p><p>\[
+D(D).
+\]</p><p>只有两种可能。</p><p><strong>情况一：\(H(D,D)=1\)。</strong></p><p>这意味着 \(D(D)\) 应当停止。但根据 \(D\) 的定义，如果 \(H(D,D)=1\)，它就会无限运行。矛盾。</p><p><strong>情况二：\(H(D,D)=0\)。</strong></p><p>这意味着 \(D(D)\) 不会停止。但根据 \(D\) 的定义，如果 \(H(D,D)=0\)，它就会立即停止。仍然矛盾。因此，最初的假设不成立：</p><p>\[
+\boxed{
+\text{不存在能够判断任意程序是否停止的通用算法。}
+}
+\]</p><h1 id=计算资源时间复杂度与空间复杂度>计算资源：时间复杂度与空间复杂度<a hidden class=anchor aria-hidden=true href=#计算资源时间复杂度与空间复杂度>#</a></h1><h2 id=输入规模>输入规模<a hidden class=anchor aria-hidden=true href=#输入规模>#</a></h2><p>考虑一个算法 \(A\)。我们希望衡量其运行时间与输入规模之间的关系。设输入为 \(x\)，其长度为：</p><p>\[
+n=|x|.
+\]</p><p>对于二进制编码的整数，输入长度通常与整数的数值大小不同。因此，复杂度分析必须以编码长度为基础，而不是直接使用整数数值。</p><h2 id=时间复杂度>时间复杂度<a hidden class=anchor aria-hidden=true href=#时间复杂度>#</a></h2><p>设算法在输入 \(x\) 上执行的步骤数为：</p><p>\[
+T_A(x).
+\]</p><p>最坏情况时间复杂度定义为：</p><p>\[
+T_A(n)=
+\max_{|x|=n}T_A(x).
+\]</p><p>我们通常使用渐近符号描述增长速度。</p><h3 id=大-o-记号>大 O 记号<a hidden class=anchor aria-hidden=true href=#大-o-记号>#</a></h3><p>若存在常数 \(c>0\) 和 \(n_0\)，使得对所有 \(n\geq n_0\)：</p><p>\[
+f(n)\leq cg(n),
+\]</p><p>则称：</p><p>\[
+f(n)=O(g(n)).
+\]</p><h3 id=大-omega-记号>大 \(\Omega\) 记号<a hidden class=anchor aria-hidden=true href=#大-omega-记号>#</a></h3><p>若存在常数 \(c>0\) 和 \(n_0\)，使得：</p><p>\[
+f(n)\geq cg(n),
+\]</p><p>则称：</p><p>\[
+f(n)=\Omega(g(n)).
+\]</p><h3 id=大-theta-记号>大 \(\Theta\) 记号<a hidden class=anchor aria-hidden=true href=#大-theta-记号>#</a></h3><p>若同时有：</p><p>\[
+f(n)=O(g(n))
+\]</p><p>和：</p><p>\[
+f(n)=\Omega(g(n)),
+\]</p><p>则：</p><p>\[
+f(n)=\Theta(g(n)).
+\]</p><h2 id=空间复杂度>空间复杂度<a hidden class=anchor aria-hidden=true href=#空间复杂度>#</a></h2><p>空间复杂度衡量计算过程中使用的存储资源。</p><p>设：</p><p>\[
+S_A(x)
+\]</p><p>表示算法使用的工作空间。</p><p>则最坏情况空间复杂度为：</p><p>\[
+S_A(n)=
+\max_{|x|=n}S_A(x).
+\]</p><p>在复杂性理论中，通常会明确是否计入输入存储空间。</p><hr><h1 id=p-类问题能够高效求解的问题>P 类问题：能够高效求解的问题<a hidden class=anchor aria-hidden=true href=#p-类问题能够高效求解的问题>#</a></h1><h2 id=p-的定义>P 的定义<a hidden class=anchor aria-hidden=true href=#p-的定义>#</a></h2><p>P 类（Polynomial Time）是所有能够由确定性图灵机在多项式时间内判定的语言集合。</p><p>形式化地：</p><p>\[
+\boxed{
+P=
+\bigcup_{k\geq1}TIME(n^k)
+}
+\]</p><p>其中 \(TIME(n^k)\) 表示能够在 \(O(n^k)\) 时间内完成判定的语言集合。</p><p>直观上，P 包含了能够在多项式时间内求解的判定问题。需要注意，P 是关于渐近复杂度的数学类别。比如一个 \(O(n^{100})\) 的算法仍然属于多项式时间，但现实中可能完全不可行。</p><p>因此：</p><h2 id=heading>\[
+\boxed{
+\text{多项式时间}\neq\text{实际运行足够快}
+}
+\]</h2><h1 id=np-类问题容易验证不一定容易求解>NP 类问题：容易验证，不一定容易求解<a hidden class=anchor aria-hidden=true href=#np-类问题容易验证不一定容易求解>#</a></h1><h2 id=从数独问题出发>从数独问题出发<a hidden class=anchor aria-hidden=true href=#从数独问题出发>#</a></h2><p>考虑一个数独问题。给定一个未完成的数独，我们希望判断是否存在合法填法。寻找一个解可能需要大量尝试。但如果有人已经给出一个完整填法，我们可以快速检查：</p><ul><li>每一行是否满足规则；</li><li>每一列是否满足规则；</li><li>每个宫格是否满足规则。</li></ul><p>也就是说：</p><p><strong>找到解可能困难，但验证一个候选解可能容易。</strong></p><p>这就是 NP 类问题的基本思想。</p><h2 id=np-的形式化定义>NP 的形式化定义<a hidden class=anchor aria-hidden=true href=#np-的形式化定义>#</a></h2><p>NP 表示 Non-deterministic Polynomial Time。它可以通过非确定性图灵机在多项式时间内判定来定义。</p><p>另一种等价定义是：</p><p>一个语言 \(L\) 属于 NP，当且仅当存在一个多项式时间验证器 \(V(x,w)\)，使得：</p><p>\[
+\boxed{
+x\in L
+\iff
+\exists w,\quad V(x,w)=1
+}
+\]</p><p>其中：</p><ul><li>\(x\)：原始输入；</li><li>\(w\)：证书（Certificate）；</li><li>\(V\)：多项式时间验证器。</li></ul><p>证书的长度也要求关于输入长度多项式有界。</p><h2 id=np-不等于非多项式时间>NP 不等于非多项式时间<a hidden class=anchor aria-hidden=true href=#np-不等于非多项式时间>#</a></h2><p>这是一个非常常见的误解。NP 不是“Non-Polynomial”的缩写。它表示非确定性多项式时间。</p><p>实际上：</p><p>\[
+\boxed{P\subseteq NP}
+\]</p><p>因为如果一个问题能够在多项式时间内直接求解，那么当然也能够在多项式时间内验证其答案。</p><p>但是否有：</p><p>\[
+P=NP\quad ?
+\]</p><p><strong>所有能够在多项式时间内验证解的问题，是否也都能够在多项式时间内求解？</strong></p><p>目前仍然未知。这是理论计算机科学中最著名的开放问题之一。</p><hr><h1 id=多项式时间归约如何比较问题的难度>多项式时间归约：如何比较问题的难度？<a hidden class=anchor aria-hidden=true href=#多项式时间归约如何比较问题的难度>#</a></h1><p>假设我们已经知道问题 A 很难。能否利用问题 A 的求解算法来解决问题 B？这就是归约（Reduction）的基本思想。</p><h2 id=多项式时间归约>多项式时间归约<a hidden class=anchor aria-hidden=true href=#多项式时间归约>#</a></h2><p>设两个判定问题分别对应语言：</p><p>\[
+A,B\subseteq\Sigma^*.
+\]</p><p>如果存在一个多项式时间可计算函数：</p><p>\[f:\Sigma^* \rightarrow \Sigma^*
+\]</p><p>满足：</p><p>\[
+\boxed{
+x\in A\iff f(x)\in B,
+}
+\]</p><p>则称：</p><p>\[
+A\leq_p B.
+\]</p><p>这表示 A 可以在多项式时间内归约到 B。</p><p>如果我们能够高效求解 B，就能够高效求解 A。</p><p>因此：</p><p>\[
+A\leq_p B
+\]</p><p>意味着 B 至少不比 A 更容易（相对于这种归约）。</p><h2 id=np-hard-与-np-complete>NP-hard 与 NP-complete<a hidden class=anchor aria-hidden=true href=#np-hard-与-np-complete>#</a></h2><p>一个问题 \(B\) 称为 NP-hard，如果：</p><p>\[
+\forall A\in NP,\quad A\leq_p B.
+\]</p><p>即所有 NP 问题都可以多项式时间归约到 B。</p><p>如果同时满足：</p><p>\[
+B\in NP
+\]</p><p>和：</p><p>\[
+B\text{ 是 NP-hard},
+\]</p><p>则称 B 为 NP-complete。</p><h2 id=sat-问题>SAT 问题<a hidden class=anchor aria-hidden=true href=#sat-问题>#</a></h2><p>SAT（Boolean Satisfiability Problem）是经典的 NP-complete 问题。</p><p>给定一个布尔公式：</p><p>\[
+\varphi(x_1,\ldots,x_n),
+\]</p><p>判断是否存在变量赋值使：</p><p>\[
+\varphi(x_1,\ldots,x_n)=1.
+\]</p><p>Cook–Levin 定理：**SAT 是 NP-complete 的。**这意味着所有 NP 问题都能够多项式时间归约到 SAT。如果有人找到 SAT 的多项式时间算法，那么：
+\[
+P=NP.
+\]</p><p>这就是 SAT 在计算复杂性理论中的特殊地位。</p><hr><h1 id=复杂性理论的更大图景>复杂性理论的更大图景<a hidden class=anchor aria-hidden=true href=#复杂性理论的更大图景>#</a></h1><p>P 与 NP 只是复杂性理论的一部分。
+我们还需要认识一些重要的复杂性类别。</p><h2 id=pspace>PSPACE<a hidden class=anchor aria-hidden=true href=#pspace>#</a></h2><p>PSPACE 是能够使用多项式空间完成判定的问题集合。</p><p>\[
+PSPACE=
+\bigcup_{k\geq1}SPACE(n^k).
+\]</p><h2 id=exp>EXP<a hidden class=anchor aria-hidden=true href=#exp>#</a></h2><p>EXP 是能够在指数时间内求解的问题集合：</p><p>\[
+EXP=
+\bigcup_{k\geq1}TIME(2^{n^k}).
+\]</p><p>显然：</p><p>\[
+P\subseteq EXP.
+\]</p><p>而且可以证明：</p><p>\[
+P\subsetneq EXP.
+\]</p><h1 id=十三参考文献>十三、参考文献<a hidden class=anchor aria-hidden=true href=#十三参考文献>#</a></h1><ol><li>Michael Sipser, <em>Introduction to the Theory of Computation</em>.</li><li>Christos H. Papadimitriou, <em>Computational Complexity</em>.</li><li>Sanjeev Arora, Boaz Barak, <em>Computational Complexity: A Modern Approach</em>.</li><li>Juris Hartmanis, Richard E. Stearns, “On the Computational Complexity of Algorithms,” <em>Transactions of the American Mathematical Society</em>, 1965.</li><li>Stephen A. Cook, “The Complexity of Theorem-Proving Procedures,” <em>Proceedings of the Third Annual ACM Symposium on Theory of Computing</em>, 1971.</li><li>Richard M. Karp, “Reducibility Among Combinatorial Problems,” 1972.</li></ol></div><footer class=post-footer><ul class=post-tags></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://linmythos.github.io/>Linmythos</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

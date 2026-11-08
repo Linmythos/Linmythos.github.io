@@ -1,0 +1,91 @@
+<!doctype html><html lang=en dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>8. 从神经计算到智能 | Linmythos</title><meta name=keywords content><meta name=description content="8. 从神经计算到智能 - Linmythos"><meta name=author content="Linmythos"><link rel=canonical href=https://linmythos.github.io/neural-science/%E7%90%86%E8%AE%BA%E7%A5%9E%E7%BB%8F%E7%A7%91%E5%AD%A6/%E4%BB%8E%E7%A5%9E%E7%BB%8F%E8%AE%A1%E7%AE%97%E5%88%B0%E6%99%BA%E8%83%BD/><link crossorigin=anonymous href=/assets/css/stylesheet.5a42af7b68c8b1b7f3d0894c8a74d101cf31f37c1aa9bf8365395ef493e0dea4.css integrity="sha256-WkKve2jIsbfz0IlMinTRAc8x83waqb+DZTle9JPg3qQ=" rel="preload stylesheet" as=style><link rel=icon href=https://linmythos.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://linmythos.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://linmythos.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://linmythos.github.io/apple-touch-icon.png><link rel=mask-icon href=https://linmythos.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://linmythos.github.io/neural-science/%E7%90%86%E8%AE%BA%E7%A5%9E%E7%BB%8F%E7%A7%91%E5%AD%A6/%E4%BB%8E%E7%A5%9E%E7%BB%8F%E8%AE%A1%E7%AE%97%E5%88%B0%E6%99%BA%E8%83%BD/index.xml title=rss><link rel=alternate hreflang=en href=https://linmythos.github.io/neural-science/%E7%90%86%E8%AE%BA%E7%A5%9E%E7%BB%8F%E7%A7%91%E5%AD%A6/%E4%BB%8E%E7%A5%9E%E7%BB%8F%E8%AE%A1%E7%AE%97%E5%88%B0%E6%99%BA%E8%83%BD/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="https://linmythos.github.io/neural-science/%E7%90%86%E8%AE%BA%E7%A5%9E%E7%BB%8F%E7%A7%91%E5%AD%A6/%E4%BB%8E%E7%A5%9E%E7%BB%8F%E8%AE%A1%E7%AE%97%E5%88%B0%E6%99%BA%E8%83%BD/"><meta property="og:site_name" content="Linmythos"><meta property="og:title" content="8. 从神经计算到智能"><meta property="og:description" content="Mathematics · Physics · Thoughts"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="8. 从神经计算到智能"><meta name=twitter:description content="Mathematics · Physics · Thoughts"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Neural Science","item":"https://linmythos.github.io/neural-science/"},{"@type":"ListItem","position":3,"name":"8. 从神经计算到智能","item":"https://linmythos.github.io/neural-science/%E7%90%86%E8%AE%BA%E7%A5%9E%E7%BB%8F%E7%A7%91%E5%AD%A6/%E4%BB%8E%E7%A5%9E%E7%BB%8F%E8%AE%A1%E7%AE%97%E5%88%B0%E6%99%BA%E8%83%BD/"}]}</script></head><body class=list id=top><header class=header><nav class=header-nav><div class=logo><a href=https://linmythos.github.io/ accesskey=h title="Linmythos (Alt + H)">Linmythos</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://linmythos.github.io/math/ title=Mathematics><span>Mathematics</span></a></li><li><a href=https://linmythos.github.io/physics/ title=Physics><span>Physics</span></a></li><li><a href=https://linmythos.github.io/ai/ title=AI><span>AI</span></a></li><li><a href=https://linmythos.github.io/neural-science/ title="Neural Science"><span>Neural Science</span></a></li><li><a href=https://linmythos.github.io/essays/ title=Essays><span>Essays</span></a></li><li><a href=https://linmythos.github.io/about/ title=About><span>About</span></a></li><li><a href=https://linmythos.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://linmythos.github.io/archives/ title=Archives><span>Archives</span></a></li></ul></nav></header><main class=main><header class=page-header><h1>8. 从神经计算到智能</h1></header><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第25章　生物神经网络与人工神经网络</h2></header><div class=entry-content><p>25.1 从神经科学到人工智能 前面七篇从神经元动力学、神经编码、网络学习、记忆、感知、决策以及统计物理等角度，建立了理论神经科学的基本框架。本篇将进一步讨论一个重要问题：生物神经系统中的计算原理，能够为人工智能提供怎样的理论启发？
+人工神经网络（artificial neural network, ANN）最初受到生物神经系统的启发。其基本思想是将大量简单计算单元连接起来，通过调整连接权重，使网络能够从数据中学习复杂的输入—输出关系。
+但需要明确：现代人工神经网络并不是生物神经系统的精确复制。两者虽然共享神经元、连接权重和网络计算等抽象概念，却在计算单元、学习机制、时间动力学以及能量消耗等方面存在显著差异。
+因此，研究二者的关系，既需要寻找共同的数学结构，也需要明确它们之间的生物学边界。
+25.2 从生物神经元到人工神经元 生物神经元通过接收突触输入、整合膜电流并产生动作电位实现信息处理。一个简化的人工神经元则可以表示为
+\[ y=\phi\left(\sum_{i=1}^{N}w_ix_i+b\right), \]
+其中 \(x_i\) 是输入，\(w_i\) 是连接权重，\(b\) 是偏置，\(\phi\) 是非线性激活函数。
+这一结构可以分为三个步骤：线性加权、偏置调整和非线性变换。
+从形式上看，它与生物神经元的输入整合过程具有一定相似性。突触输入的强度影响膜电位，膜电位又决定神经元是否产生放电；人工神经元则通过加权求和与激活函数，将输入映射为输出。
+但二者存在重要区别。生物神经元具有复杂的树突结构、离子通道动力学、脉冲时序和突触可塑性；标准人工神经元通常将这些过程压缩成一个静态的非线性映射。
+因此，人工神经元不是生物神经元的完整模型，而是一种面向计算任务的抽象。
+25.3 激活函数与神经元非线性 人工神经网络能够表示复杂函数，一个关键原因是激活函数提供了非线性。
+如果所有人工神经元都采用线性激活，即 \(\phi(x)=x\)，那么多层线性变换的复合仍然是线性变换：
+\[ W_LW_{L-1}\cdots W_1\mathbf x. \]
+因此，无论网络有多少层，其整体表达能力都不会超出一个线性映射。
+引入非线性激活函数后，网络便能够表示更加复杂的函数关系。常见的激活函数包括 Sigmoid、Tanh 和 ReLU。
+其中，ReLU（Rectified Linear Unit）定义为 \(\phi(x)=\max(0,x)\)。它在负半轴为零，在正半轴为线性函数，因此整体并不是线性函数。
+ReLU 的重要特点是计算简单，并且在正半轴具有恒定梯度。它被广泛用于现代深度神经网络。
+从神经科学角度看，人工激活函数可以被视为对神经元输入—输出关系的简化描述。但生物神经元的输入—输出关系通常具有更复杂的时间依赖性、适应性和随机性，不能直接等同于某个固定激活函数。
+25.4 前馈网络与层级计算 最简单的人工神经网络是前馈神经网络（feedforward neural network）。其信息从输入层流向输出层，不存在反馈连接。
+设第 \(\ell\) 层的活动为 \(\mathbf h^{(\ell)}\)，则网络计算可以写成
+\[ \mathbf h^{(\ell)} =\phi\left( W^{(\ell)}\mathbf h^{(\ell-1)} +\mathbf b^{(\ell)} \right). \]
+其中 \(W^{(\ell)}\) 是第 \(\ell\) 层的权重矩阵，\(\mathbf b^{(\ell)}\) 是偏置向量。
+...</p></div><footer class=entry-footer><span title='2026-11-08 00:00:00 +0000 UTC'>November 8, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第25章　生物神经网络与人工神经网络" href=https://linmythos.github.io/neural-science/%E7%90%86%E8%AE%BA%E7%A5%9E%E7%BB%8F%E7%A7%91%E5%AD%A6/%E4%BB%8E%E7%A5%9E%E7%BB%8F%E8%AE%A1%E7%AE%97%E5%88%B0%E6%99%BA%E8%83%BD/%E7%94%9F%E7%89%A9%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第26章　深度学习的数学与计算原理</h2></header><div class=entry-content><p>26.1 从神经网络到深度学习 上一章介绍了人工神经网络的基本结构。所谓深度学习（deep learning），其核心并不只是增加网络层数，而是利用多层非线性变换，从数据中逐级提取和组织表征（representation）。
+设输入为 \(\mathbf x\)，一个深度神经网络可以表示为复合函数：
+\[ f_{\boldsymbol\theta}(\mathbf x) =f_L\circ f_{L-1}\circ\cdots\circ f_1(\mathbf x), \]
+其中每个 \(f_\ell\) 对应网络的一层或一个计算模块，\(\boldsymbol\theta\) 表示全部可训练参数。
+这种复合结构使网络能够构造复杂的非线性映射。例如，在图像识别中，网络可以从像素出发，逐层形成边缘、纹理、局部结构，最终形成具有语义意义的表征。
+从数学角度看，深度学习涉及三个相互关联的问题：函数表示、参数优化与统计泛化。网络必须具有足够的表达能力，训练算法必须能够找到有效参数，而训练得到的模型还必须能够处理未见过的数据。
+26.2 函数逼近与通用逼近定理 深度神经网络首先是一类参数化函数族。给定网络结构，其所有可能实现的函数构成一个函数空间 \(\mathcal F\)。学习的目标，就是在这一函数族中找到一个能够较好描述数据关系的函数。
+通用逼近定理（universal approximation theorem）说明，在适当条件下，具有足够多隐藏单元的前馈神经网络能够在紧集上以任意精度逼近连续函数。
+例如，对于紧集 \(K\subset\mathbb R^n\) 上的连续函数 \(f\)，在满足激活函数等条件时，对任意 \(\varepsilon>0\)，存在一个有限宽度的网络 \(g\)，使得 \(\sup_{\mathbf x\in K}|f(\mathbf x)-g(\mathbf x)|&lt;\varepsilon\)。
+这一结论具有重要的理论意义：神经网络具有非常强大的函数表达能力。
+但必须注意，通用逼近定理并不意味着任意函数都能被一个小型网络高效表示，也不意味着梯度下降一定能够找到理想参数，更不意味着训练后的网络必然具有良好的泛化能力。
+表达能力、可训练性与泛化能力是三个不同的问题。
+26.3 深度结构为何重要 既然单隐藏层网络已经具有通用逼近能力，为什么还需要深度网络？
+关键在于：能够逼近某个函数，并不意味着逼近它所需要的计算资源相同。
+对于某些具有层级组合结构的函数，深度网络可以利用多层计算显著减少所需的神经元数量。浅层网络可能需要大量隐藏单元才能表示某些复杂函数，而深层网络能够通过复合结构重复利用中间特征。
+一个简单例子是函数复合。若 \(f(\mathbf x)=f_3(f_2(f_1(\mathbf x)))\)，那么深度网络可以分别学习三个阶段的变换，而不必直接从输入构造整个复杂映射。
+这种结构优势在视觉、语言和语音任务中尤为重要，因为这些数据通常具有多层次的统计结构。
+不过，深度并不是越大越好。网络深度还会影响优化难度、计算成本、稳定性以及过拟合风险。合理的网络结构必须结合任务和数据特征确定。
+26.4 表示学习：从原始数据到抽象特征 深度学习的重要特征之一是表示学习（representation learning）。
+传统机器学习方法往往依赖人工设计特征。例如，在图像识别中，研究者可能先提取边缘、纹理或形状特征，再将其输入分类器。深度学习则尝试直接从数据中学习多层特征表示。
+设网络第 \(\ell\) 层的隐藏状态为 \(\mathbf h^{(\ell)}\)，则有 \(\mathbf h^{(0)}=\mathbf x\)，以及
+\[ \mathbf h^{(\ell)} =\phi\left(W^{(\ell)}\mathbf h^{(\ell-1)} +\mathbf b^{(\ell)}\right). \]
+...</p></div><footer class=entry-footer><span title='2026-11-08 00:00:00 +0000 UTC'>November 8, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第26章　深度学习的数学与计算原理" href=https://linmythos.github.io/neural-science/%E7%90%86%E8%AE%BA%E7%A5%9E%E7%BB%8F%E7%A7%91%E5%AD%A6/%E4%BB%8E%E7%A5%9E%E7%BB%8F%E8%AE%A1%E7%AE%97%E5%88%B0%E6%99%BA%E8%83%BD/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E5%AD%A6%E4%B8%8E%E8%AE%A1%E7%AE%97%E5%8E%9F%E7%90%86/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第27章　主动推断与自由能原理</h2></header><div class=entry-content><p>27.1 从被动感知到主动推断 传统感知理论通常将感知描述为一个由外部刺激到内部表征的信息处理过程：感觉系统接收输入，大脑对输入进行分析，最终形成对外部世界的估计。然而，生物体并不是被动接收信息的系统。它们能够主动移动身体、调整视线、改变注意方向，并通过行动获取与自身目标相关的信息。
+例如，当我们观察一个物体时，眼球运动会主动选择视觉输入；当我们触摸一个物体时，手部运动会改变感觉反馈。因此，感知与行动并不是完全独立的过程，而是相互耦合的。
+主动推断（active inference）正是在这一背景下发展起来的理论框架。它试图将感知、学习和行动统一描述为一个基于概率推断的过程：生物体通过建立关于外部世界的生成模型，对感觉输入进行解释，并通过行动改变感觉输入，使其符合模型所预测的状态。
+这一理论与贝叶斯脑假说、预测编码和自由能原理密切相关，但它们并不是完全相同的概念。
+27.2 生成模型与贝叶斯推断 首先回顾生成模型（generative model）。设外部世界的隐变量为 \(z\)，观测到的感觉输入为 \(x\)。生成模型描述隐变量如何产生观测，其基本形式为 \(p(x,z)=p(x\mid z)p(z)\)。
+其中，\(p(x\mid z)\) 是似然函数，描述给定隐状态时产生观测的概率；\(p(z)\) 是先验分布，描述观测之前对隐状态的预期。
+当获得感觉输入 \(x\) 后，系统可以利用贝叶斯公式计算后验分布：
+\[ p(z\mid x)=\frac{p(x\mid z)p(z)}{p(x)}. \]
+但在复杂系统中，精确计算后验分布可能非常困难。特别是当隐变量具有高维、非线性或层级结构时，直接求解往往不可行。
+自由能原理中的变分方法，正是为了处理这一类推断问题。
+27.3 变分推断与变分自由能 设真实后验分布为 \(p(z\mid x)\)，我们希望构造一个容易计算的近似分布 \(q(z)\)，使其尽可能接近真实后验。
+一种自然的做法是最小化 Kullback–Leibler 散度：
+\[ D_{\mathrm{KL}}\big(q(z)\|p(z\mid x)\big) = \mathbb E_q\left[ \log\frac{q(z)}{p(z\mid x)} \right]. \]
+由于真实后验可能难以直接计算，可以利用贝叶斯公式将其改写。定义变分自由能：
+\[ F[q] = \mathbb E_q[\log q(z)-\log p(x,z)]. \]
+进一步可得
+\[ F[q] = D_{\mathrm{KL}}\big(q(z)\|p(z\mid x)\big) -\log p(x). \]
+这里的 \(-\log p(x)\) 对于给定观测 \(x\) 是常数，因此最小化变分自由能等价于最小化近似后验与真实后验之间的 KL 散度。
+...</p></div><footer class=entry-footer><span title='2026-11-08 00:00:00 +0000 UTC'>November 8, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第27章　主动推断与自由能原理" href=https://linmythos.github.io/neural-science/%E7%90%86%E8%AE%BA%E7%A5%9E%E7%BB%8F%E7%A7%91%E5%AD%A6/%E4%BB%8E%E7%A5%9E%E7%BB%8F%E8%AE%A1%E7%AE%97%E5%88%B0%E6%99%BA%E8%83%BD/%E4%B8%BB%E5%8A%A8%E6%8E%A8%E6%96%AD%E4%B8%8E%E8%87%AA%E7%94%B1%E8%83%BD%E5%8E%9F%E7%90%86/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第28章　意识的神经科学理论</h2></header><div class=entry-content><p>28.1 意识：一个尚未解决的科学问题 意识（consciousness）是神经科学、认知科学与哲学共同面对的核心问题之一。我们能够观察到神经元放电、脑区活动以及行为反应，却很难仅凭这些外部现象直接确定一个系统是否具有主观体验。
+意识研究首先需要区分几个概念。
+**觉醒（arousal）**指机体处于清醒状态的程度；**意识水平（level of consciousness）**描述从清醒到昏迷等不同状态；**意识内容（contents of consciousness）**则指个体正在体验什么，例如颜色、声音、疼痛或思维。
+此外，现象意识（phenomenal consciousness）通常指主观体验本身，即某种体验对于体验者而言是什么样的；通达意识（access consciousness）则强调信息能否被用于推理、报告、决策和行为控制。
+这些概念之间存在联系，但并不等同。一个人可能处于清醒状态，却没有意识到某个具体刺激；某些信息也可能影响行为，却未必进入可报告的主观体验。
+因此，意识研究的首要任务，是建立能够被实验操作和检验的概念框架。
+28.2 意识的神经相关物 意识的神经相关物（neural correlates of consciousness, NCC）是指与特定意识体验相对应的最小神经机制或神经活动集合。
+假设实验中，受试者接受相同的视觉刺激，但有时能够意识到刺激，有时不能。研究者可以比较两种条件下的神经活动，寻找与意识体验相关的差异。
+这里需要特别注意：与意识相关的神经活动不一定就是产生意识体验的全部机制。某些活动可能与注意、工作记忆、决策或语言报告有关，而不直接构成意识体验本身。
+因此，意识研究必须尽可能区分三个层次：
+感觉处理： 神经系统是否对刺激产生了响应？ 意识体验： 刺激是否进入了主观体验？ 意识报告： 个体是否能够将体验表达出来？ 例如，在视觉掩蔽实验中，研究者可以通过改变刺激呈现条件，研究视觉信息在无意识处理与有意识感知之间的差异。但即使发现某些脑区活动与主观报告高度相关，也仍然需要排除注意、任务需求和报告过程带来的混杂因素。
+28.3 全局神经工作空间理论 全局神经工作空间理论（Global Neuronal Workspace Theory, GNWT）是当前具有重要影响力的意识理论之一。
+其思想可以追溯到认知科学中的全局工作空间模型。该理论认为，大脑包含大量相对专门化的信息处理系统，它们能够并行处理不同类型的信息。当某些信息获得足够强的处理优势后，就可能通过全局广播机制进入广泛的神经网络，使其能够被多个认知系统共同使用。
+例如，视觉系统可以处理某个物体的形状，而记忆系统可以提取与该物体相关的经验，语言系统则可以为其生成名称。全局工作空间提供了一种解释：不同功能系统如何共享某些具有重要意义的信息。
+从计算结构上看，可以将其简化为局部处理网络与全局广播网络的耦合：
+\[ \begin{aligned} \mathbf h_i(t+1) &=F_i(\mathbf h_i(t),\mathbf x_i(t),\mathbf g(t)),\\ \mathbf g(t+1) &=G(\mathbf h_1(t),\ldots,\mathbf h_N(t)), \end{aligned} \]
+其中 \(\mathbf h_i\) 表示第 \(i\) 个局部处理系统的状态，\(\mathbf g\) 表示全局工作空间状态。
+当某个局部信息达到一定条件时，它可能进入全局工作空间，并影响多个系统的后续计算。
+GNWT 的一个重要预测是，有意识的信息处理通常伴随广泛的神经活动传播，部分实验研究将其与额顶网络活动及晚期神经响应联系起来。
+但需要指出，额顶活动究竟是意识体验本身的必要组成部分，还是主要参与意识报告、任务执行和信息维持，仍存在争论。
+28.4 整合信息理论 整合信息理论（Integrated Information Theory, IIT）试图从系统内部的因果结构出发解释意识。
+...</p></div><footer class=entry-footer><span title='2026-11-08 00:00:00 +0000 UTC'>November 8, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第28章　意识的神经科学理论" href=https://linmythos.github.io/neural-science/%E7%90%86%E8%AE%BA%E7%A5%9E%E7%BB%8F%E7%A7%91%E5%AD%A6/%E4%BB%8E%E7%A5%9E%E7%BB%8F%E8%AE%A1%E7%AE%97%E5%88%B0%E6%99%BA%E8%83%BD/%E6%84%8F%E8%AF%86%E7%9A%84%E7%A5%9E%E7%BB%8F%E7%A7%91%E5%AD%A6%E7%90%86%E8%AE%BA/></a></article></main><footer class=footer><span>&copy; 2026 <a href=https://linmythos.github.io/>Linmythos</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script></body></html>

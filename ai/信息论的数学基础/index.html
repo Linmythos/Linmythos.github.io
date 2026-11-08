@@ -1,0 +1,492 @@
+<!doctype html><html lang=en dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>信息论的数学基础——从 Shannon 熵、互信息到信息瓶颈 | Linmythos</title><meta name=keywords content><meta name=description content="信息论试图建立一套数学理论，用概率分布定量描述信息、不确定性、通信和压缩。它最初由 Claude Shannon 于 1948 年系统建立，后来成为通信理论、统计学、机器学习、密码学和科学推断的重要基础。
+信息量：一个事件包含多少信息？
+从事件概率出发
+设某个随机事件 \(A\) 的发生概率为：
+\[
+P(A)=p.
+\]
+直觉上：
+
+越容易发生的事件，发生时带来的惊讶程度越低；
+越罕见的事件，发生时带来的惊讶程度越高。
+
+因此，我们希望定义一个函数：
+\[
+I(A)=I(p),
+\]
+满足：
+\[
+p_1<p_2
+\quad\Longrightarrow\quad
+I(p_1)>I(p_2).
+\]
+即事件概率越小，信息量越大。
+进一步考虑两个独立事件 \(A,B\)。
+如果它们同时发生，那么联合事件的概率为：
+\[
+P(A\cap B)=P(A)P(B).
+\]
+我们希望独立事件的信息量具有可加性：
+\[
+I(A\cap B)=I(A)+I(B).
+\]
+于是需要满足函数方程：
+\[
+I(pq)=I(p)+I(q).
+\]
+在适当的连续性条件下，这类函数具有对数形式：
+\[
+I(p)=-k\log p.
+\]
+通常取 \(k=1\)，并使用以 2 为底的对数：
+\[
+\boxed{
+I(x)=-\log_2P(x)
+}
+\]
+称为自信息（Self-information）。
+信息单位为 bit。
+Shannon 熵：随机变量的不确定性
+自信息描述单个事件发生时带来的信息量。但随机变量可能取多个值，我们需要描述整个随机变量的不确定性。
+离散熵的定义
+设离散随机变量 \(X\) 的取值空间为：
+\[
+\mathcal X={x_1,x_2,\ldots,x_n}.
+\]"><meta name=author content="Linmythos"><link rel=canonical href=https://linmythos.github.io/ai/%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/><link crossorigin=anonymous href=/assets/css/stylesheet.5a42af7b68c8b1b7f3d0894c8a74d101cf31f37c1aa9bf8365395ef493e0dea4.css integrity="sha256-WkKve2jIsbfz0IlMinTRAc8x83waqb+DZTle9JPg3qQ=" rel="preload stylesheet" as=style><link rel=icon href=https://linmythos.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://linmythos.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://linmythos.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://linmythos.github.io/apple-touch-icon.png><link rel=mask-icon href=https://linmythos.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://linmythos.github.io/ai/%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],packages:{"[+]":["ams"]}}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><meta property="og:url" content="https://linmythos.github.io/ai/%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/"><meta property="og:site_name" content="Linmythos"><meta property="og:title" content="信息论的数学基础——从 Shannon 熵、互信息到信息瓶颈"><meta property="og:description" content="信息论试图建立一套数学理论，用概率分布定量描述信息、不确定性、通信和压缩。它最初由 Claude Shannon 于 1948 年系统建立，后来成为通信理论、统计学、机器学习、密码学和科学推断的重要基础。
+信息量：一个事件包含多少信息？ 从事件概率出发 设某个随机事件 \(A\) 的发生概率为：
+\[ P(A)=p. \]
+直觉上：
+越容易发生的事件，发生时带来的惊讶程度越低； 越罕见的事件，发生时带来的惊讶程度越高。 因此，我们希望定义一个函数：
+\[ I(A)=I(p), \]
+满足：
+\[ p_1<p_2 \quad\Longrightarrow\quad I(p_1)>I(p_2). \]
+即事件概率越小，信息量越大。
+进一步考虑两个独立事件 \(A,B\)。
+如果它们同时发生，那么联合事件的概率为：
+\[ P(A\cap B)=P(A)P(B). \]
+我们希望独立事件的信息量具有可加性：
+\[ I(A\cap B)=I(A)+I(B). \]
+于是需要满足函数方程：
+\[ I(pq)=I(p)+I(q). \]
+在适当的连续性条件下，这类函数具有对数形式：
+\[ I(p)=-k\log p. \]
+通常取 \(k=1\)，并使用以 2 为底的对数：
+\[ \boxed{ I(x)=-\log_2P(x) } \]
+称为自信息（Self-information）。
+信息单位为 bit。
+Shannon 熵：随机变量的不确定性 自信息描述单个事件发生时带来的信息量。但随机变量可能取多个值，我们需要描述整个随机变量的不确定性。
+离散熵的定义 设离散随机变量 \(X\) 的取值空间为：
+\[ \mathcal X={x_1,x_2,\ldots,x_n}. \]"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="ai"><meta property="article:published_time" content="2026-11-08T00:00:00+00:00"><meta property="article:modified_time" content="2026-11-08T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="信息论的数学基础——从 Shannon 熵、互信息到信息瓶颈"><meta name=twitter:description content="信息论试图建立一套数学理论，用概率分布定量描述信息、不确定性、通信和压缩。它最初由 Claude Shannon 于 1948 年系统建立，后来成为通信理论、统计学、机器学习、密码学和科学推断的重要基础。
+信息量：一个事件包含多少信息？ 从事件概率出发 设某个随机事件 \(A\) 的发生概率为：
+\[ P(A)=p. \]
+直觉上：
+越容易发生的事件，发生时带来的惊讶程度越低； 越罕见的事件，发生时带来的惊讶程度越高。 因此，我们希望定义一个函数：
+\[ I(A)=I(p), \]
+满足：
+\[ p_1<p_2 \quad\Longrightarrow\quad I(p_1)>I(p_2). \]
+即事件概率越小，信息量越大。
+进一步考虑两个独立事件 \(A,B\)。
+如果它们同时发生，那么联合事件的概率为：
+\[ P(A\cap B)=P(A)P(B). \]
+我们希望独立事件的信息量具有可加性：
+\[ I(A\cap B)=I(A)+I(B). \]
+于是需要满足函数方程：
+\[ I(pq)=I(p)+I(q). \]
+在适当的连续性条件下，这类函数具有对数形式：
+\[ I(p)=-k\log p. \]
+通常取 \(k=1\)，并使用以 2 为底的对数：
+\[ \boxed{ I(x)=-\log_2P(x) } \]
+称为自信息（Self-information）。
+信息单位为 bit。
+Shannon 熵：随机变量的不确定性 自信息描述单个事件发生时带来的信息量。但随机变量可能取多个值，我们需要描述整个随机变量的不确定性。
+离散熵的定义 设离散随机变量 \(X\) 的取值空间为：
+\[ \mathcal X={x_1,x_2,\ldots,x_n}. \]"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI","item":"https://linmythos.github.io/ai/"},{"@type":"ListItem","position":2,"name":"信息论的数学基础——从 Shannon 熵、互信息到信息瓶颈","item":"https://linmythos.github.io/ai/%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"信息论的数学基础——从 Shannon 熵、互信息到信息瓶颈","name":"信息论的数学基础——从 Shannon 熵、互信息到信息瓶颈","description":"信息论试图建立一套数学理论，用概率分布定量描述信息、不确定性、通信和压缩。它最初由 Claude Shannon 于 1948 年系统建立，后来成为通信理论、统计学、机器学习、密码学和科学推断的重要基础。\n信息量：一个事件包含多少信息？ 从事件概率出发 设某个随机事件 \\(A\\) 的发生概率为：\n\\[ P(A)=p. \\]\n直觉上：\n越容易发生的事件，发生时带来的惊讶程度越低； 越罕见的事件，发生时带来的惊讶程度越高。 因此，我们希望定义一个函数：\n\\[ I(A)=I(p), \\]\n满足：\n\\[ p_1\u0026lt;p_2 \\quad\\Longrightarrow\\quad I(p_1)\u0026gt;I(p_2). \\]\n即事件概率越小，信息量越大。\n进一步考虑两个独立事件 \\(A,B\\)。\n如果它们同时发生，那么联合事件的概率为：\n\\[ P(A\\cap B)=P(A)P(B). \\]\n我们希望独立事件的信息量具有可加性：\n\\[ I(A\\cap B)=I(A)+I(B). \\]\n于是需要满足函数方程：\n\\[ I(pq)=I(p)+I(q). \\]\n在适当的连续性条件下，这类函数具有对数形式：\n\\[ I(p)=-k\\log p. \\]\n通常取 \\(k=1\\)，并使用以 2 为底的对数：\n\\[ \\boxed{ I(x)=-\\log_2P(x) } \\]\n称为自信息（Self-information）。\n信息单位为 bit。\nShannon 熵：随机变量的不确定性 自信息描述单个事件发生时带来的信息量。但随机变量可能取多个值，我们需要描述整个随机变量的不确定性。\n离散熵的定义 设离散随机变量 \\(X\\) 的取值空间为：\n\\[ \\mathcal X={x_1,x_2,\\ldots,x_n}. \\]\n","keywords":[],"articleBody":"信息论试图建立一套数学理论，用概率分布定量描述信息、不确定性、通信和压缩。它最初由 Claude Shannon 于 1948 年系统建立，后来成为通信理论、统计学、机器学习、密码学和科学推断的重要基础。\n信息量：一个事件包含多少信息？ 从事件概率出发 设某个随机事件 \\(A\\) 的发生概率为：\n\\[ P(A)=p. \\]\n直觉上：\n越容易发生的事件，发生时带来的惊讶程度越低； 越罕见的事件，发生时带来的惊讶程度越高。 因此，我们希望定义一个函数：\n\\[ I(A)=I(p), \\]\n满足：\n\\[ p_1I(p_2). \\]\n即事件概率越小，信息量越大。\n进一步考虑两个独立事件 \\(A,B\\)。\n如果它们同时发生，那么联合事件的概率为：\n\\[ P(A\\cap B)=P(A)P(B). \\]\n我们希望独立事件的信息量具有可加性：\n\\[ I(A\\cap B)=I(A)+I(B). \\]\n于是需要满足函数方程：\n\\[ I(pq)=I(p)+I(q). \\]\n在适当的连续性条件下，这类函数具有对数形式：\n\\[ I(p)=-k\\log p. \\]\n通常取 \\(k=1\\)，并使用以 2 为底的对数：\n\\[ \\boxed{ I(x)=-\\log_2P(x) } \\]\n称为自信息（Self-information）。\n信息单位为 bit。\nShannon 熵：随机变量的不确定性 自信息描述单个事件发生时带来的信息量。但随机变量可能取多个值，我们需要描述整个随机变量的不确定性。\n离散熵的定义 设离散随机变量 \\(X\\) 的取值空间为：\n\\[ \\mathcal X={x_1,x_2,\\ldots,x_n}. \\]\n其概率分布为：\n\\[ P(X=x_i)=p_i. \\]\n其中：\n\\[ \\sum_{i=1}^{n}p_i=1. \\]\n定义 Shannon 熵：\n\\[\\boxed{H(X)=-\\sum_{i=1}^{n}p_i\\log_2p_i } \\]\n约定：\n\\[ 0\\log_20=0. \\]\n熵也可以理解为自信息的期望：\n\\[ H(X)=\\mathbb E[I(X)]. \\]\n因此：\n\\[ \\boxed{H(X)=1\\text{ bit}} \\]\n有偏硬币 设：\n\\[P(X=1)=p,\\qquad P(X=0)=1-p. \\]\n则：\n\\[\\boxed{H(X)=-p\\log_2p-(1-p)\\log_2(1-p) } \\]\n这称为二元熵函数：\n\\[H_2(p)=-p\\log_2p-(1-p)\\log_2(1-p). \\]\n对其求导：\n\\[H_2’(p)= \\log_2\\frac{1-p}{p}. \\]\n令导数为零：\n\\[\\frac{1-p}{p}=1. \\]\n得到：\n\\[ p=\\frac12. \\]\n二阶导数：\n\\[H_2’’(p)=-\\frac1{\\ln2}\\left( \\frac1p+\\frac1{1-p}\\right)\u003c0. \\]\n因此：\n\\[\\boxed{H_2(p)\\leq1 } \\]\n且等号当且仅当：\n\\[ p=\\frac12. \\]\n公平硬币具有最大熵。\n熵的基本性质 利用 Jensen 不等式不难证明：对于具有 \\(n\\) 个可能取值的离散随机变量：\n\\[ \\boxed{ 0\\leq H(X)\\leq\\log_2n } \\]\n其中：\n\\(H(X)=0\\)：随机变量完全确定； \\(H(X)=\\log_2n\\)：随机变量服从均匀分布。 三、联合熵与条件熵 如果有两个随机变量 \\(X,Y\\)，我们还需要描述它们的联合不确定性。\n联合熵 定义：\n\\[\\boxed{H(X,Y)=-\\sum_{x,y}P(x,y)\\log_2P(x,y) } \\]\n它描述随机变量对 \\((X,Y)\\) 的联合不确定性。\n条件熵 假设我们已经知道 \\(Y\\) 的取值。此时，\\(X\\) 还剩下多少不确定性？\n定义条件熵：\n\\[H(X\\mid Y)=-\\sum_{x,y}P(x,y)\\log_2P(x\\mid y)=\\sum_yP(y)H(X\\mid Y=y). \\]\n它表示在观察到 \\(Y\\) 之后，\\(X\\) 的平均剩余不确定性。\n链式法则 \\[ \\begin{aligned} H(X,Y) \u0026=-\\sum_{x,y}P(x,y)\\log P(x,y)\\\\ \u0026=-\\sum_{x,y}P(x,y) \\log[P(y)P(x\\mid y)]\\\\ \u0026=-\\sum_{x,y}P(x,y)\\log P(y)\\\\ \u0026\\quad-\\sum_{x,y}P(x,y)\\log P(x\\mid y). \\end{aligned} \\]\n分别整理两项：\n\\[ -\\sum_{x,y}P(x,y)\\log P(y)=H(Y), \\]\n\\[ -\\sum_{x,y}P(x,y)\\log P(x\\mid y)=H(X\\mid Y). \\]\n于是：\n\\[ \\boxed{ H(X,Y)=H(Y)+H(X\\mid Y) } \\]\n同理：\n\\[ \\boxed{ H(X,Y)=H(X)+H(Y\\mid X) } \\]\n这就是熵的链式法则。\n条件熵不会增加 一个重要性质是：\n\\[ \\boxed{ H(X\\mid Y)\\leq H(X) } \\]\n直觉上，知道额外信息不会增加对 \\(X\\) 的平均不确定性。\n注意，这里讨论的是平均条件熵，而不是每一个具体观测值都必须降低不确定性。\n互信息：两个随机变量共享多少信息？ 这是本讲最重要的概念之一。\n4.1 定义 如果 \\(X,Y\\) 具有统计关联，那么观察 \\(Y\\) 可能帮助我们推断 \\(X\\)。\n我们希望定量描述这种关联。\n定义互信息（Mutual Information）：\n\\[ \\boxed{ I(X;Y)= H(X)-H(X\\mid Y) } \\]\n利用链式法则：\n\\[ I(X;Y)= H(X)+H(Y)-H(X,Y). \\]\n也可以写成：\n\\[ \\boxed{ I(X;Y)=H(Y)-H(Y\\mid X) } \\]\n互信息衡量的是：观察一个随机变量之后，另一个随机变量的不确定性平均减少了多少。\n4.2 例一：完全独立 如果：\n\\[ P(x,y)=P(x)P(y), \\]\n那么：\n\\[ P(x\\mid y)=P(x). \\]\n因此：\n\\[ H(X\\mid Y)=H(X). \\]\n于是：\n\\[ \\boxed{I(X;Y)=0} \\]\n对于离散随机变量，互信息为零当且仅当二者独立。\n4.3 例二：完全确定的关系 假设：\n\\[ Y=X. \\]\n那么知道 \\(Y\\) 就完全知道 \\(X\\)。\n因此：\n\\[ H(X\\mid Y)=0. \\]\n于是：\n\\[ \\boxed{I(X;Y)=H(X)} \\]\n也就是说，\\(Y\\) 包含了关于 \\(X\\) 的全部信息。\n4.4 例三：带噪声的二元信道 设输入：\n\\[ X\\sim\\operatorname{Bernoulli}\\left(\\frac12\\right). \\]\n通过一个二元对称信道传输：\n\\[ Y=X\\oplus N, \\]\n其中：\n\\[ N\\sim\\operatorname{Bernoulli}(p), \\]\n且 \\(N\\) 与 \\(X\\) 独立。\n这里 \\(\\oplus\\) 表示异或运算。\n当 \\(N=0\\) 时，输出正确；当 \\(N=1\\) 时，输出翻转。\n因为 \\(X\\) 均匀分布，所以 \\(Y\\) 也均匀分布：\n\\[ H(Y)=1. \\]\n给定 \\(X\\)，\\(Y\\) 的不确定性只来自噪声：\n\\[ H(Y\\mid X)=H_2(p). \\]\n因此：\n\\[ \\boxed{ I(X;Y)=1-H_2(p) } \\]\n当：\n\\[ p=0 \\]\n时，信道没有噪声：\n\\[ I(X;Y)=1. \\]\n当：\n\\[ p=\\frac12 \\]\n时，输出完全随机：\n\\[ I(X;Y)=0. \\]\n这给出了一个非常直观的结论：\n噪声越大，输入与输出之间能够保留的互信息通常越少。\n五、相对熵：如何比较两个概率分布？ 互信息可以进一步表示为相对熵。\n5.1 Kullback–Leibler 散度 设 \\(P,Q\\) 是定义在同一离散空间上的概率分布。\n定义：\n\\[ \\boxed{ D_{\\mathrm{KL}}(P|Q)= \\sum_xP(x)\\log \\frac{P(x)}{Q(x)} } \\]\n其中，如果存在某个 \\(x\\) 满足：\n\\[ P(x)\u003e0,\\qquad Q(x)=0, \\]\n则：\n\\[ D_{\\mathrm{KL}}(P|Q)=+\\infty. \\]\nKL 散度衡量使用分布 \\(Q\\) 代替真实分布 \\(P\\) 所造成的信息损失。\n它具有以下性质：\n\\[ D_{\\mathrm{KL}}(P|Q)\\geq0. \\]\n且：\n\\[ D_{\\mathrm{KL}}(P|Q)=0 \\iff P=Q. \\]\nKL 散度通常不对称：\n\\[ D_{\\mathrm{KL}}(P|Q) \\neq D_{\\mathrm{KL}}(Q|P). \\]\n因此，它严格来说不是通常意义下的距离。\n5.2 Gibbs 不等式 下面证明 KL 散度非负。\n由不等式：\n\\[ \\ln t\\leq t-1,\\qquad t\u003e0, \\]\n令：\n\\[ t=\\frac{Q(x)}{P(x)}. \\]\n则：\n\\[ -\\ln\\frac{Q(x)}{P(x)} \\geq 1-\\frac{Q(x)}{P(x)}. \\]\n两边乘以 \\(P(x)\\) 并求和：\n\\[ \\sum_xP(x)\\ln\\frac{P(x)}{Q(x)} \\geq \\sum_x[P(x)-Q(x)]. \\]\n由于：\n\\[ \\sum_xP(x)=\\sum_xQ(x)=1, \\]\n得到：\n\\[ D_{\\mathrm{KL}}(P|Q)\\geq0. \\]\n等号成立当且仅当：\n\\[ P=Q. \\]\n这就是 Gibbs 不等式。\n5.3 互信息与 KL 散度 互信息可以写成：\n\\[ \\boxed{ I(X;Y)= D_{\\mathrm{KL}} \\left( P_{XY}\\middle|P_XP_Y \\right) } \\]\n其中：\n\\(P_{XY}\\)：联合分布； \\(P_XP_Y\\)：边缘分布的乘积分布。 因此：\n\\[ I(X;Y)\\geq0. \\]\n而且：\n\\[ I(X;Y)=0 \\iff P_{XY}=P_XP_Y. \\]\n即：\n\\[ \\boxed{ \\text{互信息为零}\\iff\\text{统计独立} } \\]\n这把随机变量之间的统计关联转化成了两个概率分布之间的差异。\n5.4 条件熵不会增加的严格证明 由互信息定义：\n\\[ I(X;Y)=H(X)-H(X\\mid Y). \\]\n又因为：\n\\[ I(X;Y)\\geq0, \\]\n所以：\n\\[ \\boxed{ H(X\\mid Y)\\leq H(X) } \\]\n这就证明了条件熵不会增加。\n六、交叉熵：信息论与机器学习的连接 交叉熵是深度学习中非常常见的损失函数。\n6.1 定义 设真实分布为 \\(P\\)，模型预测分布为 \\(Q\\)。\n交叉熵定义为：\n\\[ \\boxed{ H(P,Q)= -\\sum_xP(x)\\log Q(x) } \\]\n它表示：真实数据服从 \\(P\\)，但我们使用 \\(Q\\) 进行编码或预测时，平均需要多少信息量。\n根据定义：\n\\[ \\begin{aligned} D_{\\mathrm{KL}}(P|Q) \u0026=\\sum_xP(x)\\log\\frac{P(x)}{Q(x)}\\ \u0026=\\sum_xP(x)\\log P(x) -\\sum_xP(x)\\log Q(x). \\end{aligned} \\]\n因此：\n\\[ \\boxed{ H(P,Q)=H(P)+D_{\\mathrm{KL}}(P|Q) } \\]\n因为：\n\\[ H(P) \\]\n与模型 \\(Q\\) 无关，所以最小化交叉熵等价于最小化：\n\\[ D_{\\mathrm{KL}}(P|Q). \\]\n这就是为什么机器学习经常使用交叉熵作为分类损失函数。\n6.2 二分类交叉熵 设真实标签：\n\\[ y\\in{0,1}, \\]\n模型预测正类概率：\n\\[ q=P_\\theta(Y=1\\mid x). \\]\n那么交叉熵损失为：\n\\[ \\boxed{ \\ell(y,q)= -y\\log q-(1-y)\\log(1-q) } \\]\n如果：\n\\[ y=1, \\]\n则：\n\\[ \\ell=-\\log q. \\]\n如果：\n\\[ y=0, \\]\n则：\n\\[ \\ell=-\\log(1-q). \\]\n当模型给真实类别分配的概率越高，损失越小。\n当模型对真实类别极度缺乏信心时，损失会显著增大。\n6.3 最大似然估计与交叉熵 设训练样本独立同分布：\n\\[ x_1,\\ldots,x_n\\sim P. \\]\n模型给出的概率分布为：\n\\[ Q_\\theta. \\]\n似然函数：\n\\[ L(\\theta)= \\prod_{i=1}^{n}Q_\\theta(x_i). \\]\n取负对数：\n\\[ -\\log L(\\theta)= -\\sum_{i=1}^{n}\\log Q_\\theta(x_i). \\]\n最小化平均负对数似然：\n\\[ \\boxed{ \\theta^*= \\arg\\min_\\theta -\\frac1n\\sum_{i=1}^{n} \\log Q_\\theta(x_i) } \\]\n这正是经验交叉熵最小化。\n因此，最大似然估计与交叉熵损失具有直接联系。\n七、数据压缩与 Shannon 信源编码定理 信息论最初的重要应用之一是通信和数据压缩。\n7.1 定长编码 假设一个随机变量有 \\(n\\) 个可能取值。\n如果使用定长二进制编码，至少需要：\n\\[ \\lceil\\log_2n\\rceil \\]\n个比特来表示每个取值。\n但如果各个取值的概率不同，就可以考虑变长编码。\n让常见符号使用较短编码，罕见符号使用较长编码。\n7.2 Kraft 不等式 对于二进制前缀码，若各码字长度为：\n\\[ l_1,l_2,\\ldots,l_n, \\]\n则必须满足：\n\\[ \\boxed{ \\sum_{i=1}^{n}2^{-l_i}\\leq1 } \\]\n这就是 Kraft 不等式。\n前缀码要求任一码字都不是另一码字的前缀，从而能够无歧义地解码。\n7.3 平均码长 设符号 \\(x_i\\) 的概率为 \\(p_i\\)，对应码字长度为 \\(l_i\\)。\n平均码长：\n\\[ L=\\sum_i p_i l_i. \\]\nShannon 信源编码定理指出，对于独立同分布离散无记忆信源：\n\\[ \\boxed{ H(X)\\leq L } \\]\n即无失真编码的平均码长不能低于信源熵。\n另一方面，存在适当编码，使：\n\\[ \\boxed{ L","wordCount":"1227","inLanguage":"en","datePublished":"2026-11-08T00:00:00Z","dateModified":"2026-11-08T00:00:00Z","author":{"@type":"Person","name":"Linmythos"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://linmythos.github.io/ai/%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/"},"publisher":{"@type":"Organization","name":"Linmythos","logo":{"@type":"ImageObject","url":"https://linmythos.github.io/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://linmythos.github.io/ accesskey=h title="Linmythos (Alt + H)">Linmythos</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://linmythos.github.io/math/ title=Mathematics><span>Mathematics</span></a></li><li><a href=https://linmythos.github.io/physics/ title=Physics><span>Physics</span></a></li><li><a href=https://linmythos.github.io/ai/ title=AI><span>AI</span></a></li><li><a href=https://linmythos.github.io/neural-science/ title="Neural Science"><span>Neural Science</span></a></li><li><a href=https://linmythos.github.io/essays/ title=Essays><span>Essays</span></a></li><li><a href=https://linmythos.github.io/about/ title=About><span>About</span></a></li><li><a href=https://linmythos.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://linmythos.github.io/archives/ title=Archives><span>Archives</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">信息论的数学基础——从 Shannon 熵、互信息到信息瓶颈</h1><div class=post-meta><span title='2026-11-08 00:00:00 +0000 UTC'>November 8, 2026</span>&nbsp;·&nbsp;<span>6 min</span>&nbsp;·&nbsp;<span>Linmythos</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><li><a href=#%e4%bf%a1%e6%81%af%e9%87%8f%e4%b8%80%e4%b8%aa%e4%ba%8b%e4%bb%b6%e5%8c%85%e5%90%ab%e5%a4%9a%e5%b0%91%e4%bf%a1%e6%81%af aria-label=信息量：一个事件包含多少信息？>信息量：一个事件包含多少信息？</a><ul><li><a href=#%e4%bb%8e%e4%ba%8b%e4%bb%b6%e6%a6%82%e7%8e%87%e5%87%ba%e5%8f%91 aria-label=从事件概率出发>从事件概率出发</a></li></ul></li><li><a href=#shannon-%e7%86%b5%e9%9a%8f%e6%9c%ba%e5%8f%98%e9%87%8f%e7%9a%84%e4%b8%8d%e7%a1%ae%e5%ae%9a%e6%80%a7 aria-label="Shannon 熵：随机变量的不确定性">Shannon 熵：随机变量的不确定性</a><ul><li><a href=#%e7%a6%bb%e6%95%a3%e7%86%b5%e7%9a%84%e5%ae%9a%e4%b9%89 aria-label=离散熵的定义>离散熵的定义</a></li><li><a href=#%e6%9c%89%e5%81%8f%e7%a1%ac%e5%b8%81 aria-label=有偏硬币>有偏硬币</a></li><li><a href=#%e7%86%b5%e7%9a%84%e5%9f%ba%e6%9c%ac%e6%80%a7%e8%b4%a8 aria-label=熵的基本性质>熵的基本性质</a></li></ul></li><li><a href=#%e4%b8%89%e8%81%94%e5%90%88%e7%86%b5%e4%b8%8e%e6%9d%a1%e4%bb%b6%e7%86%b5 aria-label=三、联合熵与条件熵>三、联合熵与条件熵</a><ul><li><a href=#%e8%81%94%e5%90%88%e7%86%b5 aria-label=联合熵>联合熵</a></li><li><a href=#%e6%9d%a1%e4%bb%b6%e7%86%b5 aria-label=条件熵>条件熵</a></li><li><a href=#%e9%93%be%e5%bc%8f%e6%b3%95%e5%88%99 aria-label=链式法则>链式法则</a></li><li><a href=#%e6%9d%a1%e4%bb%b6%e7%86%b5%e4%b8%8d%e4%bc%9a%e5%a2%9e%e5%8a%a0 aria-label=条件熵不会增加>条件熵不会增加</a></li></ul></li><li><a href=#%e4%ba%92%e4%bf%a1%e6%81%af%e4%b8%a4%e4%b8%aa%e9%9a%8f%e6%9c%ba%e5%8f%98%e9%87%8f%e5%85%b1%e4%ba%ab%e5%a4%9a%e5%b0%91%e4%bf%a1%e6%81%af aria-label=互信息：两个随机变量共享多少信息？>互信息：两个随机变量共享多少信息？</a><ul><li><a href=#41-%e5%ae%9a%e4%b9%89 aria-label="4.1 定义">4.1 定义</a></li><li><a href=#42-%e4%be%8b%e4%b8%80%e5%ae%8c%e5%85%a8%e7%8b%ac%e7%ab%8b aria-label="4.2 例一：完全独立">4.2 例一：完全独立</a></li><li><a href=#43-%e4%be%8b%e4%ba%8c%e5%ae%8c%e5%85%a8%e7%a1%ae%e5%ae%9a%e7%9a%84%e5%85%b3%e7%b3%bb aria-label="4.3 例二：完全确定的关系">4.3 例二：完全确定的关系</a></li><li><a href=#44-%e4%be%8b%e4%b8%89%e5%b8%a6%e5%99%aa%e5%a3%b0%e7%9a%84%e4%ba%8c%e5%85%83%e4%bf%a1%e9%81%93 aria-label="4.4 例三：带噪声的二元信道">4.4 例三：带噪声的二元信道</a></li></ul></li><li><a href=#%e4%ba%94%e7%9b%b8%e5%af%b9%e7%86%b5%e5%a6%82%e4%bd%95%e6%af%94%e8%be%83%e4%b8%a4%e4%b8%aa%e6%a6%82%e7%8e%87%e5%88%86%e5%b8%83 aria-label=五、相对熵：如何比较两个概率分布？>五、相对熵：如何比较两个概率分布？</a><ul><li><a href=#51-kullbackleibler-%e6%95%a3%e5%ba%a6 aria-label="5.1 Kullback–Leibler 散度">5.1 Kullback–Leibler 散度</a></li><li><a href=#52-gibbs-%e4%b8%8d%e7%ad%89%e5%bc%8f aria-label="5.2 Gibbs 不等式">5.2 Gibbs 不等式</a></li><li><a href=#53-%e4%ba%92%e4%bf%a1%e6%81%af%e4%b8%8e-kl-%e6%95%a3%e5%ba%a6 aria-label="5.3 互信息与 KL 散度">5.3 互信息与 KL 散度</a></li><li><a href=#54-%e6%9d%a1%e4%bb%b6%e7%86%b5%e4%b8%8d%e4%bc%9a%e5%a2%9e%e5%8a%a0%e7%9a%84%e4%b8%a5%e6%a0%bc%e8%af%81%e6%98%8e aria-label="5.4 条件熵不会增加的严格证明">5.4 条件熵不会增加的严格证明</a></li></ul></li><li><a href=#%e5%85%ad%e4%ba%a4%e5%8f%89%e7%86%b5%e4%bf%a1%e6%81%af%e8%ae%ba%e4%b8%8e%e6%9c%ba%e5%99%a8%e5%ad%a6%e4%b9%a0%e7%9a%84%e8%bf%9e%e6%8e%a5 aria-label=六、交叉熵：信息论与机器学习的连接>六、交叉熵：信息论与机器学习的连接</a><ul><li><a href=#61-%e5%ae%9a%e4%b9%89 aria-label="6.1 定义">6.1 定义</a></li><li><a href=#62-%e4%ba%8c%e5%88%86%e7%b1%bb%e4%ba%a4%e5%8f%89%e7%86%b5 aria-label="6.2 二分类交叉熵">6.2 二分类交叉熵</a></li><li><a href=#63-%e6%9c%80%e5%a4%a7%e4%bc%bc%e7%84%b6%e4%bc%b0%e8%ae%a1%e4%b8%8e%e4%ba%a4%e5%8f%89%e7%86%b5 aria-label="6.3 最大似然估计与交叉熵">6.3 最大似然估计与交叉熵</a></li></ul></li><li><a href=#%e4%b8%83%e6%95%b0%e6%8d%ae%e5%8e%8b%e7%bc%a9%e4%b8%8e-shannon-%e4%bf%a1%e6%ba%90%e7%bc%96%e7%a0%81%e5%ae%9a%e7%90%86 aria-label="七、数据压缩与 Shannon 信源编码定理">七、数据压缩与 Shannon 信源编码定理</a><ul><li><a href=#71-%e5%ae%9a%e9%95%bf%e7%bc%96%e7%a0%81 aria-label="7.1 定长编码">7.1 定长编码</a></li><li><a href=#72-kraft-%e4%b8%8d%e7%ad%89%e5%bc%8f aria-label="7.2 Kraft 不等式">7.2 Kraft 不等式</a></li><li><a href=#73-%e5%b9%b3%e5%9d%87%e7%a0%81%e9%95%bf aria-label="7.3 平均码长">7.3 平均码长</a></li><li><a href=#74-%e4%b8%80%e4%b8%aa%e4%be%8b%e5%ad%90 aria-label="7.4 一个例子">7.4 一个例子</a></li></ul></li><li><a href=#%e5%85%ab%e6%95%b0%e6%8d%ae%e5%a4%84%e7%90%86%e4%b8%8d%e7%ad%89%e5%bc%8f aria-label=八、数据处理不等式>八、数据处理不等式</a><ul><li><a href=#81-%e8%af%81%e6%98%8e%e6%80%9d%e8%b7%af aria-label="8.1 证明思路">8.1 证明思路</a></li><li><a href=#82-%e7%9b%b4%e8%a7%82%e8%a7%a3%e9%87%8a aria-label="8.2 直观解释">8.2 直观解释</a></li></ul></li><li><a href=#%e4%b9%9d%e4%bf%a1%e6%81%af%e7%93%b6%e9%a2%88%e5%ad%a6%e4%b9%a0%e7%a9%b6%e7%ab%9f%e5%ba%94%e8%af%a5%e4%bf%9d%e7%95%99%e4%bb%80%e4%b9%88%e4%bf%a1%e6%81%af aria-label=九、信息瓶颈：学习究竟应该保留什么信息？>九、信息瓶颈：学习究竟应该保留什么信息？</a><ul><li><a href=#91-%e4%bf%a1%e6%81%af%e7%93%b6%e9%a2%88%e7%9b%ae%e6%a0%87%e5%87%bd%e6%95%b0 aria-label="9.1 信息瓶颈目标函数">9.1 信息瓶颈目标函数</a></li><li><a href=#92-%e5%85%85%e5%88%86%e7%bb%9f%e8%ae%a1%e9%87%8f%e7%9a%84%e8%81%94%e7%b3%bb aria-label="9.2 充分统计量的联系">9.2 充分统计量的联系</a></li><li><a href=#93-%e4%b8%8e%e6%b7%b1%e5%ba%a6%e5%ad%a6%e4%b9%a0%e7%9a%84%e8%81%94%e7%b3%bb aria-label="9.3 与深度学习的联系">9.3 与深度学习的联系</a></li></ul></li><li><a href=#%e5%8d%81%e6%9c%ac%e8%ae%b2%e6%80%bb%e7%bb%93 aria-label=十、本讲总结>十、本讲总结</a></li><li><a href=#%e5%8d%81%e4%b8%80%e4%b9%a0%e9%a2%98 aria-label=十一、习题>十一、习题</a><ul><li><a href=#a-%e5%9f%ba%e7%a1%80%e8%ae%a1%e7%ae%97 aria-label="A. 基础计算">A. 基础计算</a></li><li><a href=#b-%e7%90%86%e8%ae%ba%e8%af%81%e6%98%8e aria-label="B. 理论证明">B. 理论证明</a></li><li><a href=#c-%e6%b7%b1%e5%85%a5%e9%97%ae%e9%a2%98 aria-label="C. 深入问题">C. 深入问题</a></li></ul></li><li><a href=#%e5%8d%81%e4%ba%8c%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae aria-label=十二、参考文献>十二、参考文献</a></li></ul></div></details><div class="post-content md-content"><p>信息论试图建立一套数学理论，用概率分布定量描述信息、不确定性、通信和压缩。它最初由 Claude Shannon 于 1948 年系统建立，后来成为通信理论、统计学、机器学习、密码学和科学推断的重要基础。</p><h1 id=信息量一个事件包含多少信息>信息量：一个事件包含多少信息？<a hidden class=anchor aria-hidden=true href=#信息量一个事件包含多少信息>#</a></h1><h2 id=从事件概率出发>从事件概率出发<a hidden class=anchor aria-hidden=true href=#从事件概率出发>#</a></h2><p>设某个随机事件 \(A\) 的发生概率为：</p><p>\[
+P(A)=p.
+\]</p><p>直觉上：</p><ul><li>越容易发生的事件，发生时带来的惊讶程度越低；</li><li>越罕见的事件，发生时带来的惊讶程度越高。</li></ul><p>因此，我们希望定义一个函数：</p><p>\[
+I(A)=I(p),
+\]</p><p>满足：</p><p>\[
+p_1&lt;p_2
+\quad\Longrightarrow\quad
+I(p_1)>I(p_2).
+\]</p><p>即事件概率越小，信息量越大。</p><p>进一步考虑两个独立事件 \(A,B\)。</p><p>如果它们同时发生，那么联合事件的概率为：</p><p>\[
+P(A\cap B)=P(A)P(B).
+\]</p><p>我们希望独立事件的信息量具有可加性：</p><p>\[
+I(A\cap B)=I(A)+I(B).
+\]</p><p>于是需要满足函数方程：</p><p>\[
+I(pq)=I(p)+I(q).
+\]</p><p>在适当的连续性条件下，这类函数具有对数形式：</p><p>\[
+I(p)=-k\log p.
+\]</p><p>通常取 \(k=1\)，并使用以 2 为底的对数：</p><p>\[
+\boxed{
+I(x)=-\log_2P(x)
+}
+\]</p><p>称为自信息（Self-information）。</p><p>信息单位为 bit。</p><h1 id=shannon-熵随机变量的不确定性>Shannon 熵：随机变量的不确定性<a hidden class=anchor aria-hidden=true href=#shannon-熵随机变量的不确定性>#</a></h1><p>自信息描述单个事件发生时带来的信息量。但随机变量可能取多个值，我们需要描述整个随机变量的不确定性。</p><h2 id=离散熵的定义>离散熵的定义<a hidden class=anchor aria-hidden=true href=#离散熵的定义>#</a></h2><p>设离散随机变量 \(X\) 的取值空间为：</p><p>\[
+\mathcal X={x_1,x_2,\ldots,x_n}.
+\]</p><p>其概率分布为：</p><p>\[
+P(X=x_i)=p_i.
+\]</p><p>其中：</p><p>\[
+\sum_{i=1}^{n}p_i=1.
+\]</p><p>定义 Shannon 熵：</p><p>\[\boxed{H(X)=-\sum_{i=1}^{n}p_i\log_2p_i
+}
+\]</p><p>约定：</p><p>\[
+0\log_20=0.
+\]</p><p>熵也可以理解为自信息的期望：</p><p>\[
+H(X)=\mathbb E[I(X)].
+\]</p><p>因此：</p><p>\[
+\boxed{H(X)=1\text{ bit}}
+\]</p><h2 id=有偏硬币>有偏硬币<a hidden class=anchor aria-hidden=true href=#有偏硬币>#</a></h2><p>设：</p><p>\[P(X=1)=p,\qquad P(X=0)=1-p.
+\]</p><p>则：</p><p>\[\boxed{H(X)=-p\log_2p-(1-p)\log_2(1-p)
+}
+\]</p><p>这称为二元熵函数：</p><p>\[H_2(p)=-p\log_2p-(1-p)\log_2(1-p).
+\]</p><p>对其求导：</p><p>\[H_2&rsquo;(p)=
+\log_2\frac{1-p}{p}.
+\]</p><p>令导数为零：</p><p>\[\frac{1-p}{p}=1.
+\]</p><p>得到：</p><p>\[
+p=\frac12.
+\]</p><p>二阶导数：</p><p>\[H_2&rsquo;&rsquo;(p)=-\frac1{\ln2}\left(
+\frac1p+\frac1{1-p}\right)&lt;0.
+\]</p><p>因此：</p><p>\[\boxed{H_2(p)\leq1
+}
+\]</p><p>且等号当且仅当：</p><p>\[
+p=\frac12.
+\]</p><p>公平硬币具有最大熵。</p><h2 id=熵的基本性质>熵的基本性质<a hidden class=anchor aria-hidden=true href=#熵的基本性质>#</a></h2><p>利用 Jensen 不等式不难证明：对于具有 \(n\) 个可能取值的离散随机变量：</p><p>\[
+\boxed{
+0\leq H(X)\leq\log_2n
+}
+\]</p><p>其中：</p><ul><li>\(H(X)=0\)：随机变量完全确定；</li><li>\(H(X)=\log_2n\)：随机变量服从均匀分布。</li></ul><hr><h1 id=三联合熵与条件熵>三、联合熵与条件熵<a hidden class=anchor aria-hidden=true href=#三联合熵与条件熵>#</a></h1><p>如果有两个随机变量 \(X,Y\)，我们还需要描述它们的联合不确定性。</p><h2 id=联合熵>联合熵<a hidden class=anchor aria-hidden=true href=#联合熵>#</a></h2><p>定义：</p><p>\[\boxed{H(X,Y)=-\sum_{x,y}P(x,y)\log_2P(x,y)
+}
+\]</p><p>它描述随机变量对 \((X,Y)\) 的联合不确定性。</p><h2 id=条件熵>条件熵<a hidden class=anchor aria-hidden=true href=#条件熵>#</a></h2><p>假设我们已经知道 \(Y\) 的取值。此时，\(X\) 还剩下多少不确定性？</p><p>定义条件熵：</p><p>\[H(X\mid Y)=-\sum_{x,y}P(x,y)\log_2P(x\mid y)=\sum_yP(y)H(X\mid Y=y).
+\]</p><p>它表示在观察到 \(Y\) 之后，\(X\) 的平均剩余不确定性。</p><h2 id=链式法则>链式法则<a hidden class=anchor aria-hidden=true href=#链式法则>#</a></h2><p>\[
+\begin{aligned}
+H(X,Y)
+&=-\sum_{x,y}P(x,y)\log P(x,y)\\
+&=-\sum_{x,y}P(x,y)
+\log[P(y)P(x\mid y)]\\
+&=-\sum_{x,y}P(x,y)\log P(y)\\
+&\quad-\sum_{x,y}P(x,y)\log P(x\mid y).
+\end{aligned}
+\]</p><p>分别整理两项：</p><p>\[
+-\sum_{x,y}P(x,y)\log P(y)=H(Y),
+\]</p><p>\[
+-\sum_{x,y}P(x,y)\log P(x\mid y)=H(X\mid Y).
+\]</p><p>于是：</p><p>\[
+\boxed{
+H(X,Y)=H(Y)+H(X\mid Y)
+}
+\]</p><p>同理：</p><p>\[
+\boxed{
+H(X,Y)=H(X)+H(Y\mid X)
+}
+\]</p><p>这就是熵的链式法则。</p><h2 id=条件熵不会增加>条件熵不会增加<a hidden class=anchor aria-hidden=true href=#条件熵不会增加>#</a></h2><p>一个重要性质是：</p><p>\[
+\boxed{
+H(X\mid Y)\leq H(X)
+}
+\]</p><p>直觉上，知道额外信息不会增加对 \(X\) 的平均不确定性。</p><p>注意，这里讨论的是平均条件熵，而不是每一个具体观测值都必须降低不确定性。</p><hr><h1 id=互信息两个随机变量共享多少信息>互信息：两个随机变量共享多少信息？<a hidden class=anchor aria-hidden=true href=#互信息两个随机变量共享多少信息>#</a></h1><p>这是本讲最重要的概念之一。</p><h2 id=41-定义>4.1 定义<a hidden class=anchor aria-hidden=true href=#41-定义>#</a></h2><p>如果 \(X,Y\) 具有统计关联，那么观察 \(Y\) 可能帮助我们推断 \(X\)。</p><p>我们希望定量描述这种关联。</p><p>定义互信息（Mutual Information）：</p><p>\[
+\boxed{
+I(X;Y)=
+H(X)-H(X\mid Y)
+}
+\]</p><p>利用链式法则：</p><p>\[
+I(X;Y)=
+H(X)+H(Y)-H(X,Y).
+\]</p><p>也可以写成：</p><p>\[
+\boxed{
+I(X;Y)=H(Y)-H(Y\mid X)
+}
+\]</p><p>互信息衡量的是：观察一个随机变量之后，另一个随机变量的不确定性平均减少了多少。</p><h2 id=42-例一完全独立>4.2 例一：完全独立<a hidden class=anchor aria-hidden=true href=#42-例一完全独立>#</a></h2><p>如果：</p><p>\[
+P(x,y)=P(x)P(y),
+\]</p><p>那么：</p><p>\[
+P(x\mid y)=P(x).
+\]</p><p>因此：</p><p>\[
+H(X\mid Y)=H(X).
+\]</p><p>于是：</p><p>\[
+\boxed{I(X;Y)=0}
+\]</p><p>对于离散随机变量，互信息为零当且仅当二者独立。</p><h2 id=43-例二完全确定的关系>4.3 例二：完全确定的关系<a hidden class=anchor aria-hidden=true href=#43-例二完全确定的关系>#</a></h2><p>假设：</p><p>\[
+Y=X.
+\]</p><p>那么知道 \(Y\) 就完全知道 \(X\)。</p><p>因此：</p><p>\[
+H(X\mid Y)=0.
+\]</p><p>于是：</p><p>\[
+\boxed{I(X;Y)=H(X)}
+\]</p><p>也就是说，\(Y\) 包含了关于 \(X\) 的全部信息。</p><h2 id=44-例三带噪声的二元信道>4.4 例三：带噪声的二元信道<a hidden class=anchor aria-hidden=true href=#44-例三带噪声的二元信道>#</a></h2><p>设输入：</p><p>\[
+X\sim\operatorname{Bernoulli}\left(\frac12\right).
+\]</p><p>通过一个二元对称信道传输：</p><p>\[
+Y=X\oplus N,
+\]</p><p>其中：</p><p>\[
+N\sim\operatorname{Bernoulli}(p),
+\]</p><p>且 \(N\) 与 \(X\) 独立。</p><p>这里 \(\oplus\) 表示异或运算。</p><p>当 \(N=0\) 时，输出正确；当 \(N=1\) 时，输出翻转。</p><p>因为 \(X\) 均匀分布，所以 \(Y\) 也均匀分布：</p><p>\[
+H(Y)=1.
+\]</p><p>给定 \(X\)，\(Y\) 的不确定性只来自噪声：</p><p>\[
+H(Y\mid X)=H_2(p).
+\]</p><p>因此：</p><p>\[
+\boxed{
+I(X;Y)=1-H_2(p)
+}
+\]</p><p>当：</p><p>\[
+p=0
+\]</p><p>时，信道没有噪声：</p><p>\[
+I(X;Y)=1.
+\]</p><p>当：</p><p>\[
+p=\frac12
+\]</p><p>时，输出完全随机：</p><p>\[
+I(X;Y)=0.
+\]</p><p>这给出了一个非常直观的结论：</p><p>噪声越大，输入与输出之间能够保留的互信息通常越少。</p><hr><h1 id=五相对熵如何比较两个概率分布>五、相对熵：如何比较两个概率分布？<a hidden class=anchor aria-hidden=true href=#五相对熵如何比较两个概率分布>#</a></h1><p>互信息可以进一步表示为相对熵。</p><h2 id=51-kullbackleibler-散度>5.1 Kullback–Leibler 散度<a hidden class=anchor aria-hidden=true href=#51-kullbackleibler-散度>#</a></h2><p>设 \(P,Q\) 是定义在同一离散空间上的概率分布。</p><p>定义：</p><p>\[
+\boxed{
+D_{\mathrm{KL}}(P|Q)=
+\sum_xP(x)\log
+\frac{P(x)}{Q(x)}
+}
+\]</p><p>其中，如果存在某个 \(x\) 满足：</p><p>\[
+P(x)>0,\qquad Q(x)=0,
+\]</p><p>则：</p><p>\[
+D_{\mathrm{KL}}(P|Q)=+\infty.
+\]</p><p>KL 散度衡量使用分布 \(Q\) 代替真实分布 \(P\) 所造成的信息损失。</p><p>它具有以下性质：</p><p>\[
+D_{\mathrm{KL}}(P|Q)\geq0.
+\]</p><p>且：</p><p>\[
+D_{\mathrm{KL}}(P|Q)=0
+\iff P=Q.
+\]</p><p>KL 散度通常不对称：</p><p>\[
+D_{\mathrm{KL}}(P|Q)
+\neq
+D_{\mathrm{KL}}(Q|P).
+\]</p><p>因此，它严格来说不是通常意义下的距离。</p><h2 id=52-gibbs-不等式>5.2 Gibbs 不等式<a hidden class=anchor aria-hidden=true href=#52-gibbs-不等式>#</a></h2><p>下面证明 KL 散度非负。</p><p>由不等式：</p><p>\[
+\ln t\leq t-1,\qquad t>0,
+\]</p><p>令：</p><p>\[
+t=\frac{Q(x)}{P(x)}.
+\]</p><p>则：</p><p>\[
+-\ln\frac{Q(x)}{P(x)}
+\geq
+1-\frac{Q(x)}{P(x)}.
+\]</p><p>两边乘以 \(P(x)\) 并求和：</p><p>\[
+\sum_xP(x)\ln\frac{P(x)}{Q(x)}
+\geq
+\sum_x[P(x)-Q(x)].
+\]</p><p>由于：</p><p>\[
+\sum_xP(x)=\sum_xQ(x)=1,
+\]</p><p>得到：</p><p>\[
+D_{\mathrm{KL}}(P|Q)\geq0.
+\]</p><p>等号成立当且仅当：</p><p>\[
+P=Q.
+\]</p><p>这就是 Gibbs 不等式。</p><h2 id=53-互信息与-kl-散度>5.3 互信息与 KL 散度<a hidden class=anchor aria-hidden=true href=#53-互信息与-kl-散度>#</a></h2><p>互信息可以写成：</p><p>\[
+\boxed{
+I(X;Y)=
+D_{\mathrm{KL}}
+\left(
+P_{XY}\middle|P_XP_Y
+\right)
+}
+\]</p><p>其中：</p><ul><li>\(P_{XY}\)：联合分布；</li><li>\(P_XP_Y\)：边缘分布的乘积分布。</li></ul><p>因此：</p><p>\[
+I(X;Y)\geq0.
+\]</p><p>而且：</p><p>\[
+I(X;Y)=0
+\iff
+P_{XY}=P_XP_Y.
+\]</p><p>即：</p><p>\[
+\boxed{
+\text{互信息为零}\iff\text{统计独立}
+}
+\]</p><p>这把随机变量之间的统计关联转化成了两个概率分布之间的差异。</p><h2 id=54-条件熵不会增加的严格证明>5.4 条件熵不会增加的严格证明<a hidden class=anchor aria-hidden=true href=#54-条件熵不会增加的严格证明>#</a></h2><p>由互信息定义：</p><p>\[
+I(X;Y)=H(X)-H(X\mid Y).
+\]</p><p>又因为：</p><p>\[
+I(X;Y)\geq0,
+\]</p><p>所以：</p><p>\[
+\boxed{
+H(X\mid Y)\leq H(X)
+}
+\]</p><p>这就证明了条件熵不会增加。</p><hr><h1 id=六交叉熵信息论与机器学习的连接>六、交叉熵：信息论与机器学习的连接<a hidden class=anchor aria-hidden=true href=#六交叉熵信息论与机器学习的连接>#</a></h1><p>交叉熵是深度学习中非常常见的损失函数。</p><h2 id=61-定义>6.1 定义<a hidden class=anchor aria-hidden=true href=#61-定义>#</a></h2><p>设真实分布为 \(P\)，模型预测分布为 \(Q\)。</p><p>交叉熵定义为：</p><p>\[
+\boxed{
+H(P,Q)=
+-\sum_xP(x)\log Q(x)
+}
+\]</p><p>它表示：真实数据服从 \(P\)，但我们使用 \(Q\) 进行编码或预测时，平均需要多少信息量。</p><p>根据定义：</p><p>\[
+\begin{aligned}
+D_{\mathrm{KL}}(P|Q)
+&=\sum_xP(x)\log\frac{P(x)}{Q(x)}\
+&=\sum_xP(x)\log P(x)
+-\sum_xP(x)\log Q(x).
+\end{aligned}
+\]</p><p>因此：</p><p>\[
+\boxed{
+H(P,Q)=H(P)+D_{\mathrm{KL}}(P|Q)
+}
+\]</p><p>因为：</p><p>\[
+H(P)
+\]</p><p>与模型 \(Q\) 无关，所以最小化交叉熵等价于最小化：</p><p>\[
+D_{\mathrm{KL}}(P|Q).
+\]</p><p>这就是为什么机器学习经常使用交叉熵作为分类损失函数。</p><h2 id=62-二分类交叉熵>6.2 二分类交叉熵<a hidden class=anchor aria-hidden=true href=#62-二分类交叉熵>#</a></h2><p>设真实标签：</p><p>\[
+y\in{0,1},
+\]</p><p>模型预测正类概率：</p><p>\[
+q=P_\theta(Y=1\mid x).
+\]</p><p>那么交叉熵损失为：</p><p>\[
+\boxed{
+\ell(y,q)=
+-y\log q-(1-y)\log(1-q)
+}
+\]</p><p>如果：</p><p>\[
+y=1,
+\]</p><p>则：</p><p>\[
+\ell=-\log q.
+\]</p><p>如果：</p><p>\[
+y=0,
+\]</p><p>则：</p><p>\[
+\ell=-\log(1-q).
+\]</p><p>当模型给真实类别分配的概率越高，损失越小。</p><p>当模型对真实类别极度缺乏信心时，损失会显著增大。</p><h2 id=63-最大似然估计与交叉熵>6.3 最大似然估计与交叉熵<a hidden class=anchor aria-hidden=true href=#63-最大似然估计与交叉熵>#</a></h2><p>设训练样本独立同分布：</p><p>\[
+x_1,\ldots,x_n\sim P.
+\]</p><p>模型给出的概率分布为：</p><p>\[
+Q_\theta.
+\]</p><p>似然函数：</p><p>\[
+L(\theta)=
+\prod_{i=1}^{n}Q_\theta(x_i).
+\]</p><p>取负对数：</p><p>\[
+-\log L(\theta)=
+-\sum_{i=1}^{n}\log Q_\theta(x_i).
+\]</p><p>最小化平均负对数似然：</p><p>\[
+\boxed{
+\theta^*=
+\arg\min_\theta
+-\frac1n\sum_{i=1}^{n}
+\log Q_\theta(x_i)
+}
+\]</p><p>这正是经验交叉熵最小化。</p><p>因此，最大似然估计与交叉熵损失具有直接联系。</p><hr><h1 id=七数据压缩与-shannon-信源编码定理>七、数据压缩与 Shannon 信源编码定理<a hidden class=anchor aria-hidden=true href=#七数据压缩与-shannon-信源编码定理>#</a></h1><p>信息论最初的重要应用之一是通信和数据压缩。</p><h2 id=71-定长编码>7.1 定长编码<a hidden class=anchor aria-hidden=true href=#71-定长编码>#</a></h2><p>假设一个随机变量有 \(n\) 个可能取值。</p><p>如果使用定长二进制编码，至少需要：</p><p>\[
+\lceil\log_2n\rceil
+\]</p><p>个比特来表示每个取值。</p><p>但如果各个取值的概率不同，就可以考虑变长编码。</p><p>让常见符号使用较短编码，罕见符号使用较长编码。</p><h2 id=72-kraft-不等式>7.2 Kraft 不等式<a hidden class=anchor aria-hidden=true href=#72-kraft-不等式>#</a></h2><p>对于二进制前缀码，若各码字长度为：</p><p>\[
+l_1,l_2,\ldots,l_n,
+\]</p><p>则必须满足：</p><p>\[
+\boxed{
+\sum_{i=1}^{n}2^{-l_i}\leq1
+}
+\]</p><p>这就是 Kraft 不等式。</p><p>前缀码要求任一码字都不是另一码字的前缀，从而能够无歧义地解码。</p><h2 id=73-平均码长>7.3 平均码长<a hidden class=anchor aria-hidden=true href=#73-平均码长>#</a></h2><p>设符号 \(x_i\) 的概率为 \(p_i\)，对应码字长度为 \(l_i\)。</p><p>平均码长：</p><p>\[
+L=\sum_i p_i l_i.
+\]</p><p>Shannon 信源编码定理指出，对于独立同分布离散无记忆信源：</p><p>\[
+\boxed{
+H(X)\leq L
+}
+\]</p><p>即无失真编码的平均码长不能低于信源熵。</p><p>另一方面，存在适当编码，使：</p><p>\[
+\boxed{
+L&lt;H(X)+1
+}
+\]</p><p>因此：</p><p>\[
+H(X)\leq L&lt;H(X)+1.
+\]</p><p>对于长数据序列，通过分块编码，单位符号平均码长可以渐近逼近熵。</p><p>这意味着：</p><p>\[
+\boxed{
+\text{熵刻画了无失真压缩的理论极限}
+}
+\]</p><h2 id=74-一个例子>7.4 一个例子<a hidden class=anchor aria-hidden=true href=#74-一个例子>#</a></h2><p>假设：</p><p>\[
+P(A)=\frac12,\quad
+P(B)=\frac14,\quad
+P(C)=\frac18,\quad
+P(D)=\frac18.
+\]</p><p>熵为：</p><p>\[
+\begin{aligned}
+H(X)
+={}&-\frac12\log_2\frac12
+-\frac14\log_2\frac14\
+&-2\cdot\frac18\log_2\frac18\
+={}&\frac12+\frac12+\frac34\
+={}&amp;1.75\text{ bits}.
+\end{aligned}
+\]</p><p>可以使用以下前缀码：</p><table><thead><tr><th>符号</th><th style=text-align:right>概率</th><th>编码</th><th style=text-align:right>长度</th></tr></thead><tbody><tr><td>A</td><td style=text-align:right>1/2</td><td>0</td><td style=text-align:right>1</td></tr><tr><td>B</td><td style=text-align:right>1/4</td><td>10</td><td style=text-align:right>2</td></tr><tr><td>C</td><td style=text-align:right>1/8</td><td>110</td><td style=text-align:right>3</td></tr><tr><td>D</td><td style=text-align:right>1/8</td><td>111</td><td style=text-align:right>3</td></tr></tbody></table><p>平均码长：</p><p>\[
+L=
+\frac12\cdot1+
+\frac14\cdot2+
+\frac18\cdot3+
+\frac18\cdot3.
+\]</p><p>所以：</p><p>\[
+L=1.75\text{ bits}.
+\]</p><p>恰好达到熵下界。</p><hr><h1 id=八数据处理不等式>八、数据处理不等式<a hidden class=anchor aria-hidden=true href=#八数据处理不等式>#</a></h1><p>这是信息论中一个非常重要的定理。</p><p>设随机变量构成 Markov 链：</p><p>\[
+X\rightarrow Y\rightarrow Z.
+\]</p><p>其含义是：</p><p>\[
+P(z\mid x,y)=P(z\mid y).
+\]</p><p>即在已经知道 \(Y\) 的条件下，\(Z\) 不再直接依赖 \(X\)。</p><p>数据处理不等式指出：</p><p>\[
+\boxed{
+I(X;Z)\leq I(X;Y)
+}
+\]</p><h2 id=81-证明思路>8.1 证明思路<a hidden class=anchor aria-hidden=true href=#81-证明思路>#</a></h2><p>由互信息链式法则：</p><p>\[
+I(X;Y,Z)=
+I(X;Y)+I(X;Z\mid Y).
+\]</p><p>由于 \(X\rightarrow Y\rightarrow Z\) 构成 Markov 链：</p><p>\[
+I(X;Z\mid Y)=0.
+\]</p><p>因此：</p><p>\[
+I(X;Y,Z)=I(X;Y).
+\]</p><p>另一方面：</p><p>\[
+I(X;Y,Z)=
+I(X;Z)+I(X;Y\mid Z).
+\]</p><p>于是：</p><p>\[
+I(X;Y)=I(X;Z)+I(X;Y\mid Z).
+\]</p><p>由于条件互信息非负：</p><p>\[
+I(X;Y\mid Z)\geq0,
+\]</p><p>得到：</p><p>\[
+\boxed{
+I(X;Z)\leq I(X;Y)
+}
+\]</p><h2 id=82-直观解释>8.2 直观解释<a hidden class=anchor aria-hidden=true href=#82-直观解释>#</a></h2><p>如果数据经过连续处理：</p><p>\[
+X\rightarrow Y\rightarrow Z,
+\]</p><p>那么后续处理不能凭空创造关于原始变量 \(X\) 的新信息。</p><p>它可以保留信息，也可以丢失信息。</p><p>但不能在没有额外信息来源的情况下增加关于 \(X\) 的互信息。</p><p>这对机器学习具有重要意义。</p><p>例如：</p><p>\[
+X\rightarrow H_1\rightarrow H_2\rightarrow Y.
+\]</p><p>如果神经网络各层构成这样的随机处理链，那么：</p><p>\[
+I(X;Y)\leq I(X;H_2)\leq I(X;H_1).
+\]</p><p>需要注意：这里讨论的是由随机变量之间的 Markov 关系导出的互信息不等式，不代表所有训练过程中各层互信息一定随时间单调变化。</p><hr><h1 id=九信息瓶颈学习究竟应该保留什么信息>九、信息瓶颈：学习究竟应该保留什么信息？<a hidden class=anchor aria-hidden=true href=#九信息瓶颈学习究竟应该保留什么信息>#</a></h1><p>现在进入信息论与现代机器学习的交汇处。</p><p>假设：</p><ul><li>\(X\)：原始输入；</li><li>\(Y\)：希望预测的目标；</li><li>\(Z\)：模型学习得到的中间表示。</li></ul><p>我们希望 \(Z\) 能够用于预测 \(Y\)，但不必保留 \(X\) 的全部细节。</p><p>例如，图像分类任务中：</p><ul><li>\(X\)：原始图像；</li><li>\(Y\)：图像所属类别；</li><li>\(Z\)：神经网络提取的特征表示。</li></ul><p>对于分类而言，背景中的某些细节可能并不重要。</p><p>因此，我们希望表示 \(Z\)：</p><ol><li>尽可能保留关于 \(Y\) 的信息；</li><li>尽可能压缩关于 \(X\) 的无关信息。</li></ol><h2 id=91-信息瓶颈目标函数>9.1 信息瓶颈目标函数<a hidden class=anchor aria-hidden=true href=#91-信息瓶颈目标函数>#</a></h2><p>定义信息瓶颈（Information Bottleneck）目标：</p><p>\[
+\boxed{
+\min_{P(Z\mid X)}
+I(X;Z)-\beta I(Z;Y)
+}
+\]</p><p>其中：</p><ul><li>\(I(X;Z)\)：表示 \(Z\) 保留了多少输入信息；</li><li>\(I(Z;Y)\)：表示 \(Z\) 保留了多少目标信息；</li><li>\(\beta>0\)：权衡系数。</li></ul><p>当 \(\beta\) 较大时，优化更加重视保留关于目标 \(Y\) 的信息。</p><p>当压缩项权重较大时，模型更倾向于构造简洁表示。</p><p>这体现了一种非常重要的思想：</p><p>\[
+\boxed{
+\text{好的表示不必保留全部输入信息}
+}
+\]</p><p>它只需要保留对任务有用的信息。</p><h2 id=92-充分统计量的联系>9.2 充分统计量的联系<a hidden class=anchor aria-hidden=true href=#92-充分统计量的联系>#</a></h2><p>统计学中，如果：</p><p>\[
+P(Y\mid X)=P(Y\mid Z),
+\]</p><p>那么 \(Z\) 对于预测 \(Y\) 而言保留了 \(X\) 的全部相关信息。</p><p>此时称 \(Z\) 是关于参数或目标的充分表示，具体含义取决于统计模型设定。</p><p>如果满足：</p><p>\[
+I(X;Y\mid Z)=0,
+\]</p><p>则：</p><p>\[
+X\rightarrow Z\rightarrow Y
+\]</p><p>构成 Markov 链。</p><p>利用互信息链式法则：</p><p>\[
+I(X;Y)=I(Z;Y)+I(X;Y\mid Z).
+\]</p><p>因此：</p><p>\[
+I(Z;Y)=I(X;Y).
+\]</p><p>这说明 \(Z\) 保留了 \(X\) 关于 \(Y\) 的全部信息。</p><p>信息瓶颈的目标可以理解为：</p><p><strong>寻找一个尽可能压缩的表示，同时不丢失对目标预测有用的信息。</strong></p><h2 id=93-与深度学习的联系>9.3 与深度学习的联系<a hidden class=anchor aria-hidden=true href=#93-与深度学习的联系>#</a></h2><p>深度神经网络通常通过多层映射构造表示：</p><p>\[
+X\rightarrow H_1\rightarrow H_2
+\rightarrow\cdots\rightarrow H_L.
+\]</p><p>每一层都将输入转换为新的表示。</p><p>从表示学习的角度，我们希望这些表示能够逐渐提取任务相关的结构。</p><p>例如，在图像分类中：</p><ul><li>初始层可能编码局部边缘；</li><li>中间层可能编码纹理和局部形状；</li><li>深层可能编码更复杂的对象特征。</li></ul><p>这是一种直观的层次表示图景，并不意味着所有网络都严格按照这一固定语义顺序工作。</p><p>信息瓶颈为理解表示压缩提供了理论框架。</p><p>不过，它并不是所有深度学习现象的完整解释。尤其对于确定性网络、连续变量和微分熵，直接计算 \(I(X;Z)\) 需要谨慎处理。</p><hr><h1 id=十本讲总结>十、本讲总结<a hidden class=anchor aria-hidden=true href=#十本讲总结>#</a></h1><p>本讲建立了信息论的基本数学框架。</p><table><thead><tr><th>概念</th><th>数学定义或含义</th></tr></thead><tbody><tr><td>自信息</td><td>\(I(x)=-\log P(x)\)</td></tr><tr><td>Shannon 熵</td><td>\(H(X)=-\sum_xP(x)\log P(x)\)</td></tr><tr><td>联合熵</td><td>\(H(X,Y)\)</td></tr><tr><td>条件熵</td><td>\(H(X\mid Y)\)</td></tr><tr><td>互信息</td><td>\(I(X;Y)=H(X)-H(X\mid Y)\)</td></tr><tr><td>KL 散度</td><td>\(D_{\mathrm{KL}}(P|Q)\)</td></tr><tr><td>交叉熵</td><td>\(H(P,Q)=H(P)+D_{\mathrm{KL}}(P|Q)\)</td></tr><tr><td>信源编码</td><td>平均无失真码长不低于熵</td></tr><tr><td>数据处理不等式</td><td>\(I(X;Z)\leq I(X;Y)\)</td></tr><tr><td>信息瓶颈</td><td>压缩输入，同时保留目标信息</td></tr></tbody></table><p>本讲最重要的思想：</p><p>\[
+\boxed{
+\text{信息可以通过概率分布进行定量描述}
+}
+\]</p><p>而信息论与机器学习的深层联系在于：</p><p>\[
+\boxed{
+\text{学习不仅是拟合数据，也是寻找有用的信息表示}
+}
+\]</p><hr><h1 id=十一习题>十一、习题<a hidden class=anchor aria-hidden=true href=#十一习题>#</a></h1><h2 id=a-基础计算>A. 基础计算<a hidden class=anchor aria-hidden=true href=#a-基础计算>#</a></h2><p><strong>1.</strong> 随机变量 \(X\) 的分布为：</p><p>\[
+P(X=0)=\frac18,\quad
+P(X=1)=\frac38,\quad
+P(X=2)=\frac12.
+\]</p><p>计算：</p><p>\[
+H(X).
+\]</p><p><strong>2.</strong> 设 \(X,Y\) 独立，证明：</p><p>\[
+H(X,Y)=H(X)+H(Y).
+\]</p><p><strong>3.</strong> 设 \(Y=X\)，证明：</p><p>\[
+I(X;Y)=H(X).
+\]</p><p><strong>4.</strong> 设 \(X\) 与 \(Y\) 具有联合分布：</p><p>\[
+P(0,0)=\frac12,\quad
+P(0,1)=0,
+\]</p><p>\[
+P(1,0)=0,\quad
+P(1,1)=\frac12.
+\]</p><p>计算：</p><p>\[
+H(X),\quad H(Y),\quad H(X,Y),\quad I(X;Y).
+\]</p><h2 id=b-理论证明>B. 理论证明<a hidden class=anchor aria-hidden=true href=#b-理论证明>#</a></h2><p><strong>5.</strong> 使用 Jensen 不等式证明：</p><p>\[
+H(X)\leq\log_2|\mathcal X|.
+\]</p><p><strong>6.</strong> 证明互信息的对称性：</p><p>\[
+I(X;Y)=I(Y;X).
+\]</p><p><strong>7.</strong> 证明条件互信息非负：</p><p>\[
+I(X;Y\mid Z)\geq0.
+\]</p><p>提示：将其写成条件 KL 散度的期望。</p><p><strong>8.</strong> 根据数据处理不等式，解释为什么对数据进行确定性处理不能增加关于原始输入的信息。</p><h2 id=c-深入问题>C. 深入问题<a hidden class=anchor aria-hidden=true href=#c-深入问题>#</a></h2><p><strong>9.</strong> KL 散度不对称。请构造一组简单的概率分布，说明：</p><p>\[
+D_{\mathrm{KL}}(P|Q)
+\neq D_{\mathrm{KL}}(Q|P).
+\]</p><p><strong>10.</strong> 为什么交叉熵最小化与最大似然估计具有相同的优化形式？</p><p><strong>11.</strong> 解释信息瓶颈目标：</p><p>\[
+I(X;Z)-\beta I(Z;Y).
+\]</p><p>讨论 \(\beta\) 改变时，压缩与预测能力之间的权衡。</p><p><strong>12.</strong> 假设一个表示 \(Z\) 完全丢弃了输入中的某些信息，但仍能准确预测目标 \(Y\)。这是否说明 \(Z\) 是一个有效表示？请从充分统计量的角度讨论。</p><hr><h1 id=十二参考文献>十二、参考文献<a hidden class=anchor aria-hidden=true href=#十二参考文献>#</a></h1><ol><li>Claude E. Shannon, “A Mathematical Theory of Communication,” <em>Bell System Technical Journal</em>, 1948.</li><li>Thomas M. Cover, Joy A. Thomas, <em>Elements of Information Theory</em>.</li><li>David J. C. MacKay, <em>Information Theory, Inference, and Learning Algorithms</em>.</li><li>Tishby, Pereira, Bialek, “The Information Bottleneck Method,” 1999.</li><li>David MacKay, <em>Information Theory, Inference, and Learning Algorithms</em>, Cambridge University Press, 2003.</li><li>Ziv, Lempel, “A Universal Algorithm for Sequential Data Compression,” <em>IEEE Transactions on Information Theory</em>, 1977.</li></ol></div><footer class=post-footer><ul class=post-tags></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://linmythos.github.io/>Linmythos</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

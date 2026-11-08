@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>抽象代数 on Linmythos</title><link>https://linmythos.github.io/math/algebra/abstract-algebra/</link><description>Recent content in 抽象代数 on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 21 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/math/algebra/abstract-algebra/index.xml" rel="self" type="application/rss+xml"/><item><title>Abstract Algebra</title><link>https://linmythos.github.io/math/algebra/abstract-algebra/%E7%BE%A4%E8%AE%BA/</link><pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/algebra/abstract-algebra/%E7%BE%A4%E8%AE%BA/</guid><description>&lt;h1 id="abstract-algebra--lie-theory"&gt;Abstract Algebra → Lie Theory&lt;/h1&gt;
+&lt;h2 id="lecture-1-group-homomorphisms-and-quotient-groups"&gt;Lecture 1. Group Homomorphisms and Quotient Groups&lt;/h2&gt;
+&lt;p&gt;第一讲：群同态与商群&lt;/p&gt;
+&lt;h2 id="1-为什么要研究-group-homomorphism"&gt;1. 为什么要研究 Group Homomorphism？&lt;/h2&gt;
+&lt;p&gt;在学习 Lie Groups 之前，我们必须先理解一个更基础的问题：&lt;/p&gt;
+&lt;p&gt;如何判断两个群具有相同的代数结构？&lt;/p&gt;
+&lt;p&gt;假设有两个群 $G,H$。它们的元素可以完全不同，运算也可以采用不同的表示方式，但它们仍然可能具有相同的抽象结构。&lt;/p&gt;
+&lt;p&gt;例如，加法群 $(\mathbb Z,+)$ 与偶整数构成的加法群 $(2\mathbb Z,+)$ 并不相等，但映射&lt;/p&gt;
+&lt;p&gt;$ \varphi:\mathbb Z\longrightarrow 2\mathbb Z, \qquad \varphi(n)=2n $&lt;/p&gt;
+&lt;p&gt;是一个 Group Isomorphism。&lt;/p&gt;
+&lt;p&gt;为什么？因为它既保持运算，又是双射。&lt;/p&gt;
+&lt;p&gt;这引出我们的第一个定义。&lt;/p&gt;
+&lt;h3 id="definition-11--group-homomorphism"&gt;Definition 1.1 — Group Homomorphism&lt;/h3&gt;
+&lt;p&gt;设 $G,H$ 为群。映射&lt;/p&gt;
+&lt;p&gt;$ \varphi:G\longrightarrow H $&lt;/p&gt;
+&lt;p&gt;称为一个 Group Homomorphism，如果对任意 $a,b\in G$，都有&lt;/p&gt;
+&lt;p&gt;$ \boxed{\varphi(ab)=\varphi(a)\varphi(b).} $&lt;/p&gt;
+&lt;p&gt;注意，这里的 $ab$ 表示 $G$ 中的运算，而右侧的乘积表示 $H$ 中的运算。我们使用相同的符号，仅仅是为了简化记号。&lt;/p&gt;
+&lt;p&gt;这个定义表达的核心是：映射不一定保留元素本身，但必须保留群运算的结构。&lt;/p&gt;
+&lt;p&gt;如果 $\varphi$ 同时是双射，那么称其为 Group Isomorphism，记作&lt;/p&gt;</description></item></channel></rss>

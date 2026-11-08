@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>点集拓扑 on Linmythos</title><link>https://linmythos.github.io/math/topology/point-set-topology/</link><description>Recent content in 点集拓扑 on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Fri, 06 Nov 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/math/topology/point-set-topology/index.xml" rel="self" type="application/rss+xml"/><item><title>点集拓扑学习笔记————纪念我疯狂的夏天</title><link>https://linmythos.github.io/math/topology/point-set-topology/%E7%82%B9%E9%9B%86%E6%8B%93%E6%89%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/point-set-topology/%E7%82%B9%E9%9B%86%E6%8B%93%E6%89%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid><description>&lt;p&gt;&lt;em&gt;Point-Set Topology: From Open Sets to Manifolds&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id="引言"&gt;引言&lt;/h2&gt;
+&lt;p&gt;点集拓扑研究集合上的连续性、邻近关系与整体结构。它并不首先关心距离、角度或长度，而是从更一般的层面回答一个问题：&lt;strong&gt;在一个集合上，怎样规定“局部”与“连续”，并由此研究空间的整体性质？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;微积分中的连续性依赖极限与距离；拓扑学则将连续性抽象为开集原像仍然是开集。距离可以诱导拓扑，但拓扑不必来自距离。正因如此，拓扑学能够统一研究欧氏空间、函数空间、商空间以及各种抽象空间。&lt;/p&gt;
+&lt;p&gt;本讲义从拓扑空间的定义出发，依次讨论连续映射、内部与闭包、度量空间、紧致性、基与子基，以及子空间、积空间、商空间和流形。目标不是罗列术语，而是建立这些概念之间的逻辑联系。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="1-集合与拓扑"&gt;1. 集合与拓扑&lt;/h2&gt;
+&lt;h3 id="11-拓扑空间"&gt;1.1 拓扑空间&lt;/h3&gt;
+&lt;p&gt;设 $X$ 是一个集合，$\mathcal T\subseteq\mathcal P(X)$ 是 $X$ 的一个子集族。若 $\mathcal T$ 满足：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;$\varnothing,X\in\mathcal T$；&lt;/li&gt;
+&lt;li&gt;任意多个 $\mathcal T$ 中的集合之并仍属于 $\mathcal T$；&lt;/li&gt;
+&lt;li&gt;有限多个 $\mathcal T$ 中的集合之交仍属于 $\mathcal T$；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;则称 $\mathcal T$ 为 $X$ 上的一个&lt;strong&gt;拓扑&lt;/strong&gt;，二元组 $(X,\mathcal T)$ 称为&lt;strong&gt;拓扑空间&lt;/strong&gt;，$\mathcal T$ 中的元素称为开集。&lt;/p&gt;
+&lt;p&gt;这三条公理规定了开集系统在集合运算下的稳定性。任意并之所以允许，是因为并集中的每个点至少属于其中一个开集，因而可以直接继承该开集提供的局部邻域。有限交之所以允许，是因为若一个点同时属于有限多个开集，就可以将各开集中的邻域取交，仍得到包含该点的开邻域。无限交则未必保持开性，例如 $\bigcap_{n\geq1}(-1/n,1/n)=\{ 0 \}$，而 $\{ 0 \}$ 不是 $\mathbb R$ 通常拓扑中的开集。&lt;/p&gt;
+&lt;p&gt;这里的“开”是相对于所给拓扑而言的，并不要求集合具有区间或圆盘那样的几何形状。一个子集是否开，必须先说明它所在空间及其拓扑。&lt;/p&gt;
+&lt;h3 id="12-三种基本拓扑"&gt;1.2 三种基本拓扑&lt;/h3&gt;
+&lt;p&gt;设 $X$ 是任意集合。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;离散拓扑&lt;/strong&gt;：$\mathcal T=\mathcal P(X)$，即 $X$ 的每个子集都是开集。它是 $X$ 上最细的拓扑。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;平凡拓扑（密着拓扑）&lt;/strong&gt;：$\mathcal T=\{\varnothing,X\}$。它是 $X$ 上最粗的拓扑。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;通常拓扑&lt;/strong&gt;：在 $\mathbb R$ 上，由所有开区间生成的拓扑称为通常拓扑；其开集是开区间的任意并。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;例如，在 $\mathbb R$ 的通常拓扑中，$[0,1]$ 不是开集；但若把全集取为 $X=[0,1]$，并赋予子空间拓扑，则 $X$ 本身当然是开集。开集的概念始终依赖于环境空间和拓扑。&lt;/p&gt;</description></item></channel></rss>
