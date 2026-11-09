@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Linmythos</title><link>https://linmythos.github.io/</link><description>Recent content on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 08 Nov 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>从静电平衡时到统计物理：深究一个经典结论</title><link>https://linmythos.github.io/physics/%E7%9F%A5%E4%B9%8E%E5%9B%9E%E7%AD%94/%E9%9D%99%E7%94%B5%E5%B9%B3%E8%A1%A1%E7%9A%84%E6%97%B6%E5%80%99%E5%AF%BC%E4%BD%93%E5%86%85%E9%83%A8%E7%94%B5%E5%9C%BA%E4%B8%BA0/</link><pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/%E7%9F%A5%E4%B9%8E%E5%9B%9E%E7%AD%94/%E9%9D%99%E7%94%B5%E5%B9%B3%E8%A1%A1%E7%9A%84%E6%97%B6%E5%80%99%E5%AF%BC%E4%BD%93%E5%86%85%E9%83%A8%E7%94%B5%E5%9C%BA%E4%B8%BA0/</guid><description>&lt;h1 id="0-前言"&gt;0. 前言&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Linmythos</title><link>https://linmythos.github.io/</link><description>Recent content on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Mon, 09 Nov 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>从静电平衡到统计物理：深究一个经典结论</title><link>https://linmythos.github.io/physics/%E7%9F%A5%E4%B9%8E%E5%9B%9E%E7%AD%94/%E9%9D%99%E7%94%B5%E5%B9%B3%E8%A1%A1%E7%9A%84%E6%97%B6%E5%80%99%E5%AF%BC%E4%BD%93%E5%86%85%E9%83%A8%E7%94%B5%E5%9C%BA%E4%B8%BA0/</link><pubDate>Mon, 09 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/%E7%9F%A5%E4%B9%8E%E5%9B%9E%E7%AD%94/%E9%9D%99%E7%94%B5%E5%B9%B3%E8%A1%A1%E7%9A%84%E6%97%B6%E5%80%99%E5%AF%BC%E4%BD%93%E5%86%85%E9%83%A8%E7%94%B5%E5%9C%BA%E4%B8%BA0/</guid><description>&lt;h1 id="0-前言"&gt;0. 前言&lt;/h1&gt;
 &lt;p&gt;&lt;em&gt;静电平衡时导体内部的电场强度为零，这是静电学中一个非常经典的结论，看似非常容易回答。我在物竞的时候就想当然地用静电平衡的定义来回答。不过，我对电磁学的学习逐渐深入之后，知道了载流子的散射过程和电荷弛豫理论，这可以给出更精确的动力学描述。
 在学习了热力学之后，我又发现，我们原来可以不再关心电荷如何运动，而是直接使用热力学平衡判据研究体系最终处于什么状态。具体而言就是电化学势平衡条件：对于能够相互交换的同种粒子，其电化学势必须处处相等。
 但这一条件究竟从何而来？最后是统计物理给了我这个答案：自由能极小化原理。&lt;/em&gt;&lt;/p&gt;
@@ -29,7 +29,150 @@ $$&lt;/p&gt;
 \rho(t)=\rho(0)e^{-t/\tau_e},
 \quad
 \tau_e=\frac{\varepsilon}{\sigma}.
-$$ 其中 $\tau_e$ 称为电荷弛豫时间。&lt;/p&gt;</description></item><item><title>信息论的数学基础——从 Shannon 熵、互信息到信息瓶颈</title><link>https://linmythos.github.io/ai/%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</link><pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/ai/%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</guid><description>&lt;p&gt;信息论试图建立一套数学理论，用概率分布定量描述信息、不确定性、通信和压缩。它最初由 Claude Shannon 于 1948 年系统建立，后来成为通信理论、统计学、机器学习、密码学和科学推断的重要基础。&lt;/p&gt;
+$$ 其中 $\tau_e$ 称为电荷弛豫时间。&lt;/p&gt;</description></item><item><title>从飞矢悖论到现代分析</title><link>https://linmythos.github.io/physics/%E7%9F%A5%E4%B9%8E%E5%9B%9E%E7%AD%94/%E4%BB%8E%E9%A3%9E%E7%9F%A2%E6%82%96%E8%AE%BA%E5%88%B0%E7%8E%B0%E4%BB%A3%E5%88%86%E6%9E%90/</link><pubDate>Mon, 09 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/%E7%9F%A5%E4%B9%8E%E5%9B%9E%E7%AD%94/%E4%BB%8E%E9%A3%9E%E7%9F%A2%E6%82%96%E8%AE%BA%E5%88%B0%E7%8E%B0%E4%BB%A3%E5%88%86%E6%9E%90/</guid><description>&lt;h1 id="飞矢悖论从瞬时运动到现代数学中的连续性"&gt;飞矢悖论：从瞬时运动到现代数学中的连续性&lt;/h1&gt;
+&lt;p&gt;芝诺的飞矢悖论是古希腊哲学中最著名的悖论之一。它提出了一个看似简单、却触及连续性本质的问题：一支正在飞行的箭，在任意一个确定的时刻，都占据空间中的一个确定位置。既然在这个瞬间，箭只处于一个确定的位置，那么它在这一瞬间是否静止？如果时间由无数个瞬间组成，而箭在每一个瞬间都静止，那么它又如何能够运动？&lt;/p&gt;
+&lt;p&gt;这个问题并不只是古代哲学家对运动的质疑。它实际上涉及微积分的基本概念、实分析中的函数正则性、测度论中的奇异测度，以及微分几何与动力系统中的运动描述。要真正理解飞矢悖论，我们需要区分瞬时状态与整体运动，并进一步考察局部信息究竟能够在什么条件下决定整体行为。&lt;/p&gt;
+&lt;h2 id="一瞬时静止不等于永久静止"&gt;一、瞬时静止不等于永久静止&lt;/h2&gt;
+&lt;p&gt;首先考虑一个质点沿直线运动，其位置由时间函数 \(x(t)\) 描述。速度和加速度分别为 \(v(t)=x&amp;rsquo;(t)\) 和 \(a(t)=x&amp;rsquo;&amp;rsquo;(t)\)。&lt;/p&gt;
+&lt;p&gt;假设在某一时刻 \(t_0\)，质点满足 \(v(t_0)=0\)、\(a(t_0)=0\)。这是否意味着质点此后不能继续运动？答案是否定的。这两个条件只约束了位置函数在一个点处的一阶和二阶导数，并不能决定函数在其他时刻的行为。&lt;/p&gt;
+&lt;p&gt;例如，取 \(x(t)=t^3\)，则 \(v(t)=3t^2\)，\(a(t)=6t\)。显然，在 \(t=0\) 时，位置、速度和加速度均为零，但对于任意 \(t&amp;gt;0\)，都有 \(x(t)&amp;gt;x(0)\)，质点仍然在运动。&lt;/p&gt;
+&lt;p&gt;这里需要区分两个命题：某一个时刻速度为零，并不意味着质点静止；如果一个可导函数在整个时间区间上处处满足 \(x&amp;rsquo;(t)=0\)，那么它必定是常函数。后一个结论可以直接由拉格朗日中值定理得到：对于任意 \(a,b\)，存在 \(c\in(a,b)\)，使得 \(x(b)-x(a)=x&amp;rsquo;(c)(b-a)=0\)。&lt;/p&gt;
+&lt;p&gt;因此，单点上的微分性质与整个区间上的微分性质有着本质区别。前者只描述局部状态，后者则能够约束整体行为。&lt;/p&gt;
+&lt;h2 id="二飞矢悖论的核心位置与速度是不同的数学对象"&gt;二、飞矢悖论的核心：位置与速度是不同的数学对象&lt;/h2&gt;
+&lt;p&gt;芝诺的推理混淆了位置与运动。对于一条运动轨迹 \(x(t)\)，任意时刻 \(t\) 都对应一个确定的位置 \(x(t)\)，但这并不意味着该时刻的速度为零。&lt;/p&gt;
+&lt;p&gt;速度的定义是导数：\(v(t)=\lim_{h\to0}[x(t+h)-x(t)]/h\)。它不是通过观察某个孤立的时间点得到的，而是通过考察该时刻附近的位置变化规律定义的。&lt;/p&gt;
+&lt;p&gt;例如，对于匀速运动 \(x(t)=vt\)，任意时刻都有确定的位置 \(x(t)\)，但其速度始终为常数 \(v\neq0\)。箭在每一个瞬间都占据确定的位置，与它在这些瞬间具有非零速度，完全不矛盾。&lt;/p&gt;
+&lt;p&gt;从微分几何的角度看，这种区别更加清晰。设运动轨迹为光滑映射 \(\gamma:I\to M\)，其中 \(I\subseteq\mathbb R\) 是时间区间，\(M\) 是空间流形。对于任意时刻 \(t\)，位置 \(\gamma(t)\) 是流形 \(M\) 上的一个点，而速度 \(\dot\gamma(t)\) 则是切空间 \(T_{\gamma(t)}M\) 中的一个切向量。&lt;/p&gt;
+&lt;p&gt;更准确地说，速度由映射的微分给出：\(\dot\gamma(t)=\mathrm d\gamma_t(\partial_t)\)。其中，\(\partial_t\) 是时间轴上的自然基向量。于是，位置属于流形，速度属于该点处的切空间。一个描述点的位置，另一个描述映射在该点附近的变化方向与变化率。&lt;/p&gt;
+&lt;p&gt;因此，飞矢悖论中最根本的概念混淆，是把「在某一时刻占据确定的位置」错误地理解为「在某一时刻速度为零」。点的确定性并不意味着切向量为零。&lt;/p&gt;
+&lt;h2 id="三导数的本质局部信息与极限"&gt;三、导数的本质：局部信息与极限&lt;/h2&gt;
+&lt;p&gt;导数之所以能够描述瞬时运动，是因为它并非孤立点上的某种属性，而是由函数在该点邻域内的行为决定的。&lt;/p&gt;
+&lt;p&gt;根据导数的严格定义，对于 \(x&amp;rsquo;(t_0)=v_0\)，意味着对任意 \(\varepsilon&amp;gt;0\)，存在 \(\delta&amp;gt;0\)，使得当 \(0&amp;lt;|h|&amp;lt;\delta\) 时，满足 \(\left|(x(t_0+h)-x(t_0))/h-v_0\right|&amp;lt;\varepsilon\)。&lt;/p&gt;
+&lt;p&gt;这说明，瞬时速度实际上编码了位置函数在任意小邻域内的一阶变化规律。它虽然被定义在一个时刻，却不是从一个孤立时刻中提取出来的。&lt;/p&gt;
+&lt;p&gt;这也揭示了微积分的一个重要思想：局部变化率与整体变化并非彼此独立，而是可以通过积分建立联系。对于适当正则的函数，有 \(x(t_2)-x(t_1)=\int_{t_1}^{t_2}x&amp;rsquo;(t)\,\mathrm dt\)。这正是微积分基本定理所表达的核心关系。&lt;/p&gt;</description></item><item><title>哈密顿力学的几何视角</title><link>https://linmythos.github.io/physics/classical-mechanics/%E7%90%86%E8%AE%BA%E5%8A%9B%E5%AD%A6%E4%B8%8E%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/%E5%93%88%E5%AF%86%E9%A1%BF%E5%8A%9B%E5%AD%A6%E7%9A%84%E5%87%A0%E4%BD%95%E8%A7%86%E8%A7%92/</link><pubDate>Mon, 09 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/%E7%90%86%E8%AE%BA%E5%8A%9B%E5%AD%A6%E4%B8%8E%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/%E5%93%88%E5%AF%86%E9%A1%BF%E5%8A%9B%E5%AD%A6%E7%9A%84%E5%87%A0%E4%BD%95%E8%A7%86%E8%A7%92/</guid><description>&lt;h1 id="hamiltonian-mechanics-and-symplectic-geometry"&gt;Hamiltonian Mechanics and Symplectic Geometry&lt;/h1&gt;
+&lt;h2 id="legendre-transform"&gt;Legendre Transform&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;以下默认采用 Einstein summation convention&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在 Lagrangian formulation 中，系统的状态由广义坐标和广义速度描述，运动方程是二阶微分方程；我们希望改用广义坐标 $q^i$ 和共轭动量 $p_i$ 描述状态并得到一阶方程，其中 $p_i=\frac{\partial L}{\partial\dot q^i}$。
+如果可由这个关系解出 $\dot q^i=\dot q^i(q,p,t)$，就能把速度消去，构造只依赖 $q,p,t$ 的 Hamiltonian&lt;/p&gt;
+&lt;p&gt;$H(q,p,t)=p_i\dot q^i-L(q,\dot q,t)$&lt;/p&gt;
+&lt;p&gt;为此定义 velocity Hessian $W_{ij}=\frac{\partial^2L}{\partial\dot q^i\partial\dot q^j}$；若 $\det W\neq0$，则在局部能反解出 $\dot q^i=\dot q^i(q,p,t)$。
+具体来说，固定 $q,t$ 考虑映射 $\dot q\mapsto p(\dot q)$，它对速度的 Jacobian 矩阵恰好是 $\frac{\partial p_i}{\partial\dot q^j}=W_{ij}$，因此由 inverse function theorem 只要 $\det W\neq0$ 就能局部反解；此时 Legendre map $\mathbb FL:TQ\to T^*Q,\ (q,\dot q)\mapsto\left(q,p_i=\frac{\partial L}{\partial\dot q^i}\right)$ 是局部微分同胚，只保证局部可逆，不能断言整个映射全局一一对应。
+若全局可逆，这样的 Lagrangian 称为 &lt;strong&gt;regular Lagrangian&lt;/strong&gt;；若 Hessian 奇异，Legendre transform 就可能无法唯一反解速度。&lt;/p&gt;</description></item><item><title>射影平面曲线的二次齐次参数化：未曾设想的道路</title><link>https://linmythos.github.io/math/geometry/projective_geometry/%E5%B0%84%E5%BD%B1%E5%B9%B3%E9%9D%A2%E6%9B%B2%E7%BA%BF%E7%9A%84%E4%BA%8C%E6%AC%A1%E9%BD%90%E6%AC%A1%E5%8F%82%E6%95%B0%E5%8C%96/</link><pubDate>Mon, 09 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/projective_geometry/%E5%B0%84%E5%BD%B1%E5%B9%B3%E9%9D%A2%E6%9B%B2%E7%BA%BF%E7%9A%84%E4%BA%8C%E6%AC%A1%E9%BD%90%E6%AC%A1%E5%8F%82%E6%95%B0%E5%8C%96/</guid><description>&lt;p&gt;找了一圈代数几何教材和论文，没有看到这样的方法，干脆自己干出来。如果已经有人提出过的话，就当我独立地发现了一遍吧。&lt;/p&gt;
+&lt;p&gt;那天在朋友圈发了这样一句话：&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;最美的我已经见证过了，是不是我发明的已经不再重要。&lt;/em&gt;&lt;/p&gt;
+&lt;h1 id="0引言"&gt;0.引言&lt;/h1&gt;
+&lt;p&gt;其实是挺久之前的事情了，我的高中数学老师在解析几何方面负有盛名（）高中的时候就是他给我们讲了射影几何，我也渐渐喜欢上了射影几何。真是令人感叹啊，曾经那个去问他问题的数学小白，现在已经能学他看不懂的东西了。在 2026.10.24 他找到了我，说他正在更新他的解析几何讲义，但是有一个定理他猜出来但是证不出来，遂求助于我。原话是这样的：&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;红框中的公式是今天凭数感猜想出来的，自己笔算了椭圆的情形正确，交给DEEPSEEK检查，它也说我的结果正确，但我还没想好怎么证明，已经（此处他笔误了，应为“以及”）有没有什么简洁的表达方式(比如用矩阵)&lt;/em&gt;
+&lt;img alt="alt text" loading="lazy" src="https://linmythos.github.io/math/geometry/projective_geometry/%E5%B0%84%E5%BD%B1%E5%B9%B3%E9%9D%A2%E6%9B%B2%E7%BA%BF%E7%9A%84%E4%BA%8C%E6%AC%A1%E9%BD%90%E6%AC%A1%E5%8F%82%E6%95%B0%E5%8C%96/723bf1f940a9569aedc181cd4113c8b3.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;现在进入正题，我将给出一种新的方法，并且给出这个公式（称之为极点构造公式）的齐次坐标形式证明，作为检验。&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id="1-二次齐次参数化"&gt;1. 二次齐次参数化&lt;/h1&gt;
+&lt;h2 id="11-定义"&gt;1.1 定义&lt;/h2&gt;
+&lt;p&gt;对于具有实点的非退化射影平面二次曲线&lt;/p&gt;
+&lt;p&gt;$$
+\Gamma:\quad S(X,Y,Z)=0
+$$&lt;/p&gt;
+&lt;p&gt;所谓二次齐次参数化，是指对于通过固定点 $P_0$ 的直线束，存在三个关于参数 $u,v$ 的二次齐次多项式 $X(u,v),Y(u,v),Z(u,v)$，使得&lt;/p&gt;
+&lt;p&gt;$$\boxed{
+\phi:\mathbb P^1\longrightarrow\Gamma,\qquad [u:v]\longmapsto[X(u,v):Y(u,v):Z(u,v)]
+}$$&lt;/p&gt;
+&lt;p&gt;该参数化处处有定义（$\forall [u:v]\in\mathbb P^1$，它们不同时为零），并覆盖整条二次曲线。它能给出二次曲线上点的显式表达。&lt;/p&gt;
+&lt;h2 id="12-具体构造方法"&gt;1.2 具体构造方法&lt;/h2&gt;
+&lt;p&gt;我们先从几何直观上看。&lt;/p&gt;
+&lt;p&gt;设 $P_0=[x_0:y_0:1]\in\Gamma$，考虑所有经过 $P_0$ 的直线，这些直线构成一个射影直线，称为以 $P_0$ 为中心的直线束：&lt;/p&gt;
+&lt;p&gt;$$
+\mathcal L_{P_0}\cong\mathbb P^1
+$$&lt;/p&gt;
+&lt;p&gt;对每条直线 $\ell$，它与二次曲线有两个交点，按重数计算。由于 $P_0$ 已经是其中一个交点，我们可以把另一个交点记为 $P(\ell)$。&lt;/p&gt;
+&lt;p&gt;于是得到映射&lt;/p&gt;
+&lt;p&gt;$$
+\begin{aligned}
+\phi:\mathcal L_{P_0}&amp;amp;\longrightarrow\Gamma，\ell\longmapsto P(\ell)
+\end{aligned}
+$$&lt;/p&gt;
+&lt;p&gt;除了把交点重合的情形理解为切线对应的重根以外，这个对应没有任何歧义&lt;/p&gt;
+&lt;p&gt;现在从代数角度严谨地构造。&lt;/p&gt;
+&lt;p&gt;假设经过适当的射影坐标变换后，$P_0$ 位于仿射图 $Z\ne0$ 中。于是&lt;/p&gt;
+&lt;p&gt;$$
+S(P_0)=0
+$$&lt;/p&gt;
+&lt;p&gt;过 $P_0$ 的直线可以写成&lt;/p&gt;</description></item><item><title>局部平直与整体弯曲：从黎曼曲率到时空的整体拓扑</title><link>https://linmythos.github.io/physics/%E7%9F%A5%E4%B9%8E%E5%9B%9E%E7%AD%94/%E5%B1%80%E9%83%A8%E5%B9%B3%E7%9B%B4%E4%B8%8E%E6%95%B4%E4%BD%93%E5%BC%AF%E6%9B%B2/</link><pubDate>Mon, 09 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/%E7%9F%A5%E4%B9%8E%E5%9B%9E%E7%AD%94/%E5%B1%80%E9%83%A8%E5%B9%B3%E7%9B%B4%E4%B8%8E%E6%95%B4%E4%BD%93%E5%BC%AF%E6%9B%B2/</guid><description>&lt;h2 id="1-度规与曲率如何判断时空是否弯曲"&gt;1. 度规与曲率：如何判断时空是否弯曲？&lt;/h2&gt;
+&lt;p&gt;在广义相对论中，时空被描述为一个四维洛伦兹流形 $(M,g)$，其中 $M$ 是光滑流形，$g$ 是定义在其上的度规张量。局部坐标下，度规可以写成 $ds^2=g_{\mu\nu}dx^\mu dx^\nu$。&lt;/p&gt;
+&lt;p&gt;度规决定了时空中的长度、时间间隔、光锥结构以及测地线等几何性质。但仅凭度规分量的具体形式，并不能直接判断时空是否弯曲。真正刻画时空内蕴曲率的是黎曼曲率张量。&lt;/p&gt;
+&lt;p&gt;首先，由度规及其一阶导数构造 Christoffel 符号：&lt;/p&gt;
+&lt;p&gt;$$\Gamma^\rho_{\mu\nu}
+=\frac12g^{\rho\lambda}
+(\partial_\mu g_{\lambda\nu}
++\partial_\nu g_{\lambda\mu}
+-\partial_\lambda g_{\mu\nu}).
+$$&lt;/p&gt;
+&lt;p&gt;进一步，由 Christoffel 符号及其导数构造黎曼曲率张量：&lt;/p&gt;
+&lt;p&gt;$$&lt;/p&gt;
+&lt;p&gt;R^\rho{}&lt;em&gt;{\sigma\mu\nu}=\partial&lt;/em&gt;\mu\Gamma^\rho_{\nu\sigma}-\partial_\nu\Gamma^\rho_{\mu\sigma}+\Gamma^\rho_{\mu\lambda}\Gamma^\lambda_{\nu\sigma}-\Gamma^\rho_{\nu\lambda}\Gamma^\lambda_{\mu\sigma}.&lt;/p&gt;
+&lt;p&gt;$$&lt;/p&gt;
+&lt;p&gt;因此，度规分量是否为常数、Christoffel 符号是否为零，都不能单独作为判断时空是否弯曲的依据。对于 Levi-Civita 联络，黎曼曲率张量恒为零，才意味着时空局部平直。&lt;/p&gt;
+&lt;p&gt;例如，二维欧几里得平面在直角坐标下的度规为 $ds^2=dx^2+dy^2$，而在极坐标下则变为 $ds^2=dr^2+r^2d\theta^2$。后者的度规分量依赖于坐标，但其黎曼曲率仍然为零。这说明度规分量的变化可能仅仅来自坐标选择，而不代表空间具有内蕴曲率。&lt;/p&gt;
+&lt;p&gt;反过来，球面的度规 $ds^2=R^2d\theta^2+R^2\sin^2\theta,d\phi^2$ 虽然形式十分简单，却具有非零高斯曲率 $K=1/R^2$。可见，判断空间是否弯曲，必须考察其内蕴曲率，而不能仅凭度规表达式的外观。&lt;/p&gt;
+&lt;h2 id="2-局部平直不代表整体平直"&gt;2. 局部平直不代表整体平直&lt;/h2&gt;
+&lt;p&gt;所谓局部平直，是指流形上的每一点都存在一个足够小的邻域，使得在适当的局部坐标下，度规可以写成标准欧氏度规或闵可夫斯基度规。对于具有 Levi-Civita 联络的流形，这等价于黎曼曲率张量处处为零。&lt;/p&gt;
+&lt;p&gt;然而，局部几何并不能完全决定整体几何。一个空间即使在每个足够小的区域内都与平直空间没有区别，其整体拓扑结构仍然可能不同于欧氏空间或闵可夫斯基时空。&lt;/p&gt;
+&lt;p&gt;最直观的例子是圆柱面。将半径为 $R$ 的圆柱面参数化为 $\mathbf r(\theta,z)=(R\cos\theta,R\sin\theta,z)$，可以得到其诱导度规：&lt;/p&gt;
+&lt;p&gt;$$
+ds^2=R^2d\theta^2+dz^2.
+$$&lt;/p&gt;
+&lt;p&gt;令 $x=R\theta$，便有 $ds^2=dx^2+dz^2$。这恰好是二维欧几里得度规。因此，圆柱面可以沿周向展开为平面，其内蕴高斯曲率处处为零。&lt;/p&gt;
+&lt;p&gt;但圆柱面并不等同于整个平面。原因在于其周向坐标具有周期性：$x\sim x+2\pi R$。换句话说，圆柱面实际上可以表示为商空间 $\mathbb R^2/(2\pi R\mathbb Z)$。平面中的任意闭合曲线都可以收缩为一点，而圆柱面上绕轴一周的闭合曲线却不能连续收缩为一点。&lt;/p&gt;
+&lt;p&gt;从代数拓扑的角度看，这种区别可以由基本群刻画：$\pi_1(\mathbb R^2)=0$，而 $\pi_1(S^1\times\mathbb R)=\mathbb Z$。因此，圆柱面与平面局部等距，却不可能整体同胚，更不可能整体等距。&lt;/p&gt;
+&lt;p&gt;类似地，还可以构造平坦环面 $T^2=\mathbb R^2/(L\mathbb Z)^2$。将平面上的一个正方形沿两组对边分别识别，就得到一个局部具有欧几里得度规、但整体具有非平凡拓扑结构的空间。其基本群为 $\pi_1(T^2)=\mathbb Z\oplus\mathbb Z$，存在两个独立的不可收缩闭合曲线方向。&lt;/p&gt;</description></item><item><title>电磁场的几何结构：从微分形式到共形不变性</title><link>https://linmythos.github.io/physics/%E7%9F%A5%E4%B9%8E%E5%9B%9E%E7%AD%94/%E7%94%B5%E7%A3%81%E5%9C%BA%E7%9A%84%E5%87%A0%E4%BD%95%E7%BB%93%E6%9E%84/</link><pubDate>Mon, 09 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/%E7%9F%A5%E4%B9%8E%E5%9B%9E%E7%AD%94/%E7%94%B5%E7%A3%81%E5%9C%BA%E7%9A%84%E5%87%A0%E4%BD%95%E7%BB%93%E6%9E%84/</guid><description>&lt;h2 id="1-弯曲时空中的电磁场"&gt;1. 弯曲时空中的电磁场&lt;/h2&gt;
+&lt;p&gt;在狭义相对论中，电场与磁场统一为一个反对称的二阶协变张量 $F_{\mu\nu}$，称为电磁场强张量。在四维时空中，反对称二阶张量有 $\binom42=6$ 个独立分量。将指标分为时间指标和空间指标，$F_{0i}$ 对应三个电场分量，$F_{ij}$ 对应三个磁场分量。这也解释了电磁场为何恰好具有六个独立分量。&lt;/p&gt;
+&lt;p&gt;更深刻地说，电场和磁场并不是两个完全独立的几何对象，而是同一个电磁场张量相对于某个观察者所作的时间—空间分解。不同观察者对电场和磁场的分解可能不同，但完整的电磁场张量描述的是同一个物理场。&lt;/p&gt;
+&lt;p&gt;进入广义相对论后，时空不再被视为平直的 Minkowski 时空，而是一个带有 Lorentz 度规的四维流形 $(M,g)$。电磁场也随之成为定义在时空流形上的张量场。对于每一个时空事件 $p\in M$，都有一个电磁场强张量 $F_p\in\Lambda^2(T_p^*M)$。&lt;/p&gt;
+&lt;p&gt;度规 $g_{\mu\nu}$ 描述时空本身的几何结构，而电磁场 $F_{\mu\nu}$ 描述定义在时空上的物理场。两者虽然都是张量场，却具有不同的物理意义。电磁场并没有被吸收到度规中，而是作为独立的物质场与引力场耦合。&lt;/p&gt;
+&lt;h2 id="2-电磁场是-2-形式"&gt;2. 电磁场是 2-形式&lt;/h2&gt;
+&lt;p&gt;理解电磁场的几何本质，需要从电磁势出发。&lt;/p&gt;
+&lt;p&gt;经典电磁学中，电场与磁场可以由标势 $\phi$ 和矢势 $\mathbf A$ 表示：$\mathbf E=-\nabla\phi-\partial_t\mathbf A$，$\mathbf B=\nabla\times\mathbf A$。在相对论中，时间与空间需要统一，因此将标势和矢势组合成四维电磁势 $A_\mu$，并将其视为一个一形式：$A=A_\mu dx^\mu$。&lt;/p&gt;
+&lt;p&gt;这种几何描述也与带电粒子的作用量相适应。粒子沿时空曲线 $\gamma$ 运动时，其电磁相互作用项可以写成 $S_{\mathrm{int}}=q\int_\gamma A=q\int_\gamma A_\mu dx^\mu$。一形式恰好能够沿曲线积分，产生坐标不变的物理量。&lt;/p&gt;
+&lt;p&gt;电磁场强则由电磁势的外微分定义：$F=dA$。展开可得 $F=\frac12 F_{\mu\nu}dx^\mu\wedge dx^\nu$，其中 $F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu$。由于楔积满足反对称性 $dx^\mu\wedge dx^\nu=-dx^\nu\wedge dx^\mu$，因此 $F_{\mu\nu}=-F_{\nu\mu}$。&lt;/p&gt;
+&lt;p&gt;由此可见，电磁场自然是一个 2-形式。外微分具有映射性质 $d:\Omega^k(M)\rightarrow\Omega^{k+1}(M)$，因此电磁势作为 1-形式，其外微分自然是 2-形式。&lt;/p&gt;
+&lt;h2 id="3-电磁场作为联络的曲率"&gt;3. 电磁场作为联络的曲率&lt;/h2&gt;
+&lt;p&gt;电磁势具有规范自由度。对于任意光滑函数 $\chi$，规范变换为 $A\mapsto A+d\chi$。然而，电磁场强保持不变，因为 $d^2=0\implies F\mapsto d(A+d\chi)=dA+d^2\chi=F$ 。这说明电磁势本身包含一定的描述冗余，而电磁场强才是规范不变的物理量。&lt;/p&gt;</description></item><item><title>类方程与 Sylow 定理</title><link>https://linmythos.github.io/math/algebra/abstract-algebra/%E7%BE%A4%E8%AE%BA/%E7%B1%BB%E6%96%B9%E7%A8%8B%E4%B8%8Esylow%E5%AE%9A%E7%90%86/</link><pubDate>Mon, 09 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/algebra/abstract-algebra/%E7%BE%A4%E8%AE%BA/%E7%B1%BB%E6%96%B9%E7%A8%8B%E4%B8%8Esylow%E5%AE%9A%E7%90%86/</guid><description>&lt;h2 id="20-类方程"&gt;20. 类方程&lt;/h2&gt;
+&lt;p&gt;设 $G$ 是有限群。由于共轭关系是等价关系，$G$ 被划分为若干互不相交的共轭类。若 $x_1,\ldots,x_r$ 是所有非中心共轭类的代表元，则&lt;/p&gt;
+&lt;p&gt;$$|G|=|Z(G)|+\sum_{i=1}^{r}|\operatorname{Cl}(x_i)|=|Z(G)|+\sum_{i=1}^{r}[G:C_G(x_i)].$$&lt;/p&gt;
+&lt;p&gt;这就是类方程（class equation）。其中中心元素各自构成单元素共轭类；而非中心元素的共轭类大小都大于 $1$。类方程不是额外假设，而是有限群在共轭作用下的轨道分解，再结合轨道—稳定子定理得到的计数公式。&lt;/p&gt;
+&lt;h2 id="21-有限-p-群的中心非平凡"&gt;21. 有限 $p$-群的中心非平凡&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;定理 3.1&lt;/strong&gt; 设 $G$ 是有限群，且 $|G|=p^n$，其中 $p$ 为素数、$n\geq1$。则 $|Z(G)|\geq p$，特别地 $Z(G)\neq{e}$。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;证明。&lt;/strong&gt; 对任意非中心元素 $x_i$，其中心化子 $C_G(x_i)$ 是 $G$ 的真子群。由拉格朗日定理，$|C_G(x_i)|=p^{k_i}$，其中 $k_i&amp;lt;n$。因此 $[G:C_G(x_i)]=p^{n-k_i}$，必被 $p$ 整除。类方程给出 $p^n=|Z(G)|+\sum_i p^{n-k_i}$，对模 $p$ 取余，得到 $|Z(G)|\equiv0\pmod p$。又因为 $e\in Z(G)$，所以 $|Z(G)|$ 是正整数，故至少为 $p$。证毕。&lt;/p&gt;
+&lt;p&gt;这个证明展示了有限群论中常见的计数方法：不直接构造中心中的非单位元，而是利用轨道大小的整除性质，推出中心的阶必须满足某个同余条件。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推论 3.2&lt;/strong&gt; 若 $|G|=p^2$，则 $G$ 是交换群。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;证明。&lt;/strong&gt; 由定理 3.1，$|Z(G)|\geq p$。又由拉格朗日定理，$|Z(G)|$ 必为 $p^2$ 的因数，因此 $|Z(G)|=p$ 或 $p^2$。若 $|Z(G)|=p^2$，则 $Z(G)=G$，结论成立。若 $|Z(G)|=p$，则 $|G/Z(G)|=p$，所以 $G/Z(G)$ 是阶为素数的群，因而是循环群。下面说明：若 $G/Z(G)$ 是循环群，则 $G$ 交换。设 $G/Z(G)=\langle aZ(G)\rangle$，任取 $x,y\in G$，存在整数 $m,n$ 及 $z_1,z_2\in Z(G)$，使 $x=a^mz_1,y=a^nz_2$。由于 $z_1,z_2$ 与所有元素交换，且 $a^m,a^n$ 彼此交换，故 $xy=yx$。因此 $G$ 交换。证毕。&lt;/p&gt;</description></item><item><title>群与连续对称性的基本语言</title><link>https://linmythos.github.io/math/algebra/abstract-algebra/%E7%BE%A4%E8%AE%BA/%E7%BE%A4%E4%B8%8E%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7/</link><pubDate>Mon, 09 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/algebra/abstract-algebra/%E7%BE%A4%E8%AE%BA/%E7%BE%A4%E4%B8%8E%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7/</guid><description>&lt;h1 id="引言"&gt;引言&lt;/h1&gt;
+&lt;p&gt;群论研究对称性背后的代数结构。一个几何对象可能具有旋转、反射或平移对称性；这些变换可以复合，可以有恒等变换，也可以被逆变换撤销。群正是将这些共同规律抽象出来的数学结构。进一步地，当对称变换能够随参数连续变化时，群便不再只是一个抽象代数对象，还带有自然的拓扑与微分结构，这正是李群（Lie group）理论的出发点。&lt;/p&gt;
+&lt;h2 id="1-群的定义"&gt;1. 群的定义&lt;/h2&gt;
+&lt;p&gt;设 $G$ 是一个非空集合，配备二元运算 $(a,b)\mapsto ab$。若满足以下四条公理，则称 $(G,\cdot)$ 为群（group）：&lt;strong&gt;封闭性&lt;/strong&gt;：对任意 $a,b\in G$，有 $ab\in G$；&lt;strong&gt;结合律&lt;/strong&gt;：对任意 $a,b,c\in G$，有 $(ab)c=a(bc)$；&lt;strong&gt;单位元&lt;/strong&gt;：存在 $e\in G$，使得对任意 $a\in G$，$ea=ae=a$；&lt;strong&gt;逆元&lt;/strong&gt;：对任意 $a\in G$，存在 $a^{-1}\in G$，使得 $aa^{-1}=a^{-1}a=e$。若群运算还满足交换律 $ab=ba$，则称 $G$ 为交换群（abelian group）；否则称为非交换群。&lt;/p&gt;
+&lt;p&gt;群的单位元唯一，且每个元素的逆元唯一。若 $e,e&amp;rsquo;$ 都是单位元，则 $e=ee&amp;rsquo;=e&amp;rsquo;$。若 $b,c$ 都是 $a$ 的逆元，则 $b=b(ac)=(ba)c=c$。这些唯一性结论只依赖群公理，不需要额外条件。&lt;/p&gt;
+&lt;p&gt;群公理中的结合律尤其重要：它允许我们在不改变乘积结果的前提下重新安排括号，但一般不允许交换因子的顺序。对于非交换群，$ab$ 与 $ba$ 可能不同；这正是许多几何对称群与矩阵群的基本特征。&lt;/p&gt;
+&lt;h2 id="2-群的典型例子"&gt;2. 群的典型例子&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;整数加法群。&lt;/strong&gt; 整数集合 $\mathbb Z$ 在加法下构成交换群，单位元为 $0$，元素 $n$ 的逆元为 $-n$。类似地，$(\mathbb R,+)$ 也是交换群。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;非零实数乘法群。&lt;/strong&gt; $\mathbb R^\times=\mathbb R\setminus{0}$ 在乘法下构成交换群，单位元为 $1$，元素 $x$ 的逆元为 $x^{-1}=1/x$。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;一般线性群。&lt;/strong&gt; 记 $GL(n,\mathbb R)$ 为所有可逆 $n\times n$ 实矩阵组成的集合。在矩阵乘法下，它构成一个群，单位元为 $I_n$，逆元为通常的矩阵逆。当 $n\geq2$ 时，该群一般非交换。&lt;/p&gt;</description></item><item><title>群作用与共轭</title><link>https://linmythos.github.io/math/algebra/abstract-algebra/%E7%BE%A4%E8%AE%BA/%E7%BE%A4%E4%BD%9C%E7%94%A8%E4%B8%8E%E5%85%B1%E8%BD%AD/</link><pubDate>Mon, 09 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/algebra/abstract-algebra/%E7%BE%A4%E8%AE%BA/%E7%BE%A4%E4%BD%9C%E7%94%A8%E4%B8%8E%E5%85%B1%E8%BD%AD/</guid><description>&lt;h1 id="第三部分"&gt;第三部分　&lt;/h1&gt;
+&lt;h2 id="13-群作用将群理解为对称变换"&gt;13. 群作用：将群理解为对称变换&lt;/h2&gt;
+&lt;p&gt;群除了是一个抽象代数对象，还可以通过作用描述它如何变换其他数学对象。设 $G$ 为群，$X$ 为集合。一个左群作用（left group action）是映射 $\alpha:G\times X\to X$，记作 $(g,x)\mapsto g\cdot x$，并满足：对任意 $x\in X$，$e\cdot x=x$；对任意 $g,h\in G,x\in X$，$(gh)\cdot x=g\cdot(h\cdot x)$。第二条说明，群乘法对应变换的复合：先施加 $h$，再施加 $g$，等价于施加 $gh$。这里采用左作用记号，次序不可随意交换。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;例 2.1（置换作用）&lt;/strong&gt; 令 $X={1,2,\ldots,n}$，对称群 $S_n$ 通过 $\sigma\cdot i=\sigma(i)$ 作用于 $X$。恒等置换不改变元素，且 $(\sigma\tau)(i)=\sigma(\tau(i))$，故这确实是群作用。这个例子说明，群元素可以被理解为集合上的可逆变换。&lt;/p&gt;
+&lt;h2 id="14-群作用与置换表示"&gt;14. 群作用与置换表示&lt;/h2&gt;
+&lt;p&gt;群作用与到置换群的群同态完全等价。对每个 $g\in G$，定义映射 $\rho(g):X\to X$，$\rho(g)(x)=g\cdot x$。由于 $g^{-1}\cdot(g\cdot x)=(g^{-1}g)\cdot x=x$，映射 $\rho(g)$ 可逆，故 $\rho(g)\in\operatorname{Sym}(X)$，其中 $\operatorname{Sym}(X)$ 是 $X$ 上所有双射构成的群。又由作用公理，$\rho(gh)(x)=(gh)\cdot x=g\cdot(h\cdot x)=\rho(g)(\rho(h)(x))$，因此 $\rho:G\to\operatorname{Sym}(X)$ 是群同态。&lt;/p&gt;
+&lt;p&gt;反过来，若给定群同态 $\rho:G\to\operatorname{Sym}(X)$，定义 $g\cdot x=\rho(g)(x)$，便得到一个群作用。因此，群作用等价于群在某个集合上的置换表示。若 $X$ 进一步是向量空间，并且每个 $\rho(g)$ 都是线性变换，就得到线性表示（linear representation），从而进入表示论。&lt;/p&gt;
+&lt;h2 id="15-轨道与稳定子"&gt;15. 轨道与稳定子&lt;/h2&gt;
+&lt;p&gt;给定群作用 $G\curvearrowright X$ 和 $x\in X$，定义 $x$ 的轨道（orbit）为 $G\cdot x={g\cdot x:g\in G}$，它包含 $x$ 在群作用下能够到达的所有元素。定义 $x$ 的稳定子（stabilizer）为 $G_x={g\in G:g\cdot x=x}$，它由所有保持 $x$ 不变的群元素构成。&lt;/p&gt;</description></item><item><title>群同态与商群</title><link>https://linmythos.github.io/math/algebra/abstract-algebra/%E7%BE%A4%E8%AE%BA/%E7%BE%A4%E5%90%8C%E6%80%81%E4%B8%8E%E5%95%86%E7%BE%A4/</link><pubDate>Mon, 09 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/algebra/abstract-algebra/%E7%BE%A4%E8%AE%BA/%E7%BE%A4%E5%90%8C%E6%80%81%E4%B8%8E%E5%95%86%E7%BE%A4/</guid><description>&lt;h2 id="8-群同态保持运算的映射"&gt;8. 群同态：保持运算的映射&lt;/h2&gt;
+&lt;p&gt;如何判断两个群具有相同的代数结构？两个群的元素可以完全不同，运算也可以采用不同的表示方式，但它们仍可能在抽象意义下具有相同结构。例如，加法群 $(\mathbb Z,+)$ 与偶整数构成的加法群 $(2\mathbb Z,+)$ 并不相等，但映射 $\varphi:\mathbb Z\to2\mathbb Z$，$\varphi(n)=2n$，既保持加法又是双射。因此，判断两个群是否具有相同结构，不能只比较元素，而应考察它们之间是否存在保持运算的双射。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;定义 1.1（群同态）&lt;/strong&gt; 设 $G,H$ 为群。映射 $\varphi:G\to H$ 称为群同态（group homomorphism），如果对任意 $a,b\in G$，都有 $\varphi(ab)=\varphi(a)\varphi(b)$。等式左侧的乘法是 $G$ 中的运算，右侧的乘法是 $H$ 中的运算；使用相同符号只是为了简化记号。群同态的核心要求是保持运算，而不是保持元素本身。&lt;/p&gt;
+&lt;p&gt;若群同态 $\varphi$ 同时是双射，则称其为群同构（group isomorphism），并记作 $G\cong H$。同构的两个群在抽象群论的意义下具有完全相同的结构，只是元素的名称或表示方式不同。特别地，同构关系是等价关系：每个群都与自身同构，若 $G\cong H$ 则 $H\cong G$，且若 $G\cong H$、$H\cong K$，则 $G\cong K$。&lt;/p&gt;
+&lt;h2 id="9-群同态的基本性质"&gt;9. 群同态的基本性质&lt;/h2&gt;
+&lt;p&gt;群同态虽然只在定义中要求保持乘法，但单位元、逆元和整数次幂也会自动得到保持。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;命题 1.2&lt;/strong&gt; 设 $\varphi:G\to H$ 为群同态，则：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;$\varphi(e_G)=e_H$；&lt;/li&gt;
+&lt;li&gt;对任意 $a\in G$，$\varphi(a^{-1})=\varphi(a)^{-1}$；&lt;/li&gt;
+&lt;li&gt;对任意 $n\in\mathbb Z$，$\varphi(a^n)=\varphi(a)^n$。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;证明。&lt;/strong&gt; 由同态性质，$\varphi(e_G)=\varphi(e_Ge_G)=\varphi(e_G)^2$。在群 $H$ 中左乘 $\varphi(e_G)^{-1}$，得到 $\varphi(e_G)=e_H$。又因为 $aa^{-1}=a^{-1}a=e_G$，所以 $\varphi(a)\varphi(a^{-1})=\varphi(a^{-1})\varphi(a)=e_H$，由逆元唯一性可知 $\varphi(a^{-1})=\varphi(a)^{-1}$。正整数次幂的结论由反复使用同态性质得到；$n=0$ 时由单位元性质得到；负整数次幂则结合逆元性质即可。证毕。&lt;/p&gt;</description></item><item><title>信息论的数学基础——从 Shannon 熵、互信息到信息瓶颈</title><link>https://linmythos.github.io/ai/%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</link><pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/ai/%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</guid><description>&lt;p&gt;信息论试图建立一套数学理论，用概率分布定量描述信息、不确定性、通信和压缩。它最初由 Claude Shannon 于 1948 年系统建立，后来成为通信理论、统计学、机器学习、密码学和科学推断的重要基础。&lt;/p&gt;
 &lt;h1 id="信息量一个事件包含多少信息"&gt;信息量：一个事件包含多少信息？&lt;/h1&gt;
 &lt;h2 id="从事件概率出发"&gt;从事件概率出发&lt;/h2&gt;
 &lt;p&gt;设某个随机事件 \(A\) 的发生概率为：&lt;/p&gt;
@@ -860,24 +1003,7 @@ I(x)=-\log_2P(x)
 &lt;p&gt;GNWT 的一个重要预测是，有意识的信息处理通常伴随广泛的神经活动传播，部分实验研究将其与额顶网络活动及晚期神经响应联系起来。&lt;/p&gt;
 &lt;p&gt;但需要指出，额顶活动究竟是意识体验本身的必要组成部分，还是主要参与意识报告、任务执行和信息维持，仍存在争论。&lt;/p&gt;
 &lt;h3 id="284-整合信息理论"&gt;28.4 整合信息理论&lt;/h3&gt;
-&lt;p&gt;整合信息理论（Integrated Information Theory, IIT）试图从系统内部的因果结构出发解释意识。&lt;/p&gt;</description></item><item><title>第一章 群与连续对称性</title><link>https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E6%9D%8E%E7%BE%A4%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%9A%84%E5%87%A0%E4%BD%95%E7%BB%93%E6%9E%84/%E7%BE%A4%E4%B8%8E%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7/</link><pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E6%9D%8E%E7%BE%A4%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%9A%84%E5%87%A0%E4%BD%95%E7%BB%93%E6%9E%84/%E7%BE%A4%E4%B8%8E%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7/</guid><description>&lt;h2 id="11-为什么研究群"&gt;1.1 为什么研究群？&lt;/h2&gt;
-&lt;p&gt;数学中有一类问题反复出现：一个对象在某些变换下保持不变，那么这些变换具有什么共同结构？&lt;/p&gt;
-&lt;p&gt;例如，平面上的圆在绕圆心旋转后保持不变；正方形在旋转 \(90^\circ\) 或关于对称轴反射后仍然与自身重合；欧氏空间中的距离在刚体运动下保持不变。这些变换并非彼此孤立，它们可以进行复合，可以存在恒等变换，也可以撤销。因此，它们自然构成一种代数结构——群（group）。&lt;/p&gt;
-&lt;p&gt;群论研究的正是这种变换及其复合规律。它不关心对象的具体形状，而是抽取变换背后的抽象代数结构。进一步地，当变换能够连续地依赖某些参数时，我们便进入李群理论。旋转角度可以连续变化，空间平移可以连续变化，量子态也可以在连续对称变换下演化。李群正是描述这类连续对称性的数学语言。&lt;/p&gt;
-&lt;h2 id="12-群的定义"&gt;1.2 群的定义&lt;/h2&gt;
-&lt;p&gt;一个非空集合 \(G\)，若配备二元运算 \((a,b)\mapsto ab\)，并满足以下四条公理，则称 \(G\) 为一个群：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;封闭性： 对任意 \(a,b\in G\)，都有 \(ab\in G\)。&lt;/li&gt;
-&lt;li&gt;结合律： 对任意 \(a,b,c\in G\)，都有 \((ab)c=a(bc)\)。&lt;/li&gt;
-&lt;li&gt;单位元： 存在 \(e\in G\)，使得对任意 \(a\in G\)，有 \(ea=ae=a\)。&lt;/li&gt;
-&lt;li&gt;逆元： 对任意 \(a\in G\)，存在 \(a^{-1}\in G\)，使得 \(aa^{-1}=a^{-1}a=e\)。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;这里的运算不一定是数的乘法。例如，矩阵乘法、函数复合以及几何变换的复合都可以作为群运算。&lt;/p&gt;
-&lt;p&gt;群的单位元是唯一的，且每个元素的逆元也是唯一的。事实上，若 \(e,e&amp;rsquo;\) 都是单位元，则 \(e=ee&amp;rsquo;=e&amp;rsquo;\)；若 \(b,c\) 都是 \(a\) 的逆元，则 \(b=b(ac)=(ba)c=c\)。&lt;/p&gt;
-&lt;p&gt;若群运算还满足交换律 \(ab=ba\)，则称 \(G\) 为交换群（abelian group），否则称为非交换群。交换性是重要的结构性质：例如实数加法群 \((\mathbb R,+)\) 是交换群，而一般可逆矩阵群在矩阵乘法下通常不是交换群。&lt;/p&gt;
-&lt;h2 id="13-群的典型例子"&gt;1.3 群的典型例子&lt;/h2&gt;
-&lt;p&gt;例1：整数加法群。 整数集合 \(\mathbb Z\) 在加法下构成群，单位元为 \(0\)，整数 \(n\) 的逆元为 \(-n\)。它是交换群。&lt;/p&gt;
-&lt;p&gt;例2：非零实数乘法群。 \(\mathbb R^\times=\mathbb R\setminus\{0\}\) 在乘法下构成交换群，单位元为 \(1\)，逆元为 \(x^{-1}=1/x\)。&lt;/p&gt;</description></item><item><title>第七章 李代数的结构理论</title><link>https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E6%9D%8E%E4%BB%A3%E6%95%B0%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%9A%84%E6%97%A0%E7%A9%B7%E5%B0%8F%E7%BB%93%E6%9E%84/%E6%9D%8E%E4%BB%A3%E6%95%B0%E7%9A%84%E7%BB%93%E6%9E%84%E7%90%86%E8%AE%BA/</link><pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E6%9D%8E%E4%BB%A3%E6%95%B0%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%9A%84%E6%97%A0%E7%A9%B7%E5%B0%8F%E7%BB%93%E6%9E%84/%E6%9D%8E%E4%BB%A3%E6%95%B0%E7%9A%84%E7%BB%93%E6%9E%84%E7%90%86%E8%AE%BA/</guid><description>&lt;p&gt;前面我们已经建立了李群与李代数之间的联系，并认识到李代数通过李括号记录连续对称性的无穷小结构。接下来，一个自然的问题是：不同李代数之间是否存在统一的结构分类？与群论类似，李代数也可以研究子代数、理想与商结构。但由于李括号满足反对称性和 Jacobi 恒等式，李代数还发展出一套独特的结构理论。其中最重要的概念包括理想、可解性、幂零性、半单性与 Killing 型。这些概念不仅决定李代数自身的代数结构，也是理解经典李群、表示论与数学物理中连续对称性的基础。本章主要讨论有限维李代数，除特别说明外，默认底域为特征零的域，主要考虑实数域与复数域。&lt;/p&gt;
+&lt;p&gt;整合信息理论（Integrated Information Theory, IIT）试图从系统内部的因果结构出发解释意识。&lt;/p&gt;</description></item><item><title>第七章 李代数的结构理论</title><link>https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E6%9D%8E%E4%BB%A3%E6%95%B0%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%9A%84%E6%97%A0%E7%A9%B7%E5%B0%8F%E7%BB%93%E6%9E%84/%E6%9D%8E%E4%BB%A3%E6%95%B0%E7%9A%84%E7%BB%93%E6%9E%84%E7%90%86%E8%AE%BA/</link><pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E6%9D%8E%E4%BB%A3%E6%95%B0%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%9A%84%E6%97%A0%E7%A9%B7%E5%B0%8F%E7%BB%93%E6%9E%84/%E6%9D%8E%E4%BB%A3%E6%95%B0%E7%9A%84%E7%BB%93%E6%9E%84%E7%90%86%E8%AE%BA/</guid><description>&lt;p&gt;前面我们已经建立了李群与李代数之间的联系，并认识到李代数通过李括号记录连续对称性的无穷小结构。接下来，一个自然的问题是：不同李代数之间是否存在统一的结构分类？与群论类似，李代数也可以研究子代数、理想与商结构。但由于李括号满足反对称性和 Jacobi 恒等式，李代数还发展出一套独特的结构理论。其中最重要的概念包括理想、可解性、幂零性、半单性与 Killing 型。这些概念不仅决定李代数自身的代数结构，也是理解经典李群、表示论与数学物理中连续对称性的基础。本章主要讨论有限维李代数，除特别说明外，默认底域为特征零的域，主要考虑实数域与复数域。&lt;/p&gt;
 &lt;h2 id="71-子代数与理想"&gt;7.1 子代数与理想&lt;/h2&gt;
 &lt;p&gt;设 \(\mathfrak g\) 是李代数。若线性子空间 \(\mathfrak h\subseteq\mathfrak g\) 对李括号封闭，即对任意 \(X,Y\in\mathfrak h\)，都有 \([X,Y]\in\mathfrak h\)，则称 \(\mathfrak h\) 为 \(\mathfrak g\) 的李子代数（Lie subalgebra）。例如，\(\mathfrak{sl}(n,\mathbb R)\) 是 \(\mathfrak{gl}(n,\mathbb R)\) 的李子代数，因为 \(\operatorname{tr}[A,B]=0\)；类似地，\(\mathfrak{so}(n)\) 也是 \(\mathfrak{gl}(n,\mathbb R)\) 的李子代数。&lt;/p&gt;
 &lt;p&gt;但子代数并不足以描述李代数中的所有内部结构。我们还需要一种能够与整个李代数相容的子空间。&lt;/p&gt;
@@ -1230,19 +1356,23 @@ M=(Q,\Sigma,\Gamma,\delta,q_0,q_{\mathrm{accept}},q_{\mathrm{reject}}),
 &lt;p&gt;&lt;strong&gt;定义 4.1（覆盖映射）&lt;/strong&gt; 设 $X,\widetilde X$ 为拓扑空间，$p:\widetilde X\to X$ 为连续满射。若对每个 $x\in X$，存在开邻域 $U\subseteq X$，使得 $p^{-1}(U)$ 可以表示为互不相交的开集之并 $p^{-1}(U)=\bigsqcup_{\alpha\in A}V_\alpha$，且每个限制映射 $p|_{V_\alpha}:V_\alpha\to U$ 都是同胚，则称 $p$ 为&lt;strong&gt;覆盖映射&lt;/strong&gt;，$\widetilde X$ 称为 $X$ 的&lt;strong&gt;覆盖空间&lt;/strong&gt;，$X$ 称为&lt;strong&gt;底空间&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;这样的开邻域 $U$ 称为&lt;strong&gt;均匀覆盖邻域（evenly covered neighborhood）&lt;/strong&gt;，其中的 $V_\alpha$ 称为&lt;strong&gt;片（sheet）&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;例 4.1（实数轴覆盖圆周）&lt;/strong&gt; 定义 $p:\mathbb R\to S^1$，$p(t)=e^{2\pi it}$。对任意 $z\in S^1$，其原像为一个可数无限集合。因此，$\mathbb R$ 是 $S^1$ 的一个覆盖空间。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;例 4.2（圆周覆盖圆周）&lt;/strong&gt; 对正整数 $n$，定义 $p_n:S^1\to S^1$，$p_n(z)=z^n$。这是一个 $n$ 层覆盖，每个底空间中的点恰好有 $n$ 个原像。&lt;/p&gt;</description></item><item><title>第 6 章　群、模与链复形</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/</guid><description>&lt;h1 id="第-6-章群模与链复形"&gt;第 6 章　群、模与链复形&lt;/h1&gt;
-&lt;p&gt;Groups, Modules and Chain Complexes&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;例 4.2（圆周覆盖圆周）&lt;/strong&gt; 对正整数 $n$，定义 $p_n:S^1\to S^1$，$p_n(z)=z^n$。这是一个 $n$ 层覆盖，每个底空间中的点恰好有 $n$ 个原像。&lt;/p&gt;</description></item><item><title>第 6 章　群、模与链复形</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/</guid><description>&lt;h1 id="第-6-章群环模与链复形"&gt;第 6 章　群、环、模与链复形&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;Groups, Rings, Modules and Chain Complexes&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;第二编 · 同调理论&lt;/p&gt;
-&lt;h2 id="61-从拓扑空间到链复形"&gt;6.1 从拓扑空间到链复形&lt;/h2&gt;
-&lt;p&gt;前面我们通过基本群将闭合道路的同伦类转化为群，从而获得了空间的一维拓扑信息。但基本群并不足以完整刻画空间。例如，单连通空间的基本群均为平凡群，却可能具有完全不同的高维拓扑结构。&lt;/p&gt;
-&lt;p&gt;为了研究更高维的拓扑信息，我们需要一种新的代数工具：同调理论（Homology Theory）。&lt;/p&gt;
-&lt;p&gt;同调理论的基本思想是，将拓扑空间中的几何对象组织成一系列 Abel 群，并通过边界算子描述它们之间的关系。最终，我们通过边界算子的核与像构造同调群。&lt;/p&gt;
-&lt;p&gt;这一过程的代数基础就是链复形（Chain Complex）。&lt;/p&gt;
-&lt;h2 id="62-abel-群与自由-abel-群"&gt;6.2 Abel 群与自由 Abel 群&lt;/h2&gt;
-&lt;p&gt;定义 6.1（Abel 群） 若群 \(G\) 的运算满足交换律，即对任意 \(a,b\in G\)，有 \(ab=ba\)，则称 \(G\) 为 Abel 群，亦称交换群。&lt;/p&gt;
-&lt;p&gt;同调群天然具有 Abel 群结构，因此我们主要研究 Abel 群及其同态。&lt;/p&gt;
-&lt;p&gt;例如，整数加法群 \(\mathbb Z\)、有限循环群 \(\mathbb Z/n\mathbb Z\) 以及直积群 \(\mathbb Z^n\) 都是 Abel 群。&lt;/p&gt;
-&lt;p&gt;定义 6.2（自由 Abel 群） 若 Abel 群 \(G\) 存在一个子集 \(B\)，使得每个元素都能唯一表示为 \(B\) 中有限多个元素的整数线性组合，则称 \(G\) 为自由 Abel 群，\(B\) 称为一组基。&lt;/p&gt;</description></item><item><title>第 7 章　单纯同调</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E5%8D%95%E7%BA%AF%E5%90%8C%E8%B0%83/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E5%8D%95%E7%BA%AF%E5%90%8C%E8%B0%83/</guid><description>&lt;h1 id="第-7-章单纯同调"&gt;第 7 章　单纯同调&lt;/h1&gt;
+&lt;h2 id="61-从拓扑问题到代数结构"&gt;6.1 从拓扑问题到代数结构&lt;/h2&gt;
+&lt;p&gt;前面我们通过基本群，将闭合道路的同伦类组织成一个群，从而获得空间的一维拓扑信息。但基本群并不足以完整刻画空间。例如，单连通空间的基本群都是平凡群，却可能具有完全不同的高维拓扑结构。&lt;/p&gt;
+&lt;p&gt;为了研究更高维的拓扑信息，我们需要一种更系统的代数工具：同调理论（Homology Theory）。&lt;/p&gt;
+&lt;p&gt;同调理论的基本思想是，将几何对象组织成一系列代数对象，并通过映射描述它们之间的关系。对于我们即将研究的链复形，这些代数对象通常是 Abel 群或模，而连接它们的映射则是群同态或模同态。通过映射的核与像，我们最终构造出同调群。&lt;/p&gt;
+&lt;p&gt;因此，在进入链复形之前，需要先建立必要的代数语言：群、环、模、同态与正合列。&lt;/p&gt;
+&lt;h2 id="62-群与-abel-群"&gt;6.2 群与 Abel 群&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;定义 6.1（群）&lt;/strong&gt; 一个集合 $G$ 配备二元运算 $(a,b)\mapsto ab$，若满足以下条件，则称 $G$ 为群：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;结合律：&lt;/strong&gt; 对任意 $a,b,c\in G$，有 $(ab)c=a(bc)$。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;单位元：&lt;/strong&gt; 存在 $e\in G$，使得对任意 $a\in G$，有 $ea=ae=a$。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;逆元：&lt;/strong&gt; 对任意 $a\in G$，存在 $a^{-1}\in G$，使得 $aa^{-1}=a^{-1}a=e$。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;若群运算还满足交换律 $ab=ba$，则称 $G$ 为 Abel 群（Abelian group），亦称交换群。&lt;/p&gt;
+&lt;p&gt;对于 Abel 群，我们通常使用加法记号，将单位元记为 $0$，将元素 $a$ 的逆元记为 $-a$。于是群运算写作 $a+b$，逆元写作 $-a$。&lt;/p&gt;</description></item><item><title>第 7 章　单纯同调</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E5%8D%95%E7%BA%AF%E5%90%8C%E8%B0%83/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E5%8D%95%E7%BA%AF%E5%90%8C%E8%B0%83/</guid><description>&lt;h1 id="第-7-章单纯同调"&gt;第 7 章　单纯同调&lt;/h1&gt;
 &lt;p&gt;Simplicial Homology&lt;/p&gt;
 &lt;p&gt;第二编 · 同调理论&lt;/p&gt;
 &lt;h2 id="71-从几何对象到链复形"&gt;7.1 从几何对象到链复形&lt;/h2&gt;
@@ -1509,26 +1639,16 @@ $$&lt;/p&gt;</description></item><item><title>MZI网格的Reck架构与Clements�
 &lt;p&gt;在温度变化较小、材料参数近似线性的情况下：&lt;/p&gt;
 &lt;p&gt;$$ \Delta n_{\mathrm{eff}} \approx \frac{dn_{\mathrm{eff}}}{dT}\Delta T. $$&lt;/p&gt;
 &lt;p&gt;代入得到：&lt;/p&gt;
-&lt;p&gt;$$ \boxed{ \Delta\phi \approx \frac{2\pi L}{\lambda_0} \frac{dn_{\mathrm{eff}}}{dT}\Delta T. } $$&lt;/p&gt;</description></item><item><title>Abstract Algebra</title><link>https://linmythos.github.io/math/algebra/abstract-algebra/%E7%BE%A4%E8%AE%BA/</link><pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/algebra/abstract-algebra/%E7%BE%A4%E8%AE%BA/</guid><description>&lt;h1 id="abstract-algebra--lie-theory"&gt;Abstract Algebra → Lie Theory&lt;/h1&gt;
-&lt;h2 id="lecture-1-group-homomorphisms-and-quotient-groups"&gt;Lecture 1. Group Homomorphisms and Quotient Groups&lt;/h2&gt;
-&lt;p&gt;第一讲：群同态与商群&lt;/p&gt;
-&lt;h2 id="1-为什么要研究-group-homomorphism"&gt;1. 为什么要研究 Group Homomorphism？&lt;/h2&gt;
-&lt;p&gt;在学习 Lie Groups 之前，我们必须先理解一个更基础的问题：&lt;/p&gt;
-&lt;p&gt;如何判断两个群具有相同的代数结构？&lt;/p&gt;
-&lt;p&gt;假设有两个群 $G,H$。它们的元素可以完全不同，运算也可以采用不同的表示方式，但它们仍然可能具有相同的抽象结构。&lt;/p&gt;
-&lt;p&gt;例如，加法群 $(\mathbb Z,+)$ 与偶整数构成的加法群 $(2\mathbb Z,+)$ 并不相等，但映射&lt;/p&gt;
-&lt;p&gt;$ \varphi:\mathbb Z\longrightarrow 2\mathbb Z, \qquad \varphi(n)=2n $&lt;/p&gt;
-&lt;p&gt;是一个 Group Isomorphism。&lt;/p&gt;
-&lt;p&gt;为什么？因为它既保持运算，又是双射。&lt;/p&gt;
-&lt;p&gt;这引出我们的第一个定义。&lt;/p&gt;
-&lt;h3 id="definition-11--group-homomorphism"&gt;Definition 1.1 — Group Homomorphism&lt;/h3&gt;
-&lt;p&gt;设 $G,H$ 为群。映射&lt;/p&gt;
-&lt;p&gt;$ \varphi:G\longrightarrow H $&lt;/p&gt;
-&lt;p&gt;称为一个 Group Homomorphism，如果对任意 $a,b\in G$，都有&lt;/p&gt;
-&lt;p&gt;$ \boxed{\varphi(ab)=\varphi(a)\varphi(b).} $&lt;/p&gt;
-&lt;p&gt;注意，这里的 $ab$ 表示 $G$ 中的运算，而右侧的乘积表示 $H$ 中的运算。我们使用相同的符号，仅仅是为了简化记号。&lt;/p&gt;
-&lt;p&gt;这个定义表达的核心是：映射不一定保留元素本身，但必须保留群运算的结构。&lt;/p&gt;
-&lt;p&gt;如果 $\varphi$ 同时是双射，那么称其为 Group Isomorphism，记作&lt;/p&gt;</description></item><item><title>Classical Mechanics</title><link>https://linmythos.github.io/physics/classical-mechanics/%E7%90%86%E8%AE%BA%E5%8A%9B%E5%AD%A6%E4%B8%8E%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/</link><pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/%E7%90%86%E8%AE%BA%E5%8A%9B%E5%AD%A6%E4%B8%8E%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/</guid><description>&lt;p&gt;学过 Differential Geometry 之后重新学 Classical Mechanics，有很多新的收获，此为学习笔记，持续更新。&lt;/p&gt;
+&lt;p&gt;$$ \boxed{ \Delta\phi \approx \frac{2\pi L}{\lambda_0} \frac{dn_{\mathrm{eff}}}{dT}\Delta T. } $$&lt;/p&gt;</description></item><item><title>对称性与守恒律的辛几何表述</title><link>https://linmythos.github.io/physics/classical-mechanics/%E7%90%86%E8%AE%BA%E5%8A%9B%E5%AD%A6%E4%B8%8E%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/%E5%AF%B9%E7%A7%B0%E6%80%A7%E4%B8%8E%E5%AE%88%E6%81%92%E5%BE%8B%E7%9A%84%E8%BE%9B%E5%87%A0%E4%BD%95%E8%A1%A8%E8%BF%B0/</link><pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/%E7%90%86%E8%AE%BA%E5%8A%9B%E5%AD%A6%E4%B8%8E%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/%E5%AF%B9%E7%A7%B0%E6%80%A7%E4%B8%8E%E5%AE%88%E6%81%92%E5%BE%8B%E7%9A%84%E8%BE%9B%E5%87%A0%E4%BD%95%E8%A1%A8%E8%BF%B0/</guid><description>&lt;h1 id="symmetry-and-conservation-laws-noether-theorem"&gt;Symmetry and Conservation Laws: Noether Theorem&lt;/h1&gt;
+&lt;h2 id="cyclic-coordinate"&gt;Cyclic coordinate&lt;/h2&gt;
+&lt;p&gt;如果某个 generalized coordinate $q_j$ 不显式出现在 Lagrangian 中，即 $\frac{\partial L}{\partial q_j}=0$，就称 $q_j$ 为 cyclic coordinate（也叫 ignorable coordinate）。
+Euler–Lagrange equation 立即给出 $\frac{d}{dt}\frac{\partial L}{\partial\dot q_j}=0$，定义 conjugate momentum $p_j:=\frac{\partial L}{\partial\dot q_j}$ 便得到&lt;/p&gt;
+&lt;p&gt;$p_j=\text{constant}$&lt;/p&gt;
+&lt;p&gt;也就是：如果 Lagrangian 不显含某个 coordinate，那么它对应的 conjugate momentum 守恒。&lt;/p&gt;
+&lt;h3 id="旋转对称性与角动量守恒"&gt;旋转对称性与角动量守恒&lt;/h3&gt;
+&lt;p&gt;考虑平面上的中心势 $V=V(r)$，Lagrangian 为 $L=\frac12m(\dot r^2+r^2\dot\theta^2)-V(r)$；做 transformation $\theta\mapsto\theta+\alpha$（$\alpha$ 为常数），意味着粒子的位置整体绕原点旋转角度 $\alpha$，但 $r$ 没变、速度大小没变、中心势 $V(r)$ 也没变，因此 $L(r,\dot r,\theta+\alpha,\dot\theta)=L(r,\dot r,\theta,\dot\theta)$，这就是 rotational symmetry。&lt;/p&gt;
+&lt;p&gt;于是&lt;/p&gt;
+&lt;p&gt;$\text{rotational symmetry}\Longrightarrow\theta\text{ 是 cyclic coordinate}\Longrightarrow p_\theta\text{ 守恒}$&lt;/p&gt;</description></item><item><title>拉格朗日力学的几何视角</title><link>https://linmythos.github.io/physics/classical-mechanics/%E7%90%86%E8%AE%BA%E5%8A%9B%E5%AD%A6%E4%B8%8E%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%8A%9B%E5%AD%A6%E7%9A%84%E5%87%A0%E4%BD%95%E8%A7%86%E8%A7%92/</link><pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/%E7%90%86%E8%AE%BA%E5%8A%9B%E5%AD%A6%E4%B8%8E%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%8A%9B%E5%AD%A6%E7%9A%84%E5%87%A0%E4%BD%95%E8%A7%86%E8%A7%92/</guid><description>&lt;p&gt;学过 Differential Geometry 之后重新学 Classical Mechanics，有很多新的收获，此为学习笔记，持续更新。&lt;/p&gt;
 &lt;h1 id="lagrangian-mechanics-and-geometry"&gt;Lagrangian Mechanics and Geometry&lt;/h1&gt;
 &lt;h2 id="configuration-space"&gt;Configuration Space&lt;/h2&gt;
 &lt;p&gt;设系统有 $n$ 个 degrees of freedom，写作 $q_1,q_2,\ldots,q_n$，则某一时刻的 configuration 可表示为 $q=(q_1,\ldots,q_n)$，所有可能的 configurations 构成 configuration space $\mathcal C$。
@@ -1538,7 +1658,13 @@ $$&lt;/p&gt;</description></item><item><title>MZI网格的Reck架构与Clements�
 于是 system point 实际上是在 six-dimensional configuration space 中运动，即 $q(t)\in\mathbb R^6$；而物理上我们看到的是两条三维轨迹 $\mathbf r_1(t)$ 与 $\mathbf r_2(t)$。&lt;/p&gt;
 &lt;h3 id="自由-rigid-body"&gt;自由 rigid body&lt;/h3&gt;
 &lt;p&gt;例如一个自由 rigid body，其 configuration 可用 $(x,y,z,\phi,\theta,\psi)$ 描述，故 $Q\simeq\mathbb R^3\times SO(3)$。
-此时一个 configuration-space point $q=(x,y,z,\phi,\theta,\psi)$ 代表的是整个刚体当前的位置加当前的 orientation；随时间 $q(t)=(x(t),y(t),z(t),\phi(t),\theta(t),\psi(t))$，整个刚体的运动就是 $Q$ 中的一条 curve。&lt;/p&gt;</description></item><item><title>Differential Geometry</title><link>https://linmythos.github.io/math/geometry/differential-geometry/local/</link><pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/differential-geometry/local/</guid><description>&lt;p&gt;&lt;strong&gt;Warning:部分公式问题仍未解决，完整文章可通过首页的链接前往知乎查看&lt;/strong&gt;&lt;/p&gt;
+此时一个 configuration-space point $q=(x,y,z,\phi,\theta,\psi)$ 代表的是整个刚体当前的位置加当前的 orientation；随时间 $q(t)=(x(t),y(t),z(t),\phi(t),\theta(t),\psi(t))$，整个刚体的运动就是 $Q$ 中的一条 curve。&lt;/p&gt;</description></item><item><title>正则变换的几何视角</title><link>https://linmythos.github.io/physics/classical-mechanics/%E7%90%86%E8%AE%BA%E5%8A%9B%E5%AD%A6%E4%B8%8E%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/%E6%AD%A3%E5%88%99%E5%8F%98%E6%8D%A2%E7%9A%84%E5%87%A0%E4%BD%95%E8%A7%86%E8%A7%92/</link><pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/physics/classical-mechanics/%E7%90%86%E8%AE%BA%E5%8A%9B%E5%AD%A6%E4%B8%8E%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/%E6%AD%A3%E5%88%99%E5%8F%98%E6%8D%A2%E7%9A%84%E5%87%A0%E4%BD%95%E8%A7%86%E8%A7%92/</guid><description>&lt;h1 id="canonical-transformations"&gt;Canonical Transformations&lt;/h1&gt;
+&lt;h2 id="general-situation"&gt;General situation&lt;/h2&gt;
+&lt;p&gt;换一组相空间变量并试图让新变量仍满足 Hamilton&amp;rsquo;s equations 的标准形式，设变换为 $(q,p)\mapsto(Q,P)$；若存在新 Hamiltonian $K(Q,P,t)$ 使得 $\dot Q_i=\frac{\partial K}{\partial P_i},\ \dot P_i=-\frac{\partial K}{\partial Q_i}$，则这个变换就是 canonical transformation。&lt;/p&gt;
+&lt;p&gt;举一个简单例子：考虑一维相空间作变换 $Q=p,\ P=-q$，原 Hamilton&amp;rsquo;s equations 是 $\dot q=H_p,\ \dot p=-H_q$，因此 $\dot Q=\dot p=-H_q$；由于 $q=-P,\ p=Q$，定义 $K(Q,P,t)=H(-P,Q,t)$，那么 $\frac{\partial K}{\partial P}=-H_q,\ \frac{\partial K}{\partial Q}=H_p$，所以 $\dot Q=\frac{\partial K}{\partial P},\ \dot P=-\frac{\partial K}{\partial Q}$，新变量仍满足标准 Hamilton&amp;rsquo;s equations，因此这是一个 canonical transformation。&lt;/p&gt;
+&lt;h2 id="generating-function"&gt;Generating function&lt;/h2&gt;
+&lt;p&gt;希望找到一种系统的方法构造 canonical transformations，而不是像刚才那样凭直觉猜变换。
+写出 Hamiltonian Mechanics 的 action $S[q,p]=\int_{t_1}^{t_2}(p_i\dot q_i-H(q,p,t))dt$；对于 canonical transformation，要求新旧变量给出的动力学描述等价，一个充分的构造方式是让两个 action integrands 只相差一个 total derivative：&lt;/p&gt;</description></item><item><title>Differential Geometry</title><link>https://linmythos.github.io/math/geometry/differential-geometry/local/</link><pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/differential-geometry/local/</guid><description>&lt;p&gt;&lt;strong&gt;Warning:部分公式问题仍未解决，完整文章可通过首页的链接前往知乎查看&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;谨以此文纪念我逝去的夏天&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;暑假的最后几天开始学习微分几何，学了光滑流形基础和局部黎曼几何的大部分内容，那时候还想着自己很快就能学到纤维丛了。但是迫近开学，为了准备转专业考试，把更多时间花在了备考上（重新捡起强基题的感觉很难受，一些不好的回忆开始攻击我）。微分几何的学习也陷入停滞。恰好军训期间观训，趁着记忆还没有完全丧失，把局部黎曼几何补完了。由于整体黎曼几何需要更强的抽代基础，只好先跑去补了。&lt;/p&gt;
@@ -1576,7 +1702,7 @@ $$&lt;/p&gt;</description></item><item><title>MZI网格的Reck架构与Clements�
 &lt;p&gt;$$J=\frac{\partial y^a}{\partial x^i}$$&lt;/p&gt;
 &lt;p&gt;Jacobi 矩阵代表坐标变换的线性化（即切空间之间的线性映射）。&lt;/p&gt;
 &lt;h3 id="12-正则水平集定理构造子流形"&gt;1.2 正则水平集定理（构造子流形）&lt;/h3&gt;
-&lt;p&gt;设 $F:\mathbb{R}^{,n+k}\to\mathbb{R}^{,k}$ 光滑，Jacobian 为 $DF=\bigl(\frac{\partial F^a}{\partial x^j}\bigr)$。若对所有 $p\in F^{-1}(0)$，$DF(p)$ 的秩均为 $k$（即 $0$ 是&lt;strong&gt;正则值&lt;/strong&gt;），则&lt;/p&gt;</description></item><item><title>Projective Geometry</title><link>https://linmythos.github.io/math/geometry/projective_geometry/projective-geometry/</link><pubDate>Thu, 08 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/projective_geometry/projective-geometry/</guid><description>&lt;p&gt;谨以此纪念我那充满戏剧性的、颓唐的、激情的高三。&lt;/p&gt;
+&lt;p&gt;设 $F:\mathbb{R}^{,n+k}\to\mathbb{R}^{,k}$ 光滑，Jacobian 为 $DF=\bigl(\frac{\partial F^a}{\partial x^j}\bigr)$。若对所有 $p\in F^{-1}(0)$，$DF(p)$ 的秩均为 $k$（即 $0$ 是&lt;strong&gt;正则值&lt;/strong&gt;），则&lt;/p&gt;</description></item><item><title>射影几何入门笔记</title><link>https://linmythos.github.io/math/geometry/projective_geometry/projective-geometry/</link><pubDate>Thu, 08 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/projective_geometry/projective-geometry/</guid><description>&lt;p&gt;谨以此纪念我那充满戏剧性的、颓唐的、激情的高三。&lt;/p&gt;
 &lt;p&gt;在2026.4.21，佛山二模前夕，我花了一天读完了梅向明《高等几何》的前六章并做了学习笔记。早上6：40到的教室，晚上22：35才走。那时候虽然不知道自己学这些东西有什么用，但是就是很喜欢，无法自拔地学下去。&lt;/p&gt;
 &lt;p&gt;虽然一直在练用射影几何方法做解析几何题，但最后高考的时候也没有发挥用处，唉，值得一提的是，在佛山一模之后的寒假，我发现了一个能在正规考试中“使用”射影几何的方法：先用射影几何方法做出来，代数演绎上，用共线方程传递调和比，然后用分比性质猛猛导。肯定能做出来（不使用齐次坐标就能处理无穷远点的情况），而且非常快。&lt;/p&gt;
 &lt;p&gt;本篇文章是在学习笔记的基础上扩写而成的，对于缺少前置知识的读者，我深感抱歉。&lt;/p&gt;

@@ -11,17 +11,16 @@
 这说明，相对同调群只在与胞腔维数相同的阶数上非平凡。它使我们能够用胞腔直接构造一个远小于奇异链复形的链复形。
 10.2 胞腔链复形 定义第 \(n\) 阶胞腔链群为
 \[ C_n^{\mathrm{cell}}(X)=H_n(X^n,X^{n-1}). \]
-...</p></div><footer class=entry-footer><span title='2026-11-06 00:00:00 +0000 UTC'>November 6, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第 10 章　CW 同调与同调计算" href=https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/cw%E5%90%8C%E8%B0%83%E4%B8%8E%E5%90%8C%E8%B0%83%E8%AE%A1%E7%AE%97/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 6 章　群、模与链复形</h2></header><div class=entry-content><p>第 6 章　群、模与链复形 Groups, Modules and Chain Complexes
+...</p></div><footer class=entry-footer><span title='2026-11-06 00:00:00 +0000 UTC'>November 6, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第 10 章　CW 同调与同调计算" href=https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/cw%E5%90%8C%E8%B0%83%E4%B8%8E%E5%90%8C%E8%B0%83%E8%AE%A1%E7%AE%97/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 6 章　群、模与链复形</h2></header><div class=entry-content><p>第 6 章　群、环、模与链复形 Groups, Rings, Modules and Chain Complexes
 第二编 · 同调理论
-6.1 从拓扑空间到链复形 前面我们通过基本群将闭合道路的同伦类转化为群，从而获得了空间的一维拓扑信息。但基本群并不足以完整刻画空间。例如，单连通空间的基本群均为平凡群，却可能具有完全不同的高维拓扑结构。
-为了研究更高维的拓扑信息，我们需要一种新的代数工具：同调理论（Homology Theory）。
-同调理论的基本思想是，将拓扑空间中的几何对象组织成一系列 Abel 群，并通过边界算子描述它们之间的关系。最终，我们通过边界算子的核与像构造同调群。
-这一过程的代数基础就是链复形（Chain Complex）。
-6.2 Abel 群与自由 Abel 群 定义 6.1（Abel 群） 若群 \(G\) 的运算满足交换律，即对任意 \(a,b\in G\)，有 \(ab=ba\)，则称 \(G\) 为 Abel 群，亦称交换群。
-同调群天然具有 Abel 群结构，因此我们主要研究 Abel 群及其同态。
-例如，整数加法群 \(\mathbb Z\)、有限循环群 \(\mathbb Z/n\mathbb Z\) 以及直积群 \(\mathbb Z^n\) 都是 Abel 群。
-定义 6.2（自由 Abel 群） 若 Abel 群 \(G\) 存在一个子集 \(B\)，使得每个元素都能唯一表示为 \(B\) 中有限多个元素的整数线性组合，则称 \(G\) 为自由 Abel 群，\(B\) 称为一组基。
-...</p></div><footer class=entry-footer><span title='2026-11-06 00:00:00 +0000 UTC'>November 6, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第 6 章　群、模与链复形" href=https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 7 章　单纯同调</h2></header><div class=entry-content><p>第 7 章　单纯同调 Simplicial Homology
+6.1 从拓扑问题到代数结构 前面我们通过基本群，将闭合道路的同伦类组织成一个群，从而获得空间的一维拓扑信息。但基本群并不足以完整刻画空间。例如，单连通空间的基本群都是平凡群，却可能具有完全不同的高维拓扑结构。
+为了研究更高维的拓扑信息，我们需要一种更系统的代数工具：同调理论（Homology Theory）。
+同调理论的基本思想是，将几何对象组织成一系列代数对象，并通过映射描述它们之间的关系。对于我们即将研究的链复形，这些代数对象通常是 Abel 群或模，而连接它们的映射则是群同态或模同态。通过映射的核与像，我们最终构造出同调群。
+因此，在进入链复形之前，需要先建立必要的代数语言：群、环、模、同态与正合列。
+6.2 群与 Abel 群 定义 6.1（群） 一个集合 $G$ 配备二元运算 $(a,b)\mapsto ab$，若满足以下条件，则称 $G$ 为群：
+结合律： 对任意 $a,b,c\in G$，有 $(ab)c=a(bc)$。 单位元： 存在 $e\in G$，使得对任意 $a\in G$，有 $ea=ae=a$。 逆元： 对任意 $a\in G$，存在 $a^{-1}\in G$，使得 $aa^{-1}=a^{-1}a=e$。 若群运算还满足交换律 $ab=ba$，则称 $G$ 为 Abel 群（Abelian group），亦称交换群。
+对于 Abel 群，我们通常使用加法记号，将单位元记为 $0$，将元素 $a$ 的逆元记为 $-a$。于是群运算写作 $a+b$，逆元写作 $-a$。
+...</p></div><footer class=entry-footer><span title='2026-11-06 00:00:00 +0000 UTC'>November 6, 2026</span>&nbsp;·&nbsp;<span>7 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第 6 章　群、模与链复形" href=https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 7 章　单纯同调</h2></header><div class=entry-content><p>第 7 章　单纯同调 Simplicial Homology
 第二编 · 同调理论
 7.1 从几何对象到链复形 上一章我们建立了链复形与同调群的抽象理论。现在需要回答一个具体问题：如何从拓扑空间构造链复形？
 一种自然的方法是将空间分解为点、线段、三角形及其高维推广，再利用这些几何单元构造链群和边界算子。这便是单纯同调（Simplicial Homology）的基本思想。

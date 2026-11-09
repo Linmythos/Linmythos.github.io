@@ -1,4 +1,42 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>射影几何 on Linmythos</title><link>https://linmythos.github.io/math/geometry/projective_geometry/</link><description>Recent content in 射影几何 on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Thu, 08 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/math/geometry/projective_geometry/index.xml" rel="self" type="application/rss+xml"/><item><title>Projective Geometry</title><link>https://linmythos.github.io/math/geometry/projective_geometry/projective-geometry/</link><pubDate>Thu, 08 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/projective_geometry/projective-geometry/</guid><description>&lt;p&gt;谨以此纪念我那充满戏剧性的、颓唐的、激情的高三。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>射影几何 on Linmythos</title><link>https://linmythos.github.io/math/geometry/projective_geometry/</link><description>Recent content in 射影几何 on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Mon, 09 Nov 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/math/geometry/projective_geometry/index.xml" rel="self" type="application/rss+xml"/><item><title>射影平面曲线的二次齐次参数化：未曾设想的道路</title><link>https://linmythos.github.io/math/geometry/projective_geometry/%E5%B0%84%E5%BD%B1%E5%B9%B3%E9%9D%A2%E6%9B%B2%E7%BA%BF%E7%9A%84%E4%BA%8C%E6%AC%A1%E9%BD%90%E6%AC%A1%E5%8F%82%E6%95%B0%E5%8C%96/</link><pubDate>Mon, 09 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/projective_geometry/%E5%B0%84%E5%BD%B1%E5%B9%B3%E9%9D%A2%E6%9B%B2%E7%BA%BF%E7%9A%84%E4%BA%8C%E6%AC%A1%E9%BD%90%E6%AC%A1%E5%8F%82%E6%95%B0%E5%8C%96/</guid><description>&lt;p&gt;找了一圈代数几何教材和论文，没有看到这样的方法，干脆自己干出来。如果已经有人提出过的话，就当我独立地发现了一遍吧。&lt;/p&gt;
+&lt;p&gt;那天在朋友圈发了这样一句话：&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;最美的我已经见证过了，是不是我发明的已经不再重要。&lt;/em&gt;&lt;/p&gt;
+&lt;h1 id="0引言"&gt;0.引言&lt;/h1&gt;
+&lt;p&gt;其实是挺久之前的事情了，我的高中数学老师在解析几何方面负有盛名（）高中的时候就是他给我们讲了射影几何，我也渐渐喜欢上了射影几何。真是令人感叹啊，曾经那个去问他问题的数学小白，现在已经能学他看不懂的东西了。在 2026.10.24 他找到了我，说他正在更新他的解析几何讲义，但是有一个定理他猜出来但是证不出来，遂求助于我。原话是这样的：&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;红框中的公式是今天凭数感猜想出来的，自己笔算了椭圆的情形正确，交给DEEPSEEK检查，它也说我的结果正确，但我还没想好怎么证明，已经（此处他笔误了，应为“以及”）有没有什么简洁的表达方式(比如用矩阵)&lt;/em&gt;
+&lt;img alt="alt text" loading="lazy" src="https://linmythos.github.io/math/geometry/projective_geometry/%E5%B0%84%E5%BD%B1%E5%B9%B3%E9%9D%A2%E6%9B%B2%E7%BA%BF%E7%9A%84%E4%BA%8C%E6%AC%A1%E9%BD%90%E6%AC%A1%E5%8F%82%E6%95%B0%E5%8C%96/723bf1f940a9569aedc181cd4113c8b3.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;现在进入正题，我将给出一种新的方法，并且给出这个公式（称之为极点构造公式）的齐次坐标形式证明，作为检验。&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id="1-二次齐次参数化"&gt;1. 二次齐次参数化&lt;/h1&gt;
+&lt;h2 id="11-定义"&gt;1.1 定义&lt;/h2&gt;
+&lt;p&gt;对于具有实点的非退化射影平面二次曲线&lt;/p&gt;
+&lt;p&gt;$$
+\Gamma:\quad S(X,Y,Z)=0
+$$&lt;/p&gt;
+&lt;p&gt;所谓二次齐次参数化，是指对于通过固定点 $P_0$ 的直线束，存在三个关于参数 $u,v$ 的二次齐次多项式 $X(u,v),Y(u,v),Z(u,v)$，使得&lt;/p&gt;
+&lt;p&gt;$$\boxed{
+\phi:\mathbb P^1\longrightarrow\Gamma,\qquad [u:v]\longmapsto[X(u,v):Y(u,v):Z(u,v)]
+}$$&lt;/p&gt;
+&lt;p&gt;该参数化处处有定义（$\forall [u:v]\in\mathbb P^1$，它们不同时为零），并覆盖整条二次曲线。它能给出二次曲线上点的显式表达。&lt;/p&gt;
+&lt;h2 id="12-具体构造方法"&gt;1.2 具体构造方法&lt;/h2&gt;
+&lt;p&gt;我们先从几何直观上看。&lt;/p&gt;
+&lt;p&gt;设 $P_0=[x_0:y_0:1]\in\Gamma$，考虑所有经过 $P_0$ 的直线，这些直线构成一个射影直线，称为以 $P_0$ 为中心的直线束：&lt;/p&gt;
+&lt;p&gt;$$
+\mathcal L_{P_0}\cong\mathbb P^1
+$$&lt;/p&gt;
+&lt;p&gt;对每条直线 $\ell$，它与二次曲线有两个交点，按重数计算。由于 $P_0$ 已经是其中一个交点，我们可以把另一个交点记为 $P(\ell)$。&lt;/p&gt;
+&lt;p&gt;于是得到映射&lt;/p&gt;
+&lt;p&gt;$$
+\begin{aligned}
+\phi:\mathcal L_{P_0}&amp;amp;\longrightarrow\Gamma，\ell\longmapsto P(\ell)
+\end{aligned}
+$$&lt;/p&gt;
+&lt;p&gt;除了把交点重合的情形理解为切线对应的重根以外，这个对应没有任何歧义&lt;/p&gt;
+&lt;p&gt;现在从代数角度严谨地构造。&lt;/p&gt;
+&lt;p&gt;假设经过适当的射影坐标变换后，$P_0$ 位于仿射图 $Z\ne0$ 中。于是&lt;/p&gt;
+&lt;p&gt;$$
+S(P_0)=0
+$$&lt;/p&gt;
+&lt;p&gt;过 $P_0$ 的直线可以写成&lt;/p&gt;</description></item><item><title>射影几何入门笔记</title><link>https://linmythos.github.io/math/geometry/projective_geometry/projective-geometry/</link><pubDate>Thu, 08 Oct 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/projective_geometry/projective-geometry/</guid><description>&lt;p&gt;谨以此纪念我那充满戏剧性的、颓唐的、激情的高三。&lt;/p&gt;
 &lt;p&gt;在2026.4.21，佛山二模前夕，我花了一天读完了梅向明《高等几何》的前六章并做了学习笔记。早上6：40到的教室，晚上22：35才走。那时候虽然不知道自己学这些东西有什么用，但是就是很喜欢，无法自拔地学下去。&lt;/p&gt;
 &lt;p&gt;虽然一直在练用射影几何方法做解析几何题，但最后高考的时候也没有发挥用处，唉，值得一提的是，在佛山一模之后的寒假，我发现了一个能在正规考试中“使用”射影几何的方法：先用射影几何方法做出来，代数演绎上，用共线方程传递调和比，然后用分比性质猛猛导。肯定能做出来（不使用齐次坐标就能处理无穷远点的情况），而且非常快。&lt;/p&gt;
 &lt;p&gt;本篇文章是在学习笔记的基础上扩写而成的，对于缺少前置知识的读者，我深感抱歉。&lt;/p&gt;
