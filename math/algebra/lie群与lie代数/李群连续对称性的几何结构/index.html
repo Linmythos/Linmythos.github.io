@@ -7,17 +7,16 @@
 行列式还将 \(GL(n,\mathbb R)\) 分为两个部分：\(\det A>0\) 与 \(\det A&lt;0\)。前者保持空间定向，后者反转空间定向。这两个集合分别构成 \(GL(n,\mathbb R)\) 的两个连通分支，而单位矩阵属于正行列式分支。因此，单位连通分支为 \(GL^+(n,\mathbb R)=\{A\in GL(n,\mathbb R):\det A>0\}\)。
 3.2 特殊线性群 \(SL(n,\mathbb R)\) 一般线性群允许任意非零行列式，而特殊线性群进一步要求行列式等于 \(1\)：
 \[ SL(n,\mathbb R)=\{A\in GL(n,\mathbb R):\det A=1\}. \]
-...</p></div><footer class=entry-footer><span title='2026-11-08 00:00:00 +0000 UTC'>November 8, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第三章 经典矩阵李群" href=https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E6%9D%8E%E7%BE%A4%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%9A%84%E5%87%A0%E4%BD%95%E7%BB%93%E6%9E%84/%E7%BB%8F%E5%85%B8%E7%9F%A9%E9%98%B5%E6%9D%8E%E7%BE%A4/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第二章 李群的定义与基本性质</h2></header><div class=entry-content><p>2.1 从群到李群 第一章中，我们通过群描述变换的复合规律，并通过光滑曲线描述连续变化的对称性。现在将这两种结构结合起来。
-定义 2.1（李群） 设 \(G\) 是一个群，同时也是一个有限维光滑流形。若群乘法映射 \(m:G\times G\to G\)，\(m(g,h)=gh\)，以及求逆映射 \(\iota:G\to G\)，\(\iota(g)=g^{-1}\)，均为光滑映射，则称 \(G\) 为一个光滑李群（Lie group）。
-这里有三个彼此独立但相互兼容的结构：首先，\(G\) 是一个群，因此可以进行乘法、求逆；其次，\(G\) 是一个光滑流形，因此可以讨论切空间、微分和光滑曲线；最后，群运算必须与流形结构相容，即乘法和求逆都必须光滑。
-李群的维数就是其作为光滑流形的维数，记为 \(\dim G\)。需要注意，李群不必是线性空间，也不必是紧致空间，更不必是交换群。
-例如，\((\mathbb R,+)\) 是一维李群，\(S^1\) 在复数乘法下是紧致的一维李群，\(GL(n,\mathbb R)\) 是维数为 \(n^2\) 的李群，而 \(SO(3)\) 是三维李群。
+...</p></div><footer class=entry-footer><span title='2026-11-08 00:00:00 +0000 UTC'>November 8, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第三章 经典矩阵李群" href=https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E6%9D%8E%E7%BE%A4%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%9A%84%E5%87%A0%E4%BD%95%E7%BB%93%E6%9E%84/%E7%BB%8F%E5%85%B8%E7%9F%A9%E9%98%B5%E6%9D%8E%E7%BE%A4/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第二章 李群的定义与基本性质</h2></header><div class=entry-content><p>2.1 前情回顾：从群到李群 定义 2.1（李群） 设 \(G\) 是一个群，同时也是一个有限维光滑流形。若群乘法映射 \(m:G\times G\to G\)，\(m(g,h)=gh\)，以及求逆映射 \(\iota:G\to G\)，\(\iota(g)=g^{-1}\)，均为光滑映射，则称 \(G\) 为一个光滑李群（Lie group）。
+首先，\(G\) 是一个群，因此可以进行乘法、求逆；其次，\(G\) 是一个光滑流形，因此可以讨论切空间、微分和光滑曲线；最后，群运算必须与流形结构相容，即乘法和求逆都必须光滑。
+李群的维数就是其作为光滑流形的维数，记为 \(\dim G\)。需要注意，李群不必是线性空间，也不必是紧致空间，更不必是交换群。一些具体的例子已经在上一篇文章中给出。
 2.2 左平移与右平移 群结构允许我们将单位元附近的局部几何推广到群的任意位置。设 \(G\) 是李群，对任意固定的 \(g\in G\)，定义左平移 \(L_g:G\to G\) 为 \(L_g(h)=gh\)，右平移 \(R_g:G\to G\) 为 \(R_g(h)=hg\)。
 由于群乘法光滑，\(L_g\) 和 \(R_g\) 都是光滑映射。它们的逆映射分别是 \(L_{g^{-1}}\) 与 \(R_{g^{-1}}\)，所以二者都是微分同胚。
 因此，左平移和右平移不会改变李群的局部微分几何结构。特别地，对任意 \(g\in G\)，左平移在单位元 \(e\) 处诱导线性同构
 \[ (dL_g)_e:T_eG\longrightarrow T_gG. \]
 于是所有切空间 \(T_gG\) 都与单位元处的切空间 \(T_eG\) 线性同构。这一事实极其重要：研究整个李群的局部微分结构，可以从研究单位元处的切空间开始。
 2.3 矩阵李群 矩阵李群是最直观、最常用的一类李群。设 \(M_n(\mathbb R)\) 表示所有 \(n\times n\) 实矩阵构成的线性空间。它可以自然地视为 \(\mathbb R^{n^2}\)，因而具有标准光滑流形结构。
+若 \(G\subseteq GL(n,\mathbb R)\) 是一个子群，并且是 \(M_n(\mathbb R)\) 中的嵌入光滑子流形，那么 \(G\) 在矩阵乘法下构成一个矩阵李群。
 ...</p></div><footer class=entry-footer><span title='2026-11-08 00:00:00 +0000 UTC'>November 8, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第二章 李群的定义与基本性质" href=https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E6%9D%8E%E7%BE%A4%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%9A%84%E5%87%A0%E4%BD%95%E7%BB%93%E6%9E%84/%E6%9D%8E%E7%BE%A4%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%80%A7%E8%B4%A8/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第四章 一参数子群与指数映射</h2></header><div class=entry-content><p>前面我们已经介绍了李群的基本定义，并研究了几类经典矩阵李群。现在进入李群理论最核心的主题之一：如何通过无穷小变化理解连续群结构？
 考虑平面旋转群 \(SO(2)\)。一个旋转可以写成 \(R(\theta)\)，其中 \(\theta\in\mathbb R\)。当 \(\theta\) 从 \(0\) 连续变化时，矩阵 \(R(\theta)\) 也随之连续变化，并满足 \(R(s+t)=R(s)R(t)\)。这说明连续群中的某些运动可以由一条满足特殊乘法规律的光滑曲线描述。
 更一般地，这样的曲线称为一参数子群。它们在单位元处的切向量将构成李代数的基本元素，而矩阵指数则提供了从无穷小生成元恢复有限群变换的方法。
