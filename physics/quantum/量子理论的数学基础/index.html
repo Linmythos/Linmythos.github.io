@@ -2,28 +2,26 @@
 <svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
 <svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://linmythos.github.io/math/ title=Mathematics><span>Mathematics</span></a></li><li><a href=https://linmythos.github.io/physics/ title=Physics><span>Physics</span></a></li><li><a href=https://linmythos.github.io/ai/ title=AI><span>AI</span></a></li><li><a href=https://linmythos.github.io/neural-science/ title="Neural Science"><span>Neural Science</span></a></li><li><a href=https://linmythos.github.io/essays/ title=Essays><span>Essays</span></a></li><li><a href=https://linmythos.github.io/about/ title=About><span>About</span></a></li><li><a href=https://linmythos.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://linmythos.github.io/archives/ title=Archives><span>Archives</span></a></li></ul></nav></header><main class=main><header class=page-header><h1>量子理论的数学基础</h1></header><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 1 讲：Hilbert 空间与量子态</h2></header><div class=entry-content><p>Hilbert Spaces and Quantum States
 经典力学以相空间中的点描述系统，而量子力学以复 Hilbert 空间中的态描述系统。
-1.1 复线性空间与量子叠加原理 首先考虑一个物理系统，其可能的纯态由某个复向量空间 \(\mathcal H\) 描述。这里暂时不要求 \(\mathcal H\) 具有内积，只要求它是复数域 \(\mathbb C\) 上的线性空间。
-对于任意 \(|\psi\rangle,|\phi\rangle\in\mathcal H\) 以及 \(\alpha,\beta\in\mathbb C\)，线性组合 \(\alpha|\psi\rangle+\beta|\phi\rangle\) 仍然属于 \(\mathcal H\)。量子叠加原理正是建立在这一结构之上的：若 \(|\psi\rangle\) 和 \(|\phi\rangle\) 是可能的量子态，那么它们的线性组合在适当归一化后也可以表示一个量子态。
+1.1 复线性空间与量子叠加原理 首先考虑一个物理系统，其可能的纯态由某个复向量空间 $\mathcal H$ 描述。这里暂时不要求 $\mathcal H$ 具有内积，只要求它是复数域 $\mathbb C$ 上的线性空间。
+对于任意 $|\psi\rangle,|\phi\rangle\in\mathcal H$ 以及 $\alpha,\beta\in\mathbb C$，线性组合 $\alpha|\psi\rangle+\beta|\phi\rangle$ 仍然属于 $\mathcal H$。量子叠加原理正是建立在这一结构之上的：若 $|\psi\rangle$ 和 $|\phi\rangle$ 是可能的量子态，那么它们的线性组合在适当归一化后也可以表示一个量子态。
 注意，数学上的线性组合与物理上的态叠加并不是一回事，因为并不是任意两个向量的线性组合都自动是归一化的物理态，但它们经过适当归一化后，可以代表一个新的纯态。
-用复数，而不是实数的一个关键原因是量子演化需要能够描述相位与干涉。复数提供了自然的相位结构，例如 \(e^{i\theta}\)。更重要的是，连续时间演化要求由自伴 Hamilton 算子生成酉变换，而复 Hilbert 空间恰好为这种结构提供了自然框架。
+用复数，而不是实数的一个关键原因是量子演化需要能够描述相位与干涉。复数提供了自然的相位结构，例如 $e^{i\theta}$。更重要的是，连续时间演化要求由自伴 Hamilton 算子生成酉变换，而复 Hilbert 空间恰好为这种结构提供了自然框架。
 1.2 内积空间 单纯的线性空间还不足以建立量子概率理论。我们需要一种方法来衡量两个态之间的关系，并定义态的长度与正交性。这就需要引入内积。
-复线性空间 \(\mathcal H\) 上的内积是一个映射 \(\langle\cdot,\cdot\rangle:\mathcal H\times\mathcal H\to\mathbb C\)，满足以下性质：
-正定性： \(\langle\psi,\psi\rangle\geq0\)，当且仅当 \(|\psi\rangle=0\) 时取零。 共轭对称性： \(\langle\psi,\phi\rangle=\overline{\langle\phi,\psi\rangle}\)。 线性性： 采用 Dirac 记号约定，内积对第二个变量线性，即 \(\langle\psi,\alpha\phi+\beta\chi\rangle=\alpha\langle\psi,\phi\rangle+\beta\langle\psi,\chi\rangle\)。 因此，内积对第一个变量是共轭线性的。
-有了内积，我们便可以定义向量的范数：\(\|\psi\|=\sqrt{\langle\psi,\psi\rangle}\)。它满足非负性、齐次性与三角不等式。
-特别地，两个向量正交当且仅当 \(\langle\psi,\phi\rangle=0\)。
+复线性空间 $\mathcal H$ 上的内积是一个映射 $\langle\cdot,\cdot\rangle:\mathcal H\times\mathcal H\to\mathbb C$，满足以下性质：
+正定性： $\langle\psi,\psi\rangle\geq0$，当且仅当 $|\psi\rangle=0$ 时取零。 共轭对称性： $\langle\psi,\phi\rangle=\overline{\langle\phi,\psi\rangle}$。 线性性： 采用 Dirac 记号约定，内积对第二个变量线性，即 $\langle\psi,\alpha\phi+\beta\chi\rangle=\alpha\langle\psi,\phi\rangle+\beta\langle\psi,\chi\rangle$。 因此，内积对第一个变量是共轭线性的。
+有了内积，我们便可以定义向量的范数：$\|\psi\|=\sqrt{\langle\psi,\psi\rangle}$。它满足非负性、齐次性与三角不等式。
+特别地，两个向量正交当且仅当 $\langle\psi,\phi\rangle=0$。
 1.3 Hilbert 空间的完备性 现在我们有了一个带内积的复线性空间，但这还不是 Hilbert 空间。
-...</p></div><footer class=entry-footer><span title='2026-11-11 00:00:00 +0000 UTC'>November 11, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第 1 讲：Hilbert 空间与量子态" href=https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E7%90%86%E8%AE%BA%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/hilbert%E7%A9%BA%E9%97%B4%E4%B8%8E%E9%87%8F%E5%AD%90%E6%80%81/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 2 讲：线性算子与谱理论</h2></header><div class=entry-content><p>Linear Operators and Spectral Theory
-第一篇：量子理论的数学基础 · Part I: Mathematical Foundations of Quantum Theory
-上一讲我们建立了量子态的数学空间：纯态对应复 Hilbert 空间中的射线。本讲将引入另一个同样重要的对象——算子（operator）。
+...</p></div><footer class=entry-footer><span title='2026-11-11 00:00:00 +0000 UTC'>November 11, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第 1 讲：Hilbert 空间与量子态" href=https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E7%90%86%E8%AE%BA%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/hilbert%E7%A9%BA%E9%97%B4%E4%B8%8E%E9%87%8F%E5%AD%90%E6%80%81/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 2 讲：线性算子与谱理论</h2></header><div class=entry-content><p>在上一篇文章中我们建立了量子态的数学空间即纯态对应复 Hilbert 空间中的射线。现在我们引入另一个对象——算子（operator）。
 如果说 Hilbert 空间回答了量子系统的状态是什么，那么算子理论则回答了物理量是什么，以及我们如何从数学上描述测量。
-本讲的核心问题是：为什么可观测量对应自伴算子？为什么测量结果与算子的谱有关？为什么在无限维空间中，对称算子与自伴算子不能混为一谈？
-2.1 线性算子：从向量到变换 设 \(\mathcal H\) 是一个复 Hilbert 空间。一个线性算子 \(A\) 可以看作从 \(\mathcal H\) 的某个线性子空间映射到另一个线性子空间的映射。我们将其记为 \(A:D(A)\to\mathcal H\)，其中 \(D(A)\subseteq\mathcal H\) 称为算子的定义域（domain）。
-对于任意 \(|\psi\rangle,|\phi\rangle\in D(A)\) 以及 \(\alpha,\beta\in\mathbb C\)，线性性要求
-\(A(\alpha|\psi\rangle+\beta|\phi\rangle)=\alpha A|\psi\rangle+\beta A|\phi\rangle\)。
+2.1 线性算子：从向量到变换 设 $\mathcal H$ 是一个复 Hilbert 空间。一个线性算子 $A$ 可以看作从 $\mathcal H$ 的某个线性子空间映射到另一个线性子空间的映射。我们将其记为 $A:D(A)\to\mathcal H$，其中 $D(A)\subseteq\mathcal H$ 称为算子的定义域（domain）。
+对于任意 $|\psi\rangle,|\phi\rangle\in D(A)$ 以及 $\alpha,\beta\in\mathbb C$，线性性要求
+$A(\alpha|\psi\rangle+\beta|\phi\rangle)=\alpha A|\psi\rangle+\beta A|\phi\rangle$。
 在有限维线性代数中，我们通常将线性算子直接理解为矩阵。但在无限维 Hilbert 空间中，情况要复杂得多：算子未必在整个空间上有定义，也未必有界，甚至可能无法通过一个有限矩阵来描述。
-量子力学中的位置算子、动量算子和 Hamilton 算子通常都是无界算子。因此，理解算子的定义域是严格量子理论不可回避的一步。
-先看一个简单例子。考虑 \(\mathcal H=L^2(\mathbb R)\)，定义位置算子 \(Q\) 为 \((Q\psi)(x)=x\psi(x)\)。它将一个波函数映射为另一个波函数，但并不是所有 \(L^2\) 函数经过乘以 \(x\) 后仍然平方可积。因此，其定义域必须限制为
-\(D(Q)=\{\psi\in L^2(\mathbb R):x\psi(x)\in L^2(\mathbb R)\}\)。
+量子力学中的位置算子、动量算子和 Hamilton 算子通常都是无界算子。因此，理解算子的定义域是严格量子理论不可回避的一步。先看一个简单例子。考虑 $\mathcal H=L^2(\mathbb R)$，定义位置算子 $Q$ 为 $(Q\psi)(x)=x\psi(x)$。它将一个波函数映射为另一个波函数，但并不是所有 $L^2$ 函数经过乘以 $x$ 后仍然平方可积。因此，其定义域必须限制为 $D(Q)=\{\psi\in L^2(\mathbb R):x\psi(x)\in L^2(\mathbb R)\}$。这说明算子不仅仅由其作用公式决定，还必须同时指定定义域。
+2.2 有界算子与无界算子 定义（有界算子）： 若存在常数 $C>0$，使得对所有 $\psi\in D(A)$，都有 $\|A\psi\|\leq C\|\psi\|$，则称 $A$ 为有界算子。
+最小的此类常数称为算子范数：$\|A\|=\sup_{\|\psi\|=1}\|A\psi\|$。如果算子没有这样的统一上界，则称其为无界算子。
+对于有限维 Hilbert 空间，所有线性算子都是有界的。但在无限维 Hilbert 空间中，无界算子大量存在。例如动量算子是无界的。在位置表象下，其形式为 $P=-i\hbar\,d/dx$。高频振荡函数的导数可以非常大，因此动量算子不可能是有界算子。
 ...</p></div><footer class=entry-footer><span title='2026-11-11 00:00:00 +0000 UTC'>November 11, 2026</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第 2 讲：线性算子与谱理论" href=https://linmythos.github.io/physics/quantum/%E9%87%8F%E5%AD%90%E7%90%86%E8%AE%BA%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/%E7%BA%BF%E6%80%A7%E7%AE%97%E5%AD%90%E4%B8%8E%E8%B0%B1%E7%90%86%E8%AE%BA/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 3 讲：Dirac 符号与表象理论</h2></header><div class=entry-content><p>Dirac Notation and the Theory of Representations
 第一篇：量子理论的数学基础 · Part I: Mathematical Foundations of Quantum Theory
 前两讲我们建立了量子力学的抽象数学框架：量子态属于 Hilbert 空间，物理可观测量由自伴算子描述，测量与算子的谱结构相联系。

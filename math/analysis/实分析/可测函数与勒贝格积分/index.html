@@ -1,0 +1,127 @@
+<!doctype html><html lang=en dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>第二篇：可测函数与勒贝格积分 | Linmythos</title><meta name=keywords content><meta name=description content="第二篇：可测函数与勒贝格积分 - Linmythos"><meta name=author content="Linmythos"><link rel=canonical href=https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/%E5%8F%AF%E6%B5%8B%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8B%92%E8%B4%9D%E6%A0%BC%E7%A7%AF%E5%88%86/><link crossorigin=anonymous href=/assets/css/stylesheet.5a42af7b68c8b1b7f3d0894c8a74d101cf31f37c1aa9bf8365395ef493e0dea4.css integrity="sha256-WkKve2jIsbfz0IlMinTRAc8x83waqb+DZTle9JPg3qQ=" rel="preload stylesheet" as=style><link rel=icon href=https://linmythos.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://linmythos.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://linmythos.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://linmythos.github.io/apple-touch-icon.png><link rel=mask-icon href=https://linmythos.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/%E5%8F%AF%E6%B5%8B%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8B%92%E8%B4%9D%E6%A0%BC%E7%A7%AF%E5%88%86/index.xml title=rss><link rel=alternate hreflang=en href=https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/%E5%8F%AF%E6%B5%8B%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8B%92%E8%B4%9D%E6%A0%BC%E7%A7%AF%E5%88%86/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/%E5%8F%AF%E6%B5%8B%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8B%92%E8%B4%9D%E6%A0%BC%E7%A7%AF%E5%88%86/"><meta property="og:site_name" content="Linmythos"><meta property="og:title" content="第二篇：可测函数与勒贝格积分"><meta property="og:description" content="Mathematics · Physics · Thoughts"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="第二篇：可测函数与勒贝格积分"><meta name=twitter:description content="Mathematics · Physics · Thoughts"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Mathematics","item":"https://linmythos.github.io/math/"},{"@type":"ListItem","position":2,"name":"分析","item":"https://linmythos.github.io/math/analysis/"},{"@type":"ListItem","position":4,"name":"第二篇：可测函数与勒贝格积分","item":"https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/%E5%8F%AF%E6%B5%8B%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8B%92%E8%B4%9D%E6%A0%BC%E7%A7%AF%E5%88%86/"}]}</script></head><body class=list id=top><header class=header><nav class=header-nav><div class=logo><a href=https://linmythos.github.io/ accesskey=h title="Linmythos (Alt + H)">Linmythos</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://linmythos.github.io/math/ title=Mathematics><span>Mathematics</span></a></li><li><a href=https://linmythos.github.io/physics/ title=Physics><span>Physics</span></a></li><li><a href=https://linmythos.github.io/ai/ title=AI><span>AI</span></a></li><li><a href=https://linmythos.github.io/neural-science/ title="Neural Science"><span>Neural Science</span></a></li><li><a href=https://linmythos.github.io/essays/ title=Essays><span>Essays</span></a></li><li><a href=https://linmythos.github.io/about/ title=About><span>About</span></a></li><li><a href=https://linmythos.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://linmythos.github.io/archives/ title=Archives><span>Archives</span></a></li></ul></nav></header><main class=main><header class=page-header><h1>第二篇：可测函数与勒贝格积分</h1></header><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>6 讲：可积函数与积分的基本性质</h2></header><div class=entry-content><p>上一讲，我们从简单函数出发，构造了非负可测函数的 Lebesgue 积分，并建立了单调收敛定理。但物理中的函数通常并不非负。例如波函数的实部与虚部、振幅、势能函数以及各种场变量，都可能取正值和负值。
+因此，我们需要将积分从非负函数推广到一般实值函数和复值函数。
+这里的核心问题是：一个函数什么时候具有有限积分？如何定义带符号函数的积分？积分又具有哪些代数与分析性质？
+6.1 正部与负部 设 \(f:X\to\overline{\mathbb R}\) 是一个可测实值函数。定义其正部与负部：
+\(f^+(x)=\max\{f(x),0\}\)，\(f^-(x)=\max\{-f(x),0\}\)。
+显然，\(f^+\geq0\)、\(f^-\geq0\)，并且二者均为可测函数。
+同时有两个重要恒等式：
+\(f=f^+-f^-\)，\(|f|=f^++f^-\)。
+这两个恒等式将一般实值函数分解为两个非负函数之差。
+例如，若 \(f(x)=x\)，那么 \(f^+(x)=\max(x,0)\)，\(f^-(x)=\max(-x,0)\)。
+这种分解并不只是形式上的技巧。因为我们已经定义了非负可测函数的积分，所以只要能够分别处理 \(f^+\) 与 \(f^-\)，就可以定义一般实值函数的积分。
+6.2 一般实值函数的 Lebesgue 积分 定义 6.1（Lebesgue 可积函数） 设 \(f:X\to\overline{\mathbb R}\) 是可测函数。若
+\(\displaystyle \int_X|f|\,d\mu&lt;\infty\)，
+则称 \(f\) Lebesgue 可积，或称 \(f\in L^1(X,\mu)\)。
+这里 \(L^1(X,\mu)\) 暂时表示所有绝对可积的可测函数组成的函数类，稍后我们会通过几乎处处相等关系将它构造成真正的函数空间。
+对于绝对可积的实值函数，定义：
+\(\displaystyle \int_Xf\,d\mu=\int_Xf^+\,d\mu-\int_Xf^-\,d\mu.\)
+由于 \(|f|=f^++f^-\)，而 \(\int|f|\,d\mu&lt;\infty\)，所以两个非负积分都是有限的，右侧不存在 \(\infty-\infty\) 这样的不确定表达式。
+这就是一般实值函数的 Lebesgue 积分。
+为什么要求绝对可积，而不是只要求正部和负部的积分之差存在？
+因为如果两个积分都是无穷大，那么 \(\infty-\infty\) 没有定义。即使其中一个有限、另一个无限，所得积分也只能取扩展实数值，而不是通常意义下的有限积分。
+对于一般的 Lebesgue 可积函数，我们要求绝对值的积分有限，从而确保积分具有良好的代数性质。
+6.3 绝对可积性与积分的大小 定理 6.1（积分的绝对值不等式） 若 \(f\) 是可积实值函数，则
+...</p></div><footer class=entry-footer><span title='2026-11-13 00:00:00 +0000 UTC'>November 13, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to  6 讲：可积函数与积分的基本性质" href=https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/%E5%8F%AF%E6%B5%8B%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8B%92%E8%B4%9D%E6%A0%BC%E7%A7%AF%E5%88%86/%E5%8F%AF%E7%A7%AF%E5%87%BD%E6%95%B0%E4%B8%8E%E7%A7%AF%E5%88%86%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%80%A7%E8%B4%A8/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 5 讲：简单函数与非负函数积分</h2></header><div class=entry-content><p>上一讲，我们建立了可测函数的基本理论，并证明了可测函数对代数运算与逐点极限封闭。现在终于可以进入 Lebesgue 积分的正式构造。
+这里的关键思想是：不直接对一般函数定义积分，而是先定义最简单的函数的积分，再通过逼近将积分推广到一般可测函数。
+这种方法在现代数学中非常典型：先在结构简单的对象上定义运算，再利用极限和完备性将其扩展到更大的对象类。
+5.1 简单函数 我们已经知道，集合的指示函数 \(\mathbf 1_E\) 是构造函数的重要工具。事实上，任何只取有限个值的函数，都可以表示为有限个指示函数的线性组合。
+定义 5.1（简单函数） 若函数 \(s:X\to[0,+\infty)\) 只取有限个值，且每个取值对应的原像都是可测集，则称 \(s\) 为非负简单函数（nonnegative simple function）。
+具体而言，可以将其写为
+\(s(x)=\sum_{k=1}^{n}a_k\mathbf 1_{E_k}(x)\)，
+其中 \(a_k\geq0\)，\(E_k\in\mathcal F\)，且这些集合两两不交。
+如果允许系数 \(a_k\) 取任意实数，则称其为实值简单函数。
+为什么要求这些集合两两不交？因为这样每个点至多属于一个 \(E_k\)，函数的取值就能够被清晰地分解。如果原来的集合存在重叠，我们总可以通过集合差运算将它们改写为互不相交的形式。
+例如，考虑函数 \(s:[0,1]\to\mathbb R\)：
+\(s(x)=\begin{cases}2,&amp;0\leq x&lt;\frac12,\\3,&\frac12\leq x\leq1.\end{cases}\)
+那么它可以写成 \(s=2\mathbf 1_{[0,1/2)}+3\mathbf 1_{[1/2,1]}\)。
+简单函数的优势在于，它将函数问题转化为有限个可测集合的问题。
+5.2 简单函数的积分 现在我们希望定义简单函数的积分。
+考虑 \(s=\sum_{k=1}^{n}a_k\mathbf 1_{E_k}\)，其中 \(a_k\geq0\)，且 \(E_k\) 两两不交。
+最自然的定义是：
+\(\displaystyle \int_Xs\,d\mu=\sum_{k=1}^{n}a_k\mu(E_k).\)
+这就是非负简单函数的 Lebesgue 积分。
+它的含义非常直观：函数在每个集合 \(E_k\) 上恒等于 \(a_k\)，而 \(E_k\) 的测度是 \(\mu(E_k)\)，因此该部分对积分的贡献就是 \(a_k\mu(E_k)\)。
+这与我们熟悉的矩形面积计算完全一致：高度乘以底边长度，再将各部分相加。
+例如，在 \([0,1]\) 上取 Lebesgue 测度，定义
+...</p></div><footer class=entry-footer><span title='2026-11-13 00:00:00 +0000 UTC'>November 13, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to  第 5 讲：简单函数与非负函数积分" href=https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/%E5%8F%AF%E6%B5%8B%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8B%92%E8%B4%9D%E6%A0%BC%E7%A7%AF%E5%88%86/%E7%AE%80%E5%8D%95%E5%87%BD%E6%95%B0%E4%B8%8E%E9%9D%9E%E8%B4%9F%E5%87%BD%E6%95%B0%E7%A7%AF%E5%88%86/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 10 讲：**\(L^p\)**&amp;#x20;空间的完备性与 Banach 空间</h2></header><div class=entry-content><p>上一讲我们通过 Hölder 不等式与 Minkowski 不等式，证明了 \(L^p\) 范数的基本性质，从而将 \(L^p\) 空间确立为赋范线性空间。但一个自然的问题随之出现：赋范空间中的 Cauchy 列是否一定收敛？
+在实数空间中，Cauchy 列必然收敛，这是实数完备性的体现。然而，一般赋范空间未必具有这一性质。我们需要进一步证明：对于 \(1\le p\le\infty\)，\(L^p\) 空间在其范数诱导的度量下都是完备的。
+这一结论将使 \(L^p\) 空间成为 Banach 空间，并为后续的泛函分析、偏微分方程与量子理论建立重要基础。
+1. Cauchy 列与完备性 设 \((X,\|\cdot\|)\) 是赋范线性空间。序列 \((x_n)\) 称为 Cauchy 列，如果对任意 \(\varepsilon>0\)，存在 \(N\)，使得当 \(m,n\ge N\) 时，均有 \(\|x_n-x_m\|&lt;\varepsilon\)。
+直观地说，Cauchy 列的各项在空间内部逐渐靠近。这里有一个关键区别：Cauchy 条件只涉及序列内部的距离，并没有预先假设极限存在。
+如果赋范空间中每个 Cauchy 列都收敛到该空间中的某个元素，就称这个空间是完备的。完备的赋范线性空间称为 Banach 空间。
+例如，实数空间 \(\mathbb R\) 在通常绝对值范数下是完备的；有理数空间 \(\mathbb Q\) 在同一范数下却不完备，因为存在有理数 Cauchy 列收敛到无理数。
+因此，完备性并非赋范结构自动具有的性质，而是空间本身需要满足的额外条件。
+2. 为什么 \(L^p\) 的完备性并不显然？ 设 \((f_n)\) 是 \(L^p(X,\mu)\) 中的 Cauchy 列，即对任意 \(\varepsilon>0\)，存在 \(N\)，使得 \(m,n\ge N\) 时有
+...</p></div><footer class=entry-footer><span title='2026-11-13 00:00:00 +0000 UTC'>November 13, 2026</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第 10 讲：**\(L^p\)** 空间的完备性与 Banach 空间" href=https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/%E5%8F%AF%E6%B5%8B%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8B%92%E8%B4%9D%E6%A0%BC%E7%A7%AF%E5%88%86/lp%E7%A9%BA%E9%97%B4%E7%9A%84%E5%AE%8C%E5%A4%87%E6%80%A7%E4%B8%8Ebanach%E7%A9%BA%E9%97%B4/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 11 讲：简单函数的稠密性与函数逼近</h2></header><div class=entry-content><p>上一讲我们证明了 \(L^p\) 空间的完备性，知道其中的 Cauchy 列必然收敛到空间内部的某个元素。但这并没有回答另一个同样重要的问题：我们如何在实际分析中构造这些逼近序列？
+一个函数可能具有复杂的解析表达式，甚至没有良好的逐点性质。然而，只要它属于 \(L^p\)，我们就希望能够用结构简单的函数逼近它。这种思想构成了现代分析的基本方法：以简单对象逼近复杂对象，再利用连续性与完备性将结论推广到极限。
+本讲将建立三层逼近理论：简单函数逼近可测函数，连续函数逼近可积函数，光滑函数逼近适当的函数空间中的元素。
+1. 稠密性的概念 设 \((X,\|\cdot\|)\) 是赋范空间，\(D\subseteq X\)。如果对任意 \(x\in X\) 和任意 \(\varepsilon>0\)，都存在 \(d\in D\)，使得 \(\|x-d\|&lt;\varepsilon\)，则称 \(D\) 在 \(X\) 中稠密，记作 \(\overline D=X\)。
+等价地说，\(D\) 的闭包就是整个空间。
+稠密性意味着：虽然 \(D\) 可能只包含相对简单的对象，但通过极限过程，它能够逼近空间中的任意元素。
+例如，有理数集 \(\mathbb Q\) 在实数集 \(\mathbb R\) 中稠密。每个实数都可以由有理数列逼近，尽管极限本身未必是有理数。
+在函数空间中，我们希望寻找类似的简单函数族。最自然的候选对象便是简单函数。
+2. 简单函数在 \(L^p\) 中的稠密性 回顾简单函数的定义：若可测函数仅取有限个值，即存在有限个复数 \(a_1,\dots,a_n\) 和两两不交的可测集 \(E_1,\dots,E_n\)，使得 \(s=\sum_{k=1}^n a_k\mathbf 1_{E_k}\)，则称 \(s\) 为简单函数。
+我们已经知道，非负可测函数可以由单调递增的简单函数列逼近。但这里有一个区别：单调递增逼近并不自动意味着 \(L^p\) 范数收敛。要证明稠密性，还需要控制逼近误差。
+定理（简单函数的稠密性）。 设 \(1\le p&lt;\infty\)，则简单函数在 \(L^p(X,\mu)\) 中稠密。
+这里的简单函数需要具有有限测度支撑，即表示为有限个有限测度集合的指示函数的线性组合。
+证明思路。 任取 \(f\in L^p(X,\mu)\)，我们分两步逼近：先截断函数的大小，再离散化函数的取值。
+第一步，定义截断函数
+\[ f_N(x)= \begin{cases} f(x),& |f(x)|\le N,\\ N\dfrac{f(x)}{|f(x)|},&|f(x)|>N. \end{cases} \]
+...</p></div><footer class=entry-footer><span title='2026-11-13 00:00:00 +0000 UTC'>November 13, 2026</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第 11 讲：简单函数的稠密性与函数逼近" href=https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/%E5%8F%AF%E6%B5%8B%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8B%92%E8%B4%9D%E6%A0%BC%E7%A7%AF%E5%88%86/%E7%AE%80%E5%8D%95%E5%87%BD%E6%95%B0%E7%9A%84%E7%A8%A0%E5%AF%86%E8%A1%8C%E4%B8%8E%E5%87%BD%E6%95%B0%E9%80%BC%E8%BF%91/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 12 讲：**\(L^2\)**&amp;#x20;空间与 Hilbert 空间的几何结构</h2></header><div class=entry-content><p>在前面的讲次中，我们建立了 \(L^p\) 空间的赋范结构与完备性。但 \(L^2\) 空间具有一种特殊的几何性质：它的范数来自内积。正是这一点，使得 \(L^2\) 不仅是 Banach 空间，而且是 Hilbert 空间。
+Hilbert 空间是现代数学中最重要的结构之一。Fourier 分析中的正交展开、偏微分方程中的变分方法、量子力学中的态矢量与可观测量，都以它为基本语言。本讲将从内积出发，建立正交性、正交补与投影定理，并初步理解 Riesz 表示定理。
+1. 内积与内积空间 设 \(H\) 是复数域上的线性空间。若映射 \(\langle\cdot,\cdot\rangle:H\times H\to\mathbb C\) 满足以下性质，则称其为内积：
+对第一变量线性，即 \(\langle \alpha x+\beta y,z\rangle=\alpha\langle x,z\rangle+\beta\langle y,z\rangle\)； 共轭对称，即 \(\langle x,y\rangle=\overline{\langle y,x\rangle}\)； 正定，即 \(\langle x,x\rangle\ge0\)，且 \(\langle x,x\rangle=0\) 当且仅当 \(x=0\)。 这里采用第一变量线性、第二变量共轭线性的约定。
+由内积自然诱导范数：\(\|x\|=\sqrt{\langle x,x\rangle}\)。由 Cauchy–Schwarz 不等式可证明它满足三角不等式，因此确实是一个范数。
+若内积诱导的范数使 \(H\) 完备，则称 \(H\) 为 Hilbert 空间。
+实数空间 \(\mathbb R^n\) 配备标准内积 \(\langle x,y\rangle=\sum_{k=1}^n x_ky_k\)，就是最熟悉的 Hilbert 空间。函数空间 \(L^2(X,\mu)\) 配备内积 \(\langle f,g\rangle=\int_X f\overline g\,d\mu\)，则是其无限维推广。
+...</p></div><footer class=entry-footer><span title='2026-11-13 00:00:00 +0000 UTC'>November 13, 2026</span>&nbsp;·&nbsp;<span>4 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第 12 讲：**\(L^2\)** 空间与 Hilbert 空间的几何结构" href=https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/%E5%8F%AF%E6%B5%8B%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8B%92%E8%B4%9D%E6%A0%BC%E7%A7%AF%E5%88%86/l2%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%B8%8C%E5%B0%94%E4%BC%AF%E7%89%B9%E7%A9%BA%E9%97%B4%E7%9A%84%E5%87%A0%E4%BD%95%E7%BB%93%E6%9E%84/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 7 讲：三大收敛定理及其内在联系</h2></header><div class=entry-content><p>上一讲，我们介绍了 Fatou 引理、单调收敛定理与控制收敛定理。这三个定理是 Lebesgue 积分理论中最重要的极限定理，它们解决同一个核心问题：
+在什么条件下，可以交换函数列的极限与积分运算？
+经典微积分中，我们经常写出 \(\lim_{n\to\infty}\int f_n=\int\lim_{n\to\infty}f_n\)，但这并不是无条件成立的。Lebesgue 积分理论的一个重要贡献，就是精确刻画这种交换何时成立，以及不能交换时还能得到怎样的不等式。
+本讲不再孤立地罗列定理，而是从它们之间的逻辑关系出发，建立一套完整的极限分析工具。
+7.1 极限与积分：问题的本质 设 \((X,\mathcal F,\mu)\) 是测度空间，\(\{f_n\}\) 是一列可测函数，并且 \(f_n\to f\) 几乎处处。
+我们希望研究两个量：
+先取极限，再积分：\(\int_X f\,d\mu\)； 先积分，再取极限：\(\lim_{n\to\infty}\int_X f_n\,d\mu\)。 它们是否相等？
+问题在于，逐点收敛只描述每个固定点上的函数值变化，却没有控制整个空间上的积分贡献。
+上一讲的尖峰函数已经说明了这一点：\(f_n(x)=n\mathbf 1_{(0,1/n)}(x)\) 逐点收敛到零，但每个函数的积分都是 1。
+函数列可以在越来越小的区域内集中越来越大的数值，使其逐点极限消失，却保留非零的积分。
+因此，要交换极限与积分，必须对函数列施加额外条件。三大收敛定理正是从不同角度给出这些条件。
+7.2 单调收敛定理：通过序关系控制极限 先回顾单调收敛定理。
+定理 7.1（单调收敛定理） 设 \(f_n:X\to[0,+\infty]\) 是一列可测函数，且 \(f_n\uparrow f\)，则
+\(\displaystyle \int_X f\,d\mu=\lim_{n\to\infty}\int_X f_n\,d\mu.\)
+这里的关键条件是：
+所有函数非负； 函数列逐点单调递增。 为什么单调性如此重要？
+因为 \(f_n\uparrow f\) 意味着函数列从下方逐步逼近极限，不会出现某一部分积分贡献先增加、随后又消失的情况。积分的单调性保证 \(\int f_n\) 也单调递增，而积分定义本身正是通过非负简单函数的单调逼近建立的。
+因此，单调收敛定理实际上是 Lebesgue 积分构造的自然延伸。
+重要推论： 如果 \(f_n\geq0\)，且 \(f_n\to f\) 几乎处处，但不具有单调性，那么不能直接使用单调收敛定理。不过，可以通过构造辅助函数将问题转化为单调情形，例如考虑 \(\inf_{k\geq n}f_k\)。
+...</p></div><footer class=entry-footer><span title='2026-11-13 00:00:00 +0000 UTC'>November 13, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第 7 讲：三大收敛定理及其内在联系" href=https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/%E5%8F%AF%E6%B5%8B%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8B%92%E8%B4%9D%E6%A0%BC%E7%A7%AF%E5%88%86/%E4%B8%89%E5%A4%A7%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 8 讲：**\(L^p\)**&amp;#x20;空间与函数的等价类</h2></header><div class=entry-content><p>Lebesgue 积分理论最重要的产物之一，是一系列以可积性为基础的函数空间：\(L^1\)、\(L^2\)、\(L^p\) 与 \(L^\infty\)。它们不仅是现代实分析的基本对象，也是 Fourier 分析、偏微分方程、概率论与量子力学的共同语言。
+不过，在定义这些空间之前，我们必须先回答一个看似细微、实际上十分深刻的问题：如果两个函数只在一个零测集上不同，我们是否应该把它们视为不同的函数？
+1. 几乎处处相等与等价类 设 \((X,\mathcal A,\mu)\) 是测度空间，\(f,g:X\to\mathbb C\) 是可测函数。若集合 \(\{x\in X:f(x)\ne g(x)\}\) 是零测集，即
+\[ \mu(\{x:f(x)\ne g(x)\})=0, \]
+则称 \(f\) 与 \(g\) 几乎处处相等，记作 \(f=g\) a.e.（almost everywhere）。
+例如，在区间 \([0,1]\) 上定义 \(f(x)=0\)，而令 \(g(0)=1\)、其余位置均为零。那么 \(f\) 与 \(g\) 并非逐点相等，但它们几乎处处相等，因为二者仅在单点集合 \(\{0\}\) 上不同，而单点集的 Lebesgue 测度为零。
+更重要的是，对于 Lebesgue 积分，只要函数可积，几乎处处相等就意味着积分相等：若 \(f=g\) a.e.，则 \(\int_X f\,d\mu=\int_X g\,d\mu\)。事实上，Lebesgue 积分对零测集上的函数值不敏感。
+这启发我们在可积函数空间中引入等价关系：定义 \(f\sim g\) 当且仅当 \(f=g\) a.e.。它满足自反性、对称性与传递性，因此确实是一个等价关系。
+每个函数 \(f\) 所对应的等价类记为 \([f]\)，即所有与 \(f\) 几乎处处相等的可测函数组成的集合。我们真正关心的，不再是某个函数在每一个点上的具体取值，而是它在忽略零测集之后所代表的整体对象。
+这不是一种单纯的记号简化，而是函数空间理论中的根本性构造：我们将逐点定义的函数，按照几乎处处相等关系取商，得到新的数学空间。
+2. \(L^p\) 空间的定义 设 \(1\le p&lt;\infty\)。定义
+...</p></div><footer class=entry-footer><span title='2026-11-13 00:00:00 +0000 UTC'>November 13, 2026</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第 8 讲：**\(L^p\)** 空间与函数的等价类" href=https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/%E5%8F%AF%E6%B5%8B%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8B%92%E8%B4%9D%E6%A0%BC%E7%A7%AF%E5%88%86/lp%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%87%BD%E6%95%B0%E7%9A%84%E7%AD%89%E4%BB%B7%E7%B1%BB/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 9 讲：Hölder 不等式与 Minkowski 不等式</h2></header><div class=entry-content><p>上一讲我们定义了 \(L^p\) 空间，并指出其范数为 \(\|f\|_p=(\int_X|f|^p\,d\mu)^{1/p}\)。但要使它真正成为一个赋范线性空间，还需要证明三角不等式：\(\|f+g\|_p\le\|f\|_p+\|g\|_p\)。这一结论并非直接来自实数绝对值的三角不等式，而是建立在两个更基本的分析工具之上：Hölder 不等式与 Minkowski 不等式。前者控制乘积的积分，后者建立 \(L^p\) 范数的三角不等式。二者构成现代积分不等式理论的核心。
+1. Young 不等式：Hölder 不等式的起点 设 \(p,q>1\)，满足共轭关系 \(1/p+1/q=1\)。对任意 \(a,b\ge0\)，有
+\[ ab\le \frac{a^p}{p}+\frac{b^q}{q}. \]
+这称为 Young 不等式。
+它可以由凸函数直接得到。考虑函数 \(\varphi(t)=t^p/p\)，其导数为 \(\varphi’(t)=t^{p-1}\)。由凸性，
+\[ \varphi(a)+\varphi^*(b)\ge ab, \]
+其中 \(\varphi^*(b)=b^q/q\) 是其 Legendre–Fenchel 共轭函数。于是得到 Young 不等式。
+也可以从更初等的角度理解：对于固定的 \(b\)，函数 \(a^p/p-ab+b^q/q\) 在 \(a=b^{q-1}\) 处取得最小值，而该最小值为零。
+等号成立当且仅当 \(a^p=b^q\)，即 \(a^{p-1}=b\)。
+Young 不等式的意义在于，它将两个不同幂次的乘积转化为两个幂函数之和。接下来，我们将这一点应用于积分。
+2. Hölder 不等式 设 \(1&lt;p,q&lt;\infty\)，且 \(1/p+1/q=1\)。若 \(f\in L^p(X)\)、\(g\in L^q(X)\)，则
+\[ \boxed{ \int_X|fg|\,d\mu \le \|f\|_p\|g\|_q } \]
+这就是 Hölder 不等式。
+证明。 若 \(\|f\|_p=0\) 或 \(\|g\|_q=0\)，结论显然成立。否则，令 \(F=|f|/\|f\|_p\)，\(G=|g|/\|g\|_q\)。于是 \(\int F^p\,d\mu=\int G^q\,d\mu=1\)。
+...</p></div><footer class=entry-footer><span title='2026-11-13 00:00:00 +0000 UTC'>November 13, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第 9 讲：Hölder 不等式与 Minkowski 不等式" href=https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/%E5%8F%AF%E6%B5%8B%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8B%92%E8%B4%9D%E6%A0%BC%E7%A7%AF%E5%88%86/holder%E4%B8%8D%E7%AD%89%E5%BC%8F%E4%B8%8Eminkowski%E4%B8%8D%E7%AD%89%E5%BC%8F/></a></article></main><footer class=footer><span>&copy; 2026 <a href=https://linmythos.github.io/>Linmythos</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script></body></html>

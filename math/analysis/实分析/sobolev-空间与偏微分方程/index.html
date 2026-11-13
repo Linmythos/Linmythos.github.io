@@ -1,0 +1,113 @@
+<!doctype html><html lang=en dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>第五篇：Sobolev 空间与偏微分方程 | Linmythos</title><meta name=keywords content><meta name=description content="第五篇：Sobolev 空间与偏微分方程 - Linmythos"><meta name=author content="Linmythos"><link rel=canonical href=https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/sobolev-%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%81%8F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/><link crossorigin=anonymous href=/assets/css/stylesheet.5a42af7b68c8b1b7f3d0894c8a74d101cf31f37c1aa9bf8365395ef493e0dea4.css integrity="sha256-WkKve2jIsbfz0IlMinTRAc8x83waqb+DZTle9JPg3qQ=" rel="preload stylesheet" as=style><link rel=icon href=https://linmythos.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://linmythos.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://linmythos.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://linmythos.github.io/apple-touch-icon.png><link rel=mask-icon href=https://linmythos.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/sobolev-%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%81%8F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/index.xml title=rss><link rel=alternate hreflang=en href=https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/sobolev-%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%81%8F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/sobolev-%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%81%8F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/"><meta property="og:site_name" content="Linmythos"><meta property="og:title" content="第五篇：Sobolev 空间与偏微分方程"><meta property="og:description" content="Mathematics · Physics · Thoughts"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="第五篇：Sobolev 空间与偏微分方程"><meta name=twitter:description content="Mathematics · Physics · Thoughts"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Mathematics","item":"https://linmythos.github.io/math/"},{"@type":"ListItem","position":2,"name":"分析","item":"https://linmythos.github.io/math/analysis/"},{"@type":"ListItem","position":4,"name":"第五篇：Sobolev 空间与偏微分方程","item":"https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/sobolev-%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%81%8F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/"}]}</script></head><body class=list id=top><header class=header><nav class=header-nav><div class=logo><a href=https://linmythos.github.io/ accesskey=h title="Linmythos (Alt + H)">Linmythos</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://linmythos.github.io/math/ title=Mathematics><span>Mathematics</span></a></li><li><a href=https://linmythos.github.io/physics/ title=Physics><span>Physics</span></a></li><li><a href=https://linmythos.github.io/ai/ title=AI><span>AI</span></a></li><li><a href=https://linmythos.github.io/neural-science/ title="Neural Science"><span>Neural Science</span></a></li><li><a href=https://linmythos.github.io/essays/ title=Essays><span>Essays</span></a></li><li><a href=https://linmythos.github.io/about/ title=About><span>About</span></a></li><li><a href=https://linmythos.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://linmythos.github.io/archives/ title=Archives><span>Archives</span></a></li></ul></nav></header><main class=main><header class=page-header><h1>第五篇：Sobolev 空间与偏微分方程</h1></header><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 24 讲：Sobolev 空间与弱解理论</h2></header><div class=entry-content><p>前面我们已经建立了 Lebesgue 积分、\(L^p\) 空间、分布理论与 Fourier 分析。本讲将把这些理论汇集起来，研究现代偏微分方程（PDE）的基本语言：Sobolev 空间与弱解。
+经典微分方程通常要求解具有足够高阶的连续导数，但许多实际问题中的解并不光滑。例如，物理系统中的介质界面可能导致解的导数发生跳跃；椭圆型方程的解也可能只有有限阶弱导数。
+如果坚持要求经典解，就可能排除大量具有实际意义的解。
+现代 PDE 的基本策略是：放宽对解的光滑性要求，将微分方程转化为积分恒等式，再利用泛函分析研究其存在性、唯一性与正则性。
+这一策略的核心工具就是 Sobolev 空间。
+1. 从经典导数到弱导数 设 \(\Omega\subset\mathbb R^n\) 是开集，\(f\in L^1_{\mathrm{loc}}(\Omega)\)。
+如果 \(f\) 具有经典偏导数，那么对任意测试函数 \(\varphi\in C_c^\infty(\Omega)\)，分部积分得到
+\[ \int_\Omega \partial_i f\,\varphi\,dx = -\int_\Omega f\,\partial_i\varphi\,dx. \]
+这里没有边界项，因为 \(\varphi\) 具有紧支撑。
+注意，右侧只涉及 \(f\) 本身，而不涉及它的经典导数。
+因此，我们可以反过来定义导数。
+定义（弱导数）。 若存在 \(g\in L^1_{\mathrm{loc}}(\Omega)\)，使得对任意 \(\varphi\in C_c^\infty(\Omega)\)，都有
+\[ \boxed{ \int_\Omega g\varphi\,dx = -\int_\Omega f\,\partial_i\varphi\,dx, } \]
+则称 \(g\) 是 \(f\) 关于第 \(i\) 个变量的弱导数，记为 \(\partial_i f=g\)。
+这个定义有两个重要特点：
+第一，它不要求 \(f\) 具有经典导数。
+...</p></div><footer class=entry-footer><span title='2026-11-13 00:00:00 +0000 UTC'>November 13, 2026</span>&nbsp;·&nbsp;<span>5 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第 24 讲：Sobolev 空间与弱解理论" href=https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/sobolev-%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%81%8F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/sobolev%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%BC%B1%E8%A7%A3%E7%90%86%E8%AE%BA/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 25 讲：Sobolev 嵌入、紧性与 Rellich–Kondrachov 定理</h2></header><div class=entry-content><p>上一讲我们看到，Sobolev 嵌入定理能够将弱导数的可积性转化为函数本身更强的可积性，而 Morrey 定理甚至可以给出连续性。本讲继续研究一个更深刻的问题：如果一列 Sobolev 函数在某个范数下有界，能否从中选出收敛子列？
+这涉及泛函分析中的紧性理论。它是变分法、非线性偏微分方程以及椭圆方程正则性理论的重要基础。
+1. 连续嵌入与紧嵌入 设 \(X,Y\) 是两个赋范空间，且 \(X\subseteq Y\)。如果存在常数 \(C>0\)，使得对任意 \(u\in X\)，都有 \(\|u\|_Y\le C\|u\|_X\)，则称 \(X\) 连续嵌入 \(Y\)，记为 \(X\hookrightarrow Y\)。
+连续嵌入意味着：在 \(X\) 中收敛的函数列，也必然在 \(Y\) 中收敛。
+但还有一种更强的性质。
+定义（紧嵌入）。 若 \(X\) 中任意有界序列都存在一个在 \(Y\) 中收敛的子列，则称 \(X\) 紧嵌入 \(Y\)，记为 \(X\hookrightarrow\hookrightarrow Y\)。
+紧嵌入比连续嵌入强得多。连续嵌入只保证范数之间存在控制关系；紧嵌入则保证有界序列具有收敛子列。
+例如，在有限维空间中，闭有界集必然紧，因此有限维赋范空间之间的连续嵌入通常也是紧嵌入。但在无限维空间中，这一结论不再成立。
+2. 一个反例：为什么有界不意味着存在强收敛子列？ 考虑 Hilbert 空间 \(L^2(0,1)\)，取标准正交函数列 \(e_n(x)=\sqrt2\sin(2\pi nx)\)。
+由正交性，\(\|e_n\|_2=1\)，因此它是有界序列。
+但对于 \(m\ne n\)，有 \(\|e_n-e_m\|_2^2=2\)。所以任意两个不同项之间的距离恒为 \(\sqrt2\)。
+因此，这个序列不可能存在 Cauchy 子列，也就不可能存在强收敛子列。
+这说明：无限维空间中的有界性，通常不足以保证强收敛子列存在。
+那么，什么条件可以补足这种缺陷？Rellich–Kondrachov 定理给出了答案：额外的空间正则性，加上适当的区域几何条件，可以产生紧性。
+3. Rellich–Kondrachov 紧嵌入定理 定理（Rellich–Kondrachov）。 设 \(\Omega\subset\mathbb R^n\) 是有界 Lipschitz 区域，且 \(1\le p&lt;n\)。令 \(p^*=np/(n-p)\)。则对任意 \(1\le q&lt;p^*\)，有紧嵌入 \(W^{1,p}(\Omega)\hookrightarrow\hookrightarrow L^q(\Omega)\)。
+...</p></div><footer class=entry-footer><span title='2026-11-13 00:00:00 +0000 UTC'>November 13, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第 25 讲：Sobolev 嵌入、紧性与 Rellich–Kondrachov 定理" href=https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/sobolev-%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%81%8F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/sobolev%E5%B5%8C%E5%85%A5%E7%B4%A7%E6%80%A7%E4%B8%8Erellich-kondrachov%E5%AE%9A%E7%90%86/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 26 讲：椭圆型偏微分方程与正则性理论</h2></header><div class=entry-content><p>上一讲我们建立了 Sobolev 空间的紧性理论，并看到它如何帮助我们证明非线性偏微分方程弱解的存在性。本讲进一步研究一个核心问题：弱解是否具有更高的光滑性？
+弱解理论解决了方程解的存在性问题，但弱导数的存在并不意味着经典导数存在。对于许多椭圆型方程，我们希望证明：即使最初只知道解属于 \(H^1\)，方程本身也会迫使它具有更高阶的正则性。
+这一现象称为椭圆正则性（elliptic regularity）。
+1. 椭圆型方程的基本结构 考虑二阶线性方程
+\[ -\sum_{i,j=1}^n \partial_i(a_{ij}(x)\partial_j u) =f. \]
+这里 \(A(x)=(a_{ij}(x))\) 是系数矩阵。
+如果 \(A(x)\) 是实对称矩阵，并且存在常数 \(0&lt;\lambda\le\Lambda&lt;\infty\)，使得对几乎处处的 \(x\in\Omega\) 以及任意 \(\xi\in\mathbb R^n\)，都有
+\[ \lambda|\xi|^2 \le \sum_{i,j=1}^na_{ij}(x)\xi_i\xi_j \le \Lambda|\xi|^2, \]
+则称该方程满足一致椭圆性条件（uniform ellipticity）。
+这个条件的几何意义是：矩阵 \(A(x)\) 在所有方向上的二次型都严格为正，并且其特征值统一受到正数与有限常数控制。
+对于最简单的 Poisson 方程，\(A(x)=I\)，椭圆性条件显然成立。
+一致椭圆性是椭圆方程理论的基本结构条件。它保证方程在所有空间方向上都具有足够的二阶控制，不会出现某些方向完全退化的情况。
+2. 弱形式与能量估计 考虑 Dirichlet 问题
+\[ \begin{cases} -\operatorname{div}(A(x)\nabla u)=f,&amp;x\in\Omega,\\ u=0,&amp;x\in\partial\Omega. \end{cases} \]
+其弱形式为：寻找 \(u\in H_0^1(\Omega)\)，使得对任意 \(v\in H_0^1(\Omega)\)，都有
+\[ \int_\Omega A\nabla u\cdot\nabla v\,dx = \int_\Omega fv\,dx. \]
+取 \(v=u\)，得到
+...</p></div><footer class=entry-footer><span title='2026-11-13 00:00:00 +0000 UTC'>November 13, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第 26 讲：椭圆型偏微分方程与正则性理论" href=https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/sobolev-%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%81%8F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E6%A4%AD%E5%9C%86%E5%9E%8B%E5%81%8F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E4%B8%8E%E6%AD%A3%E5%88%99%E6%80%A7%E7%90%86%E8%AE%BA/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 27 讲：抛物型方程、热半群与演化方程</h2></header><div class=entry-content><p>上一讲我们研究了椭圆型方程。椭圆方程主要描述空间中的平衡态，而抛物型方程则描述系统随时间演化的过程。最典型的例子就是热方程。
+热方程不仅是数学物理中最基本的偏微分方程之一，也是连接 Fourier 分析、泛函分析、概率论与微分几何的重要桥梁。本讲将从热传导出发，建立热半群与生成元的基本理论。
+1. 热方程：从局部守恒到扩散方程 考虑空间区域 \(\Omega\subset\mathbb R^n\) 中的温度场 \(u(t,x)\)。设材料密度为 \(\rho\)，比热容为 \(c\)，热传导系数为 \(\kappa\)。
+根据能量守恒，单位体积内热能的变化率等于热流的负散度。若热流满足 Fourier 定律 \(J=-\kappa\nabla u\)，则有 \(\rho c\,\partial_tu=-\operatorname{div}J\)。
+因此得到热方程：\(\rho c\,\partial_tu=\kappa\Delta u\)。令热扩散系数 \(\alpha=\kappa/(\rho c)\)，便得到标准形式
+\[ \partial_tu=\alpha\Delta u. \]
+为简化记号，以下取 \(\alpha=1\)。
+热方程描述温度如何随时间扩散。与波动方程不同，热方程没有有限传播速度：初始温度的局部变化会立即影响任意远处的解，只是影响程度可能极小。
+这也是热方程最鲜明的数学特征之一。
+2. Fourier 变换与热方程的显式解 先考虑整个空间 \(\mathbb R^n\) 上的初值问题：\(\partial_tu=\Delta u\)，且 \(u(0,x)=f(x)\)。
+对空间变量取 Fourier 变换。沿用前面的约定 \(\widehat f(\xi)=\int_{\mathbb R^n}f(x)e^{-2\pi ix\cdot\xi}\,dx\)，由微分与 Fourier 变换的对应关系，有 \(\widehat{\Delta u}(\xi)=-4\pi^2|\xi|^2\widehat u(\xi)\)。
+于是原来的偏微分方程变成关于时间的常微分方程：\(\partial_t\widehat u(t,\xi)=-4\pi^2|\xi|^2\widehat u(t,\xi)\)。
+结合初始条件，得到 \(\widehat u(t,\xi)=e^{-4\pi^2t|\xi|^2}\widehat f(\xi)\)。
+因此，热方程的演化在 Fourier 空间中表现为每个频率分量独立衰减。高频分量衰减得更快，低频分量衰减得更慢。
+这正是热方程平滑效应的根源：剧烈振荡对应高频成分，而这些成分会迅速被抑制。
+3. 热核与卷积表示 利用 Gaussian 函数的 Fourier 变换，可以得到热方程的显式解：
+...</p></div><footer class=entry-footer><span title='2026-11-13 00:00:00 +0000 UTC'>November 13, 2026</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第 27 讲：抛物型方程、热半群与演化方程" href=https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/sobolev-%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%81%8F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E6%8A%9B%E7%89%A9%E5%9E%8B%E6%96%B9%E7%A8%8B%E7%83%AD%E5%8D%8A%E7%BE%A4%E4%B8%8E%E6%BC%94%E5%8C%96%E6%96%B9%E7%A8%8B/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 28 讲：波动方程、能量守恒与波动半群</h2></header><div class=entry-content><p>上一讲我们研究了热方程。热方程具有耗散性，高频模态随时间迅速衰减；与之不同，波动方程描述振动与传播，其核心结构是能量守恒和有限传播速度。
+从弦振动、声波、电磁波到广义相对论中的引力波，波动方程都扮演着重要角色。本讲将从弦振动出发，建立波动方程的能量理论，并进一步讨论传播算子、谱分解与波动半群。
+1. 从弦振动导出波动方程 考虑一根长度为 \(L\) 的均匀细弦，设其线密度为 \(\rho\)，张力为 \(T\)，横向位移为 \(u(t,x)\)。
+假设弦的振幅和斜率都很小。取弦上一小段 \([x,x+\Delta x]\)，其横向动量变化率等于两端张力的横向合力。在线性近似下，张力的横向分量约为 \(T\partial_xu\)，因此有 \(\rho\partial_{tt}u=T\partial_{xx}u\)。
+令 \(c=\sqrt{T/\rho}\)，便得到一维波动方程：\(\partial_{tt}u=c^2\partial_{xx}u\)。
+在 \(n\) 维空间中，相应的方程为 \(\partial_{tt}u=c^2\Delta u\)。
+这里 \(c\) 是波的传播速度。与热方程不同，波动方程包含二阶时间导数，因此需要同时指定初始位移和初始速度：\(u(0,x)=f(x)\)，\(\partial_tu(0,x)=g(x)\)。
+2. 一维波动方程与 d’Alembert 公式 先考虑一维波动方程 \(\partial_{tt}u=c^2\partial_{xx}u\)。
+引入特征坐标 \(\xi=x-ct\)、\(\eta=x+ct\)。在这组坐标下，波动算子可以分解为两个一阶微分算子的乘积：
+\[ \partial_{tt}-c^2\partial_{xx} = (\partial_t-c\partial_x)(\partial_t+c\partial_x). \]
+因此波动方程可以理解为沿两族特征线传播的两个方向的波动。
+定理（d’Alembert 公式）。 若初始数据足够光滑，则一维波动方程的解为
+\[ \boxed{ u(t,x)=\frac{f(x-ct)+f(x+ct)}2 +\frac1{2c}\int_{x-ct}^{x+ct}g(s)\,ds. } \]
+公式包含两部分：第一部分是初始位移向左右两个方向传播形成的波；第二部分则由初始速度决定。
+特别地，若 \(g=0\)，则 \(u(t,x)=\frac12[f(x-ct)+f(x+ct)]\)。
+这意味着初始位移可以分解为两个方向相反、速度均为 \(c\) 的行波。
+3. 有限传播速度 d’Alembert 公式揭示了波动方程最重要的性质之一：有限传播速度。
+假设初始数据 \(f,g\) 都在区间 \([a,b]\) 外为零。由 d’Alembert 公式可知，时刻 \(t\) 的解只有在区间 \([a-ct,b+ct]\) 内可能非零。
+...</p></div><footer class=entry-footer><span title='2026-11-13 00:00:00 +0000 UTC'>November 13, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第 28 讲：波动方程、能量守恒与波动半群" href=https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/sobolev-%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%81%8F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E6%B3%A2%E5%8A%A8%E6%96%B9%E7%A8%8B%E8%83%BD%E9%87%8F%E5%AE%88%E6%81%92%E5%92%8C%E6%B3%A2%E5%8A%A8%E5%8D%8A%E7%BE%A4/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 29 讲：Sobolev 空间、算子谱与量子力学中的自伴算子</h2></header><div class=entry-content><p>上一讲我们从波动方程出发，建立了微分算子与时间演化之间的联系。本讲进一步研究这些算子本身的数学结构，尤其是它们的定义域、自伴性与谱。
+这部分理论也是量子力学的数学基础。在量子力学中，可观测量由自伴算子表示，Hamilton 算子决定系统的时间演化，而能量本征值则来自算子的谱。因此，理解无界算子的严格数学结构，是从经典 PDE 走向现代量子理论的重要一步。
+1. 为什么需要无界算子？ 在有限维空间中，每个线性算子都是有界的。但在无限维函数空间中，微分算子通常是无界的。
+例如，在 \(L^2(\mathbb R)\) 上考虑动量算子 \(P=-i\hbar\,d/dx\)。对于适当光滑且快速衰减的函数，有 \(\|Pf\|_2=\hbar\|f’\|_2\)。
+然而，函数的 \(L^2\) 范数并不能控制其导数的 \(L^2\) 范数。取一列归一化函数 \(f_n(x)=c_n\varphi(x)e^{inx}\)，其中 \(\varphi\in C_c^\infty(\mathbb R)\) 固定，\(c_n\) 使得 \(\|f_n\|_2=1\)。随着 \(n\to\infty\)，其导数范数通常按 \(n\) 增长。
+因此不存在常数 \(C\)，使得 \(\|Pf\|_2\le C\|f\|_2\) 对所有定义域中的函数成立。
+这意味着动量算子是无界算子。
+但无界算子不能像有限维矩阵那样直接作用于整个 Hilbert 空间。我们必须指定它在哪些向量上有定义。
+2. 无界算子的定义域 定义。 设 \(H\) 是 Hilbert 空间。一个线性算子 \(A\) 由定义域 \(D(A)\subset H\) 与作用规则共同确定，其中 \(D(A)\) 是线性子空间，且 \(A:D(A)\to H\)。
+因此，无界算子实际上是一个定义在 Hilbert 空间稠密子空间上的线性映射。
+例如，在 \(L^2(\mathbb R)\) 上，动量算子可以定义为 \(P f=-i\hbar f’\)，其一个自然定义域是 \(H^1(\mathbb R)\)。
+这里 \(H^1(\mathbb R)\) 包含所有函数及其一阶弱导数都属于 \(L^2\) 的函数。
+...</p></div><footer class=entry-footer><span title='2026-11-13 00:00:00 +0000 UTC'>November 13, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第 29 讲：Sobolev 空间、算子谱与量子力学中的自伴算子" href=https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/sobolev-%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%81%8F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/sobolev%E7%A9%BA%E9%97%B4%E7%AE%97%E5%AD%90%E8%B0%B1%E4%B8%8E%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E4%B8%AD%E7%9A%84%E7%AE%97%E5%AD%90/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 30 讲：谱理论、紧算子与 Fredholm 理论</h2></header><div class=entry-content><p>上一讲我们研究了无界自伴算子，并看到量子力学中的 Hamilton 算子、能量谱与时间演化都建立在谱理论之上。本讲进一步回到泛函分析本身，研究紧算子的谱结构，以及 Fredholm 理论如何将算子方程的可解性转化为有限维问题。
+本讲的核心思想是：紧性能够使无限维算子呈现出某种有限维特征，而 Fredholm 理论则利用这一性质研究算子的核、值域与指标。
+1. 有界线性算子与算子谱 设 \(X\) 是复 Banach 空间，\(A:X\to X\) 是有界线性算子。
+我们希望研究算子方程 \((\lambda I-A)x=y\) 是否能够对任意 \(y\in X\) 唯一求解。
+如果 \(\lambda I-A\) 存在有界逆算子，就称 \(\lambda\) 属于 \(A\) 的预解集；否则称 \(\lambda\) 属于 \(A\) 的谱，记为 \(\sigma(A)\)。
+因此，谱可以理解为使算子方程失去有界可逆性的参数集合。
+谱与有限维矩阵的特征值有相似之处，但在无限维空间中，两者并不完全相同。
+对于有限维矩阵，谱就是特征值集合；但对于无限维算子，谱还可能包含不是特征值的点。
+2. 谱的基本性质 定理。 若 \(A\) 是复 Banach 空间上的有界线性算子，则：
+谱 \(\sigma(A)\) 是非空紧集； 谱包含于闭圆盘 \(\{z\in\mathbb C:|z|\le\|A\|\}\)； 预解集是开集，预解算子 \(R(\lambda,A)=(\lambda I-A)^{-1}\) 在预解集上解析。 其中第二条可以通过 Neumann 级数理解。
+当 \(|\lambda|>\|A\|\) 时，有 \(\|A/\lambda\|&lt;1\)，因此
+\[ (\lambda I-A)^{-1} = \frac1\lambda \sum_{k=0}^{\infty} \left(\frac A\lambda\right)^k. \]
+...</p></div><footer class=entry-footer><span title='2026-11-13 00:00:00 +0000 UTC'>November 13, 2026</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第 30 讲：谱理论、紧算子与 Fredholm 理论" href=https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/sobolev-%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%81%8F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E8%B0%B1%E7%90%86%E8%AE%BA%E7%B4%A7%E7%AE%97%E5%AD%90%E4%B8%8Efredholm%E7%90%86%E8%AE%BA/></a></article></main><footer class=footer><span>&copy; 2026 <a href=https://linmythos.github.io/>Linmythos</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script></body></html>

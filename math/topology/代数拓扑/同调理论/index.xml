@@ -11,23 +11,29 @@
 &lt;p&gt;这说明，相对同调群只在与胞腔维数相同的阶数上非平凡。它使我们能够用胞腔直接构造一个远小于奇异链复形的链复形。&lt;/p&gt;
 &lt;h2 id="102-胞腔链复形"&gt;10.2 胞腔链复形&lt;/h2&gt;
 &lt;p&gt;定义第 \(n\) 阶胞腔链群为&lt;/p&gt;
-&lt;p&gt;\[ C_n^{\mathrm{cell}}(X)=H_n(X^n,X^{n-1}). \]&lt;/p&gt;</description></item><item><title>第 6 章　群、模与链复形</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/</guid><description>&lt;h1 id="第-6-章群环模与链复形"&gt;第 6 章　群、环、模与链复形&lt;/h1&gt;
-&lt;p&gt;&lt;em&gt;Groups, Rings, Modules and Chain Complexes&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;第二编 · 同调理论&lt;/p&gt;
-&lt;h2 id="61-从拓扑问题到代数结构"&gt;6.1 从拓扑问题到代数结构&lt;/h2&gt;
-&lt;p&gt;前面我们通过基本群，将闭合道路的同伦类组织成一个群，从而获得空间的一维拓扑信息。但基本群并不足以完整刻画空间。例如，单连通空间的基本群都是平凡群，却可能具有完全不同的高维拓扑结构。&lt;/p&gt;
-&lt;p&gt;为了研究更高维的拓扑信息，我们需要一种更系统的代数工具：同调理论（Homology Theory）。&lt;/p&gt;
-&lt;p&gt;同调理论的基本思想是，将几何对象组织成一系列代数对象，并通过映射描述它们之间的关系。对于我们即将研究的链复形，这些代数对象通常是 Abel 群或模，而连接它们的映射则是群同态或模同态。通过映射的核与像，我们最终构造出同调群。&lt;/p&gt;
-&lt;p&gt;因此，在进入链复形之前，需要先建立必要的代数语言：群、环、模、同态与正合列。&lt;/p&gt;
-&lt;h2 id="62-群与-abel-群"&gt;6.2 群与 Abel 群&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;定义 6.1（群）&lt;/strong&gt; 一个集合 $G$ 配备二元运算 $(a,b)\mapsto ab$，若满足以下条件，则称 $G$ 为群：&lt;/p&gt;
+&lt;p&gt;\[ C_n^{\mathrm{cell}}(X)=H_n(X^n,X^{n-1}). \]&lt;/p&gt;</description></item><item><title>第 6 章　环、模与链复形</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/</guid><description>&lt;p&gt;&lt;em&gt;GRings, Modules and Chain Complexes&lt;/em&gt;&lt;/p&gt;
+&lt;h1 id="61-从拓扑问题到代数结构"&gt;6.1 从拓扑问题到代数结构&lt;/h1&gt;
+&lt;p&gt;前面我们通过基本群，将闭合道路的同伦类组织成一个群，从而获得空间的一维拓扑信息。但基本群并不足以完整刻画空间。例如，单连通空间的基本群都是平凡群，却可能具有完全不同的高维拓扑结构。为了研究更高维的拓扑信息，我们需要一种更系统的代数工具：同调理论（Homology Theory）。它的基本思想是，将几何对象组织成一系列代数对象，并通过映射描述它们之间的关系。对于我们即将研究的链复形，这些代数对象通常是 Abel 群或模，而连接它们的映射则是群同态或模同态。通过映射的核与像，我们最终构造出同调群。因此，在进入链复形之前，我们需要知道群、环、模、同态与正合列，其中群的知识不再赘述。&lt;/p&gt;
+&lt;p&gt;本文只讨论 Abel 群及模上的链复形。&lt;/p&gt;
+&lt;h1 id="63-环与标量乘法"&gt;6.3 环与标量乘法&lt;/h1&gt;
+&lt;p&gt;群只提供一种运算，而模的定义还需要引入标量乘法。标量来自一个环，因此我们先介绍环的概念。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;定义 6.1（环）&lt;/strong&gt; 一个集合 $R$ 配备加法与乘法两种运算。若满足以下条件，则称 $R$ 为环：&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;结合律：&lt;/strong&gt; 对任意 $a,b,c\in G$，有 $(ab)c=a(bc)$。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;单位元：&lt;/strong&gt; 存在 $e\in G$，使得对任意 $a\in G$，有 $ea=ae=a$。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;逆元：&lt;/strong&gt; 对任意 $a\in G$，存在 $a^{-1}\in G$，使得 $aa^{-1}=a^{-1}a=e$。&lt;/li&gt;
+&lt;li&gt;$(R,+)$ 是 Abel 群，其加法单位元记为 $0$。&lt;/li&gt;
+&lt;li&gt;乘法满足结合律，即 $(ab)c=a(bc)$ 。&lt;/li&gt;
+&lt;li&gt;乘法对加法满足左右分配律：
+$
+a(b+c)=ab+ac,\quad (a+b)c=ac+bc.
+$&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;若群运算还满足交换律 $ab=ba$，则称 $G$ 为 Abel 群（Abelian group），亦称交换群。&lt;/p&gt;
-&lt;p&gt;对于 Abel 群，我们通常使用加法记号，将单位元记为 $0$，将元素 $a$ 的逆元记为 $-a$。于是群运算写作 $a+b$，逆元写作 $-a$。&lt;/p&gt;</description></item><item><title>第 7 章　单纯同调</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E5%8D%95%E7%BA%AF%E5%90%8C%E8%B0%83/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E5%8D%95%E7%BA%AF%E5%90%8C%E8%B0%83/</guid><description>&lt;h1 id="第-7-章单纯同调"&gt;第 7 章　单纯同调&lt;/h1&gt;
+&lt;p&gt;若环的乘法满足交换律 $ab=ba$，则称为&lt;strong&gt;交换环（commutative ring）&lt;/strong&gt;。同时具有乘法单位元的交换环称为&lt;strong&gt;含幺交换环（commutative ring with identity）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;举几个例子，整数环 $\mathbb Z$ 、多项式环 $\mathbb R[x]$ 都是含幺交换环；矩阵环 $M_n(\mathbb R)$ 是含幺环，但当 $n&amp;gt;1$ 时通常不交换；有理数域 $\mathbb Q$、实数域 $\mathbb R$ 和复数域 $\mathbb C$ 都是含幺交换环，而且是域。域是一类特殊的含幺交换环，其中每个非零元素都有乘法逆元。向量空间的标量来自域，而模的标量可以来自一般的环。我们约定接下来的讨论的环均含有乘法单位元 $1_R$，且 $1_R\neq 0$ 。&lt;/p&gt;
+&lt;p&gt;有了环之后，我们就能定义标量乘法，联想实数域、复数域来看会舒服很多。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;定义 6.2（标量乘法）&lt;/strong&gt; 设 $R$ 为含幺环，$M$ 为 Abel 群。若存在映射
+$
+R\times M\longrightarrow M,\qquad (r,m)\longmapsto rm,
+$
+称为标量乘法，并满足以下条件：&lt;/p&gt;</description></item><item><title>第 7 章　单纯同调</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E5%8D%95%E7%BA%AF%E5%90%8C%E8%B0%83/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E5%8D%95%E7%BA%AF%E5%90%8C%E8%B0%83/</guid><description>&lt;h1 id="第-7-章单纯同调"&gt;第 7 章　单纯同调&lt;/h1&gt;
 &lt;p&gt;Simplicial Homology&lt;/p&gt;
 &lt;p&gt;第二编 · 同调理论&lt;/p&gt;
 &lt;h2 id="71-从几何对象到链复形"&gt;7.1 从几何对象到链复形&lt;/h2&gt;

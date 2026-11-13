@@ -45,19 +45,19 @@ $M$ 是 Hausdorff 空间； $M$ 满足第二可数性公理； $M$ 局部同胚�
 例 1.1（耳熟能详的例子）
 欧氏空间 $\mathbb R^n$ 是 $n$ 维拓扑流形。 圆周 $S^1$ 是一维紧致流形。 球面 $S^2$ 是二维紧致流形。 环面 $T^2=S^1\times S^1$ 是二维紧致流形。 射影空间 $\mathbb{RP}^n$ 是 $n$ 维紧致流形。 流形的维数描述的是其局部自由坐标的数量，而不是它嵌入环境空间的维数。
 ...</p></div><footer class=entry-footer><span title='2026-11-08 00:00:00 +0000 UTC'>November 8, 2026</span>&nbsp;·&nbsp;<span>4 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第 1 章　光滑流形" href=https://linmythos.github.io/math/geometry/differential-geometry/%E5%85%89%E6%BB%91%E6%B5%81%E5%BD%A2/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 3 章　余切空间与余切丛</h2></header><div class=entry-content><p>Cotangent Spaces and Cotangent Bundles
-3.1　对偶空间与余切空间 上一章将流形上 \(p\) 点的切空间定义为导子构成的线性空间 \(T_pM\)。它描述了流形在该点处所有可能的切方向。与之自然对应的是切空间的对偶空间，它由作用在切向量上的线性泛函构成。
-定义 3.1（对偶空间） 设 \(V\) 是有限维实线性空间，其对偶空间（dual space）定义为 \(V^*=\operatorname{Hom}(V,\mathbb R)\)，即所有从 \(V\) 到 \(\mathbb R\) 的线性映射构成的向量空间。若 \(\dim V=n\)，则 \(\dim V^*=n\)。对偶空间中的元素称为余向量（covector），对于 \(\omega\in V^*\) 和 \(v\in V\)，其作用记为 \(\omega(v)\)。
-定义 3.2（余切空间） 设 \(M\) 是光滑流形，\(p\in M\)，切空间 \(T_pM\) 的对偶空间称为 \(p\) 点的余切空间（cotangent space），记为 \(T_p^*M=(T_pM)^*\)。
-因此，切向量与余切向量分别属于两个不同但自然配对的线性空间。前者描述方向与速度，后者提供对切方向进行线性测量的工具。需要特别注意：余切向量并不是切向量的另一种写法。二者之间虽然存在自然配对 \(\omega(v)\)，但在没有额外结构的情况下，并不存在天然的同构 \(T_pM\cong T_p^*M\)。
-3.2　对偶基与坐标变换 设 \(M\) 是 \(n\) 维光滑流形，取 \(p\) 点附近的局部坐标 \((x^1,\ldots,x^n)\)。由上一章可知，切空间的一组基为 \(\{\partial/\partial x^i|_p\}_{i=1}^n\)。根据线性代数，对应存在唯一的对偶基。
-定义 3.3（对偶基） 余切空间 \(T_p^*M\) 中与坐标切向量基对应的对偶基记为 \(dx^1|_p,\ldots,dx^n|_p\)，满足 \(dx^i(\partial/\partial x^j)=\delta^i_j\)，其中 \(\delta^i_j\) 为 Kronecker 符号。因此，任意余切向量 \(\omega\in T_p^*M\) 均可唯一表示为 \(\omega=\omega_i\,dx^i|_p\)，其中 \(\omega_i\) 是其在对偶基下的分量。
+3.1　对偶空间与余切空间 上一章将流形上 $p$ 点的切空间定义为导子构成的线性空间 $T_pM$。它描述了流形在该点处所有可能的切方向。与之自然对应的是切空间的对偶空间，它由作用在切向量上的线性泛函构成。
+定义 3.1（对偶空间） 设 $V$ 是有限维实线性空间，其对偶空间（dual space）定义为 $V^*=\operatorname{Hom}(V,\mathbb R)$，即所有从 $V$ 到 $\mathbb R$ 的线性映射构成的向量空间。若 $\dim V=n$，则 $\dim V^*=n$。对偶空间中的元素称为余向量（covector），对于 $\omega\in V^*$ 和 $v\in V$，其作用记为 $\omega(v)$。
+定义 3.2（余切空间） 设 $M$ 是光滑流形，$p\in M$，切空间 $T_pM$ 的对偶空间称为 $p$ 点的余切空间（cotangent space），记为 $T_p^*M=(T_pM)^*$。
+因此，切向量与余切向量分别属于两个不同但自然配对的线性空间。前者描述方向与速度，后者提供对切方向进行线性测量的工具。需要特别注意：余切向量并不是切向量的另一种写法。二者之间虽然存在自然配对 $\omega(v)$，但在没有额外结构的情况下，并不存在天然的同构 $T_pM\cong T_p^*M$。
+3.2　对偶基与坐标变换 设 $M$ 是 $n$ 维光滑流形，取 $p$ 点附近的局部坐标 $(x^1,\ldots,x^n)$。由上一章可知，切空间的一组基为 $\{\partial/\partial x^i|_p\}_{i=1}^n$。根据线性代数，对应存在唯一的对偶基。
+定义 3.3（对偶基） 余切空间 $T_p^*M$ 中与坐标切向量基对应的对偶基记为 $dx^1|_p,\ldots,dx^n|_p$，满足 $dx^i(\partial/\partial x^j)=\delta^i_j$，其中 $\delta^i_j$ 为 Kronecker 符号。因此，任意余切向量 $\omega\in T_p^*M$ 均可唯一表示为 $\omega=\omega_i\,dx^i|_p$，其中 $\omega_i$ 是其在对偶基下的分量。
 ...</p></div><footer class=entry-footer><span title='2026-11-08 00:00:00 +0000 UTC'>November 8, 2026</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第 3 章　余切空间与余切丛" href=https://linmythos.github.io/math/geometry/differential-geometry/%E4%BD%99%E5%88%87%E7%A9%BA%E9%97%B4%E4%B8%8E%E4%BD%99%E5%88%87%E4%B8%9B/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 4 章　切丛、向量场与李括号</h2></header><div class=entry-content><p>Tangent Bundles, Vector Fields and Lie Brackets
-4.1　切丛：将逐点的切空间组织起来 前面我们一直在研究流形 \(M\) 上某个固定点 \(p\) 处的切空间 \(T_pM\)。然而，微分几何通常并不只关心单个点，而是需要同时研究整个流形上所有点的切向量。例如，流体力学中的速度场、经典力学中的运动状态以及微分方程中的方向场，都需要在每个点赋予一个切向量。因此，我们需要将所有切空间组织成一个整体几何对象。
-定义 4.1（切丛） 设 \(M\) 是光滑流形，其切丛（tangent bundle）定义为 \(TM=\bigsqcup_{p\in M}T_pM\)。定义自然投影 \(\pi:TM\to M\)，其中 \(\pi(v_p)=p\)。切丛的元素可以理解为带有基点信息的切向量，即 \(TM\) 中的一个元素不仅包含方向，还包含该方向所在的位置。
-设 \(M\) 是 \(n\) 维光滑流形，取局部坐标 \((x^1,\ldots,x^n)\)。任意 \(v_p\in T_pM\) 都可以表示为 \(v_p=v^i\partial_i|_p\)，因此切丛在该坐标邻域内可以使用 \((x^1,\ldots,x^n;v^1,\ldots,v^n)\) 描述。前 \(n\) 个坐标描述基点，后 \(n\) 个坐标描述切向量分量。由此可见，若 \(M\) 的维数为 \(n\)，则 \(TM\) 是一个 \(2n\) 维光滑流形。
-这里需要强调，切丛并不是简单的笛卡尔积 \(M\times\mathbb R^n\)。虽然它局部上与 \(U\times\mathbb R^n\) 同胚，但不同坐标图之间的切向量分量需要按照 Jacobi 矩阵转换。因此，切丛的整体结构还包含流形坐标之间的粘合信息。
-4.2　截面与向量场 切丛将所有点的切空间组织起来，而在每一点选取一个切向量，就得到一个定义在整个流形上的向量场。
-定义 4.2（向量场） 设 \(M\) 是光滑流形。若光滑映射 \(X:M\to TM\) 满足 \(\pi\circ X=\operatorname{id}_M\)，则称 \(X\) 为切丛 \(TM\) 的一个光滑截面（smooth section），也称 \(M\) 上的光滑向量场（vector field）。对于每个 \(p\in M\)，记 \(X(p)=X_p\in T_pM\)。
+4.0 引言 在引入切空间之后，我们将逐点的切空间组织为整体切丛，并通过切丛的光滑截面定义向量场。向量场不仅描述流形上的方向分布，还可以视为作用在光滑函数上的一阶微分算子。通过常微分方程，向量场进一步生成积分曲线与流，从而将局部方向信息转化为有限时间的几何运动。李括号则刻画了两个向量场作为微分算子的交换子，并赋予全体光滑向量场以李代数结构。它不是 $C^\infty(M)$-双线性的，这一事实反映了李括号对向量场局部变化信息的依赖。
+4.1　切丛：将逐点的切空间组织起来 和余切丛类似，我们可以把流形上所有点的切空间组织起来，得到切丛。采用无交并可以理解为切丛的元素可以理解为带有基点信息的切向量，即 $TM$ 中的一个元素不仅包含方向，还包含该方向所在的位置。
+定义 4.1（切丛） 设 $M$ 是光滑流形，其切丛（tangent bundle）定义为 $TM=\bigsqcup_{p\in M}T_pM$。定义自然投影 $\pi:TM\to M$，其中 $\pi(v_p)=p$。
+设 $M$ 是 $n$ 维光滑流形，取局部坐标 $(x^1,\ldots,x^n)$。任意 $v_p\in T_pM$ 都可以表示为 $v_p=v^i\partial_i|_p$，因此切丛在该坐标邻域内可以使用 $(x^1,\ldots,x^n;v^1,\ldots,v^n)$ 描述。前 $n$ 个坐标描述基点，后 $n$ 个坐标描述切向量分量。由此可见，若 $M$ 的维数为 $n$，则 $TM$ 是一个 $2n$ 维光滑流形。这样我们自然会想：切丛是不是简单的笛卡尔积 $M\times\mathbb R^n$ ？答案显然并非如此简单。虽然它局部上与 $U\times\mathbb R^n$ 同胚，但不同坐标图之间的切向量分量需要按照 Jacobi 矩阵转换。
+4.2　截面与向量场 上一篇文章中比较突兀地引入了截面这个概念，现在重新叙述其引入动机。切丛将所有点的切空间组织起来，而在每一点选取一个切向量，就得到一个定义在整个流形上的向量场。可以形象的理解为在流形的每一个点上装一个小箭头，而选取小箭头的方式有很多种，每一种选择方式都是一个我们观察整个向量丛的“截面”。
+定义 4.2（向量场） 设 $M$ 是光滑流形。若光滑映射 $X:M\to TM$ 满足 $\pi\circ X=\operatorname{id}_M$，则称 $X$ 为切丛 $TM$ 的一个光滑截面（smooth section），也称 $M$ 上的光滑向量场（vector field）。对于每个 $p\in M$，记 $X(p)=X_p\in T_pM$。
 ...</p></div><footer class=entry-footer><span title='2026-11-08 00:00:00 +0000 UTC'>November 8, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Linmythos</span></footer><a class=entry-link aria-label="post link to 第 4 章　切丛、向量场与李括号" href=https://linmythos.github.io/math/geometry/differential-geometry/%E5%88%87%E4%B8%9B%E5%90%91%E9%87%8F%E5%9C%BA%E4%B8%8E%E6%9D%8E%E6%8B%AC%E5%8F%B7/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>第 5 章 张量代数</h2></header><div class=entry-content><p>Tensor Algebra
 张量是微分几何中最基本的代数对象之一。向量、余向量、双线性型、黎曼度量以及曲率张量，都可以纳入统一的张量语言。引入张量的目的，是将这些对象组织成一种不依赖坐标选择的代数结构，并使它们能够在流形上自然地变化。
 5.1 多重线性映射与张量 设 \(V\) 是有限维实向量空间，\(V^*\) 表示其对偶空间。一个 \(k+l\) 重多重线性映射，是指一个映射
