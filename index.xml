@@ -2671,10 +2671,14 @@ M=(Q,\Sigma,\Gamma,\delta,q_0,q_{\mathrm{accept}},q_{\mathrm{reject}}),
 &lt;p&gt;&lt;strong&gt;定义 4.1（覆盖映射）&lt;/strong&gt; 设 $X,\widetilde X$ 为拓扑空间，$p:\widetilde X\to X$ 为连续满射。若对每个 $x\in X$，存在开邻域 $U\subseteq X$，使得 $p^{-1}(U)$ 可以表示为互不相交的开集之并 $p^{-1}(U)=\bigsqcup_{\alpha\in A}V_\alpha$，且每个限制映射 $p|_{V_\alpha}:V_\alpha\to U$ 都是同胚，则称 $p$ 为&lt;strong&gt;覆盖映射&lt;/strong&gt;，$\widetilde X$ 称为 $X$ 的&lt;strong&gt;覆盖空间&lt;/strong&gt;，$X$ 称为&lt;strong&gt;底空间&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;这样的开邻域 $U$ 称为&lt;strong&gt;均匀覆盖邻域（evenly covered neighborhood）&lt;/strong&gt;，其中的 $V_\alpha$ 称为&lt;strong&gt;片（sheet）&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;例 4.1（实数轴覆盖圆周）&lt;/strong&gt; 定义 $p:\mathbb R\to S^1$，$p(t)=e^{2\pi it}$。对任意 $z\in S^1$，其原像为一个可数无限集合。因此，$\mathbb R$ 是 $S^1$ 的一个覆盖空间。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;例 4.2（圆周覆盖圆周）&lt;/strong&gt; 对正整数 $n$，定义 $p_n:S^1\to S^1$，$p_n(z)=z^n$。这是一个 $n$ 层覆盖，每个底空间中的点恰好有 $n$ 个原像。&lt;/p&gt;</description></item><item><title>第 6 章　环、模与链复形</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/</guid><description>&lt;p&gt;&lt;em&gt;GRings, Modules and Chain Complexes&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;例 4.2（圆周覆盖圆周）&lt;/strong&gt; 对正整数 $n$，定义 $p_n:S^1\to S^1$，$p_n(z)=z^n$。这是一个 $n$ 层覆盖，每个底空间中的点恰好有 $n$ 个原像。&lt;/p&gt;</description></item><item><title>第 6 章　环、模与链复形</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/</guid><description>&lt;p&gt;&lt;em&gt;Rings, Modules and Chain Complexes&lt;/em&gt;&lt;/p&gt;
+&lt;h1 id="60-引言"&gt;6.0 引言&lt;/h1&gt;
+&lt;p&gt;从这篇文章开始，我们就正式进入同调理论。本文的目的便是建立所需的基本代数语言。&lt;/p&gt;
+&lt;p&gt;先前引入群之后，我们再引入环与标量乘法，进而定义模，说明 Abel 群恰好可以看作 $\mathbb Z$-模，而向量空间则是域上的模。在此基础上，我们介绍正合列与短正合列，理解它们如何通过核与像描述代数结构之间的关系。最后，以 Abel 群或模为系数对象，引入链复形、闭链群、边界群、同调群、链映射与链同伦，并说明短正合列如何诱导长正合列，以及连接同态如何通过提升构造。&lt;/p&gt;
 &lt;h1 id="61-从拓扑问题到代数结构"&gt;6.1 从拓扑问题到代数结构&lt;/h1&gt;
-&lt;p&gt;前面我们通过基本群，将闭合道路的同伦类组织成一个群，从而获得空间的一维拓扑信息。但基本群并不足以完整刻画空间。例如，单连通空间的基本群都是平凡群，却可能具有完全不同的高维拓扑结构。为了研究更高维的拓扑信息，我们需要一种更系统的代数工具：同调理论（Homology Theory）。它的基本思想是，将几何对象组织成一系列代数对象，并通过映射描述它们之间的关系。对于我们即将研究的链复形，这些代数对象通常是 Abel 群或模，而连接它们的映射则是群同态或模同态。通过映射的核与像，我们最终构造出同调群。因此，在进入链复形之前，我们需要知道群、环、模、同态与正合列，其中群的知识不再赘述。&lt;/p&gt;
-&lt;p&gt;本文只讨论 Abel 群及模上的链复形。&lt;/p&gt;
+&lt;p&gt;前面我们通过基本群，将闭合道路按照同伦关系分类，从而获得空间的一种重要拓扑不变量。然而，基本群并不能完整刻画空间的拓扑结构，而且它本身主要研究闭路所携带的同伦信息。为了从另一种角度研究空间的拓扑性质，并将这种方法推广到更高维度，我们需要一种更系统的代数工具：同调理论（Homology Theory）。&lt;/p&gt;
+&lt;p&gt;同调理论的基本思想是，将几何与拓扑信息组织成一系列代数对象，并通过它们之间的映射研究空间的结构。对于我们即将研究的链复形，这些代数对象通常是 Abel 群或模，而连接它们的边界映射则是群同态或模同态。由于边界的边界为零，相邻边界映射的像必然包含于下一映射的核。通过对核与像取商，我们便得到同调群，从而提取空间中无法被更高维边界消去的代数信息。&lt;/p&gt;
+&lt;p&gt;在进入链复形之前，我们需要掌握群、环、模、同态与正合列，其中群的知识不再赘述。&lt;/p&gt;
 &lt;h1 id="63-环与标量乘法"&gt;6.3 环与标量乘法&lt;/h1&gt;
 &lt;p&gt;群只提供一种运算，而模的定义还需要引入标量乘法。标量来自一个环，因此我们先介绍环的概念。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;定义 6.1（环）&lt;/strong&gt; 一个集合 $R$ 配备加法与乘法两种运算。若满足以下条件，则称 $R$ 为环：&lt;/p&gt;
@@ -2687,13 +2691,7 @@ a(b+c)=ab+ac,\quad (a+b)c=ac+bc.
 $&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;若环的乘法满足交换律 $ab=ba$，则称为&lt;strong&gt;交换环（commutative ring）&lt;/strong&gt;。同时具有乘法单位元的交换环称为&lt;strong&gt;含幺交换环（commutative ring with identity）&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;举几个例子，整数环 $\mathbb Z$ 、多项式环 $\mathbb R[x]$ 都是含幺交换环；矩阵环 $M_n(\mathbb R)$ 是含幺环，但当 $n&amp;gt;1$ 时通常不交换；有理数域 $\mathbb Q$、实数域 $\mathbb R$ 和复数域 $\mathbb C$ 都是含幺交换环，而且是域。域是一类特殊的含幺交换环，其中每个非零元素都有乘法逆元。向量空间的标量来自域，而模的标量可以来自一般的环。我们约定接下来的讨论的环均含有乘法单位元 $1_R$，且 $1_R\neq 0$ 。&lt;/p&gt;
-&lt;p&gt;有了环之后，我们就能定义标量乘法，联想实数域、复数域来看会舒服很多。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;定义 6.2（标量乘法）&lt;/strong&gt; 设 $R$ 为含幺环，$M$ 为 Abel 群。若存在映射
-$
-R\times M\longrightarrow M,\qquad (r,m)\longmapsto rm,
-$
-称为标量乘法，并满足以下条件：&lt;/p&gt;</description></item><item><title>第 7 章　单纯同调</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E5%8D%95%E7%BA%AF%E5%90%8C%E8%B0%83/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E5%8D%95%E7%BA%AF%E5%90%8C%E8%B0%83/</guid><description>&lt;h1 id="第-7-章单纯同调"&gt;第 7 章　单纯同调&lt;/h1&gt;
+&lt;p&gt;举几个例子，整数环 $\mathbb Z$ 、多项式环 $\mathbb R[x]$ 都是含幺交换环；矩阵环 $M_n(\mathbb R)$ 是含幺环，但当 $n&amp;gt;1$ 时通常不交换；有理数域 $\mathbb Q$、实数域 $\mathbb R$ 和复数域 $\mathbb C$ 都是含幺交换环，而且是域。域是一类特殊的含幺交换环，其中每个非零元素都有乘法逆元。向量空间的标量来自域，而模的标量可以来自一般的环。我们约定接下来的讨论的环均含有乘法单位元 $1_R$，且 $1_R\neq 0$ 。&lt;/p&gt;</description></item><item><title>第 7 章　单纯同调</title><link>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E5%8D%95%E7%BA%AF%E5%90%8C%E8%B0%83/</link><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E5%8D%95%E7%BA%AF%E5%90%8C%E8%B0%83/</guid><description>&lt;h1 id="第-7-章单纯同调"&gt;第 7 章　单纯同调&lt;/h1&gt;
 &lt;p&gt;Simplicial Homology&lt;/p&gt;
 &lt;p&gt;第二编 · 同调理论&lt;/p&gt;
 &lt;h2 id="71-从几何对象到链复形"&gt;7.1 从几何对象到链复形&lt;/h2&gt;

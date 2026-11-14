@@ -1,7 +1,11 @@
-<!doctype html><html lang=en dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>第 6 章　环、模与链复形 | Linmythos</title><meta name=keywords content><meta name=description content="GRings, Modules and Chain Complexes
+<!doctype html><html lang=en dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>第 6 章　环、模与链复形 | Linmythos</title><meta name=keywords content><meta name=description content="Rings, Modules and Chain Complexes
+6.0 引言
+从这篇文章开始，我们就正式进入同调理论。本文的目的便是建立所需的基本代数语言。
+先前引入群之后，我们再引入环与标量乘法，进而定义模，说明 Abel 群恰好可以看作 $\mathbb Z$-模，而向量空间则是域上的模。在此基础上，我们介绍正合列与短正合列，理解它们如何通过核与像描述代数结构之间的关系。最后，以 Abel 群或模为系数对象，引入链复形、闭链群、边界群、同调群、链映射与链同伦，并说明短正合列如何诱导长正合列，以及连接同态如何通过提升构造。
 6.1 从拓扑问题到代数结构
-前面我们通过基本群，将闭合道路的同伦类组织成一个群，从而获得空间的一维拓扑信息。但基本群并不足以完整刻画空间。例如，单连通空间的基本群都是平凡群，却可能具有完全不同的高维拓扑结构。为了研究更高维的拓扑信息，我们需要一种更系统的代数工具：同调理论（Homology Theory）。它的基本思想是，将几何对象组织成一系列代数对象，并通过映射描述它们之间的关系。对于我们即将研究的链复形，这些代数对象通常是 Abel 群或模，而连接它们的映射则是群同态或模同态。通过映射的核与像，我们最终构造出同调群。因此，在进入链复形之前，我们需要知道群、环、模、同态与正合列，其中群的知识不再赘述。
-本文只讨论 Abel 群及模上的链复形。
+前面我们通过基本群，将闭合道路按照同伦关系分类，从而获得空间的一种重要拓扑不变量。然而，基本群并不能完整刻画空间的拓扑结构，而且它本身主要研究闭路所携带的同伦信息。为了从另一种角度研究空间的拓扑性质，并将这种方法推广到更高维度，我们需要一种更系统的代数工具：同调理论（Homology Theory）。
+同调理论的基本思想是，将几何与拓扑信息组织成一系列代数对象，并通过它们之间的映射研究空间的结构。对于我们即将研究的链复形，这些代数对象通常是 Abel 群或模，而连接它们的边界映射则是群同态或模同态。由于边界的边界为零，相邻边界映射的像必然包含于下一映射的核。通过对核与像取商，我们便得到同调群，从而提取空间中无法被更高维边界消去的代数信息。
+在进入链复形之前，我们需要掌握群、环、模、同态与正合列，其中群的知识不再赘述。
 6.3 环与标量乘法
 群只提供一种运算，而模的定义还需要引入标量乘法。标量来自一个环，因此我们先介绍环的概念。
 定义 6.1（环） 一个集合 $R$ 配备加法与乘法两种运算。若满足以下条件，则称 $R$ 为环：
@@ -14,31 +18,27 @@ a(b+c)=ab+ac,\quad (a+b)c=ac+bc.
 $
 
 若环的乘法满足交换律 $ab=ba$，则称为交换环（commutative ring）。同时具有乘法单位元的交换环称为含幺交换环（commutative ring with identity）。
-举几个例子，整数环 $\mathbb Z$ 、多项式环 $\mathbb R[x]$ 都是含幺交换环；矩阵环 $M_n(\mathbb R)$ 是含幺环，但当 $n>1$ 时通常不交换；有理数域 $\mathbb Q$、实数域 $\mathbb R$ 和复数域 $\mathbb C$ 都是含幺交换环，而且是域。域是一类特殊的含幺交换环，其中每个非零元素都有乘法逆元。向量空间的标量来自域，而模的标量可以来自一般的环。我们约定接下来的讨论的环均含有乘法单位元 $1_R$，且 $1_R\neq 0$ 。
-有了环之后，我们就能定义标量乘法，联想实数域、复数域来看会舒服很多。
-定义 6.2（标量乘法） 设 $R$ 为含幺环，$M$ 为 Abel 群。若存在映射
-$
-R\times M\longrightarrow M,\qquad (r,m)\longmapsto rm,
-$
-称为标量乘法，并满足以下条件："><meta name=author content="Linmythos"><link rel=canonical href=https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/><link crossorigin=anonymous href=/assets/css/stylesheet.5a42af7b68c8b1b7f3d0894c8a74d101cf31f37c1aa9bf8365395ef493e0dea4.css integrity="sha256-WkKve2jIsbfz0IlMinTRAc8x83waqb+DZTle9JPg3qQ=" rel="preload stylesheet" as=style><link rel=icon href=https://linmythos.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://linmythos.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://linmythos.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://linmythos.github.io/apple-touch-icon.png><link rel=mask-icon href=https://linmythos.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],packages:{"[+]":["ams"]}}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><meta property="og:url" content="https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/"><meta property="og:site_name" content="Linmythos"><meta property="og:title" content="第 6 章　环、模与链复形"><meta property="og:description" content="GRings, Modules and Chain Complexes
-6.1 从拓扑问题到代数结构 前面我们通过基本群，将闭合道路的同伦类组织成一个群，从而获得空间的一维拓扑信息。但基本群并不足以完整刻画空间。例如，单连通空间的基本群都是平凡群，却可能具有完全不同的高维拓扑结构。为了研究更高维的拓扑信息，我们需要一种更系统的代数工具：同调理论（Homology Theory）。它的基本思想是，将几何对象组织成一系列代数对象，并通过映射描述它们之间的关系。对于我们即将研究的链复形，这些代数对象通常是 Abel 群或模，而连接它们的映射则是群同态或模同态。通过映射的核与像，我们最终构造出同调群。因此，在进入链复形之前，我们需要知道群、环、模、同态与正合列，其中群的知识不再赘述。
-本文只讨论 Abel 群及模上的链复形。
+举几个例子，整数环 $\mathbb Z$ 、多项式环 $\mathbb R[x]$ 都是含幺交换环；矩阵环 $M_n(\mathbb R)$ 是含幺环，但当 $n>1$ 时通常不交换；有理数域 $\mathbb Q$、实数域 $\mathbb R$ 和复数域 $\mathbb C$ 都是含幺交换环，而且是域。域是一类特殊的含幺交换环，其中每个非零元素都有乘法逆元。向量空间的标量来自域，而模的标量可以来自一般的环。我们约定接下来的讨论的环均含有乘法单位元 $1_R$，且 $1_R\neq 0$ 。"><meta name=author content="Linmythos"><link rel=canonical href=https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/><link crossorigin=anonymous href=/assets/css/stylesheet.5a42af7b68c8b1b7f3d0894c8a74d101cf31f37c1aa9bf8365395ef493e0dea4.css integrity="sha256-WkKve2jIsbfz0IlMinTRAc8x83waqb+DZTle9JPg3qQ=" rel="preload stylesheet" as=style><link rel=icon href=https://linmythos.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://linmythos.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://linmythos.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://linmythos.github.io/apple-touch-icon.png><link rel=mask-icon href=https://linmythos.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],packages:{"[+]":["ams"]}}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><meta property="og:url" content="https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/"><meta property="og:site_name" content="Linmythos"><meta property="og:title" content="第 6 章　环、模与链复形"><meta property="og:description" content="Rings, Modules and Chain Complexes
+6.0 引言 从这篇文章开始，我们就正式进入同调理论。本文的目的便是建立所需的基本代数语言。
+先前引入群之后，我们再引入环与标量乘法，进而定义模，说明 Abel 群恰好可以看作 $\mathbb Z$-模，而向量空间则是域上的模。在此基础上，我们介绍正合列与短正合列，理解它们如何通过核与像描述代数结构之间的关系。最后，以 Abel 群或模为系数对象，引入链复形、闭链群、边界群、同调群、链映射与链同伦，并说明短正合列如何诱导长正合列，以及连接同态如何通过提升构造。
+6.1 从拓扑问题到代数结构 前面我们通过基本群，将闭合道路按照同伦关系分类，从而获得空间的一种重要拓扑不变量。然而，基本群并不能完整刻画空间的拓扑结构，而且它本身主要研究闭路所携带的同伦信息。为了从另一种角度研究空间的拓扑性质，并将这种方法推广到更高维度，我们需要一种更系统的代数工具：同调理论（Homology Theory）。
+同调理论的基本思想是，将几何与拓扑信息组织成一系列代数对象，并通过它们之间的映射研究空间的结构。对于我们即将研究的链复形，这些代数对象通常是 Abel 群或模，而连接它们的边界映射则是群同态或模同态。由于边界的边界为零，相邻边界映射的像必然包含于下一映射的核。通过对核与像取商，我们便得到同调群，从而提取空间中无法被更高维边界消去的代数信息。
+在进入链复形之前，我们需要掌握群、环、模、同态与正合列，其中群的知识不再赘述。
 6.3 环与标量乘法 群只提供一种运算，而模的定义还需要引入标量乘法。标量来自一个环，因此我们先介绍环的概念。
 定义 6.1（环） 一个集合 $R$ 配备加法与乘法两种运算。若满足以下条件，则称 $R$ 为环：
 $(R,+)$ 是 Abel 群，其加法单位元记为 $0$。 乘法满足结合律，即 $(ab)c=a(bc)$ 。 乘法对加法满足左右分配律： $ a(b+c)=ab+ac,\quad (a+b)c=ac+bc. $ 若环的乘法满足交换律 $ab=ba$，则称为交换环（commutative ring）。同时具有乘法单位元的交换环称为含幺交换环（commutative ring with identity）。
-举几个例子，整数环 $\mathbb Z$ 、多项式环 $\mathbb R[x]$ 都是含幺交换环；矩阵环 $M_n(\mathbb R)$ 是含幺环，但当 $n>1$ 时通常不交换；有理数域 $\mathbb Q$、实数域 $\mathbb R$ 和复数域 $\mathbb C$ 都是含幺交换环，而且是域。域是一类特殊的含幺交换环，其中每个非零元素都有乘法逆元。向量空间的标量来自域，而模的标量可以来自一般的环。我们约定接下来的讨论的环均含有乘法单位元 $1_R$，且 $1_R\neq 0$ 。
-有了环之后，我们就能定义标量乘法，联想实数域、复数域来看会舒服很多。
-定义 6.2（标量乘法） 设 $R$ 为含幺环，$M$ 为 Abel 群。若存在映射 $ R\times M\longrightarrow M,\qquad (r,m)\longmapsto rm, $ 称为标量乘法，并满足以下条件："><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="math"><meta property="article:published_time" content="2026-11-06T00:00:00+00:00"><meta property="article:modified_time" content="2026-11-06T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="第 6 章　环、模与链复形"><meta name=twitter:description content="GRings, Modules and Chain Complexes
-6.1 从拓扑问题到代数结构 前面我们通过基本群，将闭合道路的同伦类组织成一个群，从而获得空间的一维拓扑信息。但基本群并不足以完整刻画空间。例如，单连通空间的基本群都是平凡群，却可能具有完全不同的高维拓扑结构。为了研究更高维的拓扑信息，我们需要一种更系统的代数工具：同调理论（Homology Theory）。它的基本思想是，将几何对象组织成一系列代数对象，并通过映射描述它们之间的关系。对于我们即将研究的链复形，这些代数对象通常是 Abel 群或模，而连接它们的映射则是群同态或模同态。通过映射的核与像，我们最终构造出同调群。因此，在进入链复形之前，我们需要知道群、环、模、同态与正合列，其中群的知识不再赘述。
-本文只讨论 Abel 群及模上的链复形。
+举几个例子，整数环 $\mathbb Z$ 、多项式环 $\mathbb R[x]$ 都是含幺交换环；矩阵环 $M_n(\mathbb R)$ 是含幺环，但当 $n>1$ 时通常不交换；有理数域 $\mathbb Q$、实数域 $\mathbb R$ 和复数域 $\mathbb C$ 都是含幺交换环，而且是域。域是一类特殊的含幺交换环，其中每个非零元素都有乘法逆元。向量空间的标量来自域，而模的标量可以来自一般的环。我们约定接下来的讨论的环均含有乘法单位元 $1_R$，且 $1_R\neq 0$ 。"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="math"><meta property="article:published_time" content="2026-11-06T00:00:00+00:00"><meta property="article:modified_time" content="2026-11-06T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="第 6 章　环、模与链复形"><meta name=twitter:description content="Rings, Modules and Chain Complexes
+6.0 引言 从这篇文章开始，我们就正式进入同调理论。本文的目的便是建立所需的基本代数语言。
+先前引入群之后，我们再引入环与标量乘法，进而定义模，说明 Abel 群恰好可以看作 $\mathbb Z$-模，而向量空间则是域上的模。在此基础上，我们介绍正合列与短正合列，理解它们如何通过核与像描述代数结构之间的关系。最后，以 Abel 群或模为系数对象，引入链复形、闭链群、边界群、同调群、链映射与链同伦，并说明短正合列如何诱导长正合列，以及连接同态如何通过提升构造。
+6.1 从拓扑问题到代数结构 前面我们通过基本群，将闭合道路按照同伦关系分类，从而获得空间的一种重要拓扑不变量。然而，基本群并不能完整刻画空间的拓扑结构，而且它本身主要研究闭路所携带的同伦信息。为了从另一种角度研究空间的拓扑性质，并将这种方法推广到更高维度，我们需要一种更系统的代数工具：同调理论（Homology Theory）。
+同调理论的基本思想是，将几何与拓扑信息组织成一系列代数对象，并通过它们之间的映射研究空间的结构。对于我们即将研究的链复形，这些代数对象通常是 Abel 群或模，而连接它们的边界映射则是群同态或模同态。由于边界的边界为零，相邻边界映射的像必然包含于下一映射的核。通过对核与像取商，我们便得到同调群，从而提取空间中无法被更高维边界消去的代数信息。
+在进入链复形之前，我们需要掌握群、环、模、同态与正合列，其中群的知识不再赘述。
 6.3 环与标量乘法 群只提供一种运算，而模的定义还需要引入标量乘法。标量来自一个环，因此我们先介绍环的概念。
 定义 6.1（环） 一个集合 $R$ 配备加法与乘法两种运算。若满足以下条件，则称 $R$ 为环：
 $(R,+)$ 是 Abel 群，其加法单位元记为 $0$。 乘法满足结合律，即 $(ab)c=a(bc)$ 。 乘法对加法满足左右分配律： $ a(b+c)=ab+ac,\quad (a+b)c=ac+bc. $ 若环的乘法满足交换律 $ab=ba$，则称为交换环（commutative ring）。同时具有乘法单位元的交换环称为含幺交换环（commutative ring with identity）。
-举几个例子，整数环 $\mathbb Z$ 、多项式环 $\mathbb R[x]$ 都是含幺交换环；矩阵环 $M_n(\mathbb R)$ 是含幺环，但当 $n>1$ 时通常不交换；有理数域 $\mathbb Q$、实数域 $\mathbb R$ 和复数域 $\mathbb C$ 都是含幺交换环，而且是域。域是一类特殊的含幺交换环，其中每个非零元素都有乘法逆元。向量空间的标量来自域，而模的标量可以来自一般的环。我们约定接下来的讨论的环均含有乘法单位元 $1_R$，且 $1_R\neq 0$ 。
-有了环之后，我们就能定义标量乘法，联想实数域、复数域来看会舒服很多。
-定义 6.2（标量乘法） 设 $R$ 为含幺环，$M$ 为 Abel 群。若存在映射 $ R\times M\longrightarrow M,\qquad (r,m)\longmapsto rm, $ 称为标量乘法，并满足以下条件："><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Mathematics","item":"https://linmythos.github.io/math/"},{"@type":"ListItem","position":2,"name":"拓扑","item":"https://linmythos.github.io/math/topology/"},{"@type":"ListItem","position":5,"name":"第 6 章　环、模与链复形","item":"https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"第 6 章　环、模与链复形","name":"第 6 章　环、模与链复形","description":"GRings, Modules and Chain Complexes\n6.1 从拓扑问题到代数结构 前面我们通过基本群，将闭合道路的同伦类组织成一个群，从而获得空间的一维拓扑信息。但基本群并不足以完整刻画空间。例如，单连通空间的基本群都是平凡群，却可能具有完全不同的高维拓扑结构。为了研究更高维的拓扑信息，我们需要一种更系统的代数工具：同调理论（Homology Theory）。它的基本思想是，将几何对象组织成一系列代数对象，并通过映射描述它们之间的关系。对于我们即将研究的链复形，这些代数对象通常是 Abel 群或模，而连接它们的映射则是群同态或模同态。通过映射的核与像，我们最终构造出同调群。因此，在进入链复形之前，我们需要知道群、环、模、同态与正合列，其中群的知识不再赘述。\n本文只讨论 Abel 群及模上的链复形。\n6.3 环与标量乘法 群只提供一种运算，而模的定义还需要引入标量乘法。标量来自一个环，因此我们先介绍环的概念。\n定义 6.1（环） 一个集合 $R$ 配备加法与乘法两种运算。若满足以下条件，则称 $R$ 为环：\n$(R,+)$ 是 Abel 群，其加法单位元记为 $0$。 乘法满足结合律，即 $(ab)c=a(bc)$ 。 乘法对加法满足左右分配律： $ a(b+c)=ab+ac,\\quad (a+b)c=ac+bc. $ 若环的乘法满足交换律 $ab=ba$，则称为交换环（commutative ring）。同时具有乘法单位元的交换环称为含幺交换环（commutative ring with identity）。\n举几个例子，整数环 $\\mathbb Z$ 、多项式环 $\\mathbb R[x]$ 都是含幺交换环；矩阵环 $M_n(\\mathbb R)$ 是含幺环，但当 $n\u0026gt;1$ 时通常不交换；有理数域 $\\mathbb Q$、实数域 $\\mathbb R$ 和复数域 $\\mathbb C$ 都是含幺交换环，而且是域。域是一类特殊的含幺交换环，其中每个非零元素都有乘法逆元。向量空间的标量来自域，而模的标量可以来自一般的环。我们约定接下来的讨论的环均含有乘法单位元 $1_R$，且 $1_R\\neq 0$ 。\n有了环之后，我们就能定义标量乘法，联想实数域、复数域来看会舒服很多。\n定义 6.2（标量乘法） 设 $R$ 为含幺环，$M$ 为 Abel 群。若存在映射 $ R\\times M\\longrightarrow M,\\qquad (r,m)\\longmapsto rm, $ 称为标量乘法，并满足以下条件：\n","keywords":[],"articleBody":"GRings, Modules and Chain Complexes\n6.1 从拓扑问题到代数结构 前面我们通过基本群，将闭合道路的同伦类组织成一个群，从而获得空间的一维拓扑信息。但基本群并不足以完整刻画空间。例如，单连通空间的基本群都是平凡群，却可能具有完全不同的高维拓扑结构。为了研究更高维的拓扑信息，我们需要一种更系统的代数工具：同调理论（Homology Theory）。它的基本思想是，将几何对象组织成一系列代数对象，并通过映射描述它们之间的关系。对于我们即将研究的链复形，这些代数对象通常是 Abel 群或模，而连接它们的映射则是群同态或模同态。通过映射的核与像，我们最终构造出同调群。因此，在进入链复形之前，我们需要知道群、环、模、同态与正合列，其中群的知识不再赘述。\n本文只讨论 Abel 群及模上的链复形。\n6.3 环与标量乘法 群只提供一种运算，而模的定义还需要引入标量乘法。标量来自一个环，因此我们先介绍环的概念。\n定义 6.1（环） 一个集合 $R$ 配备加法与乘法两种运算。若满足以下条件，则称 $R$ 为环：\n$(R,+)$ 是 Abel 群，其加法单位元记为 $0$。 乘法满足结合律，即 $(ab)c=a(bc)$ 。 乘法对加法满足左右分配律： $ a(b+c)=ab+ac,\\quad (a+b)c=ac+bc. $ 若环的乘法满足交换律 $ab=ba$，则称为交换环（commutative ring）。同时具有乘法单位元的交换环称为含幺交换环（commutative ring with identity）。\n举几个例子，整数环 $\\mathbb Z$ 、多项式环 $\\mathbb R[x]$ 都是含幺交换环；矩阵环 $M_n(\\mathbb R)$ 是含幺环，但当 $n\u003e1$ 时通常不交换；有理数域 $\\mathbb Q$、实数域 $\\mathbb R$ 和复数域 $\\mathbb C$ 都是含幺交换环，而且是域。域是一类特殊的含幺交换环，其中每个非零元素都有乘法逆元。向量空间的标量来自域，而模的标量可以来自一般的环。我们约定接下来的讨论的环均含有乘法单位元 $1_R$，且 $1_R\\neq 0$ 。\n有了环之后，我们就能定义标量乘法，联想实数域、复数域来看会舒服很多。\n定义 6.2（标量乘法） 设 $R$ 为含幺环，$M$ 为 Abel 群。若存在映射 $ R\\times M\\longrightarrow M,\\qquad (r,m)\\longmapsto rm, $ 称为标量乘法，并满足以下条件：\n对模的加法分配： $ r(m_1+m_2)=rm_1+rm_2. $ 对环的加法分配： $ (r_1+r_2)m=r_1m+r_2m. $ 标量乘法相容： $ (r_1r_2)m=r_1(r_2m). $ 单位元作用： $ 1_Rm=m. $ 这里的标量 $r\\in R$，模元素 $m\\in M$。这些条件保证了标量乘法与模自身的加法结构相容。\n例如，取 $R=\\mathbb Z$，对任意 Abel 群 $M$，可以定义整数倍运算： $$nm= \\begin{cases} \\underbrace{m+\\cdots+m}_{n\\text{ 次}},\u0026n\u003e0,\\\\ 0,\u0026n=0,\\\\ -((-n)m),\u0026n\u003c0. \\end{cases} $$ 这使得每个 Abel 群都自然成为一个 $\\mathbb Z$-模。\n现在我们有了群、环、标量乘法，那么模就是一件水到渠成的事情了。\n6.4 模与自由模 模可以看作向量空间的推广。二者最主要的区别在于标量所属的代数结构：向量空间的标量来自域，而模的标量来自一般的环。\n定义 6.3（模） 设 $R$ 为含幺交换环。一个 Abel 群 $M$，如果配备满足上述公理的 $R$ 上的标量乘法，则称为一个 $R$-模（$R$-module）。\n模不一定具有基，也不一定能够表示为有限个自由生成元的线性组合。所以这类模是很特殊的，叫自由模，向量空间就是一种自由模。\n定义 6.4（自由模） 若 $R$-模 $M$ 存在一组元素 $ B=\\{e_i\\}_{i\\in I} $，使得每个 $m\\in M$ 都能唯一表示为有限个基元素的线性组合\n$$ m=\\sum_{i\\in I}r_ie_i,\\qquad r_i\\in R, $$\n则称 $M$ 为自由 $R$-模，$B$ 称为一组基。举几个例子，刚才提过，任意 Abel 群都是一个 $\\mathbb Z$-模；$\\mathbb Z^n$ 是一个自由 $\\mathbb Z$-模；$\\mathbb Z/n\\mathbb Z$ 是一个 $\\mathbb Z$-模，但当 $n\u003e1$ 时不是自由 $\\mathbb Z$-模；$\\mathbb R^n$ 是一个 $\\mathbb R$-模，也就是一个实向量空间。\n一般模未必是自由模。例如，$\\mathbb Z/n\\mathbb Z$ 中存在非零元素 $x$ 满足 $nx=0$，因而它具有非零挠元；而自由 $\\mathbb Z$-模没有非零挠元。我们具体展开来说：\n考虑 $\\mathbb Z/n\\mathbb Z$，它是一个 $\\mathbb Z$-模。其中的元素是模 $n$ 同余类，例如 $ \\overline{0},\\overline{1},\\ldots,\\overline{n-1}.$ 取非零元素 $\\overline{1}$，让整数 $n$ 作用于它：$ n\\cdot\\overline{1} =\\overline{n}=\\overline{0}.$ 但是 $n\\neq0$，且 $\\overline{1}\\neq\\overline{0}$。因此，$\\overline{1}$ 是一个非零挠元。事实上，$\\mathbb Z/n\\mathbb Z$ 中每个元素都是挠元，因为对任意 $\\overline{k}$，都有 $ n\\cdot\\overline{k}=\\overline{nk}=\\overline{0}.$\n对于自由 $\\mathbb Z$-模，系数 $a_i$ 都是整数。 假设存在非零整数 $n$ 和非零元素 $ m=\\sum_i a_i e_i $ 满足 $nm=0.$ 那么 $ nm=\\sum_i(na_i)e_i=0.$ 由于基底表示唯一，所有系数都必须为零：$ na_i=0, \\forall i.$ 但整数环 $\\mathbb Z$ 没有零因子，而 $n\\neq0$，所以必有 $ a_i=0, \\forall i. $ 这意味着 $m=0$，与假设矛盾。因此，自由 $\\mathbb Z$-模不存在非零挠元。\n定义 6.5（模同态） 设 $M,N$ 为 $R$-模。映射 $f:M\\to N$ 若满足 $ f(m_1+m_2)=f(m_1)+f(m_2), $ 以及 $ f(rm)=rf(m), $ 则称为 $R$-模同态。\n模同态同时保持加法结构与标量乘法结构。当 $R=\\mathbb Z$ 时，模同态恰好就是 Abel 群同态。\n6.4 张量积 张量积（Tensor Product）是模之间的一种重要代数构造。它的作用是将双线性映射转化为线性映射。\n设 $R$ 为含幺交换环，$M,N$ 为 $R$-模。我们希望构造一个新的 $R$-模 $M\\otimes_R N$，以及一个映射 $ \\otimes:M\\times N\\longrightarrow M\\otimes_R N, \\qquad (m,n)\\longmapsto m\\otimes n, $ 使其满足双线性关系： $ \\begin{aligned} (m_1+m_2)\\otimes n \u0026=m_1\\otimes n+m_2\\otimes n,\\ m\\otimes(n_1+n_2) \u0026=m\\otimes n_1+m\\otimes n_2,\\ (rm)\\otimes n \u0026=m\\otimes(rn)=r(m\\otimes n). \\end{aligned} $\n严格地说，张量积由这些双线性关系生成，并满足以下泛性质。\n定义 6.6（张量积） $M\\otimes_R N$ 是一个 $R$-模，配备双线性映射 $(m,n)\\mapsto m\\otimes n$，使得对任意 $R$-模 $P$ 及双线性映射 $b:M\\times N\\to P$，都存在唯一的模同态 $ \\widetilde b:M\\otimes_R N\\longrightarrow P $ 满足 $ b(m,n)=\\widetilde b(m\\otimes n). $\n这意味着任何双线性映射都可以唯一地通过张量积分解为一个线性映射。\n例如，若 $M=R^m$、$N=R^n$，则有自然同构 $ R^m\\otimes_R R^n\\cong R^{mn}. $\n张量积是模论中的基本工具，也将在后续讨论不同系数下的链复形时发挥作用。本章只需要掌握其定义与泛性质，不进一步讨论张量积的具体计算和相关定理。\n6.5 正合列与短正合列 定义 6.7（正合列） 对于一列群同态 $ A\\xrightarrow{f}B\\xrightarrow{g}C, $ 若 $ \\operatorname{im}f=\\ker g, $ 则称该列在 $B$ 处正合。\n如果这一性质在每个中间项都成立，则称整列正合。对于模及 Abel 群，正合列的定义完全相同，只需将群同态替换为相应的模同态或 Abel 群同态。\n正合性的含义是：前一个映射能够产生的元素，恰好是后一个映射所消去的元素。它不仅要求前一个映射的像落在后一个映射的核中，而且要求二者完全相等。\n定义 6.8（短正合列） 若下列序列正合： $ 0\\longrightarrow A \\xrightarrow{f}B \\xrightarrow{g}C \\longrightarrow0, $ 则称其为短正合列（Short Exact Sequence）。这里的 $0$ 表示平凡群，或者在模的语境下表示零模。\n在 $A$ 处正合意味着 $ \\operatorname{im}(0\\to A)=\\ker f. $ 左边只有零元素，因此 $\\ker f={0}$，这恰好等价于 $f$ 单射。在 $B$ 处正合意味着 $ \\operatorname{im}f=\\ker g. $ ；在 $C$ 处正合意味着 $ \\operatorname{im}g=\\ker(C\\to0)=C, $ 所以 $g$ 必须满射。综上，短正合列等价于以下三个条件： $ \\boxed{ f\\text{ 单射}, \\operatorname{im}f=\\ker g, g\\text{ 满射}. } $\n进一步地，由于 $ \\operatorname{im}f=\\ker g $ 且群同态的核是正规子群，所以 $f(A)\\trianglelefteq B$。又因为 $g$ 满射，根据第一同构定理， $ B/f(A)\\cong C. $ 因此，短正合列描述的是：$A$ 通过单射嵌入 $B$，成为其中的一个正规子群；将这个子群商掉之后，得到的商群恰好与 $C$ 同构。对于 Abel 群或模，这个解释同样成立。\n介绍了这么多前置知识，我们终于来到了链复形。\n6.6 链复形 前面介绍的群与模都是代数对象，而链复形则是将一系列代数对象与它们之间的映射组织起来的一种结构。\n定义 6.9（链复形） 一个链复形由一列 Abel 群（或 $R$-模） $ \\cdots,C_{n+1},C_n,C_{n-1},\\cdots $ 以及一族同态 $ \\partial_n:C_n\\longrightarrow C_{n-1} $ 组成，并满足 $ \\partial_n\\circ\\partial_{n+1}=0 $ 对所有 $n$ 成立。通常将其写作 $ \\cdots\\xrightarrow{\\partial_{n+2}}C_{n+1} \\xrightarrow{\\partial_{n+1}}C_n \\xrightarrow{\\partial_n}C_{n-1} \\xrightarrow{\\partial_{n-1}}\\cdots. $ 其中 $C_n$ 称为 $n$ 维链群（或 $n$ 次链模），$\\partial_n$ 称为边界算子。如果所有 $C_n$ 都是 $R$-模，并且每个边界算子都是 $R$-模同态，则称为 $R$ 上的链复形。\n条件 $ \\partial_n\\circ\\partial_{n+1}=0 $ 通常简写为 $ \\partial^2=0, $ 称为边界的边界为零。这一条件是链复形最核心的代数性质。它意味着任何一个链的边界，再取一次边界必然得到零。例如，在一个由三角形构成的几何结构中，三角形的边界由三条有向边组成；而每条边又有两个端点。将三条边的端点按照方向相加时，各顶点的系数恰好抵消，因此三角形边界的边界为零。\n6.7 循环、边界与同调群 链复形中有两个最重要的子群：循环群与边界群。它们就像刚才正合列里面的 $\\operatorname{im}f$ 和 $\\ker g$\n定义 6.10（循环群与边界群） 对链复形 $ \\cdots\\longrightarrow C_{n+1} \\xrightarrow{\\partial_{n+1}}C_n \\xrightarrow{\\partial_n}C_{n-1}\\longrightarrow\\cdots, $ 定义 $ Z_n=\\ker\\partial_n, \\qquad B_n=\\operatorname{im}\\partial_{n+1}.$ 其中 $Z_n$ 称为 $n$ 维循环群（group of $n$-cycles），$B_n$ 称为 $n$ 维边界群（group of $n$-boundaries）。\n这里必须澄清一个术语问题：$Z_n$ 虽然名称中含有“循环群”，但它并不是说 $Z_n$ 一定是由单个元素生成的循环群（cyclic group）。这里的“循环”指的是被边界算子映射为零的链。\n由链复形条件 $ \\partial_n\\partial_{n+1}=0 $ 可知，对于任意 $x\\in C_{n+1}$，都有 $ \\partial_n(\\partial_{n+1}x)=0. $ 因此 $ B_n\\subseteq Z_n. $ 也就是说，每一个边界都是循环，但反过来未必成立。\n定义 6.11（同调群） 链复形的第 $n$ 个同调群定义为 $H_n(C_\\bullet) =\\frac{Z_n}{B_n} =\\frac{\\ker\\partial_n}{\\operatorname{im}\\partial_{n+1}}. $ 由于 $B_n\\subseteq Z_n$，上述商群是有定义的。\n同调群的思想可以这样理解：循环是边界为零的链，而边界是某个更高维链的边界。我们将相差一个边界的循环视为等价，于是得到同调群。\n具体而言，对 $z_1,z_2\\in Z_n$，定义 $ z_1\\sim z_2 \\quad\\Longleftrightarrow\\quad z_1-z_2\\in B_n. $\n因此，同调群记录的不是所有循环，而是模去边界之后剩下的循环类。它捕捉的是那些满足边界为零、但又不能表示为更高维边界的代数信息。\n从正合列的角度看，同调群也可以理解为相邻两个边界映射之间正合性的失效程度：如果在 $C_n$ 处恰好有 $ \\operatorname{im}\\partial_{n+1}=\\ker\\partial_n, $ 那么 $H_n(C_\\bullet)=0$。因此，同调群为零意味着该位置正合。\n6.10 链映射与诱导同态 链复形不仅可以单独研究，还可以研究不同链复形之间保持结构的映射。\n定义 6.17（链映射） 设 $C_\\bullet,D_\\bullet$ 为两个链复形。若一族同态 $ f_n:C_n\\longrightarrow D_n $ 满足 $ \\boxed{ \\partial_n^D\\circ f_n =f_{n-1}\\circ\\partial_n^C, } $ 则称 $f={f_n}$ 为链映射（Chain Map）。\n这个条件可以理解为：先对链应用映射，再取边界，与先取边界，再应用映射，结果相同。也就是说，链映射与边界算子相容。\n链映射之所以重要，是因为它能够自然地诱导同调群之间的同态。\n首先，若 $z\\in Z_n(C)$，则 $ \\partial_n^Cz=0. $ 于是 $ \\partial_n^D f_n(z) =f_{n-1}(\\partial_n^Cz)=0. $ 所以 $f_n(z)\\in Z_n(D)$，即循环映射为循环。\n其次，若 $z=\\partial_{n+1}^C x\\in B_n(C)$，则 $ f_n(z) =f_n(\\partial_{n+1}^C x) =\\partial_{n+1}^D f_{n+1}(x), $ 因此 $f_n(z)\\in B_n(D)$，即边界映射为边界。\n所以链映射可以在商群上诱导出同态 $ \\boxed{ H_n(f):H_n(C_\\bullet)\\longrightarrow H_n(D_\\bullet), \\qquad [z]\\longmapsto[f_n(z)]. } $\n这说明链复形之间保持边界结构的映射，会自然地在同调群层面产生代数映射。\n6.11 链同伦 链映射保持边界算子，但不同的链映射仍然可能诱导相同的同调群同态。为了刻画这种情况，我们引入链同伦。\n定义 6.18（链同伦） 设 $f,g:C_\\bullet\\to D_\\bullet$ 是两个链映射。若存在一族同态 $ s_n:C_n\\longrightarrow D_{n+1} $ 满足 $ \\boxed{ f_n-g_n =\\partial_{n+1}^D s_n+s_{n-1}\\partial_n^C, } $ 则称 $f$ 与 $g$ 链同伦（Chain Homotopic）。\n通常将这组关系简写为 $ f-g=\\partial^D s+s\\partial^C. $\n其中 $s={s_n}$ 称为链同伦算子。\n注意，$s_n$ 将 $n$ 次链映射到 $n+1$ 次链，因此它使两个链映射之间的差可以表示为边界算子与 $s$ 的组合。这与拓扑中的同伦概念具有深刻联系。\n定理 6.1 若两个链映射链同伦，则它们诱导的同调群同态相同。\n证明： 取 $z\\in Z_n(C)$，则 $\\partial_n^Cz=0$。由链同伦关系， $ \\begin{aligned} f_n(z)-g_n(z) \u0026=\\partial_{n+1}^D s_n(z) +s_{n-1}(\\partial_n^Cz)\\ \u0026=\\partial_{n+1}^D s_n(z). \\end{aligned} $\n因此 $f_n(z)$ 与 $g_n(z)$ 相差一个边界，在同调群中代表同一个元素： $ [f_n(z)]=[g_n(z)]. $\n故 $ H_n(f)=H_n(g). $ 证毕。\n这一结论说明，同调群并不关心链映射的全部细节，而只保留它们在同调层面上的作用。链同伦是同伦不变性在链复形中的代数表达。\n6.12 短正合列与连接同态 正合列不仅可以描述群或模之间的关系，也可以描述链复形之间的关系。它是构造长正合列的重要基础。\n考虑三个链复形 $A_\\bullet,B_\\bullet,C_\\bullet$，以及链映射构成的短正合列： $ 0\\longrightarrow A_\\bullet \\xrightarrow{i}B_\\bullet \\xrightarrow{p}C_\\bullet \\longrightarrow0. $\n这里的短正合意味着：对每个次数 $n$，都有 $ 0\\longrightarrow A_n \\xrightarrow{i_n}B_n \\xrightarrow{p_n}C_n \\longrightarrow0 $ 正合。也就是说，$i_n$ 单射，$p_n$ 满射，并且 $ \\operatorname{im}i_n=\\ker p_n. $\n由这样的短正合列，可以构造同调群之间的长正合列：\n$ \\cdots\\longrightarrow H_n(A) \\xrightarrow{i_}H_n(B)\\xrightarrow{p_}H_n(C) \\xrightarrow{\\delta}H_{n-1}(A)\\longrightarrow\\cdots.\n$\n其中 $\\delta$ 称为连接同态（Connecting Homomorphism）。\n连接同态的构造是本节最重要的内容。理解它的关键，在于理解“提升”（lifting）是什么意思。\n连接同态中的提升 设 $[c]\\in H_n(C_\\bullet)$，其中 $c\\in C_n$ 是一个循环，即 $ \\partial_n^C c=0. $\n由于 $p_n:B_n\\to C_n$ 是满射，因此一定存在 $b\\in B_n$，使得 $ p_n(b)=c. $\n这个过程称为将 $c$ 从 $C_n$ 提升到 $B_n$。所谓提升，就是在映射 $p_n$ 之下，寻找一个原像 $b$，使它映射回原来的元素 $c$。\n接下来，对 $b$ 取边界： $ \\partial_n^B b\\in B_{n-1}. $\n由于 $p$ 是链映射， $ p_{n-1}(\\partial_n^B b) =\\partial_n^C(p_n(b)) =\\partial_n^C c =0. $\n因此 $ \\partial_n^B b\\in\\ker p_{n-1}. $\n由短正合列的正合性， $ \\ker p_{n-1}=\\operatorname{im}i_{n-1}. $\n所以存在 $a\\in A_{n-1}$，使得 $ i_{n-1}(a)=\\partial_n^B b. $\n由于 $i_{n-1}$ 是单射，这个 $a$ 是唯一的。进一步，因为 $i$ 是链映射， $ i_{n-2}(\\partial_{n-1}^A a) =\\partial_{n-1}^B(i_{n-1}(a)) =\\partial_{n-1}^B\\partial_n^B b =0. $ 而 $i_{n-2}$ 是单射，所以 $ \\partial_{n-1}^A a=0. $\n因此 $a$ 是 $A_{n-1}$ 中的循环，可以定义 $ \\boxed{\\delta([c])=[a].} $\n这就是连接同态的构造。\n为什么连接同态是良定义的？ 上面的构造涉及两个选择：循环代表元 $c$，以及它在 $B_n$ 中的提升 $b$。要使 $\\delta$ 真正成为同态，必须证明不同选择不会改变最终得到的同调类。\n首先，固定 $c$，选择另一个提升 $b’$。由于 $ p_n(b’-b)=0, $ 存在 $x\\in A_n$，使得 $ i_n(x)=b’-b. $\n若相应地有 $ i_{n-1}(a)=\\partial b,\\qquad i_{n-1}(a’)=\\partial b’, $ 则 $ i_{n-1}(a’-a) =\\partial(b’-b) =\\partial i_n(x) =i_{n-1}(\\partial x). $ 由单射性可得 $ a’-a=\\partial x. $ 所以 $a’$ 与 $a$ 相差一个边界，代表同一个同调类。\n其次，若将循环代表元 $c$ 替换为同调等价的 $c’=c+\\partial d$，取 $d$ 在 $B$ 中的一个提升 $y$，则可以选择 $ b’=b+\\partial y $ 作为 $c’$ 的提升。由于 $ \\partial b’=\\partial b, $ 所得的 $a$ 不变。因此，连接同态与循环代表元的选择无关。\n由此可知，$\\delta$ 是良定义的群同态。\n连接同态的直观含义 连接同态可以理解为一个连续的代数过程：\n从 $C_n$ 中取一个循环 $c$。 将 $c$ 提升为 $B_n$ 中的元素 $b$。 对 $b$ 取边界，得到 $\\partial b$。 由于 $c$ 是循环，$\\partial b$ 必须落在 $\\ker p$ 中。 由正合性，$\\ker p=\\operatorname{im}i$，因此 $\\partial b$ 来自 $A_{n-1}$。 这个元素本身也是循环，从而确定 $A$ 中的一个同调类。 因此，连接同态将 $C$ 中的 $n$ 维同调信息，转化为 $A$ 中的 $(n-1)$ 维同调信息。\n它的关键不是简单地对 $c$ 取边界——因为 $c$ 本身已经是循环，边界为零；而是先将它提升到 $B$，再取边界。这个边界可能不为零，但恰好来自 $A$。\n这就是“连接”一词的来源：它将三个链复形的同调群联系起来。\n6.13 本章小结 本章建立了同调理论所需的基本代数语言。\n首先，我们从群出发，介绍 Abel 群、子群、循环群以及群同态的核与像。随后引入环与标量乘法，进而定义模，说明 Abel 群恰好可以看作 $\\mathbb Z$-模，而向量空间则是域上的模。\n在此基础上，我们介绍正合列与短正合列，理解它们如何通过核与像描述代数结构之间的关系。最后，以 Abel 群或模为系数对象，引入链复形、循环群、边界群、同调群、链映射与链同伦，并说明短正合列如何诱导长正合列，以及连接同态如何通过提升构造。\n本章需要牢固掌握以下几个关系：\n群同态的核与像都是子群，核还是正规子群。 Abel 群等价于 $\\mathbb Z$-模。 正合性意味着前一个映射的像等于后一个映射的核。 短正合列意味着首映射单射、中间正合、末映射满射。 链复形满足 $\\partial^2=0$，因而边界群包含于循环群。 同调群是循环群对边界群取商： $ H_n=\\frac{\\ker\\partial_n}{\\operatorname{im}\\partial_{n+1}}. $ 链同伦的链映射诱导相同的同调群同态。 连接同态通过提升与取边界，将一个链复形的同调信息传递到另一个链复形。 下一章将从具体的几何空间出发，构造相应的链复形，并通过计算同调群理解这些代数结构如何反映空间的拓扑性质。\n习题 1. 群同态的核与像。 设 $\\varphi:G\\to H$ 是群同态。证明 $\\ker\\varphi$ 是 $G$ 的正规子群，$\\operatorname{im}\\varphi$ 是 $H$ 的子群。举例说明像不一定是正规子群。\n2. 循环群与自由 Abel 群。 证明 $\\mathbb Z^n$ 在 $n\u003e1$ 时不是循环群。提示：假设它由一个元素生成，考察该元素的坐标。\n3. Abel 群与模。 证明任意 Abel 群都能唯一地赋予一个自然的 $\\mathbb Z$-模结构，使整数倍运算与群加法相容。\n4. 模的挠元。 设 $M$ 是一个 $\\mathbb Z$-模。若存在非零整数 $n$ 和非零元素 $m\\in M$，使得 $nm=0$，则称 $m$ 为挠元。证明自由 $\\mathbb Z$-模没有非零挠元，并说明 $\\mathbb Z/n\\mathbb Z$（$n\u003e1$）不是自由 $\\mathbb Z$-模。\n5. 正合列。 证明短正合列 $ 0\\to A\\xrightarrow{f}B\\xrightarrow{g}C\\to0 $ 等价于 $f$ 单射、$g$ 满射且 $\\operatorname{im}f=\\ker g$。\n6. 链复形。 设 $ C_2\\xrightarrow{\\partial_2}C_1 \\xrightarrow{\\partial_1}C_0 $ 满足 $\\partial_1\\partial_2=0$。证明 $\\operatorname{im}\\partial_2\\subseteq\\ker\\partial_1$，并解释这一包含关系在同调群定义中的作用。\n7. 同调群。 证明若链复形在 $C_n$ 处正合，则 $H_n(C_\\bullet)=0$。反过来，若 $H_n(C_\\bullet)=0$，说明这意味着什么。\n8. 链映射。 证明链映射将循环映射为循环、边界映射为边界，并由此诱导同调群之间的同态。\n9. 链同伦。 证明两个链同伦的链映射诱导相同的同调群同态。\n10. 连接同态。 阅读本章关于连接同态的构造，逐步解释为什么提升 $b$ 的边界 $\\partial b$ 必须来自 $A_{n-1}$，以及为什么它本身是一个循环。\n参考文献 Allen Hatcher, Algebraic Topology, Chapter 2. James R. Munkres, Elements of Algebraic Topology. Charles A. Weibel, An Introduction to Homological Algebra, Chapter 1. Joseph J. Rotman, An Introduction to the Theory of Groups. Serge Lang, Algebra. ","wordCount":"1160","inLanguage":"en","datePublished":"2026-11-06T00:00:00Z","dateModified":"2026-11-06T00:00:00Z","author":{"@type":"Person","name":"Linmythos"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/"},"publisher":{"@type":"Organization","name":"Linmythos","logo":{"@type":"ImageObject","url":"https://linmythos.github.io/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://linmythos.github.io/ accesskey=h title="Linmythos (Alt + H)">Linmythos</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+举几个例子，整数环 $\mathbb Z$ 、多项式环 $\mathbb R[x]$ 都是含幺交换环；矩阵环 $M_n(\mathbb R)$ 是含幺环，但当 $n>1$ 时通常不交换；有理数域 $\mathbb Q$、实数域 $\mathbb R$ 和复数域 $\mathbb C$ 都是含幺交换环，而且是域。域是一类特殊的含幺交换环，其中每个非零元素都有乘法逆元。向量空间的标量来自域，而模的标量可以来自一般的环。我们约定接下来的讨论的环均含有乘法单位元 $1_R$，且 $1_R\neq 0$ 。"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Mathematics","item":"https://linmythos.github.io/math/"},{"@type":"ListItem","position":2,"name":"拓扑","item":"https://linmythos.github.io/math/topology/"},{"@type":"ListItem","position":5,"name":"第 6 章　环、模与链复形","item":"https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"第 6 章　环、模与链复形","name":"第 6 章　环、模与链复形","description":"Rings, Modules and Chain Complexes\n6.0 引言 从这篇文章开始，我们就正式进入同调理论。本文的目的便是建立所需的基本代数语言。\n先前引入群之后，我们再引入环与标量乘法，进而定义模，说明 Abel 群恰好可以看作 $\\mathbb Z$-模，而向量空间则是域上的模。在此基础上，我们介绍正合列与短正合列，理解它们如何通过核与像描述代数结构之间的关系。最后，以 Abel 群或模为系数对象，引入链复形、闭链群、边界群、同调群、链映射与链同伦，并说明短正合列如何诱导长正合列，以及连接同态如何通过提升构造。\n6.1 从拓扑问题到代数结构 前面我们通过基本群，将闭合道路按照同伦关系分类，从而获得空间的一种重要拓扑不变量。然而，基本群并不能完整刻画空间的拓扑结构，而且它本身主要研究闭路所携带的同伦信息。为了从另一种角度研究空间的拓扑性质，并将这种方法推广到更高维度，我们需要一种更系统的代数工具：同调理论（Homology Theory）。\n同调理论的基本思想是，将几何与拓扑信息组织成一系列代数对象，并通过它们之间的映射研究空间的结构。对于我们即将研究的链复形，这些代数对象通常是 Abel 群或模，而连接它们的边界映射则是群同态或模同态。由于边界的边界为零，相邻边界映射的像必然包含于下一映射的核。通过对核与像取商，我们便得到同调群，从而提取空间中无法被更高维边界消去的代数信息。\n在进入链复形之前，我们需要掌握群、环、模、同态与正合列，其中群的知识不再赘述。\n6.3 环与标量乘法 群只提供一种运算，而模的定义还需要引入标量乘法。标量来自一个环，因此我们先介绍环的概念。\n定义 6.1（环） 一个集合 $R$ 配备加法与乘法两种运算。若满足以下条件，则称 $R$ 为环：\n$(R,+)$ 是 Abel 群，其加法单位元记为 $0$。 乘法满足结合律，即 $(ab)c=a(bc)$ 。 乘法对加法满足左右分配律： $ a(b+c)=ab+ac,\\quad (a+b)c=ac+bc. $ 若环的乘法满足交换律 $ab=ba$，则称为交换环（commutative ring）。同时具有乘法单位元的交换环称为含幺交换环（commutative ring with identity）。\n举几个例子，整数环 $\\mathbb Z$ 、多项式环 $\\mathbb R[x]$ 都是含幺交换环；矩阵环 $M_n(\\mathbb R)$ 是含幺环，但当 $n\u0026gt;1$ 时通常不交换；有理数域 $\\mathbb Q$、实数域 $\\mathbb R$ 和复数域 $\\mathbb C$ 都是含幺交换环，而且是域。域是一类特殊的含幺交换环，其中每个非零元素都有乘法逆元。向量空间的标量来自域，而模的标量可以来自一般的环。我们约定接下来的讨论的环均含有乘法单位元 $1_R$，且 $1_R\\neq 0$ 。\n","keywords":[],"articleBody":"Rings, Modules and Chain Complexes\n6.0 引言 从这篇文章开始，我们就正式进入同调理论。本文的目的便是建立所需的基本代数语言。\n先前引入群之后，我们再引入环与标量乘法，进而定义模，说明 Abel 群恰好可以看作 $\\mathbb Z$-模，而向量空间则是域上的模。在此基础上，我们介绍正合列与短正合列，理解它们如何通过核与像描述代数结构之间的关系。最后，以 Abel 群或模为系数对象，引入链复形、闭链群、边界群、同调群、链映射与链同伦，并说明短正合列如何诱导长正合列，以及连接同态如何通过提升构造。\n6.1 从拓扑问题到代数结构 前面我们通过基本群，将闭合道路按照同伦关系分类，从而获得空间的一种重要拓扑不变量。然而，基本群并不能完整刻画空间的拓扑结构，而且它本身主要研究闭路所携带的同伦信息。为了从另一种角度研究空间的拓扑性质，并将这种方法推广到更高维度，我们需要一种更系统的代数工具：同调理论（Homology Theory）。\n同调理论的基本思想是，将几何与拓扑信息组织成一系列代数对象，并通过它们之间的映射研究空间的结构。对于我们即将研究的链复形，这些代数对象通常是 Abel 群或模，而连接它们的边界映射则是群同态或模同态。由于边界的边界为零，相邻边界映射的像必然包含于下一映射的核。通过对核与像取商，我们便得到同调群，从而提取空间中无法被更高维边界消去的代数信息。\n在进入链复形之前，我们需要掌握群、环、模、同态与正合列，其中群的知识不再赘述。\n6.3 环与标量乘法 群只提供一种运算，而模的定义还需要引入标量乘法。标量来自一个环，因此我们先介绍环的概念。\n定义 6.1（环） 一个集合 $R$ 配备加法与乘法两种运算。若满足以下条件，则称 $R$ 为环：\n$(R,+)$ 是 Abel 群，其加法单位元记为 $0$。 乘法满足结合律，即 $(ab)c=a(bc)$ 。 乘法对加法满足左右分配律： $ a(b+c)=ab+ac,\\quad (a+b)c=ac+bc. $ 若环的乘法满足交换律 $ab=ba$，则称为交换环（commutative ring）。同时具有乘法单位元的交换环称为含幺交换环（commutative ring with identity）。\n举几个例子，整数环 $\\mathbb Z$ 、多项式环 $\\mathbb R[x]$ 都是含幺交换环；矩阵环 $M_n(\\mathbb R)$ 是含幺环，但当 $n\u003e1$ 时通常不交换；有理数域 $\\mathbb Q$、实数域 $\\mathbb R$ 和复数域 $\\mathbb C$ 都是含幺交换环，而且是域。域是一类特殊的含幺交换环，其中每个非零元素都有乘法逆元。向量空间的标量来自域，而模的标量可以来自一般的环。我们约定接下来的讨论的环均含有乘法单位元 $1_R$，且 $1_R\\neq 0$ 。\n有了环之后，我们就能定义标量乘法，联想实数域、复数域来看会舒服很多。\n定义 6.2（标量乘法） 设 $R$ 为含幺环，$M$ 为 Abel 群。若存在映射 $ R\\times M\\longrightarrow M,\\qquad (r,m)\\longmapsto rm, $ 称为标量乘法，并满足以下条件：\n对模的加法分配： $ r(m_1+m_2)=rm_1+rm_2. $ 对环的加法分配： $ (r_1+r_2)m=r_1m+r_2m. $ 标量乘法相容： $ (r_1r_2)m=r_1(r_2m). $ 单位元作用： $ 1_Rm=m. $ 这里的标量 $r\\in R$，模元素 $m\\in M$。这些条件保证了标量乘法与模自身的加法结构相容。\n例如，取 $R=\\mathbb Z$，对任意 Abel 群 $M$，可以定义整数倍运算： $$nm= \\begin{cases} \\underbrace{m+\\cdots+m}_{n\\text{ 次}},\u0026n\u003e0,\\\\ 0,\u0026n=0,\\\\ -((-n)m),\u0026n\u003c0. \\end{cases} $$ 这使得每个 Abel 群都自然成为一个 $\\mathbb Z$-模。\n现在我们有了群、环、标量乘法，那么模就是一件水到渠成的事情了。\n6.4 模与自由模 模可以看作向量空间的推广。二者最主要的区别在于标量所属的代数结构：向量空间的标量来自域，而模的标量来自一般的环。\n定义 6.3（模） 设 $R$ 为含幺交换环。一个 Abel 群 $M$，如果配备满足上述公理的 $R$ 上的标量乘法，则称为一个 $R$-模（$R$-module）。\n模不一定具有基，也不一定能够表示为有限个自由生成元的线性组合。所以这类模是很特殊的，叫自由模，向量空间就是一种自由模。\n定义 6.4（自由模） 若 $R$-模 $M$ 存在一组元素 $ B=\\{e_i\\}_{i\\in I} $，使得每个 $m\\in M$ 都能唯一表示为有限个基元素的线性组合 $ m=r_ie_i, r_i\\in R,$ 则称 $M$ 为自由 $R$-模，$B$ 称为一组基。例如，刚才提过，任意 Abel 群都是一个 $\\mathbb Z$-模；$\\mathbb Z^n$ 是一个自由 $\\mathbb Z$-模；$\\mathbb Z/n\\mathbb Z$ 是一个 $\\mathbb Z$-模，但当 $n\u003e1$ 时不是自由 $\\mathbb Z$-模；$\\mathbb R^n$ 是一个 $\\mathbb R$-模，也就是一个实向量空间。\n一般模未必是自由模。例如，$\\mathbb Z/n\\mathbb Z$ 中存在非零元素 $x$ 满足 $nx=0$，因而它具有非零挠元；而自由 $\\mathbb Z$-模没有非零挠元。我们具体展开来说：\n考虑 $\\mathbb Z/n\\mathbb Z$，它是一个 $\\mathbb Z$-模。其中的元素是模 $n$ 同余类，例如 $ \\overline{0},\\overline{1},\\ldots,\\overline{n-1}.$ 取非零元素 $\\overline{1}$，让整数 $n$ 作用于它：$ n\\cdot\\overline{1} =\\overline{n}=\\overline{0}.$ 但是 $n\\neq0$，且 $\\overline{1}\\neq\\overline{0}$。因此，$\\overline{1}$ 是一个非零挠元。事实上，$\\mathbb Z/n\\mathbb Z$ 中每个元素都是挠元，因为对任意 $\\overline{k}$，都有 $ n\\cdot\\overline{k}=\\overline{nk}=\\overline{0}.$\n对于自由 $\\mathbb Z$-模，系数 $a_i$ 都是整数。 假设存在非零整数 $n$ 和非零元素 $ m=\\sum_i a_i e_i $ 满足 $nm=0.$ 那么 $ nm=\\sum_i(na_i)e_i=0.$ 由于基底表示唯一，所有系数都必须为零：$ na_i=0, \\forall i.$ 但整数环 $\\mathbb Z$ 没有零因子，而 $n\\neq0$，所以必有 $ a_i=0, \\forall i. $ 这意味着 $m=0$，与假设矛盾。因此，自由 $\\mathbb Z$-模不存在非零挠元。\n定义 6.5（模同态） 设 $M,N$ 为 $R$-模。映射 $f:M\\to N$ 若满足 $ f(m_1+m_2)=f(m_1)+f(m_2), $ 以及 $ f(rm)=rf(m), $ 则称为 $R$-模同态。\n模同态同时保持加法结构与标量乘法结构。当 $R=\\mathbb Z$ 时，模同态恰好就是 Abel 群同态。\n我们注意到，模上不仅可以定义加法与标量乘法，而且标量乘法满足分配律，并与模的加法相容。不过，这些运算主要涉及单个模元素。如果同时考虑两个模中的元素，能否建立一种能够保留各自线性结构的代数构造？\n一个自然的出发点是双线性映射：它分别对两个变量满足线性条件。我们希望将这种双变量的线性结构转化为普通的线性结构，从而能够借助线性映射的理论研究它。\n举个例子，设 $V,W$ 是有限维向量空间，考虑双线性映射 $B:V\\times W\\to \\mathbb R$。如果分别取基 ${e_i}$，${f_j}$，那么 $B$ 完全由有限多个数 $B(e_i,f_j)$ 决定。那么能否构造一个空间，使得每一对基向量 $e_i,f_j$ 对应一个新的基向量，而双线性映射恰好由这些新基向量上的线性映射决定？这便引出了张量积（Tensor Product）。它是模论中的一种重要代数构造，其核心作用是：将双线性映射统一转化为线性映射。\n6.4 张量积 设 $R$ 为含幺交换环，$M,N$ 为 $R$-模。我们希望构造一个新的 $R$-模 $M\\otimes_R N$，以及一个映射 $ \\otimes:M\\times N\\longrightarrow M\\otimes_R N,(m,n)\\longmapsto m\\otimes n, $ 使其满足双线性关系：\n$$ \\begin{aligned} (m_1+m_2)\\otimes n \u0026=m_1\\otimes n+m_2\\otimes n,\\\\ m\\otimes(n_1+n_2) \u0026=m\\otimes n_1+m\\otimes n_2,\\\\ (rm)\\otimes n \u0026=m\\otimes(rn)=r(m\\otimes n). \\end{aligned} $$\n严格地说，张量积由这些双线性关系生成，并满足以下泛性质。\n定义 6.6（张量积） $M\\otimes_R N$ 是一个 $R$-模，配备双线性映射 $(m,n)\\mapsto m\\otimes n$，使得对任意 $R$-模 $P$ 及双线性映射 $b:M\\times N\\to P$，都存在唯一的模同态 $ \\widetilde b:M\\otimes_R N\\longrightarrow P $ 满足 $ b(m,n)=\\widetilde b(m\\otimes n). $\n这意味着任何双线性映射都可以唯一地通过张量积分解为一个线性映射。\n例如，若 $M=R^m$、$N=R^n$，则有自然同构 $ R^m\\otimes_R R^n\\cong R^{mn}. $\n6.5 正合列与短正合列 定义 6.7（正合列） 对于一列群同态 $ A\\xrightarrow{f}B\\xrightarrow{g}C, $ 若 $ \\operatorname{im}f=\\ker g, $ 则称该列在 $B$ 处正合。\n如果这一性质在每个中间项都成立，则称整列正合。对于模及 Abel 群，正合列的定义完全相同，只需将群同态替换为相应的模同态或 Abel 群同态。正合性可以这样理解，前一个映射能够产生的元素，恰好是后一个映射所消去的元素。它不仅要求前一个映射的像落在后一个映射的核中，而且要求二者完全相等。\n定义 6.8（短正合列） 若下列序列正合： $ 0\\longrightarrow A \\xrightarrow{f}B \\xrightarrow{g}C \\longrightarrow0, $ 则称其为短正合列（Short Exact Sequence）。这里的 $0$ 表示平凡群，或者在模的语境下表示零模。\n在 $A$ 处正合意味着 $ \\operatorname{im}(0\\to A)=\\ker f. $ 左边只有零元素，因此 $\\ker f={0}$，这恰好等价于 $f$ 单射。在 $B$ 处正合意味着 $ \\operatorname{im}f=\\ker g. $ ；在 $C$ 处正合意味着 $ \\operatorname{im}g=\\ker(C\\to0)=C, $ 所以 $g$ 必须满射。综上，短正合列等价于以下三个条件： $ \\boxed{ f\\text{ 单射}, \\operatorname{im}f=\\ker g, g\\text{ 满射}. } $\n进一步地，由于 $ \\operatorname{im}f=\\ker g $ 且群同态的核是正规子群，所以 $f(A)\\trianglelefteq B$。又因为 $g$ 满射，根据第一同构定理， $ B/f(A)\\cong C. $ 因此，短正合列描述的是：$A$ 通过单射嵌入 $B$，成为其中的一个正规子群；将这个子群商掉之后，得到的商群恰好与 $C$ 同构。对于 Abel 群或模，这个解释同样成立。\n介绍了这么多前置知识，我们终于来到了链复形。\n6.6 链复形 前面介绍的群与模都是代数对象，而链复形则是将一系列代数对象与它们之间的映射组织起来的一种结构。\n定义 6.9（链复形） 一个链复形由一列 Abel 群（或 $R$-模） $ \\cdots,C_{n+1},C_n,C_{n-1},\\cdots $ 以及一族同态 $ \\partial_n:C_n\\longrightarrow C_{n-1} $ 组成，并满足 $ \\partial_n\\circ\\partial_{n+1}=0 $ 对所有 $n$ 成立。通常将其写作 $ \\cdots\\xrightarrow{\\partial_{n+2}}C_{n+1} \\xrightarrow{\\partial_{n+1}}C_n \\xrightarrow{\\partial_n}C_{n-1} \\xrightarrow{\\partial_{n-1}}\\cdots. $ 其中 $C_n$ 称为 $n$ 维链群（或 $n$ 次链模），$\\partial_n$ 称为边界算子。如果所有 $C_n$ 都是 $R$-模，并且每个边界算子都是 $R$-模同态，则称为 $R$ 上的链复形。要小心下标，边界算子的下标和其出发的群（模）的下标一致。\n条件 $ \\partial_n\\circ\\partial_{n+1}=0 $ 通常简写为 $ \\partial^2=0, $ 称为边界的边界为零。这一条件是链复形最核心的代数性质。它意味着任何一个链的边界，再取一次边界必然得到零。我们举一个三角形的例子，它虽然是几何结构，但是我们可以通过恰当的定义构造出来一个链复形，让它不再是一个抽象的东西。\n取一个有三个顶点的三角形，记顶点为 $v_0,v_1,v_2$，三条边为 $[v_0,v_1]$、$[v_1,v_2]$、$[v_0,v_2]$，二维面为 $[v_0,v_1,v_2]$。我们暂时取系数环为整数环 $\\mathbb Z$。按照维数分别构造自由阿贝尔群。首先是 0-链群：由三个顶点生成，$C_0=\\mathbb Z\\langle v_0,v_1,v_2\\rangle$。然后是 1-链群：由三条有向边生成，$C_1=\\mathbb Z\\langle [v_0,v_1],[v_1,v_2],[v_0,v_2]\\rangle$。最后是 2-链群：由一个有向三角形生成，$C_2=\\mathbb Z\\langle [v_0,v_1,v_2]\\rangle$。而对于更高维链群，没有更高维的单纯形，因此 $C_n=0$，当 $n\\geq 3$。 这里的 $\\mathbb Z\\langle \\cdots\\rangle$ 表示由括号内元素生成的自由阿贝尔群。例如，$C_1$ 中任意元素都可以写成 $m[v_0,v_1]+n[v_1,v_2]+p[v_0,v_2]$，其中 $m,n,p\\in\\mathbb Z$。因此，我们得到： $ 0\\longrightarrow C_2 \\xrightarrow{\\partial_2}C_1 \\xrightarrow{\\partial_1}C_0 \\longrightarrow 0. $ 这就是由这个三角形的单纯形构造出来的链群序列。\n现在定义边界算子 $\\partial_n:C_n\\to C_{n-1}$。对于顶点，规定其边界为零：$ \\partial_0(v_i)=0. $ 对于有向边，规定边界为终点减起点：$ \\partial_1[v_0,v_1]=v_1-v_0, \\partial_1[v_1,v_2]=v_2-v_1, \\partial_1[v_0,v_2]=v_2-v_0. $ 对于二维三角形，规定： $ \\partial_2[v_0,v_1,v_2] ={}[v_1,v_2]-[v_0,v_2] +[v_0,v_1]. $ 注意，这里的正负号保证三角形的三个边按照一致的边界方向排列。\n由于链群中的元素是生成元的整数线性组合，我们将上述定义线性延拓到整个链群。现在验证边界的边界为零，只需要考察 $C_2$ 的生成元： $ \\partial_1\\partial_2[v_0,v_1,v_2] =\\partial_1\\big( [v_1,v_2]-[v_0,v_2]+[v_0,v_1] \\big) =(v_2-v_1)-(v_2-v_0)+(v_1-v_0) =0. $\n而 $\\partial_0\\circ\\partial_1=0$，因为 $\\partial_0$ 本身就是零映射。 因此，整个链群序列满足： $ \\partial_n\\circ\\partial_{n+1}=0. $ 我们便得到一个链复形。\n6.7 闭链、边界与同调群 链复形中有两个最重要的子群：闭链群与边界群。它们就像刚才正合列里面的 $\\operatorname{im}f$ 和 $\\ker g$\n定义 6.10（闭链群与边界群） 对链复形 $ \\cdots\\longrightarrow C_{n+1} \\xrightarrow{\\partial_{n+1}}C_n \\xrightarrow{\\partial_n}C_{n-1}\\longrightarrow\\cdots, $ 定义 $ Z_n=\\ker\\partial_n, \\qquad B_n=\\operatorname{im}\\partial_{n+1}.$ 其中 $Z_n$ 称为 $n$ 维闭链群（group of $n$-cycles），$B_n$ 称为 $n$ 维边界群（group of $n$-boundaries）。还是要注意下标啊，闭链群和边界群都是 $C_n$ 的子群。\n这里必须澄清一个术语问题：$Z_n$ 虽然名称中含有“闭链群”，但它并不是说 $Z_n$ 一定是由单个元素生成的闭链群（cyclic group）。这里的“闭链”指的是被边界算子映射为零的链。\n由链复形条件 $ \\partial_n\\partial_{n+1}=0 $ 可知，对于任意 $x\\in C_{n+1}$，都有 $ \\partial_n(\\partial_{n+1}x)=0. $ 因此 $ B_n\\subseteq Z_n. $ 也就是说，每一个边界都是闭链，但反过来未必成立。\n定义 6.11（同调群） 链复形的第 $n$ 个同调群定义为 $H_n(C_\\bullet) =\\frac{Z_n}{B_n} =\\frac{\\ker\\partial_n}{\\operatorname{im}\\partial_{n+1}}. $ 由于 $B_n\\subseteq Z_n$，上述商群是有定义的。\n同调群的思想可以这样理解：闭链是边界为零的一种特殊的链，而边界是某个高一维链的边界。我们将相差一个边界的闭链视为等价，于是得到同调群。具体而言，对 $z_1,z_2\\in Z_n$，定义 $ z_1\\sim z_2 \\Longleftrightarrow z_1-z_2\\in B_n. $ 通俗地讲，对于任意 $z\\in Z_n$，只有两种可能：第一，$z\\in B_n$：它是某个 $(n+1)$-链的边界；第二，$z\\notin B_n$：它不是任何 $(n+1)$-链的边界。不存在第三种情况。因为 $B_n\\subseteq Z_n$，所以 $Z_n$ 可以分成这两个互不相交的部分。\n从正合列的角度看，同调群也可以理解为相邻两个边界映射之间正合性的失效程度：如果在 $C_n$ 处恰好有 $ \\operatorname{im}\\partial_{n+1}=\\ker\\partial_n, $ 那么 $H_n(C_\\bullet)=0$。因此，同调群为零意味着该位置正合。\n6.10 链映射与诱导同态 链复形不仅可以单独研究，还可以研究不同链复形之间保持结构的映射。\n定义 6.17（链映射） 设 $C_\\bullet,D_\\bullet$ 为两个链复形。若一族同态 $ f_n:C_n\\longrightarrow D_n $ 满足 $ \\partial_n^D\\circ f_n =f_{n-1}\\circ\\partial_n^C, $ 则称 $f={f_n}$ 为链映射（Chain Map）。\n这个条件可以理解为：先对链应用映射，再取边界，与先取边界，再应用映射，结果相同。也就是说，链映射与边界算子相容。这使得链映射能够自然地诱导同调群之间的同态。首先，若 $z\\in Z_n(C)$，则 $ \\partial_n^Cz=0. $ 于是 $ \\partial_n^D f_n(z) =f_{n-1}(\\partial_n^Cz)=0. $ 所以 $f_n(z)\\in Z_n(D)$，即闭链映射为闭链。 其次，若 $z=\\partial_{n+1}^C x\\in B_n(C)$，则 $ f_n(z) =f_n(\\partial_{n+1}^C x) =\\partial_{n+1}^D f_{n+1}(x), $ 因此 $f_n(z)\\in B_n(D)$，即边界映射为边界。 所以链映射可以在商群上诱导出同态 $ H_n(f):H_n(C_\\bullet)\\longrightarrow H_n(D_\\bullet), \\quad [z]\\longmapsto[f_n(z)]. $\n这说明链复形之间保持边界结构的映射，会自然地在同调群层面产生代数映射。\n6.11 链同伦 链映射保持边界算子，但不同的链映射仍然可能诱导相同的同调群同态。为了刻画这种情况，我们引入链同伦。\n定义 6.18（链同伦） 设 $f,g:C_\\bullet\\to D_\\bullet$ 是两个链映射。若存在一族同态 $ s_n:C_n\\longrightarrow D_{n+1} $ 满足 $ f_n-g_n =\\partial_{n+1}^D s_n+s_{n-1}\\partial_n^C, $ 则称 $f$ 与 $g$ 链同伦（Chain Homotopic）。通常将这组关系简写为 $ f-g=\\partial^D s+s\\partial^C. $ 其中 $s={s_n}$ 称为链同伦算子。\n注意，$s_n$ 将 $n$ 次链映射到 $n+1$ 次链，因此它使两个链映射之间的差可以表示为边界算子与 $s$ 的组合。这与拓扑中的同伦概念具有深刻联系。\n定理 6.1 若两个链映射链同伦，则它们诱导的同调群同态相同。\n证明： 取 $z\\in Z_n(C)$，则 $\\partial_n^Cz=0$。由链同伦关系，$ f_n(z)-g_n(z)=\\partial_{n+1}^D s_n(z) +s_{n-1}(\\partial_n^Cz)=\\partial_{n+1}^D s_n(z). $ 因此 $f_n(z)$ 与 $g_n(z)$ 相差一个边界，在同调群中代表同一个元素： $ [f_n(z)]=[g_n(z)]. $ 故 $ H_n(f)=H_n(g). $ 证毕。\n这一结论说明，同调群并不关心链映射的全部细节，而只保留它们在同调层面上的作用。链同伦是同伦不变性在链复形中的代数表达。\n6.12 长正合列 正合列不仅可以描述群或模之间的关系，也可以描述链复形之间的关系。它是构造长正合列的重要基础。\n考虑三个链复形 $A_\\bullet,B_\\bullet,C_\\bullet$，以及链映射构成的短正合列： $ 0\\longrightarrow A_\\bullet \\xrightarrow{i}B_\\bullet \\xrightarrow{p}C_\\bullet \\longrightarrow0. $ 这里的短正合意味着：对每个次数 $n$，都有 $ 0\\longrightarrow A_n \\xrightarrow{i_n}B_n \\xrightarrow{p_n}C_n \\longrightarrow0 $ 正合。也就是说，$i_n$ 单射，$p_n$ 满射，并且 $ \\operatorname{im}i_n=\\ker p_n. $ 由这样的短正合列，可以构造同调群之间的长正合列：\n$$ \\begin{aligned} \\cdots\\longrightarrow H_{n+1}(C) \u0026\\xrightarrow{\\delta}H_n(A) \\xrightarrow{i}H_n(B)\\\\ \u0026\\xrightarrow{p}H_n(C) \\xrightarrow{\\delta}H_{n-1}(A) \\xrightarrow{i}\\cdots \\end{aligned} $$\n其中，$\\delta$ 称为连接同态（Connecting Homomorphism）。\n6.13 连接同态与提升 设 $[c]\\in H_n(C_\\bullet)$，其中 $c\\in C_n$ 是一个闭链，即 $ \\partial_n^C c=0. $ 由于 $p_n:B_n\\to C_n$ 是满射，因此一定存在 $b\\in B_n$，使得 $ p_n(b)=c. $ 这个过程称为将 $c$ 从 $C_n$ 提升到 $B_n$。所谓提升，就是在映射 $p_n$ 之下，寻找一个原像 $b$，使它映射回原来的元素 $c$。\n接下来，对 $b$ 取边界： $ \\partial_n^B b\\in B_{n-1}. $ 由于 $p$ 是链映射，$ p_{n-1}(\\partial_n^B b) =\\partial_n^C(p_n(b)) =\\partial_n^C c =0. $ 因此 $ \\partial_n^B b\\in\\ker p_{n-1}. $ 由短正合列的正合性， $ \\ker p_{n-1}=\\operatorname{im}i_{n-1}. $ 所以存在 $a\\in A_{n-1}$，使得 $ i_{n-1}(a)=\\partial_n^B b. $ 由于 $i_{n-1}$ 是单射，这个 $a$ 是唯一的。\n进一步，因为 $i$ 是链映射， $ i_{n-2}(\\partial_{n-1}^A a) =\\partial_{n-1}^B(i_{n-1}(a)) =\\partial_{n-1}^B\\partial_n^B b =0. $ 而 $i_{n-2}$ 是单射，所以 $ \\partial_{n-1}^A a=0. $ 因此 $a$ 是 $A_{n-1}$ 中的闭链，可以定义 $ \\boxed{\\delta([c])=[a].} $\n这就是连接同态的构造。从上图可见，连接同态可以理解为一个连续的代数过程：\n从 $C_n$ 中取一个闭链 $c$。 将 $c$ 提升为 $B_n$ 中的元素 $b$。 对 $b$ 取边界，得到 $\\partial b$。 由于 $c$ 是闭链，$\\partial b$ 必须落在 $\\ker p$ 中。 由正合性，$\\ker p=\\operatorname{im}i$，因此 $\\partial b$ 来自 $A_{n-1}$。 这个元素本身也是闭链，从而确定 $A$ 中的一个同调类。 因此，连接同态将 $C$ 中的 $n$ 维同调信息，转化为 $A$ 中的 $(n-1)$ 维同调信息。它的关键是将 $c$ 提升到 $B$，再取边界。这个边界可能不为零，但恰好来自 $A$。不过，我们还需要证明连接同态是良定义的，不然不同的提升会改变最终的同调类。\n首先，固定 $c$，选择另一个提升 $b’$。由于 $ p_n(b’-b)=0, $ 存在 $x\\in A_n$，使得 $ i_n(x)=b’-b. $ 若相应地有 $ i_{n-1}(a)=\\partial b, i_{n-1}(a’)=\\partial b’, $ 则 $ i_{n-1}(a’-a) =\\partial(b’-b) =\\partial i_n(x) =i_{n-1}(\\partial x). $ 由单射性可得 $ a’-a=\\partial x. $ 所以 $a’$ 与 $a$ 相差一个边界，代表同一个同调类。其次，若将闭链代表元 $c$ 替换为同调等价的 $c’=c+\\partial d$，取 $d$ 在 $B$ 中的一个提升 $y$，则可以选择 $ b’=b+\\partial y $ 作为 $c’$ 的提升。由于 $ \\partial b’=\\partial b, $ 所得的 $a$ 不变。因此，连接同态与闭链代表元的选择无关。\n由此可知，$\\delta$ 是良定义的群同态。\n习题 1. 群同态的核与像。 设 $\\varphi:G\\to H$ 是群同态。证明 $\\ker\\varphi$ 是 $G$ 的正规子群，$\\operatorname{im}\\varphi$ 是 $H$ 的子群。举例说明像不一定是正规子群。\n2. 闭链群与自由 Abel 群。 证明 $\\mathbb Z^n$ 在 $n\u003e1$ 时不是闭链群。提示：假设它由一个元素生成，考察该元素的坐标。\n3. Abel 群与模。 证明任意 Abel 群都能唯一地赋予一个自然的 $\\mathbb Z$-模结构，使整数倍运算与群加法相容。\n4. 模的挠元。 设 $M$ 是一个 $\\mathbb Z$-模。若存在非零整数 $n$ 和非零元素 $m\\in M$，使得 $nm=0$，则称 $m$ 为挠元。证明自由 $\\mathbb Z$-模没有非零挠元，并说明 $\\mathbb Z/n\\mathbb Z$（$n\u003e1$）不是自由 $\\mathbb Z$-模。\n5. 正合列。 证明短正合列 $ 0\\to A\\xrightarrow{f}B\\xrightarrow{g}C\\to0 $ 等价于 $f$ 单射、$g$ 满射且 $\\operatorname{im}f=\\ker g$。\n6. 链复形。 设 $ C_2\\xrightarrow{\\partial_2}C_1 \\xrightarrow{\\partial_1}C_0 $ 满足 $\\partial_1\\partial_2=0$。证明 $\\operatorname{im}\\partial_2\\subseteq\\ker\\partial_1$，并解释这一包含关系在同调群定义中的作用。\n7. 同调群。 证明若链复形在 $C_n$ 处正合，则 $H_n(C_\\bullet)=0$。反过来，若 $H_n(C_\\bullet)=0$，说明这意味着什么。\n8. 链映射。 证明链映射将闭链映射为闭链、边界映射为边界，并由此诱导同调群之间的同态。\n9. 链同伦。 证明两个链同伦的链映射诱导相同的同调群同态。\n10. 连接同态。 阅读本章关于连接同态的构造，逐步解释为什么提升 $b$ 的边界 $\\partial b$ 必须来自 $A_{n-1}$，以及为什么它本身是一个闭链。\n参考文献 Allen Hatcher, Algebraic Topology, Chapter 2. James R. Munkres, Elements of Algebraic Topology. Charles A. Weibel, An Introduction to Homological Algebra, Chapter 1. Joseph J. Rotman, An Introduction to the Theory of Groups. Serge Lang, Algebra. ","wordCount":"1207","inLanguage":"en","datePublished":"2026-11-06T00:00:00Z","dateModified":"2026-11-06T00:00:00Z","author":{"@type":"Person","name":"Linmythos"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/"},"publisher":{"@type":"Organization","name":"Linmythos","logo":{"@type":"ImageObject","url":"https://linmythos.github.io/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://linmythos.github.io/ accesskey=h title="Linmythos (Alt + H)">Linmythos</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
 <svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://linmythos.github.io/math/ title=Mathematics><span>Mathematics</span></a></li><li><a href=https://linmythos.github.io/physics/ title=Physics><span>Physics</span></a></li><li><a href=https://linmythos.github.io/ai/ title=AI><span>AI</span></a></li><li><a href=https://linmythos.github.io/neural-science/ title="Neural Science"><span>Neural Science</span></a></li><li><a href=https://linmythos.github.io/essays/ title=Essays><span>Essays</span></a></li><li><a href=https://linmythos.github.io/about/ title=About><span>About</span></a></li><li><a href=https://linmythos.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://linmythos.github.io/archives/ title=Archives><span>Archives</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">第 6 章　环、模与链复形</h1><div class=post-meta><span title='2026-11-06 00:00:00 +0000 UTC'>November 6, 2026</span>&nbsp;·&nbsp;<span>6 min</span>&nbsp;·&nbsp;<span>Linmythos</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><li><a href=#61-%e4%bb%8e%e6%8b%93%e6%89%91%e9%97%ae%e9%a2%98%e5%88%b0%e4%bb%a3%e6%95%b0%e7%bb%93%e6%9e%84 aria-label="6.1 从拓扑问题到代数结构">6.1 从拓扑问题到代数结构</a></li><li><a href=#63-%e7%8e%af%e4%b8%8e%e6%a0%87%e9%87%8f%e4%b9%98%e6%b3%95 aria-label="6.3 环与标量乘法">6.3 环与标量乘法</a></li><li><a href=#64-%e6%a8%a1%e4%b8%8e%e8%87%aa%e7%94%b1%e6%a8%a1 aria-label="6.4 模与自由模">6.4 模与自由模</a></li><li><a href=#64-%e5%bc%a0%e9%87%8f%e7%a7%af aria-label="6.4 张量积">6.4 张量积</a></li><li><a href=#65-%e6%ad%a3%e5%90%88%e5%88%97%e4%b8%8e%e7%9f%ad%e6%ad%a3%e5%90%88%e5%88%97 aria-label="6.5 正合列与短正合列">6.5 正合列与短正合列</a></li><li><a href=#66-%e9%93%be%e5%a4%8d%e5%bd%a2 aria-label="6.6 链复形">6.6 链复形</a></li><li><a href=#67-%e5%be%aa%e7%8e%af%e8%be%b9%e7%95%8c%e4%b8%8e%e5%90%8c%e8%b0%83%e7%be%a4 aria-label="6.7 循环、边界与同调群">6.7 循环、边界与同调群</a></li><li><a href=#610-%e9%93%be%e6%98%a0%e5%b0%84%e4%b8%8e%e8%af%b1%e5%af%bc%e5%90%8c%e6%80%81 aria-label="6.10 链映射与诱导同态">6.10 链映射与诱导同态</a></li><li><a href=#611-%e9%93%be%e5%90%8c%e4%bc%a6 aria-label="6.11 链同伦">6.11 链同伦</a></li><li><a href=#612-%e7%9f%ad%e6%ad%a3%e5%90%88%e5%88%97%e4%b8%8e%e8%bf%9e%e6%8e%a5%e5%90%8c%e6%80%81 aria-label="6.12 短正合列与连接同态">6.12 短正合列与连接同态</a><ul><li><a href=#%e8%bf%9e%e6%8e%a5%e5%90%8c%e6%80%81%e4%b8%ad%e7%9a%84%e6%8f%90%e5%8d%87 aria-label=连接同态中的提升>连接同态中的提升</a></li><li><a href=#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%bf%9e%e6%8e%a5%e5%90%8c%e6%80%81%e6%98%af%e8%89%af%e5%ae%9a%e4%b9%89%e7%9a%84 aria-label=为什么连接同态是良定义的？>为什么连接同态是良定义的？</a></li><li><a href=#%e8%bf%9e%e6%8e%a5%e5%90%8c%e6%80%81%e7%9a%84%e7%9b%b4%e8%a7%82%e5%90%ab%e4%b9%89 aria-label=连接同态的直观含义>连接同态的直观含义</a></li></ul></li><li><a href=#613-%e6%9c%ac%e7%ab%a0%e5%b0%8f%e7%bb%93 aria-label="6.13 本章小结">6.13 本章小结</a></li><li><a href=#%e4%b9%a0%e9%a2%98 aria-label=习题>习题</a></li><li><a href=#%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae aria-label=参考文献>参考文献</a></li></ul></div></details><div class="post-content md-content"><p><em>GRings, Modules and Chain Complexes</em></p><h1 id=61-从拓扑问题到代数结构>6.1 从拓扑问题到代数结构<a hidden class=anchor aria-hidden=true href=#61-从拓扑问题到代数结构>#</a></h1><p>前面我们通过基本群，将闭合道路的同伦类组织成一个群，从而获得空间的一维拓扑信息。但基本群并不足以完整刻画空间。例如，单连通空间的基本群都是平凡群，却可能具有完全不同的高维拓扑结构。为了研究更高维的拓扑信息，我们需要一种更系统的代数工具：同调理论（Homology Theory）。它的基本思想是，将几何对象组织成一系列代数对象，并通过映射描述它们之间的关系。对于我们即将研究的链复形，这些代数对象通常是 Abel 群或模，而连接它们的映射则是群同态或模同态。通过映射的核与像，我们最终构造出同调群。因此，在进入链复形之前，我们需要知道群、环、模、同态与正合列，其中群的知识不再赘述。</p><p>本文只讨论 Abel 群及模上的链复形。</p><h1 id=63-环与标量乘法>6.3 环与标量乘法<a hidden class=anchor aria-hidden=true href=#63-环与标量乘法>#</a></h1><p>群只提供一种运算，而模的定义还需要引入标量乘法。标量来自一个环，因此我们先介绍环的概念。</p><p><strong>定义 6.1（环）</strong> 一个集合 $R$ 配备加法与乘法两种运算。若满足以下条件，则称 $R$ 为环：</p><ol><li>$(R,+)$ 是 Abel 群，其加法单位元记为 $0$。</li><li>乘法满足结合律，即 $(ab)c=a(bc)$ 。</li><li>乘法对加法满足左右分配律：
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://linmythos.github.io/math/ title=Mathematics><span>Mathematics</span></a></li><li><a href=https://linmythos.github.io/physics/ title=Physics><span>Physics</span></a></li><li><a href=https://linmythos.github.io/ai/ title=AI><span>AI</span></a></li><li><a href=https://linmythos.github.io/neural-science/ title="Neural Science"><span>Neural Science</span></a></li><li><a href=https://linmythos.github.io/essays/ title=Essays><span>Essays</span></a></li><li><a href=https://linmythos.github.io/about/ title=About><span>About</span></a></li><li><a href=https://linmythos.github.io/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://linmythos.github.io/archives/ title=Archives><span>Archives</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">第 6 章　环、模与链复形</h1><div class=post-meta><span title='2026-11-06 00:00:00 +0000 UTC'>November 6, 2026</span>&nbsp;·&nbsp;<span>6 min</span>&nbsp;·&nbsp;<span>Linmythos</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><li><a href=#60-%e5%bc%95%e8%a8%80 aria-label="6.0 引言">6.0 引言</a></li><li><a href=#61-%e4%bb%8e%e6%8b%93%e6%89%91%e9%97%ae%e9%a2%98%e5%88%b0%e4%bb%a3%e6%95%b0%e7%bb%93%e6%9e%84 aria-label="6.1 从拓扑问题到代数结构">6.1 从拓扑问题到代数结构</a></li><li><a href=#63-%e7%8e%af%e4%b8%8e%e6%a0%87%e9%87%8f%e4%b9%98%e6%b3%95 aria-label="6.3 环与标量乘法">6.3 环与标量乘法</a></li><li><a href=#64-%e6%a8%a1%e4%b8%8e%e8%87%aa%e7%94%b1%e6%a8%a1 aria-label="6.4 模与自由模">6.4 模与自由模</a></li><li><a href=#64-%e5%bc%a0%e9%87%8f%e7%a7%af aria-label="6.4 张量积">6.4 张量积</a></li><li><a href=#65-%e6%ad%a3%e5%90%88%e5%88%97%e4%b8%8e%e7%9f%ad%e6%ad%a3%e5%90%88%e5%88%97 aria-label="6.5 正合列与短正合列">6.5 正合列与短正合列</a></li><li><a href=#66-%e9%93%be%e5%a4%8d%e5%bd%a2 aria-label="6.6 链复形">6.6 链复形</a></li><li><a href=#67-%e9%97%ad%e9%93%be%e8%be%b9%e7%95%8c%e4%b8%8e%e5%90%8c%e8%b0%83%e7%be%a4 aria-label="6.7 闭链、边界与同调群">6.7 闭链、边界与同调群</a></li><li><a href=#610-%e9%93%be%e6%98%a0%e5%b0%84%e4%b8%8e%e8%af%b1%e5%af%bc%e5%90%8c%e6%80%81 aria-label="6.10 链映射与诱导同态">6.10 链映射与诱导同态</a></li><li><a href=#611-%e9%93%be%e5%90%8c%e4%bc%a6 aria-label="6.11 链同伦">6.11 链同伦</a></li><li><a href=#612-%e9%95%bf%e6%ad%a3%e5%90%88%e5%88%97 aria-label="6.12 长正合列">6.12 长正合列</a><ul><li><a href=#613-%e8%bf%9e%e6%8e%a5%e5%90%8c%e6%80%81%e4%b8%8e%e6%8f%90%e5%8d%87 aria-label="6.13 连接同态与提升">6.13 连接同态与提升</a></li></ul></li><li><a href=#%e4%b9%a0%e9%a2%98 aria-label=习题>习题</a></li><li><a href=#%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae aria-label=参考文献>参考文献</a></li></ul></div></details><div class="post-content md-content"><p><em>Rings, Modules and Chain Complexes</em></p><h1 id=60-引言>6.0 引言<a hidden class=anchor aria-hidden=true href=#60-引言>#</a></h1><p>从这篇文章开始，我们就正式进入同调理论。本文的目的便是建立所需的基本代数语言。</p><p>先前引入群之后，我们再引入环与标量乘法，进而定义模，说明 Abel 群恰好可以看作 $\mathbb Z$-模，而向量空间则是域上的模。在此基础上，我们介绍正合列与短正合列，理解它们如何通过核与像描述代数结构之间的关系。最后，以 Abel 群或模为系数对象，引入链复形、闭链群、边界群、同调群、链映射与链同伦，并说明短正合列如何诱导长正合列，以及连接同态如何通过提升构造。</p><h1 id=61-从拓扑问题到代数结构>6.1 从拓扑问题到代数结构<a hidden class=anchor aria-hidden=true href=#61-从拓扑问题到代数结构>#</a></h1><p>前面我们通过基本群，将闭合道路按照同伦关系分类，从而获得空间的一种重要拓扑不变量。然而，基本群并不能完整刻画空间的拓扑结构，而且它本身主要研究闭路所携带的同伦信息。为了从另一种角度研究空间的拓扑性质，并将这种方法推广到更高维度，我们需要一种更系统的代数工具：同调理论（Homology Theory）。</p><p>同调理论的基本思想是，将几何与拓扑信息组织成一系列代数对象，并通过它们之间的映射研究空间的结构。对于我们即将研究的链复形，这些代数对象通常是 Abel 群或模，而连接它们的边界映射则是群同态或模同态。由于边界的边界为零，相邻边界映射的像必然包含于下一映射的核。通过对核与像取商，我们便得到同调群，从而提取空间中无法被更高维边界消去的代数信息。</p><p>在进入链复形之前，我们需要掌握群、环、模、同态与正合列，其中群的知识不再赘述。</p><h1 id=63-环与标量乘法>6.3 环与标量乘法<a hidden class=anchor aria-hidden=true href=#63-环与标量乘法>#</a></h1><p>群只提供一种运算，而模的定义还需要引入标量乘法。标量来自一个环，因此我们先介绍环的概念。</p><p><strong>定义 6.1（环）</strong> 一个集合 $R$ 配备加法与乘法两种运算。若满足以下条件，则称 $R$ 为环：</p><ol><li>$(R,+)$ 是 Abel 群，其加法单位元记为 $0$。</li><li>乘法满足结合律，即 $(ab)c=a(bc)$ 。</li><li>乘法对加法满足左右分配律：
 $
 a(b+c)=ab+ac,\quad (a+b)c=ac+bc.
 $</li></ol><p>若环的乘法满足交换律 $ab=ba$，则称为<strong>交换环（commutative ring）</strong>。同时具有乘法单位元的交换环称为<strong>含幺交换环（commutative ring with identity）</strong>。</p><p>举几个例子，整数环 $\mathbb Z$ 、多项式环 $\mathbb R[x]$ 都是含幺交换环；矩阵环 $M_n(\mathbb R)$ 是含幺环，但当 $n>1$ 时通常不交换；有理数域 $\mathbb Q$、实数域 $\mathbb R$ 和复数域 $\mathbb C$ 都是含幺交换环，而且是域。域是一类特殊的含幺交换环，其中每个非零元素都有乘法逆元。向量空间的标量来自域，而模的标量可以来自一般的环。我们约定接下来的讨论的环均含有乘法单位元 $1_R$，且 $1_R\neq 0$ 。</p><p>有了环之后，我们就能定义标量乘法，联想实数域、复数域来看会舒服很多。</p><p><strong>定义 6.2（标量乘法）</strong> 设 $R$ 为含幺环，$M$ 为 Abel 群。若存在映射
@@ -65,9 +65,8 @@ $$nm=
 -((-n)m),&amp;n&lt;0.
 \end{cases}
 $$
-这使得每个 Abel 群都自然成为一个 $\mathbb Z$-模。</p><p>现在我们有了群、环、标量乘法，那么模就是一件水到渠成的事情了。</p><h1 id=64-模与自由模>6.4 模与自由模<a hidden class=anchor aria-hidden=true href=#64-模与自由模>#</a></h1><p>模可以看作向量空间的推广。二者最主要的区别在于标量所属的代数结构：向量空间的标量来自域，而模的标量来自一般的环。</p><p><strong>定义 6.3（模）</strong> 设 $R$ 为含幺交换环。一个 Abel 群 $M$，如果配备满足上述公理的 $R$ 上的标量乘法，则称为一个 $R$-模（$R$-module）。</p><p>模不一定具有基，也不一定能够表示为有限个自由生成元的线性组合。所以这类模是很特殊的，叫自由模，向量空间就是一种自由模。</p><p><strong>定义 6.4（自由模）</strong> 若 $R$-模 $M$ 存在一组元素 $ B=\{e_i\}_{i\in I} $，使得每个 $m\in M$ 都能唯一表示为有限个基元素的线性组合</p><p>$$
-m=\sum_{i\in I}r_ie_i,\qquad r_i\in R,
-$$</p><p>则称 $M$ 为自由 $R$-模，$B$ 称为一组基。举几个例子，刚才提过，任意 Abel 群都是一个 $\mathbb Z$-模；$\mathbb Z^n$ 是一个自由 $\mathbb Z$-模；$\mathbb Z/n\mathbb Z$ 是一个 $\mathbb Z$-模，但当 $n>1$ 时不是自由 $\mathbb Z$-模；$\mathbb R^n$ 是一个 $\mathbb R$-模，也就是一个实向量空间。</p><p>一般模未必是自由模。例如，$\mathbb Z/n\mathbb Z$ 中存在非零元素 $x$ 满足 $nx=0$，因而它具有非零挠元；而自由 $\mathbb Z$-模没有非零挠元。我们具体展开来说：</p><p>考虑 $\mathbb Z/n\mathbb Z$，它是一个 $\mathbb Z$-模。其中的元素是模 $n$ 同余类，例如 $ \overline{0},\overline{1},\ldots,\overline{n-1}.$ 取非零元素 $\overline{1}$，让整数 $n$ 作用于它：$ n\cdot\overline{1}
+这使得每个 Abel 群都自然成为一个 $\mathbb Z$-模。</p><p>现在我们有了群、环、标量乘法，那么模就是一件水到渠成的事情了。</p><h1 id=64-模与自由模>6.4 模与自由模<a hidden class=anchor aria-hidden=true href=#64-模与自由模>#</a></h1><p>模可以看作向量空间的推广。二者最主要的区别在于标量所属的代数结构：向量空间的标量来自域，而模的标量来自一般的环。</p><p><strong>定义 6.3（模）</strong> 设 $R$ 为含幺交换环。一个 Abel 群 $M$，如果配备满足上述公理的 $R$ 上的标量乘法，则称为一个 $R$-模（$R$-module）。</p><p>模不一定具有基，也不一定能够表示为有限个自由生成元的线性组合。所以这类模是很特殊的，叫自由模，向量空间就是一种自由模。</p><p><strong>定义 6.4（自由模）</strong> 若 $R$-模 $M$ 存在一组元素 $ B=\{e_i\}_{i\in I} $，使得每个 $m\in M$ 都能唯一表示为有限个基元素的线性组合 $
+m=r_ie_i, r_i\in R,$ 则称 $M$ 为自由 $R$-模，$B$ 称为一组基。例如，刚才提过，任意 Abel 群都是一个 $\mathbb Z$-模；$\mathbb Z^n$ 是一个自由 $\mathbb Z$-模；$\mathbb Z/n\mathbb Z$ 是一个 $\mathbb Z$-模，但当 $n>1$ 时不是自由 $\mathbb Z$-模；$\mathbb R^n$ 是一个 $\mathbb R$-模，也就是一个实向量空间。</p><p>一般模未必是自由模。例如，$\mathbb Z/n\mathbb Z$ 中存在非零元素 $x$ 满足 $nx=0$，因而它具有非零挠元；而自由 $\mathbb Z$-模没有非零挠元。我们具体展开来说：</p><p>考虑 $\mathbb Z/n\mathbb Z$，它是一个 $\mathbb Z$-模。其中的元素是模 $n$ 同余类，例如 $ \overline{0},\overline{1},\ldots,\overline{n-1}.$ 取非零元素 $\overline{1}$，让整数 $n$ 作用于它：$ n\cdot\overline{1}
 =\overline{n}=\overline{0}.$ 但是 $n\neq0$，且 $\overline{1}\neq\overline{0}$。因此，$\overline{1}$ 是一个非零挠元。事实上，$\mathbb Z/n\mathbb Z$ 中每个元素都是挠元，因为对任意 $\overline{k}$，都有 $ n\cdot\overline{k}=\overline{nk}=\overline{0}.$</p><p>对于自由 $\mathbb Z$-模，系数 $a_i$ 都是整数。
 假设存在非零整数 $n$ 和非零元素 $ m=\sum_i a_i e_i $ 满足 $nm=0.$ 那么 $
 nm=\sum_i(na_i)e_i=0.$ 由于基底表示唯一，所有系数都必须为零：$
@@ -80,22 +79,18 @@ $
 $
 f(rm)=rf(m),
 $
-则称为 $R$-模同态。</p><p>模同态同时保持加法结构与标量乘法结构。当 $R=\mathbb Z$ 时，模同态恰好就是 Abel 群同态。</p><h1 id=64-张量积>6.4 张量积<a hidden class=anchor aria-hidden=true href=#64-张量积>#</a></h1><p>张量积（Tensor Product）是模之间的一种重要代数构造。它的作用是将双线性映射转化为线性映射。</p><p>设 $R$ 为含幺交换环，$M,N$ 为 $R$-模。我们希望构造一个新的 $R$-模 $M\otimes_R N$，以及一个映射
-$
-\otimes:M\times N\longrightarrow M\otimes_R N,
-\qquad (m,n)\longmapsto m\otimes n,
-$
-使其满足双线性关系：
-$
+则称为 $R$-模同态。</p><p>模同态同时保持加法结构与标量乘法结构。当 $R=\mathbb Z$ 时，模同态恰好就是 Abel 群同态。</p><p>我们注意到，模上不仅可以定义加法与标量乘法，而且标量乘法满足分配律，并与模的加法相容。不过，这些运算主要涉及单个模元素。如果同时考虑两个模中的元素，能否建立一种能够保留各自线性结构的代数构造？</p><p>一个自然的出发点是双线性映射：它分别对两个变量满足线性条件。我们希望将这种双变量的线性结构转化为普通的线性结构，从而能够借助线性映射的理论研究它。</p><p>举个例子，设 $V,W$ 是有限维向量空间，考虑双线性映射 $B:V\times W\to \mathbb R$。如果分别取基 ${e_i}$，${f_j}$，那么 $B$ 完全由有限多个数 $B(e_i,f_j)$ 决定。那么能否构造一个空间，使得每一对基向量 $e_i,f_j$ 对应一个新的基向量，而双线性映射恰好由这些新基向量上的线性映射决定？这便引出了张量积（Tensor Product）。它是模论中的一种重要代数构造，其核心作用是：将双线性映射统一转化为线性映射。</p><h1 id=64-张量积>6.4 张量积<a hidden class=anchor aria-hidden=true href=#64-张量积>#</a></h1><p>设 $R$ 为含幺交换环，$M,N$ 为 $R$-模。我们希望构造一个新的 $R$-模 $M\otimes_R N$，以及一个映射 $
+\otimes:M\times N\longrightarrow M\otimes_R N,(m,n)\longmapsto m\otimes n, $
+使其满足双线性关系：</p><p>$$
 \begin{aligned}
 (m_1+m_2)\otimes n
-&=m_1\otimes n+m_2\otimes n,\
+&=m_1\otimes n+m_2\otimes n,\\
 m\otimes(n_1+n_2)
-&=m\otimes n_1+m\otimes n_2,\
+&=m\otimes n_1+m\otimes n_2,\\
 (rm)\otimes n
 &=m\otimes(rn)=r(m\otimes n).
 \end{aligned}
-$</p><p>严格地说，张量积由这些双线性关系生成，并满足以下泛性质。</p><p><strong>定义 6.6（张量积）</strong> $M\otimes_R N$ 是一个 $R$-模，配备双线性映射 $(m,n)\mapsto m\otimes n$，使得对任意 $R$-模 $P$ 及双线性映射 $b:M\times N\to P$，都存在唯一的模同态
+$$</p><p>严格地说，张量积由这些双线性关系生成，并满足以下泛性质。</p><p><strong>定义 6.6（张量积）</strong> $M\otimes_R N$ 是一个 $R$-模，配备双线性映射 $(m,n)\mapsto m\otimes n$，使得对任意 $R$-模 $P$ 及双线性映射 $b:M\times N\to P$，都存在唯一的模同态
 $
 \widetilde b:M\otimes_R N\longrightarrow P
 $
@@ -105,7 +100,7 @@ b(m,n)=\widetilde b(m\otimes n).
 $</p><p>这意味着任何双线性映射都可以唯一地通过张量积分解为一个线性映射。</p><p>例如，若 $M=R^m$、$N=R^n$，则有自然同构
 $
 R^m\otimes_R R^n\cong R^{mn}.
-$</p><p>张量积是模论中的基本工具，也将在后续讨论不同系数下的链复形时发挥作用。本章只需要掌握其定义与泛性质，不进一步讨论张量积的具体计算和相关定理。</p><h1 id=65-正合列与短正合列>6.5 正合列与短正合列<a hidden class=anchor aria-hidden=true href=#65-正合列与短正合列>#</a></h1><p><strong>定义 6.7（正合列）</strong> 对于一列群同态
+$</p><h1 id=65-正合列与短正合列>6.5 正合列与短正合列<a hidden class=anchor aria-hidden=true href=#65-正合列与短正合列>#</a></h1><p><strong>定义 6.7（正合列）</strong> 对于一列群同态
 $
 A\xrightarrow{f}B\xrightarrow{g}C,
 $
@@ -113,7 +108,7 @@ $
 $
 \operatorname{im}f=\ker g,
 $
-则称该列在 $B$ 处正合。</p><p>如果这一性质在每个中间项都成立，则称整列正合。对于模及 Abel 群，正合列的定义完全相同，只需将群同态替换为相应的模同态或 Abel 群同态。</p><p>正合性的含义是：前一个映射能够产生的元素，恰好是后一个映射所消去的元素。它不仅要求前一个映射的像落在后一个映射的核中，而且要求二者完全相等。</p><p><strong>定义 6.8（短正合列）</strong> 若下列序列正合：
+则称该列在 $B$ 处正合。</p><p>如果这一性质在每个中间项都成立，则称整列正合。对于模及 Abel 群，正合列的定义完全相同，只需将群同态替换为相应的模同态或 Abel 群同态。正合性可以这样理解，前一个映射能够产生的元素，恰好是后一个映射所消去的元素。它不仅要求前一个映射的像落在后一个映射的核中，而且要求二者完全相等。</p><p><strong>定义 6.8（短正合列）</strong> 若下列序列正合：
 $
 0\longrightarrow A
 \xrightarrow{f}B
@@ -163,7 +158,7 @@ $
 \xrightarrow{\partial_{n+1}}C_n
 \xrightarrow{\partial_n}C_{n-1}
 \xrightarrow{\partial_{n-1}}\cdots.
-$ 其中 $C_n$ 称为 $n$ 维链群（或 $n$ 次链模），$\partial_n$ 称为边界算子。如果所有 $C_n$ 都是 $R$-模，并且每个边界算子都是 $R$-模同态，则称为 $R$ 上的链复形。</p><p>条件
+$ 其中 $C_n$ 称为 $n$ 维链群（或 $n$ 次链模），$\partial_n$ 称为边界算子。如果所有 $C_n$ 都是 $R$-模，并且每个边界算子都是 $R$-模同态，则称为 $R$ 上的链复形。要小心下标，边界算子的下标和其出发的群（模）的下标一致。</p><p>条件
 $
 \partial_n\circ\partial_{n+1}=0
 $
@@ -171,14 +166,44 @@ $
 $
 \partial^2=0,
 $
-称为边界的边界为零。这一条件是链复形最核心的代数性质。它意味着任何一个链的边界，再取一次边界必然得到零。例如，在一个由三角形构成的几何结构中，三角形的边界由三条有向边组成；而每条边又有两个端点。将三条边的端点按照方向相加时，各顶点的系数恰好抵消，因此三角形边界的边界为零。</p><h1 id=67-循环边界与同调群>6.7 循环、边界与同调群<a hidden class=anchor aria-hidden=true href=#67-循环边界与同调群>#</a></h1><p>链复形中有两个最重要的子群：循环群与边界群。它们就像刚才正合列里面的 $\operatorname{im}f$ 和 $\ker g$</p><p><strong>定义 6.10（循环群与边界群）</strong> 对链复形 $
+称为边界的边界为零。这一条件是链复形最核心的代数性质。它意味着任何一个链的边界，再取一次边界必然得到零。我们举一个三角形的例子，它虽然是几何结构，但是我们可以通过恰当的定义构造出来一个链复形，让它不再是一个抽象的东西。</p><p>取一个有三个顶点的三角形，记顶点为 $v_0,v_1,v_2$，三条边为 $[v_0,v_1]$、$[v_1,v_2]$、$[v_0,v_2]$，二维面为 $[v_0,v_1,v_2]$。我们暂时取系数环为整数环 $\mathbb Z$。按照维数分别构造自由阿贝尔群。首先是 0-链群：由三个顶点生成，$C_0=\mathbb Z\langle v_0,v_1,v_2\rangle$。然后是 1-链群：由三条有向边生成，$C_1=\mathbb Z\langle [v_0,v_1],[v_1,v_2],[v_0,v_2]\rangle$。最后是 2-链群：由一个有向三角形生成，$C_2=\mathbb Z\langle [v_0,v_1,v_2]\rangle$。而对于更高维链群，没有更高维的单纯形，因此 $C_n=0$，当 $n\geq 3$。
+这里的 $\mathbb Z\langle \cdots\rangle$ 表示由括号内元素生成的自由阿贝尔群。例如，$C_1$ 中任意元素都可以写成 $m[v_0,v_1]+n[v_1,v_2]+p[v_0,v_2]$，其中 $m,n,p\in\mathbb Z$。因此，我们得到：
+$
+0\longrightarrow C_2
+\xrightarrow{\partial_2}C_1
+\xrightarrow{\partial_1}C_0
+\longrightarrow 0.
+$ 这就是由这个三角形的单纯形构造出来的链群序列。</p><p>现在定义边界算子 $\partial_n:C_n\to C_{n-1}$。对于顶点，规定其边界为零：$
+\partial_0(v_i)=0.
+$ 对于有向边，规定边界为终点减起点：$
+\partial_1[v_0,v_1]=v_1-v_0,
+\partial_1[v_1,v_2]=v_2-v_1,
+\partial_1[v_0,v_2]=v_2-v_0.
+$ 对于二维三角形，规定：
+$
+\partial_2[v_0,v_1,v_2]
+={}[v_1,v_2]-[v_0,v_2]
++[v_0,v_1].
+$ 注意，这里的正负号保证三角形的三个边按照一致的边界方向排列。</p><p>由于链群中的元素是生成元的整数线性组合，我们将上述定义线性延拓到整个链群。现在验证边界的边界为零，只需要考察 $C_2$ 的生成元：
+$
+\partial_1\partial_2[v_0,v_1,v_2]
+=\partial_1\big(
+[v_1,v_2]-[v_0,v_2]+[v_0,v_1]
+\big)
+=(v_2-v_1)-(v_2-v_0)+(v_1-v_0)
+=0.
+$</p><p>而 $\partial_0\circ\partial_1=0$，因为 $\partial_0$ 本身就是零映射。
+因此，整个链群序列满足：
+$
+\partial_n\circ\partial_{n+1}=0.
+$ 我们便得到一个链复形。</p><h1 id=67-闭链边界与同调群>6.7 闭链、边界与同调群<a hidden class=anchor aria-hidden=true href=#67-闭链边界与同调群>#</a></h1><p>链复形中有两个最重要的子群：闭链群与边界群。它们就像刚才正合列里面的 $\operatorname{im}f$ 和 $\ker g$</p><p><strong>定义 6.10（闭链群与边界群）</strong> 对链复形 $
 \cdots\longrightarrow C_{n+1}
 \xrightarrow{\partial_{n+1}}C_n
 \xrightarrow{\partial_n}C_{n-1}\longrightarrow\cdots,
 $ 定义 $
 Z_n=\ker\partial_n,
 \qquad
-B_n=\operatorname{im}\partial_{n+1}.$ 其中 $Z_n$ 称为 $n$ 维循环群（group of $n$-cycles），$B_n$ 称为 $n$ 维边界群（group of $n$-boundaries）。</p><p>这里必须澄清一个术语问题：$Z_n$ 虽然名称中含有“循环群”，但它并不是说 $Z_n$ 一定是由单个元素生成的循环群（cyclic group）。这里的“循环”指的是被边界算子映射为零的链。</p><p>由链复形条件
+B_n=\operatorname{im}\partial_{n+1}.$ 其中 $Z_n$ 称为 $n$ 维闭链群（group of $n$-cycles），$B_n$ 称为 $n$ 维边界群（group of $n$-boundaries）。还是要注意下标啊，闭链群和边界群都是 $C_n$ 的子群。</p><p>这里必须澄清一个术语问题：$Z_n$ 虽然名称中含有“闭链群”，但它并不是说 $Z_n$ 一定是由单个元素生成的闭链群（cyclic group）。这里的“闭链”指的是被边界算子映射为零的链。</p><p>由链复形条件
 $
 \partial_n\partial_{n+1}=0
 $
@@ -189,15 +214,14 @@ $
 因此
 $
 B_n\subseteq Z_n.
-$ 也就是说，每一个边界都是循环，但反过来未必成立。</p><p><strong>定义 6.11（同调群）</strong> 链复形的第 $n$ 个同调群定义为 $H_n(C_\bullet)
+$ 也就是说，每一个边界都是闭链，但反过来未必成立。</p><p><strong>定义 6.11（同调群）</strong> 链复形的第 $n$ 个同调群定义为 $H_n(C_\bullet)
 =\frac{Z_n}{B_n}
 =\frac{\ker\partial_n}{\operatorname{im}\partial_{n+1}}.
-$ 由于 $B_n\subseteq Z_n$，上述商群是有定义的。</p><p>同调群的思想可以这样理解：循环是边界为零的链，而边界是某个更高维链的边界。我们将相差一个边界的循环视为等价，于是得到同调群。</p><p>具体而言，对 $z_1,z_2\in Z_n$，定义
-$
+$ 由于 $B_n\subseteq Z_n$，上述商群是有定义的。</p><p>同调群的思想可以这样理解：闭链是边界为零的一种特殊的链，而边界是某个高一维链的边界。我们将相差一个边界的闭链视为等价，于是得到同调群。具体而言，对 $z_1,z_2\in Z_n$，定义 $
 z_1\sim z_2
-\quad\Longleftrightarrow\quad
-z_1-z_2\in B_n.
-$</p><p>因此，同调群记录的不是所有循环，而是模去边界之后剩下的循环类。它捕捉的是那些满足边界为零、但又不能表示为更高维边界的代数信息。</p><p>从正合列的角度看，同调群也可以理解为相邻两个边界映射之间正合性的失效程度：如果在 $C_n$ 处恰好有
+\Longleftrightarrow z_1-z_2\in B_n.
+$
+通俗地讲，对于任意 $z\in Z_n$，只有两种可能：第一，$z\in B_n$：它是某个 $(n+1)$-链的边界；第二，$z\notin B_n$：它不是任何 $(n+1)$-链的边界。不存在第三种情况。因为 $B_n\subseteq Z_n$，所以 $Z_n$ 可以分成这两个互不相交的部分。</p><p>从正合列的角度看，同调群也可以理解为相邻两个边界映射之间正合性的失效程度：如果在 $C_n$ 处恰好有
 $
 \operatorname{im}\partial_{n+1}=\ker\partial_n,
 $
@@ -207,68 +231,57 @@ f_n:C_n\longrightarrow D_n
 $
 满足
 $
-\boxed{
 \partial_n^D\circ f_n
 =f_{n-1}\circ\partial_n^C,
-}
 $
-则称 $f={f_n}$ 为链映射（Chain Map）。</p><p>这个条件可以理解为：先对链应用映射，再取边界，与先取边界，再应用映射，结果相同。也就是说，链映射与边界算子相容。</p><p>链映射之所以重要，是因为它能够自然地诱导同调群之间的同态。</p><p>首先，若 $z\in Z_n(C)$，则
+则称 $f={f_n}$ 为链映射（Chain Map）。</p><p>这个条件可以理解为：先对链应用映射，再取边界，与先取边界，再应用映射，结果相同。也就是说，链映射与边界算子相容。这使得链映射能够自然地诱导同调群之间的同态。首先，若 $z\in Z_n(C)$，则
 $
 \partial_n^Cz=0.
-$
-于是
+$ 于是
 $
 \partial_n^D f_n(z)
 =f_{n-1}(\partial_n^Cz)=0.
 $
-所以 $f_n(z)\in Z_n(D)$，即循环映射为循环。</p><p>其次，若 $z=\partial_{n+1}^C x\in B_n(C)$，则
+所以 $f_n(z)\in Z_n(D)$，即闭链映射为闭链。 其次，若 $z=\partial_{n+1}^C x\in B_n(C)$，则
 $
 f_n(z)
 =f_n(\partial_{n+1}^C x)
 =\partial_{n+1}^D f_{n+1}(x),
+$ 因此 $f_n(z)\in B_n(D)$，即边界映射为边界。
+<img alt="alt text" loading=lazy src=/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/ab2673230cdfadb4e4493b51d4e35506.jpg>
+所以链映射可以在商群上诱导出同态
 $
-因此 $f_n(z)\in B_n(D)$，即边界映射为边界。</p><p>所以链映射可以在商群上诱导出同态
-$
-\boxed{
 H_n(f):H_n(C_\bullet)\longrightarrow H_n(D_\bullet),
-\qquad [z]\longmapsto[f_n(z)].
-}
+\quad [z]\longmapsto[f_n(z)].
 $</p><p>这说明链复形之间保持边界结构的映射，会自然地在同调群层面产生代数映射。</p><h1 id=611-链同伦>6.11 链同伦<a hidden class=anchor aria-hidden=true href=#611-链同伦>#</a></h1><p>链映射保持边界算子，但不同的链映射仍然可能诱导相同的同调群同态。为了刻画这种情况，我们引入链同伦。</p><p><strong>定义 6.18（链同伦）</strong> 设 $f,g:C_\bullet\to D_\bullet$ 是两个链映射。若存在一族同态
 $
 s_n:C_n\longrightarrow D_{n+1}
 $
 满足
 $
-\boxed{
 f_n-g_n
 =\partial_{n+1}^D s_n+s_{n-1}\partial_n^C,
-}
 $
-则称 $f$ 与 $g$ 链同伦（Chain Homotopic）。</p><p>通常将这组关系简写为
+则称 $f$ 与 $g$ 链同伦（Chain Homotopic）。通常将这组关系简写为
 $
 f-g=\partial^D s+s\partial^C.
-$</p><p>其中 $s={s_n}$ 称为链同伦算子。</p><p>注意，$s_n$ 将 $n$ 次链映射到 $n+1$ 次链，因此它使两个链映射之间的差可以表示为边界算子与 $s$ 的组合。这与拓扑中的同伦概念具有深刻联系。</p><p><strong>定理 6.1</strong> 若两个链映射链同伦，则它们诱导的同调群同态相同。</p><p><strong>证明：</strong> 取 $z\in Z_n(C)$，则 $\partial_n^Cz=0$。由链同伦关系，
-$
-\begin{aligned}
-f_n(z)-g_n(z)
-&=\partial_{n+1}^D s_n(z)
-+s_{n-1}(\partial_n^Cz)\
-&=\partial_{n+1}^D s_n(z).
-\end{aligned}
-$</p><p>因此 $f_n(z)$ 与 $g_n(z)$ 相差一个边界，在同调群中代表同一个元素：
+$ 其中 $s={s_n}$ 称为链同伦算子。</p><p>注意，$s_n$ 将 $n$ 次链映射到 $n+1$ 次链，因此它使两个链映射之间的差可以表示为边界算子与 $s$ 的组合。这与拓扑中的同伦概念具有深刻联系。</p><p><strong>定理 6.1</strong> 若两个链映射链同伦，则它们诱导的同调群同态相同。</p><p><strong>证明：</strong> 取 $z\in Z_n(C)$，则 $\partial_n^Cz=0$。由链同伦关系，$
+f_n(z)-g_n(z)=\partial_{n+1}^D s_n(z)
++s_{n-1}(\partial_n^Cz)=\partial_{n+1}^D s_n(z).
+$ 因此 $f_n(z)$ 与 $g_n(z)$ 相差一个边界，在同调群中代表同一个元素：
 $
 [f_n(z)]=[g_n(z)].
-$</p><p>故
+$ 故
 $
 H_n(f)=H_n(g).
 $
-证毕。</p><p>这一结论说明，同调群并不关心链映射的全部细节，而只保留它们在同调层面上的作用。链同伦是同伦不变性在链复形中的代数表达。</p><h1 id=612-短正合列与连接同态>6.12 短正合列与连接同态<a hidden class=anchor aria-hidden=true href=#612-短正合列与连接同态>#</a></h1><p>正合列不仅可以描述群或模之间的关系，也可以描述链复形之间的关系。它是构造长正合列的重要基础。</p><p>考虑三个链复形 $A_\bullet,B_\bullet,C_\bullet$，以及链映射构成的短正合列：
+证毕。</p><p>这一结论说明，同调群并不关心链映射的全部细节，而只保留它们在同调层面上的作用。链同伦是同伦不变性在链复形中的代数表达。</p><h1 id=612-长正合列>6.12 长正合列<a hidden class=anchor aria-hidden=true href=#612-长正合列>#</a></h1><p>正合列不仅可以描述群或模之间的关系，也可以描述链复形之间的关系。它是构造长正合列的重要基础。</p><p>考虑三个链复形 $A_\bullet,B_\bullet,C_\bullet$，以及链映射构成的短正合列：
 $
 0\longrightarrow A_\bullet
 \xrightarrow{i}B_\bullet
 \xrightarrow{p}C_\bullet
 \longrightarrow0.
-$</p><p>这里的短正合意味着：对每个次数 $n$，都有
+$ 这里的短正合意味着：对每个次数 $n$，都有
 $
 0\longrightarrow A_n
 \xrightarrow{i_n}B_n
@@ -278,34 +291,39 @@ $
 正合。也就是说，$i_n$ 单射，$p_n$ 满射，并且
 $
 \operatorname{im}i_n=\ker p_n.
-$</p><p>由这样的短正合列，可以构造同调群之间的长正合列：</p><p>$
-\cdots\longrightarrow H_n(A)
-\xrightarrow{i_<em>}H_n(B)\xrightarrow{p_</em>}H_n(C)
-\xrightarrow{\delta}H_{n-1}(A)\longrightarrow\cdots.</p><p>$</p><p>其中 $\delta$ 称为连接同态（Connecting Homomorphism）。</p><p>连接同态的构造是本节最重要的内容。理解它的关键，在于理解“提升”（lifting）是什么意思。</p><h2 id=连接同态中的提升>连接同态中的提升<a hidden class=anchor aria-hidden=true href=#连接同态中的提升>#</a></h2><p>设 $[c]\in H_n(C_\bullet)$，其中 $c\in C_n$ 是一个循环，即
+$ 由这样的短正合列，可以构造同调群之间的长正合列：</p><p>$$
+\begin{aligned}
+\cdots\longrightarrow H_{n+1}(C)
+&\xrightarrow{\delta}H_n(A)
+\xrightarrow{i}H_n(B)\\
+&\xrightarrow{p}H_n(C)
+\xrightarrow{\delta}H_{n-1}(A)
+\xrightarrow{i}\cdots
+\end{aligned}
+$$</p><p>其中，$\delta$ 称为连接同态（Connecting Homomorphism）。</p><h2 id=613-连接同态与提升>6.13 连接同态与提升<a hidden class=anchor aria-hidden=true href=#613-连接同态与提升>#</a></h2><p>设 $[c]\in H_n(C_\bullet)$，其中 $c\in C_n$ 是一个闭链，即
 $
 \partial_n^C c=0.
-$</p><p>由于 $p_n:B_n\to C_n$ 是满射，因此一定存在 $b\in B_n$，使得
+$ 由于 $p_n:B_n\to C_n$ 是满射，因此一定存在 $b\in B_n$，使得
 $
 p_n(b)=c.
-$</p><p>这个过程称为将 $c$ 从 $C_n$ <strong>提升到 $B_n$</strong>。所谓提升，就是在映射 $p_n$ 之下，寻找一个原像 $b$，使它映射回原来的元素 $c$。</p><p>接下来，对 $b$ 取边界：
+$ 这个过程称为将 $c$ 从 $C_n$ <strong>提升到 $B_n$</strong>。所谓提升，就是在映射 $p_n$ 之下，寻找一个原像 $b$，使它映射回原来的元素 $c$。</p><p>接下来，对 $b$ 取边界：
 $
 \partial_n^B b\in B_{n-1}.
-$</p><p>由于 $p$ 是链映射，
-$
+$ 由于 $p$ 是链映射，$
 p_{n-1}(\partial_n^B b)
 =\partial_n^C(p_n(b))
 =\partial_n^C c
 =0.
-$</p><p>因此
+$ 因此
 $
 \partial_n^B b\in\ker p_{n-1}.
-$</p><p>由短正合列的正合性，
+$ 由短正合列的正合性，
 $
 \ker p_{n-1}=\operatorname{im}i_{n-1}.
-$</p><p>所以存在 $a\in A_{n-1}$，使得
+$ 所以存在 $a\in A_{n-1}$，使得
 $
 i_{n-1}(a)=\partial_n^B b.
-$</p><p>由于 $i_{n-1}$ 是单射，这个 $a$ 是唯一的。进一步，因为 $i$ 是链映射，
+$ 由于 $i_{n-1}$ 是单射，这个 $a$ 是唯一的。</p><p>进一步，因为 $i$ 是链映射，
 $
 i_{n-2}(\partial_{n-1}^A a)
 =\partial_{n-1}^B(i_{n-1}(a))
@@ -315,19 +333,19 @@ $
 而 $i_{n-2}$ 是单射，所以
 $
 \partial_{n-1}^A a=0.
-$</p><p>因此 $a$ 是 $A_{n-1}$ 中的循环，可以定义
+$ 因此 $a$ 是 $A_{n-1}$ 中的闭链，可以定义
 $
 \boxed{\delta([c])=[a].}
-$</p><p>这就是连接同态的构造。</p><h2 id=为什么连接同态是良定义的>为什么连接同态是良定义的？<a hidden class=anchor aria-hidden=true href=#为什么连接同态是良定义的>#</a></h2><p>上面的构造涉及两个选择：循环代表元 $c$，以及它在 $B_n$ 中的提升 $b$。要使 $\delta$ 真正成为同态，必须证明不同选择不会改变最终得到的同调类。</p><p>首先，固定 $c$，选择另一个提升 $b&rsquo;$。由于
+$<img alt="alt text" loading=lazy src=/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E7%BE%A4%E6%A8%A1%E4%B8%8E%E9%93%BE%E5%A4%8D%E5%BD%A2/image.png></p><p>这就是连接同态的构造。从上图可见，连接同态可以理解为一个连续的代数过程：</p><ol><li>从 $C_n$ 中取一个闭链 $c$。</li><li>将 $c$ 提升为 $B_n$ 中的元素 $b$。</li><li>对 $b$ 取边界，得到 $\partial b$。</li><li>由于 $c$ 是闭链，$\partial b$ 必须落在 $\ker p$ 中。</li><li>由正合性，$\ker p=\operatorname{im}i$，因此 $\partial b$ 来自 $A_{n-1}$。</li><li>这个元素本身也是闭链，从而确定 $A$ 中的一个同调类。</li></ol><p>因此，连接同态将 $C$ 中的 $n$ 维同调信息，转化为 $A$ 中的 $(n-1)$ 维同调信息。它的关键是将 $c$ 提升到 $B$，再取边界。这个边界可能不为零，但恰好来自 $A$。不过，我们还需要证明连接同态是良定义的，不然不同的提升会改变最终的同调类。</p><p>首先，固定 $c$，选择另一个提升 $b&rsquo;$。由于
 $
 p_n(b&rsquo;-b)=0,
 $
 存在 $x\in A_n$，使得
 $
 i_n(x)=b&rsquo;-b.
-$</p><p>若相应地有
+$ 若相应地有
 $
-i_{n-1}(a)=\partial b,\qquad
+i_{n-1}(a)=\partial b,
 i_{n-1}(a&rsquo;)=\partial b&rsquo;,
 $
 则
@@ -341,7 +359,7 @@ $
 $
 a&rsquo;-a=\partial x.
 $
-所以 $a&rsquo;$ 与 $a$ 相差一个边界，代表同一个同调类。</p><p>其次，若将循环代表元 $c$ 替换为同调等价的 $c&rsquo;=c+\partial d$，取 $d$ 在 $B$ 中的一个提升 $y$，则可以选择
+所以 $a&rsquo;$ 与 $a$ 相差一个边界，代表同一个同调类。其次，若将闭链代表元 $c$ 替换为同调等价的 $c&rsquo;=c+\partial d$，取 $d$ 在 $B$ 中的一个提升 $y$，则可以选择
 $
 b&rsquo;=b+\partial y
 $
@@ -349,10 +367,7 @@ $
 $
 \partial b&rsquo;=\partial b,
 $
-所得的 $a$ 不变。因此，连接同态与循环代表元的选择无关。</p><p>由此可知，$\delta$ 是良定义的群同态。</p><h2 id=连接同态的直观含义>连接同态的直观含义<a hidden class=anchor aria-hidden=true href=#连接同态的直观含义>#</a></h2><p>连接同态可以理解为一个连续的代数过程：</p><ol><li>从 $C_n$ 中取一个循环 $c$。</li><li>将 $c$ 提升为 $B_n$ 中的元素 $b$。</li><li>对 $b$ 取边界，得到 $\partial b$。</li><li>由于 $c$ 是循环，$\partial b$ 必须落在 $\ker p$ 中。</li><li>由正合性，$\ker p=\operatorname{im}i$，因此 $\partial b$ 来自 $A_{n-1}$。</li><li>这个元素本身也是循环，从而确定 $A$ 中的一个同调类。</li></ol><p>因此，连接同态将 $C$ 中的 $n$ 维同调信息，转化为 $A$ 中的 $(n-1)$ 维同调信息。</p><p>它的关键不是简单地对 $c$ 取边界——因为 $c$ 本身已经是循环，边界为零；而是先将它提升到 $B$，再取边界。这个边界可能不为零，但恰好来自 $A$。</p><p>这就是“连接”一词的来源：它将三个链复形的同调群联系起来。</p><h1 id=613-本章小结>6.13 本章小结<a hidden class=anchor aria-hidden=true href=#613-本章小结>#</a></h1><p>本章建立了同调理论所需的基本代数语言。</p><p>首先，我们从群出发，介绍 Abel 群、子群、循环群以及群同态的核与像。随后引入环与标量乘法，进而定义模，说明 Abel 群恰好可以看作 $\mathbb Z$-模，而向量空间则是域上的模。</p><p>在此基础上，我们介绍正合列与短正合列，理解它们如何通过核与像描述代数结构之间的关系。最后，以 Abel 群或模为系数对象，引入链复形、循环群、边界群、同调群、链映射与链同伦，并说明短正合列如何诱导长正合列，以及连接同态如何通过提升构造。</p><p>本章需要牢固掌握以下几个关系：</p><ol><li>群同态的核与像都是子群，核还是正规子群。</li><li>Abel 群等价于 $\mathbb Z$-模。</li><li>正合性意味着前一个映射的像等于后一个映射的核。</li><li>短正合列意味着首映射单射、中间正合、末映射满射。</li><li>链复形满足 $\partial^2=0$，因而边界群包含于循环群。</li><li>同调群是循环群对边界群取商：
-$
-H_n=\frac{\ker\partial_n}{\operatorname{im}\partial_{n+1}}.
-$</li><li>链同伦的链映射诱导相同的同调群同态。</li><li>连接同态通过提升与取边界，将一个链复形的同调信息传递到另一个链复形。</li></ol><p>下一章将从具体的几何空间出发，构造相应的链复形，并通过计算同调群理解这些代数结构如何反映空间的拓扑性质。</p><h1 id=习题>习题<a hidden class=anchor aria-hidden=true href=#习题>#</a></h1><p><strong>1. 群同态的核与像。</strong> 设 $\varphi:G\to H$ 是群同态。证明 $\ker\varphi$ 是 $G$ 的正规子群，$\operatorname{im}\varphi$ 是 $H$ 的子群。举例说明像不一定是正规子群。</p><p><strong>2. 循环群与自由 Abel 群。</strong> 证明 $\mathbb Z^n$ 在 $n>1$ 时不是循环群。提示：假设它由一个元素生成，考察该元素的坐标。</p><p><strong>3. Abel 群与模。</strong> 证明任意 Abel 群都能唯一地赋予一个自然的 $\mathbb Z$-模结构，使整数倍运算与群加法相容。</p><p><strong>4. 模的挠元。</strong> 设 $M$ 是一个 $\mathbb Z$-模。若存在非零整数 $n$ 和非零元素 $m\in M$，使得 $nm=0$，则称 $m$ 为挠元。证明自由 $\mathbb Z$-模没有非零挠元，并说明 $\mathbb Z/n\mathbb Z$（$n>1$）不是自由 $\mathbb Z$-模。</p><p><strong>5. 正合列。</strong> 证明短正合列
+所得的 $a$ 不变。因此，连接同态与闭链代表元的选择无关。</p><p>由此可知，$\delta$ 是良定义的群同态。</p><h1 id=习题>习题<a hidden class=anchor aria-hidden=true href=#习题>#</a></h1><p><strong>1. 群同态的核与像。</strong> 设 $\varphi:G\to H$ 是群同态。证明 $\ker\varphi$ 是 $G$ 的正规子群，$\operatorname{im}\varphi$ 是 $H$ 的子群。举例说明像不一定是正规子群。</p><p><strong>2. 闭链群与自由 Abel 群。</strong> 证明 $\mathbb Z^n$ 在 $n>1$ 时不是闭链群。提示：假设它由一个元素生成，考察该元素的坐标。</p><p><strong>3. Abel 群与模。</strong> 证明任意 Abel 群都能唯一地赋予一个自然的 $\mathbb Z$-模结构，使整数倍运算与群加法相容。</p><p><strong>4. 模的挠元。</strong> 设 $M$ 是一个 $\mathbb Z$-模。若存在非零整数 $n$ 和非零元素 $m\in M$，使得 $nm=0$，则称 $m$ 为挠元。证明自由 $\mathbb Z$-模没有非零挠元，并说明 $\mathbb Z/n\mathbb Z$（$n>1$）不是自由 $\mathbb Z$-模。</p><p><strong>5. 正合列。</strong> 证明短正合列
 $
 0\to A\xrightarrow{f}B\xrightarrow{g}C\to0
 $
@@ -361,7 +376,7 @@ $
 C_2\xrightarrow{\partial_2}C_1
 \xrightarrow{\partial_1}C_0
 $
-满足 $\partial_1\partial_2=0$。证明 $\operatorname{im}\partial_2\subseteq\ker\partial_1$，并解释这一包含关系在同调群定义中的作用。</p><p><strong>7. 同调群。</strong> 证明若链复形在 $C_n$ 处正合，则 $H_n(C_\bullet)=0$。反过来，若 $H_n(C_\bullet)=0$，说明这意味着什么。</p><p><strong>8. 链映射。</strong> 证明链映射将循环映射为循环、边界映射为边界，并由此诱导同调群之间的同态。</p><p><strong>9. 链同伦。</strong> 证明两个链同伦的链映射诱导相同的同调群同态。</p><p><strong>10. 连接同态。</strong> 阅读本章关于连接同态的构造，逐步解释为什么提升 $b$ 的边界 $\partial b$ 必须来自 $A_{n-1}$，以及为什么它本身是一个循环。</p><h1 id=参考文献>参考文献<a hidden class=anchor aria-hidden=true href=#参考文献>#</a></h1><ol><li>Allen Hatcher, <em>Algebraic Topology</em>, Chapter 2.</li><li>James R. Munkres, <em>Elements of Algebraic Topology</em>.</li><li>Charles A. Weibel, <em>An Introduction to Homological Algebra</em>, Chapter 1.</li><li>Joseph J. Rotman, <em>An Introduction to the Theory of Groups</em>.</li><li>Serge Lang, <em>Algebra</em>.</li></ol></div><footer class=post-footer><ul class=post-tags></ul><nav class=paginav><a class=prev href=https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E6%8B%93%E6%89%91%E4%B8%8E%E5%90%8C%E4%BC%A6/%E8%A6%86%E7%9B%96%E7%A9%BA%E9%97%B4/><span class=title>« Prev</span>
+满足 $\partial_1\partial_2=0$。证明 $\operatorname{im}\partial_2\subseteq\ker\partial_1$，并解释这一包含关系在同调群定义中的作用。</p><p><strong>7. 同调群。</strong> 证明若链复形在 $C_n$ 处正合，则 $H_n(C_\bullet)=0$。反过来，若 $H_n(C_\bullet)=0$，说明这意味着什么。</p><p><strong>8. 链映射。</strong> 证明链映射将闭链映射为闭链、边界映射为边界，并由此诱导同调群之间的同态。</p><p><strong>9. 链同伦。</strong> 证明两个链同伦的链映射诱导相同的同调群同态。</p><p><strong>10. 连接同态。</strong> 阅读本章关于连接同态的构造，逐步解释为什么提升 $b$ 的边界 $\partial b$ 必须来自 $A_{n-1}$，以及为什么它本身是一个闭链。</p><h1 id=参考文献>参考文献<a hidden class=anchor aria-hidden=true href=#参考文献>#</a></h1><ol><li>Allen Hatcher, <em>Algebraic Topology</em>, Chapter 2.</li><li>James R. Munkres, <em>Elements of Algebraic Topology</em>.</li><li>Charles A. Weibel, <em>An Introduction to Homological Algebra</em>, Chapter 1.</li><li>Joseph J. Rotman, <em>An Introduction to the Theory of Groups</em>.</li><li>Serge Lang, <em>Algebra</em>.</li></ol></div><footer class=post-footer><ul class=post-tags></ul><nav class=paginav><a class=prev href=https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E6%8B%93%E6%89%91%E4%B8%8E%E5%90%8C%E4%BC%A6/%E8%A6%86%E7%9B%96%E7%A9%BA%E9%97%B4/><span class=title>« Prev</span>
 <span>第 4 章　覆盖空间</span>
 </a><a class=next href=https://linmythos.github.io/math/topology/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/%E5%90%8C%E8%B0%83%E7%90%86%E8%AE%BA/%E5%8D%95%E7%BA%AF%E5%90%8C%E8%B0%83/><span class=title>Next »</span>
 <span>第 7 章　单纯同调</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://linmythos.github.io/>Linmythos</a></span> ·
