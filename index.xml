@@ -1,4 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Linmythos</title><link>https://linmythos.github.io/</link><description>Recent content on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Fri, 13 Nov 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title> 1 讲：集合运算与集合序列</title><link>https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/%E6%B5%8B%E5%BA%A6%E8%AE%BA%E7%9A%84%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97%E4%B8%8E%E9%9B%86%E5%90%88%E5%BA%8F%E5%88%97/</link><pubDate>Fri, 13 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/%E6%B5%8B%E5%BA%A6%E8%AE%BA%E7%9A%84%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97%E4%B8%8E%E9%9B%86%E5%90%88%E5%BA%8F%E5%88%97/</guid><description>&lt;p&gt;上一讲我们提出了一个问题：如何将区间长度推广到一般集合？要回答这个问题，首先必须明确我们究竟允许对集合进行哪些运算，以及这些运算在无穷情形下具有怎样的性质。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Linmythos</title><link>https://linmythos.github.io/</link><description>Recent content on Linmythos</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 15 Nov 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://linmythos.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>第五章 李代数的定义与基本例子</title><link>https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E6%9D%8E%E4%BB%A3%E6%95%B0%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%9A%84%E6%97%A0%E7%A9%B7%E5%B0%8F%E7%BB%93%E6%9E%84/%E6%9D%8E%E4%BB%A3%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%9F%BA%E6%9C%AC%E4%BE%8B%E5%AD%90/</link><pubDate>Sun, 15 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E6%9D%8E%E4%BB%A3%E6%95%B0%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%9A%84%E6%97%A0%E7%A9%B7%E5%B0%8F%E7%BB%93%E6%9E%84/%E6%9D%8E%E4%BB%A3%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%9F%BA%E6%9C%AC%E4%BE%8B%E5%AD%90/</guid><description>&lt;h1 id="50-引言"&gt;5.0 引言&lt;/h1&gt;
+&lt;p&gt;李代数是一种定义在向量空间上的代数结构：其核心是一个满足反对称性与 Jacobi 恒等式的双线性运算，称为李括号。矩阵交换子 $AB-BA$ 是最重要的具体例子，而流形上的光滑向量场也在李括号下构成李代数。经典矩阵李群在单位元处的切空间给出相应的经典矩阵李代数。我们将会看到李群的无穷小结构并非普通向量空间，而是携带着反映群非交换性的李括号。&lt;/p&gt;
+&lt;h1 id="51-从切空间到李括号与李代数"&gt;5.1 从切空间到李括号与李代数&lt;/h1&gt;
+&lt;p&gt;前面我们已经知道，李群的局部结构可以通过单位元处的切空间来研究。一参数子群与单位元处的切向量一一对应，而矩阵指数则将这些无穷小生成元转化为群中的有限变换。但仅有线性空间结构还不够：李群的非交换性究竟如何体现在它的切空间中？&lt;/p&gt;
+&lt;p&gt;答案是引入一种新的代数运算——李括号（Lie bracket）。它将李群的非交换结构转化为切空间上的双线性运算，使单位元处的切空间成为一个李代数。本文将从抽象定义出发，依次研究矩阵李代数、向量场李代数以及李代数同态。&lt;/p&gt;
+&lt;h1 id="52-李代数的定义"&gt;5.2 李代数的定义&lt;/h1&gt;
+&lt;p&gt;设 $\mathfrak g$ 是一个实或复向量空间。若其上定义了一个双线性映射（称为&lt;strong&gt;李括号&lt;/strong&gt;） $[\cdot,\cdot]:\mathfrak g\times\mathfrak g\to\mathfrak g$，并满足以下两个条件，则称 $\mathfrak g$ 为一个&lt;strong&gt;李代数（Lie algebra）&lt;/strong&gt;：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;反对称性： 对任意 $X,Y\in\mathfrak g$，有 $[X,Y]=-[Y,X]$。&lt;/li&gt;
+&lt;li&gt;Jacobi 恒等式： 对任意 $X,Y,Z\in\mathfrak g$，有&lt;br&gt;
+$$&lt;br&gt;
+[X,[Y,Z]]+[Y,[Z,X]]+[Z,[X,Y]]=0.&lt;br&gt;
+$$&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这里的双线性意味着，对任意 $a,b$ 及 $X,Y,Z\in\mathfrak g$，有 $[aX+bY,Z]=a[X,Z]+b[Y,Z]$，并且对第二个变量也成立。而反对称性立即推出 $[X,X]=0$。上述定义说明李代数并不是普通的双线性映射。&lt;/p&gt;
+&lt;p&gt;与群乘法不同，李括号不要求满足结合律。事实上，李代数的核心结构不是结合，而是 Jacobi 恒等式。在解释为什么之前我们不妨先看几个例子，以便更好地理解李代数的定义。&lt;/p&gt;
+&lt;h1 id="53-矩阵李代数与交换子"&gt;5.3 矩阵李代数与交换子&lt;/h1&gt;
+&lt;p&gt;最重要的李代数例子来自矩阵代数。设 $\mathfrak{gl}(n,\mathbb R)=M_n(\mathbb R)$，定义李括号为 $[A,B]=AB-BA.$ 这个运算称为&lt;strong&gt;矩阵交换子（commutator）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;首先，矩阵乘法的双线性保证交换子双线性；其次，显然有 $[A,B]=-[B,A]$。关键在于证明 Jacobi 恒等式：$ [A,[B,C]]+[B,[C,A]]+[C,[A,B]]=0. $
+展开第一项得 $ABC-ACB-BCA+CBA$，其余两项类似。将三项相加后，每个矩阵乘积均恰好出现一次正号和一次负号，因此总和为零。所以 $M_n(\mathbb R)$ 在交换子运算下构成李代数，称为&lt;strong&gt;一般线性李代数&lt;/strong&gt; $\mathfrak{gl}(n,\mathbb R)$。&lt;/p&gt;</description></item><item><title> 1 讲：集合运算与集合序列</title><link>https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/%E6%B5%8B%E5%BA%A6%E8%AE%BA%E7%9A%84%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97%E4%B8%8E%E9%9B%86%E5%90%88%E5%BA%8F%E5%88%97/</link><pubDate>Fri, 13 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/analysis/%E5%AE%9E%E5%88%86%E6%9E%90/%E6%B5%8B%E5%BA%A6%E8%AE%BA%E7%9A%84%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97%E4%B8%8E%E9%9B%86%E5%90%88%E5%BA%8F%E5%88%97/</guid><description>&lt;p&gt;上一讲我们提出了一个问题：如何将区间长度推广到一般集合？要回答这个问题，首先必须明确我们究竟允许对集合进行哪些运算，以及这些运算在无穷情形下具有怎样的性质。&lt;/p&gt;
 &lt;p&gt;测度论并不只是给集合赋予一个数值。它首先需要建立一套能够稳定处理可列集合运算的结构。尤其是&lt;strong&gt;可列并、可列交以及集合序列的极限&lt;/strong&gt;，它们构成了后续可测性与测度构造的基础。&lt;/p&gt;
 &lt;h3 id="11-集合的基本运算"&gt;&lt;strong&gt;1.1 集合的基本运算&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;设 \(X\) 是一个非空集合，\(A,B\subseteq X\)。&lt;/p&gt;
@@ -1810,18 +1829,16 @@ I(x)=-\log_2P(x)
 &lt;h3 id="53-电压门控离子通道"&gt;5.3 电压门控离子通道&lt;/h3&gt;
 &lt;p&gt;&lt;a href="https://images.openai.com/static-rsc-4/AK4KJPLNF8oSMYf6ILSdWqqHCChRtJh5IXVQn8Ow_hfFkggJNsTVKUSjIIQrKvwGhxLT6N46xsNgsXGocrEYjEmtDHkytdAS2dyhjFD1V6hF5kl7bxmrdNrhljCUu0Wgchb3TXoLWtPHPmddE7L-W-TgdK19Z2vv9N1M8TsPBQI?purpose=inline"&gt;PPT - Chapter 4 Principles of Neural and Hormonal Communication PowerPoint Presentation - ID:6656428&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.slideserve.com/brittania-sellers/chapter-4-principles-of-neural-and-hormonal-communication?utm_source=chatgpt.com"&gt;slideserve.com&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;电压门控离子通道（Voltage-Gated Ion Channels）是一类能够根据细胞膜电位变化调节开放状态的膜蛋白。&lt;/p&gt;</description></item><item><title>第 5 章 张量代数</title><link>https://linmythos.github.io/math/geometry/differential-geometry/%E5%BC%A0%E9%87%8F%E4%BB%A3%E6%95%B0/</link><pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/differential-geometry/%E5%BC%A0%E9%87%8F%E4%BB%A3%E6%95%B0/</guid><description>&lt;p&gt;&lt;em&gt;Tensor Algebra&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;张量是微分几何中最基本的代数对象之一。向量、余向量、双线性型、黎曼度量以及曲率张量，都可以纳入统一的张量语言。引入张量的目的，是将这些对象组织成一种不依赖坐标选择的代数结构，并使它们能够在流形上自然地变化。&lt;/p&gt;
-&lt;h2 id="51-多重线性映射与张量"&gt;5.1 多重线性映射与张量&lt;/h2&gt;
-&lt;p&gt;设 \(V\) 是有限维实向量空间，\(V^*\) 表示其对偶空间。一个 \(k+l\) 重多重线性映射，是指一个映射&lt;/p&gt;
-&lt;p&gt;\[ T:\underbrace{V^*\times\cdots\times V^*}_{k}\times \underbrace{V\times\cdots\times V}_{l}\longrightarrow\mathbb R, \]&lt;/p&gt;
-&lt;p&gt;它对每一个变量分别线性。这样的对象称为一个 \((k,l)\) 型张量。这里采用如下约定：第一个指标 \(k\) 表示向量空间 \(V\) 的张量因子数，第二个指标 \(l\) 表示对偶空间 \(V^*\) 的张量因子数。因此，\((k,l)\) 型张量与张量积空间&lt;/p&gt;
-&lt;p&gt;\[ T^k_l(V)=V^{\otimes k}\otimes(V^*)^{\otimes l} \]&lt;/p&gt;
-&lt;p&gt;中的元素自然对应。特别地，向量属于 \(T^1_0(V)=V\)，余向量属于 \(T^0_1(V)=V^*\)。&lt;/p&gt;
-&lt;p&gt;这里需要注意一个容易混淆的地方：虽然张量积表达式中 \(V\) 出现在前、\(V^*\) 出现在后，但多重线性映射的输入恰好相反。一个 \((k,l)\) 型张量接受 \(k\) 个余向量和 \(l\) 个向量作为输入。这是因为 \(V\) 与 \(V^*\) 之间存在自然配对，而有限维条件下有自然同构 \((V^*)^*\cong V\)。&lt;/p&gt;
-&lt;p&gt;张量空间的维数满足 \(\dim T^k_l(V)=(\dim V)^{k+l}\)。当 \(k=l=0\) 时，约定 \(T^0_0(V)=\mathbb R\)，因而标量也是张量。&lt;/p&gt;
-&lt;h2 id="52-常见张量类型"&gt;5.2 常见张量类型&lt;/h2&gt;
-&lt;p&gt;张量语言将许多熟悉的线性代数对象统一起来。标量 \(a\in\mathbb R\) 是 \((0,0)\) 型张量；向量 \(v\in V\) 是 \((1,0)\) 型张量；余向量 \(\alpha\in V^*\) 是 \((0,1)\) 型张量，其作用为 \(\alpha(v)\in\mathbb R\)。&lt;/p&gt;</description></item><item><title>第 6 章 外代数与微分形式</title><link>https://linmythos.github.io/math/geometry/differential-geometry/%E5%A4%96%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86%E5%BD%A2%E5%BC%8F/</link><pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/differential-geometry/%E5%A4%96%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86%E5%BD%A2%E5%BC%8F/</guid><description>&lt;p&gt;&lt;em&gt;Exterior Algebra and Differential Forms&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;电压门控离子通道（Voltage-Gated Ion Channels）是一类能够根据细胞膜电位变化调节开放状态的膜蛋白。&lt;/p&gt;</description></item><item><title>第 5 章 张量代数简介</title><link>https://linmythos.github.io/math/geometry/differential-geometry/%E5%BC%A0%E9%87%8F%E4%BB%A3%E6%95%B0/</link><pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/differential-geometry/%E5%BC%A0%E9%87%8F%E4%BB%A3%E6%95%B0/</guid><description>&lt;p&gt;&lt;em&gt;Tensor Algebra&lt;/em&gt;&lt;/p&gt;
+&lt;h1 id="50-引言"&gt;5.0 引言&lt;/h1&gt;
+&lt;p&gt;向量、余向量、双线性型这些东西实在有点眼花缭乱，但不难发现它们都是线性映射。那么有没有办法引入一种工具将这些对象统一起来，成为一种不依赖坐标选择的代数结构，并使它们能够在流形上自然地变化？答案是肯定的，就是张量和张量代数。&lt;/p&gt;
+&lt;p&gt;张量代数以向量空间及其对偶空间为基础，通过张量积构造高阶多重线性对象。张量的类型由其 $V$ 与 $V^*$ 因子数决定；张量积将不同阶张量组合起来，缩并则利用自然配对降低张量阶数；对称化与反对称化进一步揭示张量的代数结构。将这一理论逐点应用于流形，便得到张量丛与张量场。微分几何中的度量、曲率、微分形式等对象，都将在这一统一框架下得到描述。&lt;/p&gt;
+&lt;h1 id="51-多重线性映射与张量"&gt;5.1 多重线性映射与张量&lt;/h1&gt;
+&lt;p&gt;设 $V$ 是有限维实向量空间，$V^*$ 表示其对偶空间。一个 $k+l$ 重&lt;strong&gt;多重线性映射&lt;/strong&gt;，是指一个映射 $ T:\underbrace{V^*\times\cdots\times V^*}_{k}\times \underbrace{V\times\cdots\times V}_{l}\longrightarrow\mathbb R, $ 它对每一个变量分别线性。这样的对象称为一个 $(k,l)$ 型&lt;strong&gt;张量&lt;/strong&gt;。这里采用如下约定：第一个指标 $k$ 表示向量空间 $V$ 的张量因子数，第二个指标 $l$ 表示对偶空间 $V^*$ 的张量因子数。因此，$(k,l)$ 型张量与张量积空间 $ T^k_l(V)=V^{\otimes k}\otimes(V^*)^{\otimes l} $ 中的元素自然对应。特别地，向量属于 $T^1_0(V)=V$，余向量属于 $T^0_1(V)=V^*$。&lt;/p&gt;
+&lt;p&gt;这里需要注意一个容易混淆的地方：虽然张量积表达式中 $V$ 出现在前、$V^*$ 出现在后，但多重线性映射的输入恰好相反。一个 $(k,l)$ 型张量接受 $k$ 个余向量和 $l$ 个向量作为输入。&lt;/p&gt;
+&lt;p&gt;张量空间的维数满足 $\dim T^k_l(V)=(\dim V)^{k+l}$。当 $k=l=0$ 时，约定 $T^0_0(V)=\mathbb R$，因而标量也是张量。&lt;/p&gt;
+&lt;h1 id="52-常见张量类型"&gt;5.2 常见张量类型&lt;/h1&gt;
+&lt;p&gt;张量能将许多熟悉的线性代数对象统一起来。标量 $a\in\mathbb R$ 是 $(0,0)$ 型张量；向量 $v\in V$ 是 $(1,0)$ 型张量；余向量 $\alpha\in V^*$ 是 $(0,1)$ 型张量，其作用为 $\alpha(v)\in\mathbb R$。线性映射 $A:V\to V$ 可以视为 $(1,1)$ 型张量。事实上，它对应于双线性映射 $(\alpha,v)\mapsto\alpha(Av)$。双线性型 $B:V\times V\to\mathbb R$ 则是 $(0,2)$ 型张量。特别地，内积就是一个对称、正定的 $(0,2)$ 型张量；在黎曼几何中，黎曼度量正是定义在每个切空间上的这一类对象。&lt;/p&gt;</description></item><item><title>第 6 章 外代数与微分形式</title><link>https://linmythos.github.io/math/geometry/differential-geometry/%E5%A4%96%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86%E5%BD%A2%E5%BC%8F/</link><pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/geometry/differential-geometry/%E5%A4%96%E4%BB%A3%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86%E5%BD%A2%E5%BC%8F/</guid><description>&lt;p&gt;&lt;em&gt;Exterior Algebra and Differential Forms&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;外代数是张量代数中专门研究反对称张量的部分，而微分形式则是外代数在光滑流形上的自然实现。它们构成现代微分几何的基本语言：向量场描述方向与运动，微分形式描述可积累的几何量，外积则提供一种坐标无关的方式来表达面积、体积及更高维的有向测度。本章从线性代数出发，建立外代数，并将其推广到光滑流形。&lt;/p&gt;
 &lt;h2 id="61-反对称张量与外代数"&gt;6.1 反对称张量与外代数&lt;/h2&gt;
 &lt;p&gt;设 \(V\) 是有限维实向量空间。一个 \(k\) 阶协变张量 \(T\in T^0_k(V)\) 称为完全反对称的，如果交换任意两个输入都会使其变号。所有这样的张量构成一个线性子空间，记为 \(\Lambda^k(V^*)\)。约定 \(\Lambda^0(V^*)=\mathbb R\)，\(\Lambda^1(V^*)=V^*\)，并且当 \(k&amp;gt;\dim V\) 时，\(\Lambda^k(V^*)=\{0\}\)。&lt;/p&gt;
@@ -2359,53 +2376,33 @@ I(x)=-\log_2P(x)
 &lt;p&gt;于是所有切空间 $T_gG$ 都与单位元处的切空间 $T_eG$ 线性同构。这一事实极其重要：研究整个李群的局部微分结构，可以从研究单位元处的切空间开始。&lt;/p&gt;
 &lt;h1 id="23-矩阵李群"&gt;2.3 矩阵李群&lt;/h1&gt;
 &lt;p&gt;矩阵李群是最直观、最常用的一类李群。设 $M_n(\mathbb R)$ 表示所有 $n\times n$ 实矩阵构成的线性空间。它可以自然地视为 $\mathbb R^{n^2}$，因而具有标准光滑流形结构。&lt;/p&gt;
-&lt;p&gt;若 $G\subseteq GL(n,\mathbb R)$ 是一个子群，并且是 $M_n(\mathbb R)$ 中的嵌入光滑子流形，那么 $G$ 在矩阵乘法下构成一个矩阵李群。&lt;/p&gt;</description></item><item><title>第五章 李代数的定义与基本例子</title><link>https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E6%9D%8E%E4%BB%A3%E6%95%B0%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%9A%84%E6%97%A0%E7%A9%B7%E5%B0%8F%E7%BB%93%E6%9E%84/%E6%9D%8E%E4%BB%A3%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%9F%BA%E6%9C%AC%E4%BE%8B%E5%AD%90/</link><pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E6%9D%8E%E4%BB%A3%E6%95%B0%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%9A%84%E6%97%A0%E7%A9%B7%E5%B0%8F%E7%BB%93%E6%9E%84/%E6%9D%8E%E4%BB%A3%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%9F%BA%E6%9C%AC%E4%BE%8B%E5%AD%90/</guid><description>&lt;p&gt;前面我们已经知道，李群的局部结构可以通过单位元处的切空间来研究。一参数子群与单位元处的切向量一一对应，而矩阵指数则将这些无穷小生成元转化为群中的有限变换。但仅有线性空间结构还不够：李群的非交换性究竟如何体现在它的切空间中？&lt;/p&gt;
-&lt;p&gt;答案是引入一种新的代数运算——李括号（Lie bracket）。它将李群的非交换结构转化为切空间上的双线性运算，使单位元处的切空间成为一个李代数。本章将从抽象定义出发，依次研究矩阵李代数、向量场李代数以及李代数同态。&lt;/p&gt;
-&lt;h2 id="51-李代数的定义"&gt;5.1 李代数的定义&lt;/h2&gt;
-&lt;p&gt;设 \(\mathfrak g\) 是一个实或复向量空间。若其上定义了一个双线性映射 \([\cdot,\cdot]:\mathfrak g\times\mathfrak g\to\mathfrak g\)，并满足以下两个条件，则称 \(\mathfrak g\) 为一个李代数（Lie algebra）：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;反对称性： 对任意 \(X,Y\in\mathfrak g\)，有 \([X,Y]=-[Y,X]\)。&lt;/li&gt;
-&lt;li&gt;Jacobi 恒等式： 对任意 \(X,Y,Z\in\mathfrak g\)，有&lt;br&gt;
-\[&lt;br&gt;
-[X,[Y,Z]]+[Y,[Z,X]]+[Z,[X,Y]]=0.&lt;br&gt;
-\]&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;这里的双线性意味着，对任意 \(a,b\) 及 \(X,Y,Z\in\mathfrak g\)，有 \([aX+bY,Z]=a[X,Z]+b[Y,Z]\)，并且对第二个变量也成立。&lt;/p&gt;
-&lt;p&gt;反对称性立即推出 \([X,X]=0\)。在特征不为 \(2\) 的域上，这一条件与反对称性等价。&lt;/p&gt;
-&lt;p&gt;与群乘法不同，李括号不要求满足结合律。事实上，李代数的核心结构不是结合，而是 Jacobi 恒等式。它刻画了李括号运算之间的相容性，也是后续研究李代数表示、结构理论与几何应用的基础。&lt;/p&gt;
-&lt;h2 id="52-矩阵李代数与交换子"&gt;5.2 矩阵李代数与交换子&lt;/h2&gt;
-&lt;p&gt;最重要的李代数例子来自矩阵代数。设 \(\mathfrak{gl}(n,\mathbb R)=M_n(\mathbb R)\)，定义李括号为&lt;/p&gt;
-&lt;p&gt;\[ \boxed{[A,B]=AB-BA.} \]&lt;/p&gt;
-&lt;p&gt;这个运算称为矩阵交换子（commutator）。&lt;/p&gt;
-&lt;p&gt;首先，矩阵乘法的双线性保证交换子双线性；其次，显然有 \([A,B]=-[B,A]\)。关键在于证明 Jacobi 恒等式：&lt;/p&gt;
-&lt;p&gt;\[ [A,[B,C]]+[B,[C,A]]+[C,[A,B]]=0. \]&lt;/p&gt;
-&lt;p&gt;展开第一项得 \(ABC-ACB-BCA+CBA\)，其余两项类似。将三项相加后，每个矩阵乘积均恰好出现一次正号和一次负号，因此总和为零。&lt;/p&gt;
-&lt;p&gt;所以 \(M_n(\mathbb R)\) 在交换子运算下构成李代数，称为一般线性李代数 \(\mathfrak{gl}(n,\mathbb R)\)。&lt;/p&gt;
-&lt;p&gt;这里有一个重要区别：矩阵乘法本身是结合的，而交换子运算一般不满足结合律。例如，\([A,[B,C]]\) 通常不等于 \([[A,B],C]\)。不过，Jacobi 恒等式保证了交换子具有良好的代数结构。&lt;/p&gt;</description></item><item><title>第八章 李代数的表示</title><link>https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E6%9D%8E%E4%BB%A3%E6%95%B0%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%9A%84%E6%97%A0%E7%A9%B7%E5%B0%8F%E7%BB%93%E6%9E%84/%E6%9D%8E%E4%BB%A3%E6%95%B0%E7%9A%84%E7%BB%93%E6%9E%84%E8%A1%A8%E7%A4%BA/</link><pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E6%9D%8E%E4%BB%A3%E6%95%B0%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%9A%84%E6%97%A0%E7%A9%B7%E5%B0%8F%E7%BB%93%E6%9E%84/%E6%9D%8E%E4%BB%A3%E6%95%B0%E7%9A%84%E7%BB%93%E6%9E%84%E8%A1%A8%E7%A4%BA/</guid><description>&lt;p&gt;前面几章主要研究李代数自身的结构：我们定义了李括号、理想、可解性、幂零性与半单性，并通过 Killing 型刻画半单李代数。现在转向另一个重要问题：如何将抽象李代数具体地实现为线性变换？ 这就是李代数的表示理论（representation theory）。表示理论的基本思想是，将李代数中的元素对应到某个向量空间上的线性算子，同时要求这种对应保持李括号。这样，抽象的代数结构便可以转化为矩阵运算与线性代数问题。它不仅是李代数结构理论的重要组成部分，也是量子力学、角动量理论、粒子物理与规范场论的数学基础。&lt;/p&gt;
+&lt;p&gt;若 $G\subseteq GL(n,\mathbb R)$ 是一个子群，并且是 $M_n(\mathbb R)$ 中的嵌入光滑子流形，那么 $G$ 在矩阵乘法下构成一个矩阵李群。&lt;/p&gt;</description></item><item><title>第八章 李代数的表示</title><link>https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E6%9D%8E%E4%BB%A3%E6%95%B0%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%9A%84%E6%97%A0%E7%A9%B7%E5%B0%8F%E7%BB%93%E6%9E%84/%E6%9D%8E%E4%BB%A3%E6%95%B0%E7%9A%84%E7%BB%93%E6%9E%84%E8%A1%A8%E7%A4%BA/</link><pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E6%9D%8E%E4%BB%A3%E6%95%B0%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%9A%84%E6%97%A0%E7%A9%B7%E5%B0%8F%E7%BB%93%E6%9E%84/%E6%9D%8E%E4%BB%A3%E6%95%B0%E7%9A%84%E7%BB%93%E6%9E%84%E8%A1%A8%E7%A4%BA/</guid><description>&lt;p&gt;前面几章主要研究李代数自身的结构：我们定义了李括号、理想、可解性、幂零性与半单性，并通过 Killing 型刻画半单李代数。现在转向另一个重要问题：如何将抽象李代数具体地实现为线性变换？ 这就是李代数的表示理论（representation theory）。表示理论的基本思想是，将李代数中的元素对应到某个向量空间上的线性算子，同时要求这种对应保持李括号。这样，抽象的代数结构便可以转化为矩阵运算与线性代数问题。它不仅是李代数结构理论的重要组成部分，也是量子力学、角动量理论、粒子物理与规范场论的数学基础。&lt;/p&gt;
 &lt;h2 id="81-李代数的表示"&gt;8.1 李代数的表示&lt;/h2&gt;
 &lt;p&gt;设 \(\mathfrak g\) 是一个域 \(\mathbb F\) 上的李代数，\(V\) 是一个 \(\mathbb F\)-向量空间。记 \(\mathfrak{gl}(V)\) 为 \(V\) 上所有线性算子构成的李代数，其李括号定义为算子交换子 \([A,B]=AB-BA\)。&lt;/p&gt;
 &lt;p&gt;定义 8.1（李代数表示） 若线性映射 \(\rho:\mathfrak g\to\mathfrak{gl}(V)\) 满足 \(\rho([X,Y])=[\rho(X),\rho(Y)]\)，则称 \(\rho\) 为 \(\mathfrak g\) 在 \(V\) 上的一个表示，称 \(V\) 为一个 \(\mathfrak g\)-模。这里的核心要求是：表示必须保持李括号结构。也就是说，先在李代数中计算两个元素的李括号，再进行表示，与先将它们表示为线性算子、再计算算子交换子，结果必须一致。&lt;/p&gt;
 &lt;p&gt;若 \(V\) 有限维，选取一组基后，每个 \(\rho(X)\) 都可以表示为矩阵，因此表示问题可以转化为矩阵问题。若 \(\dim V=n\)，则 \(\rho\) 可以看作一个李代数同态 \(\rho:\mathfrak g\to\mathfrak{gl}(n,\mathbb F)\)。这也解释了为什么表示理论能够将抽象李代数与矩阵李代数联系起来。&lt;/p&gt;
 &lt;p&gt;例如，交换李代数 \(\mathfrak g\) 的表示必须满足所有 \(\rho(X)\) 两两交换，因为 \([X,Y]=0\) 意味着 \([\rho(X),\rho(Y)]=0\)。而对于非交换李代数，表示矩阵则必须满足相应的非平凡交换关系。&lt;/p&gt;
 &lt;h2 id="82-忠实表示与表示的核"&gt;8.2 忠实表示与表示的核&lt;/h2&gt;
-&lt;p&gt;给定表示 \(\rho:\mathfrak g\to\mathfrak{gl}(V)\)，其核定义为 \(\ker\rho=\{X\in\mathfrak g:\rho(X)=0\}\)。由于 \(\rho\) 是李代数同态，核是 \(\mathfrak g\) 的理想。若 \(\ker\rho=\{0\}\)，则称 \(\rho\) 为忠实表示（faithful representation）。&lt;/p&gt;</description></item><item><title>第六章 李群的李代数</title><link>https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E6%9D%8E%E4%BB%A3%E6%95%B0%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%9A%84%E6%97%A0%E7%A9%B7%E5%B0%8F%E7%BB%93%E6%9E%84/%E6%9D%8E%E7%BE%A4%E7%9A%84%E6%9D%8E%E4%BB%A3%E6%95%B0/</link><pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E6%9D%8E%E4%BB%A3%E6%95%B0%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%9A%84%E6%97%A0%E7%A9%B7%E5%B0%8F%E7%BB%93%E6%9E%84/%E6%9D%8E%E7%BE%A4%E7%9A%84%E6%9D%8E%E4%BB%A3%E6%95%B0/</guid><description>&lt;p&gt;上一章从抽象代数出发，引入了李代数，并通过矩阵交换子与向量场李括号给出了基本例子。本章将回答一个核心问题：为什么每个李群都自然对应一个李代数？&lt;/p&gt;
-&lt;p&gt;关键在于，李群的单位元处切空间 \(T_eG\) 不仅是一个向量空间，还能够通过左不变向量场继承李括号运算。由此，李群的局部群结构被转化为一个纯粹的代数对象。对于矩阵李群，这一构造尤其直接：其李代数就是满足相应线性化约束的矩阵空间，并以矩阵交换子作为李括号。&lt;/p&gt;
-&lt;h2 id="61-左不变向量场"&gt;6.1 左不变向量场&lt;/h2&gt;
-&lt;p&gt;设 \(G\) 是一个李群。对任意 \(g\in G\)，左平移 \(L_g:G\to G\) 定义为 \(L_g(h)=gh\)。由于左平移是微分同胚，它在每一点处都诱导切空间之间的线性同构。&lt;/p&gt;
-&lt;p&gt;定义 6.1（左不变向量场） 若 \(X\in\mathfrak X(G)\) 满足对任意 \(g,h\in G\)，&lt;/p&gt;
-&lt;p&gt;\[ (dL_g)_h(X_h)=X_{gh}, \]&lt;/p&gt;
-&lt;p&gt;则称 \(X\) 为左不变向量场。&lt;/p&gt;
-&lt;p&gt;这一定义表示：向量场在左平移作用下保持不变。换言之，知道单位元处的向量 \(X_e\)，就能通过左平移唯一确定整个李群上的向量场。&lt;/p&gt;
-&lt;p&gt;事实上，给定任意 \(v\in T_eG\)，定义&lt;/p&gt;
-&lt;p&gt;\[ X_g=(dL_g)_e(v). \]&lt;/p&gt;
-&lt;p&gt;则 \(X\) 是一个左不变向量场。反过来，若 \(X\) 左不变，则取 \(h=e\)，得到 \(X_g=(dL_g)_e(X_e)\)。因此有自然线性同构&lt;/p&gt;
-&lt;p&gt;\[ \boxed{\mathfrak X_L(G)\cong T_eG,} \]&lt;/p&gt;
-&lt;p&gt;其中 \(\mathfrak X_L(G)\) 表示所有左不变向量场组成的空间。&lt;/p&gt;
-&lt;p&gt;这意味着左不变向量场完全由单位元处的切向量决定。我们可以先在 \(T_eG\) 中研究问题，再将结果通过左平移推广到整个李群。&lt;/p&gt;
-&lt;h2 id="62-左不变向量场在李括号下封闭"&gt;6.2 左不变向量场在李括号下封闭&lt;/h2&gt;
-&lt;p&gt;我们已经知道，任意光滑流形上的向量场在李括号下构成李代数。为了将这一结构转移到 \(T_eG\)，还需要证明左不变向量场的李括号仍然左不变。&lt;/p&gt;
-&lt;p&gt;命题 6.1 若 \(X,Y\in\mathfrak X_L(G)\)，则 \([X,Y]\in\mathfrak X_L(G)\)。&lt;/p&gt;
-&lt;p&gt;证明的关键是利用微分同胚对向量场李括号的保持性。对任意微分同胚 \(F:M\to N\)，有&lt;/p&gt;</description></item><item><title>第十一章 李群的拓扑与覆盖</title><link>https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E5%B1%80%E9%83%A8%E7%BB%93%E6%9E%84%E6%95%B4%E4%BD%93%E6%8B%93%E6%89%91%E4%B8%8E%E5%88%86%E7%B1%BB/%E6%9D%8E%E7%BE%A4%E7%9A%84%E6%8B%93%E6%89%91%E4%B8%8E%E8%A6%86%E7%9B%96/</link><pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E5%B1%80%E9%83%A8%E7%BB%93%E6%9E%84%E6%95%B4%E4%BD%93%E6%8B%93%E6%89%91%E4%B8%8E%E5%88%86%E7%B1%BB/%E6%9D%8E%E7%BE%A4%E7%9A%84%E6%8B%93%E6%89%91%E4%B8%8E%E8%A6%86%E7%9B%96/</guid><description>&lt;p&gt;李代数刻画李群的局部结构，但无法完全决定李群的整体拓扑。上一章已经提到，\(SU(2)\) 与 \(SO(3)\) 具有同构的李代数，却不是同构的李群。这种差异来自李群的整体拓扑，尤其是连通性、单连通性与覆盖结构。本章将介绍李群的基本拓扑性质，说明单连通李群在李群理论中的特殊地位，并建立李代数与李群之间更完整的对应关系。&lt;/p&gt;
+&lt;p&gt;给定表示 \(\rho:\mathfrak g\to\mathfrak{gl}(V)\)，其核定义为 \(\ker\rho=\{X\in\mathfrak g:\rho(X)=0\}\)。由于 \(\rho\) 是李代数同态，核是 \(\mathfrak g\) 的理想。若 \(\ker\rho=\{0\}\)，则称 \(\rho\) 为忠实表示（faithful representation）。&lt;/p&gt;</description></item><item><title>第六章 李群的李代数</title><link>https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E6%9D%8E%E4%BB%A3%E6%95%B0%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%9A%84%E6%97%A0%E7%A9%B7%E5%B0%8F%E7%BB%93%E6%9E%84/%E6%9D%8E%E7%BE%A4%E7%9A%84%E6%9D%8E%E4%BB%A3%E6%95%B0/</link><pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E6%9D%8E%E4%BB%A3%E6%95%B0%E8%BF%9E%E7%BB%AD%E5%AF%B9%E7%A7%B0%E6%80%A7%E7%9A%84%E6%97%A0%E7%A9%B7%E5%B0%8F%E7%BB%93%E6%9E%84/%E6%9D%8E%E7%BE%A4%E7%9A%84%E6%9D%8E%E4%BB%A3%E6%95%B0/</guid><description>&lt;h1 id="60-引言"&gt;6.0 引言&lt;/h1&gt;
+&lt;p&gt;前面我们从抽象代数出发，引入了李代数，并通过矩阵交换子与向量场李括号给出了基本例子。自然地，我们会想有没有可能每个李群都自然对应一个李代数？答案是肯定的。&lt;/p&gt;
+&lt;p&gt;关键在于，李群的单位元处切空间 $T_eG$ 不仅是一个向量空间，还能够通过左不变向量场继承李括号运算。由此，李群的局部群结构被转化为一个纯粹的代数对象。对于矩阵李群，这一构造尤其直接：其李代数就是满足相应线性化约束的矩阵空间，并以矩阵交换子作为李括号。&lt;/p&gt;
+&lt;h1 id="61-左不变向量场"&gt;6.1 左不变向量场&lt;/h1&gt;
+&lt;p&gt;设 $G$ 是一个李群。对任意 $g\in G$，左平移 $L_g:G\to G$ 定义为 $L_g(h)=gh$。由于左平移是微分同胚，它在每一点处都诱导切空间之间的线性同构。那么左平移作用于向量场时有没有不影响向量场的情况呢？&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;定义 6.1（左不变向量场）&lt;/strong&gt; 若 $X\in\mathfrak X(G)$ 满足对任意 $g,h\in G$，$ (dL_g)_h(X_h)=X_{gh}, $
+则称 $X$ 为&lt;strong&gt;左不变向量场&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;这一定义表示：向量场在左平移作用下保持不变。换言之，知道单位元处的向量 $X_e$，就能通过左平移唯一确定整个李群上的向量场。事实上，给定任意 $v\in T_eG$，定义 $ X_g=(dL_g)_e(v). $ 则 $X$ 是一个左不变向量场。反过来，若 $X$ 左不变，则取 $h=e$，得到 $X_g=(dL_g)_e(X_e)$。因此有自然线性同构 $ \mathfrak X_L(G)\cong T_eG, $ 其中 $\mathfrak X_L(G)$ 表示所有左不变向量场组成的空间。&lt;/p&gt;
+&lt;p&gt;这是好事啊！因为这意味着左不变向量场完全由单位元处的切向量决定。我们可以先在 $T_eG$ 中研究问题，再将结果通过左平移推广到整个李群。&lt;/p&gt;
+&lt;h1 id="62-左不变向量场在李括号下封闭"&gt;6.2 左不变向量场在李括号下封闭&lt;/h1&gt;
+&lt;p&gt;我们已经知道，任意光滑流形上的向量场在李括号下构成李代数。为了将这一结构转移到 $T_eG$，还需要证明左不变向量场的李括号仍然左不变。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;命题 6.1&lt;/strong&gt; 若 $X,Y\in\mathfrak X_L(G)$，则 $[X,Y]\in\mathfrak X_L(G)$。&lt;/p&gt;
+&lt;p&gt;我们先证明微分同胚对向量场李括号的保持性，即对任意微分同胚 $F:M\to N$，有 $ F_*[X,Y]=[F_*X,F_*Y]. $这里 $F_*X$ 表示向量场 $X$ 在 $F$ 下的推前，也就是将 $M$ 上的向量场 $X$ 推到 $N$ 上，定义 $ (F_*X)_{F(p)}=F_{*p}(X_p).$ 它作为导子时，对于任意 $h\in C^\infty(N)$，有 $
+((F_*X)h)\circ F=X(h\circ F).$
+那么，
+$
+((F_*X)((F_*Y)h))\circ F=X\big(((F_*Y)h)\circ F\big)=X\big(Y(h\circ F)\big).
+$ 因此 $
+([F_*X,F_*Y]h)\circ F=X(Y(h\circ F))-Y(X(h\circ F))=[X,Y](h\circ F)=((F_*[X,Y])h)\circ F.
+$&lt;/p&gt;</description></item><item><title>第十一章 李群的拓扑与覆盖</title><link>https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E5%B1%80%E9%83%A8%E7%BB%93%E6%9E%84%E6%95%B4%E4%BD%93%E6%8B%93%E6%89%91%E4%B8%8E%E5%88%86%E7%B1%BB/%E6%9D%8E%E7%BE%A4%E7%9A%84%E6%8B%93%E6%89%91%E4%B8%8E%E8%A6%86%E7%9B%96/</link><pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate><guid>https://linmythos.github.io/math/algebra/lie%E7%BE%A4%E4%B8%8Elie%E4%BB%A3%E6%95%B0/%E5%B1%80%E9%83%A8%E7%BB%93%E6%9E%84%E6%95%B4%E4%BD%93%E6%8B%93%E6%89%91%E4%B8%8E%E5%88%86%E7%B1%BB/%E6%9D%8E%E7%BE%A4%E7%9A%84%E6%8B%93%E6%89%91%E4%B8%8E%E8%A6%86%E7%9B%96/</guid><description>&lt;p&gt;李代数刻画李群的局部结构，但无法完全决定李群的整体拓扑。上一章已经提到，\(SU(2)\) 与 \(SO(3)\) 具有同构的李代数，却不是同构的李群。这种差异来自李群的整体拓扑，尤其是连通性、单连通性与覆盖结构。本章将介绍李群的基本拓扑性质，说明单连通李群在李群理论中的特殊地位，并建立李代数与李群之间更完整的对应关系。&lt;/p&gt;
 &lt;h2 id="111-连通性与道路连通性"&gt;11.1 连通性与道路连通性&lt;/h2&gt;
 &lt;p&gt;设 \(G\) 是拓扑群。若 \(G\) 不能表示为两个非空不交开集的并，则称 \(G\) 是连通的。若任意两个点都可以通过一条连续曲线连接，则称 \(G\) 是道路连通的。对于一般拓扑空间，连通性与道路连通性并不等价；但对于流形，由于局部道路连通性，连通分支与道路连通分支一致。因此，李群的连通性也可以通过道路连通性来理解。&lt;/p&gt;
 &lt;p&gt;李群的单位连通分支记为 \(G_0\)，即包含单位元的连通分支。由于群乘法与求逆映射连续，\(G_0\) 是 \(G\) 的正规开子群。商群 \(G/G_0\) 称为李群的分支群，它记录了李群的连通分支结构。&lt;/p&gt;
